@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 24.125, 12" name="DoAnBanHang_UseCase">
+  <useCaseModelRootMoniker Id="2e25869a-c0fb-4951-a8bf-c77a474b680a" />
+  <nestedChildShapes>
+    <actorShape Id="67f597c9-fa94-4921-845a-9798c7803bfe" absoluteBounds="3.25, 6.25, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="71f98745-36c8-434b-a17e-7b181cd78da0" LastKnownName="Nhân viên bán hàng" />
+      <relativeChildShapes />
+    </actorShape>
+    <actorShape Id="ca63b4a9-eaa8-4d8f-bf71-e24c57470a86" absoluteBounds="8.625, 3, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="1d03a554-dacb-4d01-8937-998f97b509ac" LastKnownName="Khách hàng" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="e167ac81-4ce3-42c1-afc1-bcd920b7603f" absoluteBounds="8.375, 4.125, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="07fff1d8-ef61-4706-a1c0-e896fcdc5828" LastKnownName="Mua hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(8.875 : 3.5); (8.875 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="394bffda-335d-4340-ad62-fa0492a5ee10" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="ca63b4a9-eaa8-4d8f-bf71-e24c57470a86" />
+        <useCaseShapeMoniker Id="e167ac81-4ce3-42c1-afc1-bcd920b7603f" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="72bc4e23-e76b-4218-a920-f6dbdb0dbed0" absoluteBounds="9.25, 6.375, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="5fc8f6ae-24be-48a6-8b88-9fa4e6fa56e3" LastKnownName="Tạo đơn hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.75 : 6.505); (9.25039952063911 : 6.61500799041278)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="3abad326-c2a9-4d3c-8ab0-7be6bcae81d1" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="67f597c9-fa94-4921-845a-9798c7803bfe" />
+        <useCaseShapeMoniker Id="72bc4e23-e76b-4218-a920-f6dbdb0dbed0" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="4cab8f47-9fcf-401b-9fd4-4ebccde4a834" absoluteBounds="5.5, 5.375, 1.375, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="7030151f-df43-40a0-b92a-231678eec3e9" LastKnownName="Cập nhật thông tin khách hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.75 : 6.42441860465116); (5.61505613268564 : 5.86056442500201)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="af862929-993f-456a-b74e-2dc29105a661" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="67f597c9-fa94-4921-845a-9798c7803bfe" />
+        <useCaseShapeMoniker Id="4cab8f47-9fcf-401b-9fd4-4ebccde4a834" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <commentShape Id="8425bc73-9076-44b9-8200-2612ea624f54" absoluteBounds="11.75, 3.875, 1.25, 1" customColor="251, 247, 200">
+      <commentMoniker Id="254c1cf2-9b6c-4dce-9808-acd99231bf36" />
+      <relativeChildShapes />
+    </commentShape>
+    <useCaseShape Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" absoluteBounds="9, 11, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="8fb2527b-0d0b-431e-bd1f-f769c5dec9eb" LastKnownName="Giao hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseDependencyConnector edgePoints="[(9.51350858067396 : 11.0000912575318); (9.73649141932604 : 6.87490874246821)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="1fb923ae-0c00-44ea-b20f-c927692b6cab" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" />
+        <useCaseShapeMoniker Id="72bc4e23-e76b-4218-a920-f6dbdb0dbed0" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="1280f03d-391f-4817-aab1-45bede2e0ca3" absoluteBounds="4.875, 11.25, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="2b6739bd-c0ee-417a-afba-3765b306335e" LastKnownName="Cập nhật đơn hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseDependencyConnector edgePoints="[(5.87136689101685 : 11.4699171581202); (9.00363310898315 : 11.2800828418798)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="565388fb-7c90-433b-9164-3b59a7ee98cb" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="1280f03d-391f-4817-aab1-45bede2e0ca3" />
+        <useCaseShapeMoniker Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="23c5cac9-caeb-414a-a19e-ac46a338fe0b" absoluteBounds="7.125, 9.75, 1, 0.75" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="114c8bb1-1f29-4bae-8002-a46e30a2c95d" LastKnownName="Cập nhật công nợ (nhận tiền)" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseDependencyConnector edgePoints="[(8.01543440472152 : 10.3592606428329); (9.17990780016776 : 11.0579446801007)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="b961c277-8edf-451d-8362-df863b2ba688" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="23c5cac9-caeb-414a-a19e-ac46a338fe0b" />
+        <useCaseShapeMoniker Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="6616bc00-027c-46c1-b627-0bd86b09c9ab" absoluteBounds="5.625, 7.5, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="fcb01375-e94c-41d9-83d6-8881d03bd70c" LastKnownName="Tạo công nợ" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseDependencyConnector edgePoints="[(6.54982008309906 : 7.61815928455546); (9.32517991690094 : 6.75684071544454)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="eb0363ae-ed83-44f9-bdde-68ee94aad284" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="6616bc00-027c-46c1-b627-0bd86b09c9ab" />
+        <useCaseShapeMoniker Id="72bc4e23-e76b-4218-a920-f6dbdb0dbed0" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <actorShape Id="88c9b009-f2a4-41e0-a70b-1da1715c22ba" absoluteBounds="3.125, 10.125, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="482ec02b-e728-4efa-b787-3f16129d4e92" LastKnownName="Nhân viên giao hàng" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseAssociationConnector edgePoints="[(3.625 : 10.4107142857143); (9.01923802617959 : 11.1813197180257)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="8ad54ccc-b887-4081-bd5d-09d291c37852" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="88c9b009-f2a4-41e0-a70b-1da1715c22ba" />
+        <useCaseShapeMoniker Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseAssociationConnector edgePoints="[(3.625 : 10.515625); (5.04281808058504 : 11.3131476703291)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="1da8fa5f-b088-48be-8e5d-27a312ba2a41" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="88c9b009-f2a4-41e0-a70b-1da1715c22ba" />
+        <useCaseShapeMoniker Id="1280f03d-391f-4817-aab1-45bede2e0ca3" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <artifactShape Id="b3b1e193-dcbc-4ce5-89fc-348763c94a0d" absoluteBounds="11.75, 10.25, 1.5, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="499ed1fe-0055-4d99-b4db-51095df995bc" LastKnownName="Hàng hoá" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(9.94721359549996 : 11.138196601125); (11.75 : 10.6875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="fe0335b2-95c8-42dc-b16c-a19844bc9430" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" />
+        <artifactShapeMoniker Id="b3b1e193-dcbc-4ce5-89fc-348763c94a0d" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <actorShape Id="45a46b7e-e85c-4365-ace9-760e2c304940" absoluteBounds="14.125, 3.75, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="4af0afbd-d398-4f67-a816-84ab1b11e3f7" LastKnownName="Nhân viên thủ kho" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="ff7ef44a-4543-4166-a449-822d58194e61" absoluteBounds="12, 6.125, 1.375, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="718868ae-88f5-404d-8a1c-d65145a6ef17" LastKnownName="Kiểm tra thông tin kho" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(14.2019230769231 : 4.25); (12.893869270044 : 6.13941105438089)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="4df6e16a-5fb5-4309-98a5-37ee67d6bfb0" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="45a46b7e-e85c-4365-ace9-760e2c304940" />
+        <useCaseShapeMoniker Id="ff7ef44a-4543-4166-a449-822d58194e61" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" absoluteBounds="16.5, 6, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="587780c7-2a7a-4fc6-a9a1-73b873aab084" LastKnownName="Đặt hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(14.625 : 4.21428571428571); (16.748064487238 : 6.03405527477539)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="38d0ab23-4fe7-4735-806c-52aa653cbc15" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="45a46b7e-e85c-4365-ace9-760e2c304940" />
+        <useCaseShapeMoniker Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(16.5018797059022 : 6.27165740409121); (13.3718763332783 : 6.40774450724877)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="32e6e5e0-2e6a-42a5-a676-041c9947a09d" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" />
+        <useCaseShapeMoniker Id="ff7ef44a-4543-4166-a449-822d58194e61" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <actorShape Id="d6801400-2355-45e2-b7c4-ad61640198b8" absoluteBounds="23.125, 5.375, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="b1c9b9ff-6c85-40a1-8752-51b15ac76eb4" LastKnownName="Nhà cung cấp" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="ef230586-0a42-424b-a546-6f1bab5c80a5" absoluteBounds="21.25, 5.375, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="0b7ada39-307d-4cfe-a87a-739a606a292f" LastKnownName="Báo giá" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(23.125 : 5.625); (22.25 : 5.625)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="844a1b7f-f84d-4266-b5b8-70a5416ebec1" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="d6801400-2355-45e2-b7c4-ad61640198b8" />
+        <useCaseShapeMoniker Id="ef230586-0a42-424b-a546-6f1bab5c80a5" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <artifactShape Id="ccf7e933-5a87-4555-9bcc-59890eab040e" absoluteBounds="18.375, 4.625, 1, 0.75" customColor="161, 199, 231">
+      <artifactMoniker Id="3b14cc92-91e5-4f4e-b1ee-6ea4ffb6b116" LastKnownName="Thông tin nhà cung cấp" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(19.375 : 5.10869565217391); (21.2914649718734 : 5.52531847214639)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="3b07b874-ac24-4819-b551-90383c6359aa" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="ccf7e933-5a87-4555-9bcc-59890eab040e" />
+        <useCaseShapeMoniker Id="ef230586-0a42-424b-a546-6f1bab5c80a5" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(17.3 : 6.05); (18.375 : 5.33333333333333)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="9489c6f9-5707-46cf-8fe5-f0101f131f01" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" />
+        <artifactShapeMoniker Id="ccf7e933-5a87-4555-9bcc-59890eab040e" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <artifactShape Id="cc34b6bb-3ef1-40a6-965d-480382f2c84d" absoluteBounds="18.125, 6.625, 1.5, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="5eb680f0-7a27-4750-b37e-9be88a1adea4" LastKnownName="Đơn nhập hàng" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(18.125 : 6.625); (17.4160251471689 : 6.38867504905631)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="e5822453-258e-40bf-b6dc-cbcef3e40730" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="cc34b6bb-3ef1-40a6-965d-480382f2c84d" />
+        <useCaseShapeMoniker Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="4d758298-a14a-4cc9-a15d-cabe4b2f9d94" absoluteBounds="21.25, 7.125, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="049a4ef8-db43-49ba-b45b-bb9fa163400a" LastKnownName="Giao hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseDependencyConnector edgePoints="[(21.2777516016469 : 7.29286984376468); (19.625 : 7.0054347826087)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="5772b632-100e-40e9-bda2-3bd430d87f6a" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="4d758298-a14a-4cc9-a15d-cabe4b2f9d94" />
+        <artifactShapeMoniker Id="cc34b6bb-3ef1-40a6-965d-480382f2c84d" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseAssociationConnector edgePoints="[(23.1428571428571 : 5.875); (21.9605556532273 : 7.14824775806289)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="3f475f0e-eb33-4336-942f-0ae8b3e93b77" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="d6801400-2355-45e2-b7c4-ad61640198b8" />
+        <useCaseShapeMoniker Id="4d758298-a14a-4cc9-a15d-cabe4b2f9d94" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="2c2de2ac-47c1-4743-98f7-b56bb715489a" absoluteBounds="15.5, 6.5, 1.125, 0.75" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="cdc0dc8d-075c-41ca-a116-662f24449c03" LastKnownName="Cập nhật đơn đặt hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(14.5217391304348 : 4.25); (15.8575253664235 : 6.52578395761034)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="644f3d86-3b54-4d4c-afa4-a91a34d495d8" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="45a46b7e-e85c-4365-ace9-760e2c304940" />
+        <useCaseShapeMoniker Id="2c2de2ac-47c1-4743-98f7-b56bb715489a" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(16.625 : 6.875); (18.125 : 6.875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="579b3fb8-0a38-48d3-a294-742ec7406d9c" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="2c2de2ac-47c1-4743-98f7-b56bb715489a" />
+        <artifactShapeMoniker Id="cc34b6bb-3ef1-40a6-965d-480382f2c84d" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="11972295-caca-46dd-a3f7-21cd7c5b8caa" absoluteBounds="16.125, 4.75, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="4d400ed8-4448-43e8-9d90-ecdf346dc53a" LastKnownName="Tạo công nợ" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(14.625 : 4.11111111111111); (16.2512953406582 : 4.83390904029252)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="c82b9cde-ce88-4f3c-94ad-de38ddfb1252" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="45a46b7e-e85c-4365-ace9-760e2c304940" />
+        <useCaseShapeMoniker Id="11972295-caca-46dd-a3f7-21cd7c5b8caa" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(16.6991702264651 : 5.24723408821707); (16.9258297735349 : 6.00276591178293)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="3ad3118e-14eb-43f5-b23a-5529fbbfaf98" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="11972295-caca-46dd-a3f7-21cd7c5b8caa" />
+        <useCaseShapeMoniker Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <actorShape Id="bca69ed6-7847-4e33-b4a1-b47571dc1aaf" absoluteBounds="23.125, 9, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="ae2109ee-6536-4226-b364-ed359fe8c457" LastKnownName="Nhân viên kế toán" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="90384cd1-97c2-472b-8c12-7b5748221fbe" absoluteBounds="18.25, 8.875, 1.125, 0.75" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="8a09443d-923b-473f-bb3c-5be7086004f8" LastKnownName="Cập nhật công nợ&#xD;&#xA;(trả tiền)" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(23.125 : 9.25); (19.375 : 9.25)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="4c82ed82-3b16-45eb-9030-8191b1f715d5" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="bca69ed6-7847-4e33-b4a1-b47571dc1aaf" />
+        <useCaseShapeMoniker Id="90384cd1-97c2-472b-8c12-7b5748221fbe" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <artifactShape Id="cadb0e68-176c-4996-a0de-86d203bd43a2" absoluteBounds="18.25, 7.75, 1.125, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="3328bd1c-805b-43c3-bafc-2142207fca2f" LastKnownName="Hàng hoá" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(19.375 : 7.88031914893617); (21.2899226821857 : 7.47288879102432)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="1c18a48a-5f40-41c0-bc23-1e426a032816" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="cadb0e68-176c-4996-a0de-86d203bd43a2" />
+        <useCaseShapeMoniker Id="4d758298-a14a-4cc9-a15d-cabe4b2f9d94" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(18.8125 : 8.875); (18.8125 : 8.25)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="2e3b687e-43e7-460f-8151-2c1a69451527" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="90384cd1-97c2-472b-8c12-7b5748221fbe" />
+        <artifactShapeMoniker Id="cadb0e68-176c-4996-a0de-86d203bd43a2" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(16.5419315348649 : 7.07113108244472); (18.25 : 7.76988636363636)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="de5ce37a-ebff-4d02-84d3-cfc51c632455" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="2c2de2ac-47c1-4743-98f7-b56bb715489a" />
+        <artifactShapeMoniker Id="cadb0e68-176c-4996-a0de-86d203bd43a2" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="addd0e32-2974-4351-8f01-d87a5c6a92bc" absoluteBounds="14.875, 8.625, 1, 0.75" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="aaba6b13-5410-49e1-8a78-35106aefbd0c" LastKnownName="Cập nhật thông tin kho" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(15.375 : 9); (15.375 : 9)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="b7054132-2a75-4075-9da7-2b0741df7fbb" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="addd0e32-2974-4351-8f01-d87a5c6a92bc" />
+        <useCaseShapeMoniker Id="addd0e32-2974-4351-8f01-d87a5c6a92bc" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(15.8411612168891 : 8.86438946417771); (18.25 : 8.16363636363636)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="c088bf4c-0cfa-4d2a-9988-14ddddbd0daf" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="addd0e32-2974-4351-8f01-d87a5c6a92bc" />
+        <artifactShapeMoniker Id="cadb0e68-176c-4996-a0de-86d203bd43a2" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <artifactShape Id="58701907-1559-4ad0-adca-1908535fc33f" absoluteBounds="8.625, 5.375, 1.125, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="a4832b5c-5211-476b-90d9-fe8d8f5c46b4" LastKnownName="Đơn đặt hàng" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(9.125 : 5.375); (8.9370173672946 : 4.62306946917842)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="67180d39-e5b8-43b3-9ba0-392de8ae5a85" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+        <useCaseShapeMoniker Id="e167ac81-4ce3-42c1-afc1-bcd920b7603f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(6.87427902200191 : 5.67319210370829); (8.625 : 5.63671875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="ae2be520-b124-4ca2-a710-68bfe39e8fbc" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="4cab8f47-9fcf-401b-9fd4-4ebccde4a834" />
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(9.61462721154086 : 6.38433726496153); (9.328125 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="3c6cb45b-6863-45d9-9943-b782649190af" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="72bc4e23-e76b-4218-a920-f6dbdb0dbed0" />
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(12.0752277254666 : 6.29536536484047); (9.75 : 5.75558035714286)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="3380d079-d2a6-4d3c-90bf-fcd1b7d3e10f" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="ff7ef44a-4543-4166-a449-822d58194e61" />
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <commentShape Id="df0ad955-1994-4724-a82b-cf435869cd93" absoluteBounds="18.875, 2.625, 2.875, 1.875" customColor="251, 247, 200">
+      <commentMoniker Id="37e05673-5f10-4e1b-bb97-aa0800ca0e0a" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentShape Id="040c5f0e-bb24-45c4-8758-c7120e9e1e27" absoluteBounds="2.375, 2.25, 3.25, 2.25" customColor="251, 247, 200">
+      <commentMoniker Id="ded5ca5b-6779-4a90-a4ae-030c5dc89427" />
+      <relativeChildShapes />
+    </commentShape>
+    <useCaseShape Id="a99b7d76-230a-45b6-90a9-34234930c69f" absoluteBounds="11.125, 5.375, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="9fd7f3f7-9a56-4ac0-b068-ced288ebada7" LastKnownName="Thanh Toán" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(9.125 : 3.46590909090909); (11.3744818647291 : 5.40864342862972)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="4caea65c-3a59-4f14-a5ed-41b8047aa076" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="ca63b4a9-eaa8-4d8f-bf71-e24c57470a86" />
+        <useCaseShapeMoniker Id="a99b7d76-230a-45b6-90a9-34234930c69f" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(11.125 : 5.625); (9.75 : 5.625)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="5b15ace7-e919-48fb-8b46-ea6aa59990f4" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="a99b7d76-230a-45b6-90a9-34234930c69f" />
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(11.532196612621 : 5.8706560254151); (9.59280338737904 : 11.0043439745849)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="0185cec7-d054-4b33-a2b5-3665c216b711" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="a99b7d76-230a-45b6-90a9-34234930c69f" />
+        <useCaseShapeMoniker Id="c6000db9-8dd1-476a-a4a6-a200aaeda02c" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <artifactShape Id="127423a0-bee5-4431-8f24-ac0061cb080b" absoluteBounds="10.5, 9.125, 1.5, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="05760187-6e71-4ae7-83fd-118e9356d0f0" LastKnownName="Phiếu Thanh Toán" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(11.275 : 9.125); (11.6000311915281 : 5.87468808471946)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="4df721b9-58f3-4b41-b4f5-601d938e6325" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="127423a0-bee5-4431-8f24-ac0061cb080b" />
+        <useCaseShapeMoniker Id="a99b7d76-230a-45b6-90a9-34234930c69f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(8.10699630910304 : 10.0252766257028); (10.5 : 9.5301724137931)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="b306cf76-7085-4a69-b018-49435d24c0c3" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="23c5cac9-caeb-414a-a19e-ac46a338fe0b" />
+        <artifactShapeMoniker Id="127423a0-bee5-4431-8f24-ac0061cb080b" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <artifactShape Id="03f7b9c4-0907-4ec6-8a46-3a77ac7416bd" absoluteBounds="18.25, 5.625, 1.5, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="5f0c91cf-e2d9-448c-af6e-03ce2f814cb7" LastKnownName="Bảng báo giá" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(17.4681645887845 : 6.1622191396029); (18.25 : 6.015625)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="873eb8ac-5538-4af6-9680-3b94ce4f91cf" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="95dccdc0-da18-41bb-85f1-26e5b57e7e9e" />
+        <artifactShapeMoniker Id="03f7b9c4-0907-4ec6-8a46-3a77ac7416bd" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(19.75 : 5.80681818181818); (21.25806504495 : 5.66972135955)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="f5fb1652-147a-4aad-bbdb-956349e822f4" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="03f7b9c4-0907-4ec6-8a46-3a77ac7416bd" />
+        <useCaseShapeMoniker Id="ef230586-0a42-424b-a546-6f1bab5c80a5" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="b4d32b74-1423-4570-a2d2-4e1cfaa7d060" absoluteBounds="6.25, 3.875, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="8bd6993e-9017-4330-9e2a-779ea944092d" LastKnownName="Huỷ hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(8.625 : 3.35294117647059); (7.13596511780852 : 3.96607318678473)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="4885a910-45bd-41b4-82de-d3c8d68b4be4" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="ca63b4a9-eaa8-4d8f-bf71-e24c57470a86" />
+        <useCaseShapeMoniker Id="b4d32b74-1423-4570-a2d2-4e1cfaa7d060" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(7.06529631254723 : 4.31902850002907); (8.78125 : 5.375)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="a39fa021-9228-46e8-99b8-17db744fd324" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="b4d32b74-1423-4570-a2d2-4e1cfaa7d060" />
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <includeConnector edgePoints="[(7.17582915835227 : 4.25602435641608); (11.1991708416477 : 5.49397564358392)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«include»">
+      <includeMoniker Id="aee137a1-8727-40d6-9cac-d89b93aa8a0e" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="b4d32b74-1423-4570-a2d2-4e1cfaa7d060" />
+        <useCaseShapeMoniker Id="a99b7d76-230a-45b6-90a9-34234930c69f" />
+      </nodes>
+    </includeConnector>
+    <actorShape Id="c5544752-bc29-4ecc-8555-6001eb95bd06" absoluteBounds="3.25, 7.375, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="e1eb72a8-6e13-4ffa-a6cb-3e4d1d11980c" LastKnownName="Nhân viên kế toán" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseAssociationConnector edgePoints="[(3.75 : 7.63690476190476); (5.62725226370302 : 7.726297726843)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="18b5ade1-bcbe-4f47-a5ca-e085899805ff" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="c5544752-bc29-4ecc-8555-6001eb95bd06" />
+        <useCaseShapeMoniker Id="6616bc00-027c-46c1-b627-0bd86b09c9ab" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseAssociationConnector edgePoints="[(3.75 : 7.77651515151515); (7.23610327314757 : 9.88930501402883)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="34e93c0a-1c94-480f-9293-0f91d73d8b51" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="c5544752-bc29-4ecc-8555-6001eb95bd06" />
+        <useCaseShapeMoniker Id="23c5cac9-caeb-414a-a19e-ac46a338fe0b" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <artifactShape Id="4ad71bbf-b3d3-422e-a8a2-5495280d49fb" absoluteBounds="6.25, 8.625, 1.5, 0.5" customColor="161, 199, 231">
+      <artifactMoniker Id="bad4bf60-8ef0-4319-a233-87d58f31496a" LastKnownName="Công nợ" />
+    </artifactShape>
+    <useCaseDependencyConnector edgePoints="[(6.80555555555556 : 8.625); (6.30622313057747 : 7.98300116788532)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="a321c469-a33e-4f58-af06-2d781666fa5c" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="4ad71bbf-b3d3-422e-a8a2-5495280d49fb" />
+        <useCaseShapeMoniker Id="6616bc00-027c-46c1-b627-0bd86b09c9ab" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(7.4494382792058 : 9.77387655841161); (7.125 : 9.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="096ca461-7be0-4b47-a01d-a410f4b7b090" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="23c5cac9-caeb-414a-a19e-ac46a338fe0b" />
+        <artifactShapeMoniker Id="4ad71bbf-b3d3-422e-a8a2-5495280d49fb" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="af4c45ce-0e13-4f3e-a527-d829c1007d6f" absoluteBounds="14.375, 7.5, 1, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="5cf6ba6e-d9b7-45f8-bb6f-ce06afbdfe17" LastKnownName="Lập phiếu nhập kho" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(14.4077868852459 : 4.25); (14.8341533802774 : 7.5010445246149)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="144315cc-e26f-43bf-9e7e-e095fcd03d38" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="45a46b7e-e85c-4365-ace9-760e2c304940" />
+        <useCaseShapeMoniker Id="af4c45ce-0e13-4f3e-a527-d829c1007d6f" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(15.3431645887845 : 7.70277392450363); (18.125 : 7.05078125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="1b4f0526-7155-4f03-aec3-2bf1de7318cb" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="af4c45ce-0e13-4f3e-a527-d829c1007d6f" />
+        <artifactShapeMoniker Id="cc34b6bb-3ef1-40a6-965d-480382f2c84d" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(15.3735550407789 : 7.83624071622757); (18.25 : 7.97321428571429)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="793cd395-b9e6-4597-9856-1e83e3e21fd2" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="af4c45ce-0e13-4f3e-a527-d829c1007d6f" />
+        <artifactShapeMoniker Id="cadb0e68-176c-4996-a0de-86d203bd43a2" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <includeConnector edgePoints="[(15.0022466496398 : 8.11471079289458); (15.2244343160315 : 8.6424065005747)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«include»">
+      <includeMoniker Id="58655896-9e94-4c55-a9ca-93aaa936fe14" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="af4c45ce-0e13-4f3e-a527-d829c1007d6f" />
+        <useCaseShapeMoniker Id="addd0e32-2974-4351-8f01-d87a5c6a92bc" />
+      </nodes>
+    </includeConnector>
+    <useCaseShape Id="e3b31935-7b5f-4590-9139-8cbe9842c153" absoluteBounds="13.5, 8.5, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="3b8d718c-3d4e-40e6-800f-531619a4bdd4" LastKnownName="Lập phiếu xuât kho" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(14.3552631578947 : 4.25); (14.0197214833568 : 8.50019454414775)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="07720b55-9af3-41a6-82b8-763883725036" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="45a46b7e-e85c-4365-ace9-760e2c304940" />
+        <useCaseShapeMoniker Id="e3b31935-7b5f-4590-9139-8cbe9842c153" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(12.7142857142857 : 10.25); (13.8030403507104 : 8.97978625750451)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="e31cd9b4-7dee-47de-a2f4-4c7a905fd263" />
+      <relativeChildShapes />
+      <nodes>
+        <artifactShapeMoniker Id="b3b1e193-dcbc-4ce5-89fc-348763c94a0d" />
+        <useCaseShapeMoniker Id="e3b31935-7b5f-4590-9139-8cbe9842c153" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="15246fbd-73f6-489c-bd64-8bea0cb26d90" absoluteBounds="11.625, 7.375, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="cbcee0c2-dc98-4173-a809-2cc3251d0bfd" LastKnownName="Hết hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <extendConnector edgePoints="[(12.5427899783058 : 6.74299893468768); (12.2402331919396 : 7.3817299281275)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«extend»">
+      <extendMoniker Id="64721279-1ede-47db-aa41-4e5c3f6ffad1" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="ff7ef44a-4543-4166-a449-822d58194e61" />
+        <useCaseShapeMoniker Id="15246fbd-73f6-489c-bd64-8bea0cb26d90" />
+      </nodes>
+    </extendConnector>
+    <useCaseShape Id="4ea16e31-cd36-4a1f-b6a5-aff8b3d81e2a" absoluteBounds="12.875, 7.375, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="5a2d7f64-1b63-49bc-b7ee-07dce5b6f7c8" LastKnownName="Còn hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <extendConnector edgePoints="[(12.8624641432548 : 6.73971079289458); (13.2359709617295 : 7.38485893389636)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«extend»">
+      <extendMoniker Id="deb16d45-e49b-4ab8-8310-976e706eec15" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="ff7ef44a-4543-4166-a449-822d58194e61" />
+        <useCaseShapeMoniker Id="4ea16e31-cd36-4a1f-b6a5-aff8b3d81e2a" />
+      </nodes>
+    </extendConnector>
+    <useCaseDependencyConnector edgePoints="[(13.866178068107 : 8.50912052259251); (13.508821931893 : 7.86587947740749)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="aa447c94-c447-4066-af70-7a81ce971b14" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="e3b31935-7b5f-4590-9139-8cbe9842c153" />
+        <useCaseShapeMoniker Id="4ea16e31-cd36-4a1f-b6a5-aff8b3d81e2a" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseShape Id="faeb43be-3f0b-4604-8dc2-279b72739a7a" absoluteBounds="7.875, 7.625, 1, 0.75" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="a775856b-8bb6-4bcd-a159-715a75c4bcf5" LastKnownName="Cập nhật tình trạng đơn hàng" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.75 : 6.57692307692308); (7.91241569081263 : 7.85766636640389)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="7164d014-3228-436a-86ca-968a5ba12450" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="67f597c9-fa94-4921-845a-9798c7803bfe" />
+        <useCaseShapeMoniker Id="faeb43be-3f0b-4604-8dc2-279b72739a7a" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseDependencyConnector edgePoints="[(8.87061395034132 : 7.95043860496587); (11.6347096621545 : 7.67402903378455)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="61fb3d05-6a58-47a6-9db4-2a7eac9c0113" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="faeb43be-3f0b-4604-8dc2-279b72739a7a" />
+        <useCaseShapeMoniker Id="15246fbd-73f6-489c-bd64-8bea0cb26d90" />
+      </nodes>
+    </useCaseDependencyConnector>
+    <useCaseDependencyConnector edgePoints="[(8.49926433263605 : 7.63676579691002); (9.10197368421053 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="c5247aa3-61d1-46b6-9bec-4666f5541703" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="faeb43be-3f0b-4604-8dc2-279b72739a7a" />
+        <artifactShapeMoniker Id="58701907-1559-4ad0-adca-1908535fc33f" />
+      </nodes>
+    </useCaseDependencyConnector>
+  </nestedChildShapes>
+</useCaseDiagram>
