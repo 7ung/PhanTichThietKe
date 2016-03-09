@@ -1864,20 +1864,20 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
         isLeaf="false">
         <targetEnds>
           <association
-            Id="9bfacf00-74b7-4487-a94a-0c68691edefb"
+            Id="1a8e0e4d-eabb-43a1-8f70-0583ab759505"
             isDerived="false"
             sourceEndRoleName="Nhân viên bán hàng"
-            targetEndRoleName="Cập nhật thông tin khách hàng"
+            targetEndRoleName="Subsystem4"
             isLeaf="false"
             isAbstract="false">
-            <useCaseMoniker
-              Id="1732054b-4661-40f6-af35-ac9c6b6c8261"
-              LastKnownName="Cập nhật thông tin khách hàng"
+            <subsystemMoniker
+              Id="61e4ddf5-7bc0-4e8f-bb7d-7d264e093d6e"
+              LastKnownName="Quản lý bán hàng"
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="8feb7453-edc4-4d2f-8e96-08733358f77c"
+                  Id="62c1ca0c-a82c-465b-9d11-a11c3aa11fca"
                   name="Nhân viên bán hàng"
                   isLeaf="false"
                   isStatic="false"
@@ -1890,86 +1890,8 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="dc93b59c-5953-4497-8df5-ea075f6aea63"
-                  name="Cập nhật thông tin khách hàng"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="9342d85f-d1bf-4166-954e-968bec85f8f0"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên bán hàng"
-            targetEndRoleName="Tạo đơn hàng"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="c13174cd-1171-4461-b72f-e4743b60e28d"
-              LastKnownName="Tạo đơn hàng"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="e6a227ec-ddac-4155-834e-eee7cd967871"
-                  name="Nhân viên bán hàng"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="cec6381c-f685-452b-b866-ba62af6eaa23"
-                  name="Tạo đơn hàng"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="03f72572-3e9e-41a3-8cef-2465bcd91b1d"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên bán hàng"
-            targetEndRoleName="Cập nhật tình trạng đơn hàng"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="ffec8e8f-7029-40a4-8b1e-453d393a60bd"
-              LastKnownName="Cập nhật tình trạng đơn hàng"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="86d9b73a-bc3e-4612-aa5d-9238d5f71e57"
-                  name="Nhân viên bán hàng"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="1fef00b9-d98d-49f8-bccd-f91f77b352f9"
-                  name="Cập nhật tình trạng đơn hàng"
+                  Id="f08370fc-22f2-4224-a385-f35592f04f55"
+                  name="Subsystem4"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -1999,6 +1921,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
             <description>Nhân viên bán hàng dựa vào yêu cầu khách hàng để tạo đon hàng</description>
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="61e4ddf5-7bc0-4e8f-bb7d-7d264e093d6e"
+            LastKnownName="Quản lý bán hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2016,6 +1944,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="61e4ddf5-7bc0-4e8f-bb7d-7d264e093d6e"
+            LastKnownName="Quản lý bán hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2026,20 +1960,20 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
         isLeaf="false">
         <targetEnds>
           <association
-            Id="228e4300-8a18-4569-8b44-9ea4ea788e91"
+            Id="b48d4080-23c0-4db8-9917-950669d1613d"
             isDerived="false"
             sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Kiểm tra thông tin kho"
+            targetEndRoleName="Quản lý kho hàng"
             isLeaf="false"
             isAbstract="false">
-            <useCaseMoniker
-              Id="845af6cf-0c0c-4e44-b3b1-ab19200329fd"
-              LastKnownName="Kiểm tra thông tin kho"
+            <subsystemMoniker
+              Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+              LastKnownName="Quản lý kho hàng"
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="c7567c80-6e3b-4ba2-842d-694079b3c3ae"
+                  Id="d8ded8f5-c493-4cf1-9b9b-f3d06c937249"
                   name="Nhân viên thủ kho"
                   isLeaf="false"
                   isStatic="false"
@@ -2052,242 +1986,8 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="de788bf0-e504-45ca-a33e-b16b1cafc242"
-                  name="Kiểm tra thông tin kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="bb5aca4f-1a7e-459c-a885-71f9caa4ca0a"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Lập phiếu xuât kho"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="9cdc2010-6c40-414f-8075-e94cf3e51cb4"
-              LastKnownName="Lập phiếu xuât kho"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="7cf733c0-b5b5-4d63-991d-9d3826030588"
-                  name="Nhân viên thủ kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="8cb4ce71-2c37-4907-80d2-39bcd9c7f3a9"
-                  name="Lập phiếu xuât kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="cb00dbcf-460f-45ad-a802-3f4bf6ac2d2e"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Kiểm tra thông tin nhà cung cấp, giá cả"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="3e5f7820-92cc-4b0f-b223-833a0ed5731a"
-              LastKnownName="Kiểm tra thông tin nhà cung cấp"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="a3ae0079-9ec3-4caa-a1d0-fe20fdb5e563"
-                  name="Nhân viên thủ kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="9f2848fd-8967-4256-8bfa-a288b9b832dc"
-                  name="Kiểm tra thông tin nhà cung cấp, giá cả"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="70412a77-3c9a-415b-9487-3889e0d0906e"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Nhập hàng"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="c5d2b464-b73a-4514-9596-78d91720afab"
-              LastKnownName="Nhập hàng"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="5067c8d0-1837-49d6-8844-0185a1e74cf4"
-                  name="Nhân viên thủ kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="7f01fad3-6ee0-49d9-a6d4-7a37a515b3fe"
-                  name="Nhập hàng"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="e1086845-43cf-4a56-b6c0-8c8a180fd6c4"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Lập phiếu nhập kho"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="b74983d1-f253-4243-b9b6-9d8e434ae5a4"
-              LastKnownName="Lập phiếu nhập kho"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="0d8fb82b-185a-47da-9e0e-85e9e4820946"
-                  name="Nhân viên thủ kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="cc475bc4-ee37-4a28-a031-f04fb9790ced"
-                  name="Lập phiếu nhập kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="d999995c-18fe-4123-947b-1a676148960d"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Cập nhật tình trạng đơn nhập hàng"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="42866118-7538-457e-8e6a-8fff37c531ea"
-              LastKnownName="Cập nhật tình trạng đơn nhập hàng"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="69b89101-baed-4fe0-ab8e-c501f125bceb"
-                  name="Nhân viên thủ kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="bca79622-db5a-43bc-b97e-2d67441b1660"
-                  name="Cập nhật tình trạng đơn nhập hàng"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="abfc2f68-4791-42de-8a7e-7295bb66e267"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên thủ kho"
-            targetEndRoleName="Báo cáo thông tin kho"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="6656afc4-9512-4269-be21-28fb431c8fe9"
-              LastKnownName="Báo cáo thông tin kho"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="441f541a-512c-48fb-bca2-937845d5e477"
-                  name="Nhân viên thủ kho"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="875c02c6-5814-467c-9e72-093980dd67b7"
-                  name="Báo cáo thông tin kho"
+                  Id="be524565-487b-41a7-a121-6427017ab8d1"
+                  name="Quản lý kho hàng"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -2332,6 +2032,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </extend>
         </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2371,6 +2077,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2503,6 +2215,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+            LastKnownName="Quản lý công nợ"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2583,7 +2301,14 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
         Id="3e5f7820-92cc-4b0f-b223-833a0ed5731a"
         name="Kiểm tra thông tin nhà cung cấp"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
@@ -2609,6 +2334,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2616,7 +2347,14 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
         Id="c5d2b464-b73a-4514-9596-78d91720afab"
         name="Nhập hàng"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
@@ -2633,6 +2371,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2643,20 +2387,20 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
         isLeaf="false">
         <targetEnds>
           <association
-            Id="7b3b2bbf-7bd9-47fe-8122-378801cfbc7e"
+            Id="5b42d767-88b8-4e23-9a1a-805baa9eacc6"
             isDerived="false"
             sourceEndRoleName="Nhân viên kế toán"
-            targetEndRoleName="Tạo công nợ nhà cung cấp"
+            targetEndRoleName="Subsystem4"
             isLeaf="false"
             isAbstract="false">
-            <useCaseMoniker
-              Id="b3850d29-2dbf-46b7-aad0-7695a7c70e1b"
-              LastKnownName="Tạo công nợ nhà cung cấp"
+            <subsystemMoniker
+              Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+              LastKnownName="Quản lý công nợ"
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="3664dcbe-74b5-4679-b96d-f997d85f0fd9"
+                  Id="602cf342-75d7-42aa-ab8a-b7be646f08cb"
                   name="Nhân viên kế toán"
                   isLeaf="false"
                   isStatic="false"
@@ -2669,125 +2413,8 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="92d1b517-2046-4848-ae1f-a5e1d33eca6f"
-                  name="Tạo công nợ nhà cung cấp"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="d1b8949e-98f4-4c41-bad9-312e540b9b6c"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên kế toán"
-            targetEndRoleName="Thanh toán"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="03a2f7c1-a841-4afb-99c3-f05c09a4c61d"
-              LastKnownName="Thanh toán"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="11713edf-c542-45b8-9e28-6b6f8811dfb8"
-                  name="Nhân viên kế toán"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="2f1bcadf-832f-499e-a13d-82dd1f8f152f"
-                  name="Thanh toán"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="f9aef772-71d1-4ab0-be05-a7f6bc621b2e"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên kế toán"
-            targetEndRoleName="Cập nhật công nợ"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="82386def-b9a4-402a-8d5a-ea84f5e8d025"
-              LastKnownName="Cập nhật công nợ"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="262e6541-615b-4677-88a3-b67a70d3d29a"
-                  name="Nhân viên kế toán"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="30314a87-7d75-4084-b15f-6b408e5e6fb5"
-                  name="Cập nhật công nợ"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="d7572e97-d97d-4d77-bf0d-cc51306814bc"
-            isDerived="false"
-            sourceEndRoleName="Nhân viên kế toán"
-            targetEndRoleName="Báo cáo tình hành công nợ"
-            isLeaf="false"
-            isAbstract="false">
-            <useCaseMoniker
-              Id="2d600d31-251a-48a0-9b5d-a1b2990646e5"
-              LastKnownName="Báo cáo tình hành công nợ"
-              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="f28c939a-8230-4597-8ff0-165b5b8fbbb0"
-                  name="Nhân viên kế toán"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="10b399d8-6faf-4ca8-b04c-f70b93afc0b5"
-                  name="Báo cáo tình hành công nợ"
+                  Id="e56f8ddc-4154-4ced-bd32-d263b672a7b4"
+                  name="Subsystem4"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -2816,6 +2443,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+            LastKnownName="Quản lý công nợ"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2833,6 +2466,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+            LastKnownName="Quản lý công nợ"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2850,6 +2489,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+            LastKnownName="Quản lý công nợ"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2867,6 +2512,12 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2874,19 +2525,107 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
         Id="ffec8e8f-7029-40a4-8b1e-453d393a60bd"
         name="Cập nhật tình trạng đơn hàng"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="61e4ddf5-7bc0-4e8f-bb7d-7d264e093d6e"
+            LastKnownName="Quản lý bán hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="2d600d31-251a-48a0-9b5d-a1b2990646e5"
         name="Báo cáo tình hành công nợ"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+            LastKnownName="Quản lý công nợ"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="6656afc4-9512-4269-be21-28fb431c8fe9"
         name="Báo cáo thông tin kho"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+            LastKnownName="Quản lý kho hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="18270487-e696-478e-8411-fca3eaf13061"
+        name="Subsystem3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="8d78ffc6-f409-434f-a9fb-ede05db0f41c"
+        name="Quản lý kho hàng"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a6f64046-8736-4e4d-bcb5-1c5cda82ecc3"
+        name="Cập nhật công nợ"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+            LastKnownName="Quản lý công nợ"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="73660e62-99d0-4cde-8a10-7e3b89561dea"
+        name="Quản lý công nợ"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="61e4ddf5-7bc0-4e8f-bb7d-7d264e093d6e"
+        name="Quản lý bán hàng"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="056d1abe-7376-4af8-8fd5-451ff196ef43"
+        name="Báo cáo doanh thu"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="61e4ddf5-7bc0-4e8f-bb7d-7d264e093d6e"
+            LastKnownName="Quản lý bán hàng"
+            LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="fae54dae-8605-4a2d-a115-3ed978b822b6"
+        name="UseCase2"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
