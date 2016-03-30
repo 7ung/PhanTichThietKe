@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="e420a316-68b5-4915-b62a-289486e9e37e"
   name="DoAnBanHang_PTTKHT" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -2076,6 +2076,13 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
               LastKnownName="Kiểm tra thông tin kho"
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
+          <dependency
+            Id="b0f7bad1-3449-4f01-8881-3a070ee90119">
+            <useCaseMoniker
+              Id="845af6cf-0c0c-4e44-b3b1-ab19200329fd"
+              LastKnownName="Kiểm tra thông tin kho"
+              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+          </dependency>
         </suppliersInternal>
         <subjects>
           <subsystemMoniker
@@ -2331,6 +2338,13 @@ Nhân viên kế toán nhận tiền, cập nhật tình trạng đơn hàng, c�
             <useCaseMoniker
               Id="3e5f7820-92cc-4b0f-b223-833a0ed5731a"
               LastKnownName="Kiểm tra thông tin nhà cung cấp"
+              LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
+          </dependency>
+          <dependency
+            Id="0fdcca3b-9a49-41bf-a624-99ad8818dc28">
+            <useCaseMoniker
+              Id="845af6cf-0c0c-4e44-b3b1-ab19200329fd"
+              LastKnownName="Kiểm tra thông tin kho"
               LastKnownLocation="DoAnBanHang_PTTKHT.uml" />
           </dependency>
         </suppliersInternal>

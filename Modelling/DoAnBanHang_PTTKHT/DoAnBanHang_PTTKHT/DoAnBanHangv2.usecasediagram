@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="85103978-caef-4c1d-9dfa-8d6478765aa8" name="UMLUseCaseDiagram1" linkedPackageId="9682759d-f475-4809-931f-7c2ec0e2e58e" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="85103978-caef-4c1d-9dfa-8d6478765aa8" name="UMLUseCaseDiagram1" linkedPackageId="9682759d-f475-4809-931f-7c2ec0e2e58e" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <packagedElements>
     <useCaseModelRootHasTypes>
       <actor Id="1244e130-bc27-4bee-8c74-574a9d057c7c" name="Khách hàng" isAbstract="false" isLeaf="false">
@@ -174,6 +174,10 @@
             <useCaseMoniker Id="750acb78-d0cb-45ae-a35a-867494d1b649" LastKnownName="Kiểm tra thông tin kho" />
             <elementDefinition Id="bf11148a-4f25-4552-92c9-d02315bc58c3" />
           </dependency>
+          <dependency Id="18acbdbd-1be2-4e7c-8286-0cebe8234fbf">
+            <useCaseMoniker Id="750acb78-d0cb-45ae-a35a-867494d1b649" LastKnownName="Kiểm tra thông tin kho" />
+            <elementDefinition Id="b0f7bad1-3449-4f01-8881-3a070ee90119" />
+          </dependency>
         </suppliersInternal>
         <subjects>
           <subsystemMoniker Id="baf3ebae-8559-4c41-b932-476b710192b3" LastKnownName="Quản lý kho hàng" />
@@ -281,6 +285,10 @@
           <dependency Id="d00b96d0-3b72-4e12-b353-eb6880bf7b23" name="Kiểm tra giá cả">
             <useCaseMoniker Id="fd142473-6c05-46fd-8e23-3561ad46d6b7" LastKnownName="Kiểm tra thông tin nhà cung cấp" />
             <elementDefinition Id="a332305b-0b5e-4196-8c1c-330e65815f86" />
+          </dependency>
+          <dependency Id="b6b39083-ef5b-4da1-b363-5d8f5c8e8199">
+            <useCaseMoniker Id="750acb78-d0cb-45ae-a35a-867494d1b649" LastKnownName="Kiểm tra thông tin kho" />
+            <elementDefinition Id="0fdcca3b-9a49-41bf-a624-99ad8818dc28" />
           </dependency>
         </suppliersInternal>
         <subjects>
