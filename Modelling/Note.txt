@@ -1,0 +1,13 @@
+﻿- Công ty phân loại KHÁCH HÀNG để giảm giá cho khách hàng theo % hoá đơn.
+- KHÁCH HÀNG có thể chia ra thanh toán một ĐƠN BÁN HÀNG theo nhiều lần nếu giá trị đơn hàng đủ lớn.
+- Mỗi lần thanh toán thông tin được ghi lại trên một PHIẾU HOÁ ĐƠN.
+- Nếu mua hàng về từ nhà cung cấp thì thông tin được ghi lại trên ĐƠN NHẬP HÀNG
+- ĐƠN BÁN HÀNG và ĐƠN NHẬP HÀNG được gọi chung là ĐƠN HÀNG
+- Mỗi ĐƠN HÀNG sẽ tạo một CÔNG NỢ. công nợ là nợ giữa công ty với khách hàng hoặc giữa công ty với nhà cung cấp.
+- CÔNG NỢ có kì hạn thanh toán. Nếu quá hạn sẽ phụ thu %
+- CÔNG NỢ sẽ được thanh toán dựa trên các PHIẾU HOÁ ĐƠN.
+- Nếu mua hàng về, nhập vào kho thì thông tin nhập kho được lưu lại trên ĐƠN NHẬP KHO. Có thể nhập một lần nhiều ĐƠN NHẬP HÀNG
+- Nếu lấy hàng để bán hoặc vận chuyển cho khách hàng thì thông tin được lưu lại trên ĐƠN XUẤT KHO. Có thể xuất một lần nhiều ĐƠN BÁN HÀNG.
+- ĐƠN NHẬP KHO và ĐƠN xuất kho được gọi chung là ĐƠN NHẬP XUẤT KHO.
+- Công ty có nhiều kho hàng. Mỗi kho hàng được phân hoạch thành nhiều phần không gian nhỏ chuyên biệt cho mỗi mặt hàng, với số lượng cố định
+- Khách hàng thanh có thể qua tiền mặt, chuyển khoản hoặc thẻ tín dụng
