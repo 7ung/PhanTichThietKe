@@ -45,6 +45,17 @@ begin
 			raiserror('R1', 16,1)
 			rollback tran
 		end
+		else 
+		begin
+			if (@sumdebt = @debt)
+			begin
+				update DEBT set [Status] = 'finish'
+					where DEBT.Id = @id
+			end
+			else
+			begin
+			end
+		end
 	end
 	set nocount on
 end
@@ -67,7 +78,7 @@ begin
 end
 
 go
-create trigger trigger_BILL_CUSTOMERBILL_PaidMoney
+alter trigger trigger_BILL_CUSTOMERBILL_PaidMoney
 on BILL
 for update
 as
@@ -76,7 +87,7 @@ begin
 	if (UPDATE(PaidMoney))
 	begin
 		select @id = Id, @paidmoney = PaidMoney from inserted
-		select @document = DOCUMENT.DocumentKey from DOCUMENT
+		select @document = DOCUMENT.[Type] from DOCUMENT
 			where DOCUMENT.Id = @id 
 		if (@document = 'customerbill')
 		begin
@@ -128,42 +139,33 @@ begin
 	set nocount on
 end
 
-Go
-alter trigger trigger_DEBT_Status
-on DEBT
+go
+alter trigger trigger_OrderDetail_Result
+on ORDER_DETAIL
 for insert, update
 as
-declare @debt float, @paid float, @id int
+declare @id int, @result float
 begin
-	if (UPDATE(DebtMoney) or UPDATE(Paid))
+	if (UPDATE(Result) or update(Quantity) or UPDATE(Price))
 	begin
-		select @debt = DebtMoney, @paid = Paid, @id = Id from inserted
-		if (@paid = 0)
+		select @result from inserted
+		if (@result is null)
 		begin
-			update DEBT set [Status] = 'nopaid'
-			where (Id = @id)
-		end 
-		if (@paid > 0 and @paid < @debt)
-		begin
-			update DEBT set [Status] = 'apart'
-			where (Id = @id)
+			select @id = Id, @result = Price * Quantity from inserted
+			update ORDER_DETAIL
+			set Result = @result
+			where Id = @id
 		end
-		if (@paid = @debt)
-		begin
-			update DEBT set [Status] = 'finish'
-			where (Id = @id)
-		end
-		Print 'R4'
 	end
-	set nocount on
+set nocount on
 end
 
 Go
-create trigger trigger_DEBT_Extra
+alter trigger trigger_DEBT_Extra
 on DEBT
 for insert, update
 as
-declare @status varchar(10), @debt float, @id int
+declare @status varchar(16), @debt float, @id int
 begin
 	if (Update([Status]))
 	begin
@@ -176,105 +178,335 @@ begin
 		end 
 		else
 		begin
+			if (@status != 'finish')
+			begin
 			update DEBT set ExtraPaid = 0
 				where (DEBT.Id = @id) 
+			end
 		end
 		PRINT 'R5'
 	end
 	set nocount on
 end
 
+-- nếu update số tiền nợ 
+--	-- nếu status là expire thì cập nhật số tiền phạt = 15% * số tiền nợ
+--	-- nếu status khác expire thì cập nhật số tiền nợ = 0
+go 
+alter trigger trigger_DEBT_Extra_DebtMoney
+on DEBT
+for update
+as
+declare @status varchar(16), @debt float, @id int
+begin 
+	if (update(DebtMoney))
+	begin
+		select @debt = DebtMoney, @id = Id, @status = [Status] from inserted
+		if (@status = 'expire')
+		begin
+			update Debt set ExtraPaid = @debt * 
+				CAST((select Value from CONSTANT where Name = ('expired_paid')) as float) 
+				where (DEBT.Id = @id) 
+		end
+		else
+		begin
+			if (@status != 'finish')
+			begin
+			update Debt set ExtraPaid = 0
+				where (DEBT.Id = @id)
+			end
+		end
+	end
+	set nocount on
+end
+
+
+-- nếu cập nhật ExtraPaid
+--	-- nếu status = expire thì số nhập vào phải bằng 15% * DebtMoney
+--	-- nếu status != expire thì số nhập vào phải bằng 0
+--	--	trường hợp khác raiserror
+go
+alter trigger trigger_DEBT_Extra_Status
+on DEBT
+for update
+as
+declare @extrapaid float, @status varchar(16), @id int,  @debt float
+begin
+	if (update(ExtraPaid))
+	begin
+		select @id = Id, @status = [Status], @extrapaid = ExtraPaid, @debt = DebtMoney from inserted
+		if (@status = 'expire')
+		begin
+			declare @calculate_extrapaid float
+			select @calculate_extrapaid =  @debt * 
+				CAST((select Value from CONSTANT where Name = ('expired_paid')) as float) 
+
+			if (@extrapaid != @calculate_extrapaid)
+			begin
+				rollback tran
+				raiserror('R5', 16, 1)
+			end
+		end
+		else
+		begin
+			if (@extrapaid != 0)
+			begin
+				rollback tran
+				raiserror('R5', 16, 1)
+			end
+		end
+		print 'R5'
+	end
+	set nocount on
+end
+
 Go
-create trigger trigger_DEBT_Income_Outcome
+alter trigger trigger_DEBT_Income_Outcome
 on DEBT
 for insert, update
 as
 declare @debt float, @extra float, @id int, @document varchar(32)
 begin
-	select @debt = DebtMoney, @extra = ExtraPaid, @id = Id from inserted
-	select @document = DocumentKey 
-		from (DOCUMENT join inserted on (DOCUMENT.Id = @id))
-		
-	if (@document = 'customerdebt')
-	begin 
-		update CUSTOMER_DEBT set InCome = (@debt + @extra)
-		where (CUSTOMER_DEBT.Id = @id)
-	end
-		
-	if (@document = 'vendordebt')
-	begin 
-		update VENDOR_DEBT set OutCome = (@debt + @extra)
-		where (VENDOR_DEBT.Id = @id)
-	end	
+	if (UPDATE(DebtMoney) or UPDATE(ExtraPaid))
+	begin
 	Print 'R6'
+		select @debt = DebtMoney, @extra = ExtraPaid, @id = Id from inserted
+		select @document = [Type] 
+			from (DOCUMENT join inserted on (DOCUMENT.Id = @id))
+		
+		if (@document = 'customerdebt')
+		begin 
+			update CUSTOMER_DEBT set InCome = (@debt + @extra)
+			where (CUSTOMER_DEBT.Id = @id)
+		end
+		
+		if (@document = 'vendordebt')
+		begin 
+			update VENDOR_DEBT set OutCome = (@debt + @extra)
+			where (VENDOR_DEBT.Id = @id)
+		end	
+	end
+
+	set nocount on
+end
+
+go
+alter trigger  trigger_CUSTOMERDEBT_InCome
+on CUSTOMER_DEBT
+for insert, update
+as
+declare @income float, @id int
+begin
+	if (update(InCome))
+	begin
+		select @id = Id, @income = InCome from inserted
+		declare @check float
+		select @check = (DebtMoney + ExtraPaid) from DEBT
+			where (DEBT.Id = @id)
+		if (@income != @check)
+		begin
+			rollback tran
+			raiserror('R6', 16, 1)
+		end
+		print 'R6'
+	end
+	set nocount on
+end
+
+go
+create trigger trigger_VENDORDEBT_OutCome
+on VENDOR_DEBT
+for insert, update
+as
+declare @outcome float, @id int
+begin
+	if (update(OutCome))
+	begin
+		select @outcome = OutCome, @id = Id from inserted
+		declare @check float
+		select @check = (DebtMoney + ExtraPaid) from DEBT
+			where (DEBT.Id = @id)
+		if (@outcome != @check)
+		begin
+			rollback tran
+			raiserror('R6', 16, 1)
+		end
+		print 'R6'
+	end
+	set nocount on
 end
 
 
-
+-- Nếu cập nhật totalprice thì cập nhật lại VAT
 Go
-create trigger trigger_ORDER_VAT
+alter trigger trigger_ORDER_VAT
 on [ORDER]
 for insert, update
 as
 declare @total float, @id int
 begin
-	if (UPDATE(VAT))
+	if (UPDATE(TotalPrice))
 	begin
 		select @total = TotalPrice, @id = Id from inserted
-		update [ORDER] set VAT = @total *
+		declare @vat float
+		select @vat =  @total *
 			CAST((select Value from CONSTANT where Name = ('VAT_rate')) as float) 
+		update [ORDER] set VAT = @vat
 			where (Id = @id)
 		Print 'R7'
 	end
+	set nocount on
 end
 
-Go
-create trigger trigger_ORDER_FinalPrice
+-- Nếu cập nhật VAT thì kiểm tra xem có đúng bằng tỉ lệ VAT * TotalPrice
+go
+create trigger trigger_ORDER_VAT_TotalPrice
 on [ORDER]
 for insert, update
 as
-declare @finalprice float, @id int
+declare @vat float, @totalprice float, @id int
 begin
-	select @finalprice = FinalPrice, @id = Id from inserted
-	update DEBT set DebtMoney = @finalprice
-		where (DEBT.Id = @id)
-	Print 'R8'
+	if (UPDATE(VAT))
+	begin
+		select @vat = VAT, @totalprice = TotalPrice, @id = Id from inserted
+		declare @check float
+		select @check = @totalprice *
+			CAST((select Value from CONSTANT where Name = ('VAT_rate')) as float) 
+		if (@vat != @check)
+		begin
+			rollback tran
+			raiserror('R7', 16, 1)
+		end
+		print 'R7'
+	end
+	set nocount on
 end
 
-
 Go
-create trigger trigger_ORDERDETAIL_Result
-on [ORDER_DETAIL]
-for insert, update
+alter trigger trigger_ORDER_FinalPrice
+on [ORDER]
+for update
 as
-declare @quantity int, @price float, @id int
+declare @finalprice float, @id int, @document varchar(32)
 begin
-	select @quantity = Quantity, @price = Price, @id = Id from inserted
-	update ORDER_DETAIL set Result = @price * @quantity
-		where (ORDER_DETAIL.Id = @id)
-	Print 'R9'
+
+	if (update(FinalPrice))
+	begin
+		select @finalprice = FinalPrice, @id = Id from inserted
+		select @document = [Type] from DOCUMENT	
+			where DOCUMENT.Id = @id
+		if (@document = 'customerorder')
+		begin
+			update DEBT set DebtMoney = @finalprice
+			where DEBT.Id = 
+				(select Id from CUSTOMER_DEBT
+				where CUSTOMER_DEBT.PurchaseOrder_id = @id)
+		-- PurchaseOrder_id là unique
+		end
+		
+		if (@document = 'vendororder')
+		begin
+			update DEBT set DebtMoney = @finalprice
+			where DEBT.Id =
+				(select Id from VENDOR_DEBT
+				where VENDOR_DEBT.VendorOrder_id = @id)
+		end
+
+		Print 'R8'
+	end
+	set nocount on
+
 end
 
 go
-create trigger trigger_ORDERDETAIL_Result_ORDER_TotaPrice
+alter trigger trigger_DEBT_DebtMoney_FinalPrice
+on DEBT
+for insert, update
+as
+declare @debt float, @id int, @document varchar(32)
+begin
+	if (UPDATE(DebtMoney))
+	begin
+		select @debt = DebtMoney, @id = Id from inserted
+		select @document = [Type] from DOCUMENT
+			where DOCUMENT.Id = @id
+		
+		declare @check float
+		if (@document = 'customerdebt')
+		begin
+			select @check = [ORDER].FinalPrice
+				from CUSTOMER_DEBT, [ORDER]
+				where CUSTOMER_DEBT.PurchaseOrder_id = [ORDER].Id and CUSTOMER_DEBT.Id = @id
+			if (@check != @debt)
+			begin
+				rollback tran
+				raiserror('R8', 16, 1)
+			end
+		end
+		if (@document = 'vendordent')
+		begin
+			select @check = [ORDER].FinalPrice
+				from VENDOR_DEBT, [ORDER]
+				where  VENDOR_DEBT.VendorOrder_id = [ORDER].Id and VENDOR_DEBT.Id = @id
+			if (@check != @debt)
+			begin
+				rollback tran
+				raiserror('R8', 16, 1)
+			end
+		end
+		print 'R8'
+	end
+	set nocount on
+end
+
+
+
+go
+alter trigger trigger_ORDERDETAIL_Result_ORDER_TotaPrice
 on [ORDER_DETAIL]
 for insert, update
 as
 declare @result float, @id int, @orderid int, @sum float
 begin
-	select @id = Id, @orderid = Order_id from inserted
-	select @sum = (select SUM(Result) from ORDER_DETAIL 
-			group by ORDER_DETAIL.Order_id
-			having ORDER_DETAIL.Order_id = @orderid)
-	update [ORDER] set TotalPrice = @sum
-		where [ORDER].Id = @orderid
-	Print 'R10: id = ' + @id + '\torderid =' + @orderid + '\tsum = ' + @sum + '.'
+	if (UPDATE(Result))
+	begin
+		select @id = Id, @orderid = Order_id from inserted
+		select @sum = (select SUM(Result) from ORDER_DETAIL 
+				group by ORDER_DETAIL.Order_id
+				having ORDER_DETAIL.Order_id = @orderid)
+		update [ORDER] set TotalPrice = @sum
+			where [ORDER].Id = @orderid
+	end
+	set nocount on
 end
 
 go
-create trigger trigger_ORDERDETAIL_Result_ORDER_TotaPrice_Delete
-on [ORDER_DETAIL]
+alter trigger trigger_ORDER_TotalPrice_Result
+on [ORDER]
 for insert, update
+as
+declare @totalprice float, @id int, @sum float
+begin
+	if (UPDATE(TotalPrice))
+	begin
+		select @totalprice = TotalPrice, @id = Id from inserted
+		select @sum = Sum(Result) from ORDER_DETAIL
+			group by ORDER_DETAIL.Order_id
+			having ORDER_DETAIL.Order_id = @id
+		if (@sum != @totalprice)
+		begin
+			raiserror('R10', 16, 1)
+			rollback tran
+		end
+		print 'R10'
+	end
+	set nocount on
+end
+
+go
+alter trigger trigger_ORDERDETAIL_Result_ORDER_TotaPrice_Delete
+on [ORDER_DETAIL]
+for deletes
 as
 declare @result float, @id int, @orderid int, @sum float
 begin
@@ -283,13 +515,16 @@ begin
 			group by ORDER_DETAIL.Order_id
 			having ORDER_DETAIL.Order_id = @orderid)
 	update [ORDER] set TotalPrice = @sum
-		where [ORDER].Id = @orderid
-	Print 'R10: id = ' + @id + '\torderid =' + @orderid + '\tsum = ' + @sum + '.'
+	where [ORDER].Id = @orderid		
+
+	set nocount on
 end
 
 
+
+
 go
-create trigger trigger_PURSCHAEORDER_Discount
+alter trigger trigger_PURSCHAEORDER_Discount
 on PURCHASE_ORDER
 for insert, update
 as
@@ -300,14 +535,14 @@ begin
 		where [ORDER].Id = @id
 	if (@discount > @totalprice)
 	begin
-		raiserror('R11: discount phai nho hon totalprice', 16, 1)
+		raiserror('R11:', 16, 1)
 		rollback tran
 	end
-	Print 'R11: id=' + @id + '\tdiscount=' + @discount + '\ttotalprice=' + @totalprice
+	set nocount on
 end
 
 go
-create trigger trigger_ORDER_TotalPrice_Discount
+alter trigger trigger_ORDER_TotalPrice_Discount
 on [ORDER]
 for update
 as
@@ -316,9 +551,9 @@ begin
 	if (UPDATE(TotalPrice))
 	begin
 		select @id = Id from inserted
-		select @docuemnt = DocumentKey from DOCUMENT
+		select @docuemnt = [Type] from DOCUMENT
 			where (Id = @id)
-		if (@docuemnt = 'purchaseorder')
+		if (@docuemnt = 'customerorder')
 		begin
 			select @totalprice = TotalPrice from inserted
 			select @discount = Discount from PURCHASE_ORDER
@@ -328,15 +563,15 @@ begin
 				raiserror('R11: discount phai nho hon totalprice', 16, 1)
 				rollback tran
 			end
-			Print 'R11: id=' + @id + '\tdiscount=' + @discount + '\ttotalprice=' + @totalprice
 		end
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_PURCHASEORDER_IsMultiPaid
+alter trigger trigger_PURCHASEORDER_IsMultiPaid
 on PURCHASE_ORDER
-for insert, update
+for insert
 as
 declare @id int, @totalprice float
 begin
@@ -355,7 +590,7 @@ begin
 		update PURCHASE_ORDER set IsMultiPaid = 0
 			where PURCHASE_ORDER.Id = @id
 	end
-	Print 'R12: id=' + @id + '\ttotalprice=' + @totalprice
+	set nocount on
 end
 
 go
@@ -368,9 +603,9 @@ begin
 	if (UPDATE(TotalPrice))
 	begin
 		select @id = Id from inserted
-		select @docuement = DocumentKey from DOCUMENT
+		select @docuement = [Type] from DOCUMENT
 			where DOCUMENT.Id = @id
-		if (@docuement = 'purchaseorder')
+		if (@docuement = 'customerorder')
 		begin
 			select @totalprice = TotalPrice from inserted
 			select @ismultipaid = IsMultiPaid from PURCHASE_ORDER
@@ -381,14 +616,15 @@ begin
 				or (@ismultipaid = 0 and @totalprice >= @price_multipaid))
 			begin
 				raiserror('R12:', 16, 1)
+				rollback tran
 			end
 		end
-		Print 'R12: id=' + @id + '\ttotalprice=' + @totalprice + '\tismultipaid=' + @ismultipaid + '\tpricemultipaid=' + @price_multipaid
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_PURCHASEORDER_FinalPrice
+alter trigger trigger_PURCHASEORDER_FinalPrice
 on PURCHASE_ORDER
 for insert, update
 as
@@ -396,48 +632,52 @@ declare @discount float, @extrapaid float, @id int, @vat float, @totalprice floa
 begin
 
 	select @discount = Discount, @extrapaid = ExtraPaid, @id = Id from inserted
-
+	if (@discount is null)
+		select @discount = 0
+	if (@extrapaid is null)
+		select @extrapaid = 0
 	select @vat = VAT, @totalprice = TotalPrice from [ORDER]
 
 	select @finalprice = @totalprice + @vat + @extrapaid - @discount
 
 	update [ORDER] set FinalPrice = @finalprice
 		where ([ORDER].Id = @id)
-
-	Print 'R13: id=' + @id + '\tdiscount=' + @discount + '\textrapaid=' + @extrapaid + '\tvat=' + @vat + 
-		'\ttotalprice=' + @totalprice + '\tfinalprice' + @finalprice
+	set nocount on
 end
 
 go
-create trigger trigger_ORDER_PURCHASEORDER_TotalPrice_Vat
+alter trigger trigger_ORDER_PURCHASEORDER_TotalPrice_Vat
 on [ORDER]
 for update
 as
 declare @discount float, @extrapaid float, @id int, @vat float, @totalprice float, @finalprice float,
 	@document varchar(32)
 begin
-	if (UPDATE(TotalPrice) or UPDATE(VAT))
+	if (UPDATE(VAT))
 	begin
 		select @id = Id from inserted
-		select @document = DocumentKey from DOCUMENT
+		select @document = [Type] from DOCUMENT
 			where (DOCUMENT.Id = @id)
-		if (@document = 'purchaseorder')
+		if (@document = 'customerorder')
 		begin
 			select @totalprice = TotalPrice, @vat = VAT from inserted
 			select @discount = Discount, @extrapaid = ExtraPaid from PURCHASE_ORDER
 				where PURCHASE_ORDER.Id = @id
+			if (@discount is null)
+				select @discount = 0
+			if (@extrapaid is null)
+				select @extrapaid = 0
 			select @finalprice = @totalprice + @vat + @extrapaid - @discount
 			
 			update [ORDER] set FinalPrice = @finalprice
 				where ([ORDER].Id = @id)
 		end
-		Print 'R13: id=' + @id + '\tdiscount=' + @discount + '\textrapaid=' + @extrapaid + '\tvat=' + @vat + 
-			'\ttotalprice=' + @totalprice + '\tfinalprice' + @finalprice
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_ORDER_PURCHASEORDER_FinalPrice
+alter trigger trigger_ORDER_PURCHASEORDER_FinalPrice
 on [ORDER]
 for update
 as
@@ -447,28 +687,32 @@ begin
 	if (UPDATE(FinalPrice))
 	begin
 		select @id = Id from inserted
-		select @document = DocumentKey from DOCUMENT
+		select @document = [Type] from DOCUMENT
 			where (DOCUMENT.Id = @id)
-		if (@document = 'purchaseorder')
+		if (@document = 'customerorder')
 		begin
 			select @totalprice = TotalPrice, @vat = VAT from inserted
 			select @discount = Discount, @extrapaid = ExtraPaid from PURCHASE_ORDER
 				where PURCHASE_ORDER.Id = @id
+			if (@extrapaid is null)
+				select @extrapaid = 0
+			if (@discount is null)
+				select @discount = 0
 			select @finalprice = @totalprice + @vat + @extrapaid - @discount
 			
 			select @candfinalprice = FinalPrice from inserted
-			if (@finalprice = @candfinalprice)
+			if (@finalprice != @candfinalprice)
 			begin
 				raiserror('R13', 16, 1)
 				rollback tran
 			end
 		end
-		print 'R13:'
 	end
+	set nocount on
 end
 
 go
-create trigger trgger_GROUPofCUSTOMER_Discount
+alter trigger trgger_GROUPofCUSTOMER_Discount
 on GroupofCustomer
 for Update
 as
@@ -485,8 +729,6 @@ begin
 		declare @countcustomer int, @customerid int
 		select @countcustomer = COUNT(*) from @customers
 		
-		Print 'R14: ' + @countcustomer + ' customers effected'
-
 		declare @purchaseorders table(id int)
 		declare @orderid int, @totalprice float
 		declare @purchaseorderId int, @countpurchaseorder int
@@ -500,7 +742,6 @@ begin
 				where PURCHASE_ORDER.Customer_id = @customerid)
 
 			select @countpurchaseorder = Count(*) from @purchaseorders
-			Print 'R14: ' + @countpurchaseorder + 'purchase order effected'
 			while (@countpurchaseorder > 0)
 			begin
 				
@@ -512,8 +753,6 @@ begin
 				update PURCHASE_ORDER set Discount = @totalprice * @discount
 					where PURCHASE_ORDER.Id = @id
 				
-				Print 'R14: purchaseorder in id = ' + @id + ' has changed' 	
-
 				delete top(1) from @purchaseorders
 				select @countpurchaseorder = COUNT(*) from @purchaseorders
 			end
@@ -523,10 +762,11 @@ begin
 		end
 			
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_PURCHASEORDER_Discount_GroupofCustomer
+alter trigger trigger_PURCHASEORDER_Discount_GroupofCustomer
 on PURCHASE_ORDER
 for insert, update
 as
@@ -534,28 +774,31 @@ declare @id int, @orderdiscount float, @customerid int,
 	@groupcustomerid int, @discountrate float,
 	@totalprice float
 begin
-	select @id = Id, @orderdiscount = Discount, @customerid = Id from inserted
-	select @groupcustomerid = Group_id from CUSTOMER
-		where CUSTOMER.Id = @customerid
-	select @discountrate = Discount from GROUPofCUSTOMER
-		where (GROUPofCUSTOMER.Id = @groupcustomerid)
-
-	select @totalprice = TotalPrice from [ORDER]
-		where ([ORDER].Id = @id)
-
-	if (@orderdiscount != @totalprice * @discountrate)
+	if (UPDATE(Discount))
 	begin
-		raiserror('R14: discount wrong',16,1)
-		rollback tran
+		select @id = Id, @orderdiscount = Discount, @customerid = Id from inserted
+		select @groupcustomerid = Group_id from CUSTOMER
+			where CUSTOMER.Id = @customerid
+		select @discountrate = Discount from GROUPofCUSTOMER
+			where (GROUPofCUSTOMER.Id = @groupcustomerid)
+
+		select @totalprice = TotalPrice from [ORDER]
+			where ([ORDER].Id = @id)
+
+		if (@orderdiscount != @totalprice * @discountrate)
+		begin
+			raiserror('R14: discount wrong',16,1)
+			rollback tran
+		end
 	end
-	Print 'R14'
+	set nocount on
 	-- Lấy totalprice từ order
 	-- nhân totalprice với discountrate gán vào canddiscount
 	-- so sánh canddiscount và discount
 end
 
 go
-create trigger trigger_CUSTOMER_Groupid
+alter trigger trigger_CUSTOMER_Groupid
 on CUSTOMER
 for update
 as
@@ -577,7 +820,7 @@ begin
 		declare @orderscount int, @purchaseorderid int,
 			@discount float, @totalprice float
 		select @orderscount = COUNT(*) from @purchaseorders
-		Print 'R14: '+ @orderscount + ' PurchaseOrders effected'
+
 		while (@orderscount > 0)
 		begin
 			select top 1 @purchaseorderid = id from @purchaseorders
@@ -592,16 +835,15 @@ begin
 			update PURCHASE_ORDER set Discount = @discount
 				where PURCHASE_ORDER.Id = @purchaseorderid
 
-			Print 'R14: set PurchaseOrder.Discount = ' + @discount + ' Id = ' + @purchaseorderid
-
 			delete top(1) from @purchaseorders
 			select @orderscount = COUNT(*) from @purchaseorders
 		end
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_ORDER_TotalPrice_PURCHASEORDER_Discount
+alter trigger trigger_ORDER_TotalPrice_PURCHASEORDER_Discount
 on [ORDER] 
 for update
 as
@@ -612,7 +854,7 @@ begin
 	begin
 		select @id = Id from inserted
 		declare @isPurchaseOrder bit
-		exec @isPurchaseOrder = dbo.CheckDocumentType @id, 'purchasrorder'
+		exec @isPurchaseOrder = dbo.CheckDocumentType @id, 'purchaseorder'
 		if (@isPurchaseOrder = 1)
 		begin
 			select @totalprice  = TotalPrice from inserted
@@ -625,30 +867,34 @@ begin
 			select @discount = @totalprice * @discountrate
 			update PURCHASE_ORDER set Discount = @discount
 				where PURCHASE_ORDER.Id = @id
-			PRINT 'R14: update purchaseorder id=' + @id + ' discount=' + @discount
 		end
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_VENDORORDER_FinalPrice
+alter trigger trigger_VENDORORDER_FinalPrice
 on [ORDER]
 for insert
 as
 declare @id int, @totalprice float, @vat float, @finalprice float
 begin
+	-- for insert nên không cần if UPDATE
+
 	select @id = Id, @totalprice = TotalPrice, @vat = VAT, @finalprice = FinalPrice from inserted
 	declare @isvendororder bit
 	exec @isvendororder = dbo.CheckDocumentType @id, 'vendororder'
 	if (@isvendororder = 1)
 	begin
 		update [ORDER] set FinalPrice = @totalprice + @vat
-		print 'R15: update vendor order: id=' + @id + ' final price = ' + (@totalprice + @vat)
+		where Id = @id
 	end
+
+	set nocount on
 end
 
 go
-create trigger trigger_VENDORORDER_update_totalprice_vat
+alter trigger trigger_VENDORORDER_update_totalprice_vat
 on [ORDER]
 for update
 as
@@ -663,13 +909,14 @@ begin
 		begin
 			select @totalprice = TotalPrice, @vat = VAT from inserted
 			update [ORDER] set FinalPrice = @totalprice + @vat
-			print 'R15: update vendor order: id=' + @id + ' final price = ' + (@totalprice + @vat)
+				where Id = @id
 		end
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_VENDORORDER_update_finalprice
+alter trigger trigger_VENDORORDER_update_finalprice
 on [ORDER]
 for update
 as
@@ -690,10 +937,11 @@ begin
 			end
 		end
 	end
+	set nocount on
 end
 
 go
-create trigger trigger_INOUTDETAIL
+alter trigger trigger_INOUTDETAIL
 on INOUT_INVENTORY_DETAIL
 for insert, update
 as
@@ -715,11 +963,12 @@ begin
 			rollback tran
 		end
 	end
+	set nocount on
 end
 
 
 go
-create trigger trigger_ORDERDETAIL_Quantity
+alter trigger trigger_ORDERDETAIL_Quantity
 on ORDER_DETAIL
 for update
 as
@@ -738,4 +987,5 @@ begin
 			rollback tran
 		end
 	end
+	set nocount on
 end
