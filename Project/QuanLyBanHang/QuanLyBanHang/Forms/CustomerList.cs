@@ -18,9 +18,9 @@ namespace QuanLyBanHang.Forms
         VIEW
     }
 
-    public partial class CustomerList : UserControl
+    public partial class CustomerList : UserControl, IFormList
     {
-        private eFormState _state = eFormState.VIEW;
+        public eFormState State { set; get; }
 
         private Gender[] _gender = new Gender[]
         {
@@ -56,11 +56,11 @@ namespace QuanLyBanHang.Forms
             
         }
 
-        private void updateState(eFormState state)
+        public void updateState(eFormState state)
         {
-            _state = state;
+            State = state;
 
-            switch (_state)
+            switch (State)
             {
                 case eFormState.EDIT:
                     {
@@ -92,7 +92,7 @@ namespace QuanLyBanHang.Forms
             }
         }
 
-        private void enableAllControls(bool enable, bool readOnly)
+        public void enableAllControls(bool enable, bool readOnly)
         {
             customerAddText.Enabled = enable;
             customerBirthdayText.Enabled = enable;
@@ -115,7 +115,7 @@ namespace QuanLyBanHang.Forms
             customerTypeComboBox.Enabled = !readOnly;
         }
 
-        private void clearAllText()
+        public void clearAllText()
         {
             customerAddText.DataBindings.Clear();
             customerBirthdayText.DataBindings.Clear();
@@ -140,7 +140,7 @@ namespace QuanLyBanHang.Forms
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            if(_state == eFormState.CREATE_NEW)
+            if(State == eFormState.CREATE_NEW)
             {
                 try
                 {
@@ -169,7 +169,7 @@ namespace QuanLyBanHang.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
-            else if (_state == eFormState.EDIT)
+            else if (State == eFormState.EDIT)
             {
                 updateState(eFormState.VIEW);
 
@@ -189,7 +189,7 @@ namespace QuanLyBanHang.Forms
             customerKeyText.Text = generateCustomerKey();
         }
 
-        private void bindingAllText()
+        public void bindingAllText()
         {
             customerAddText.DataBindings.Add("Text", customerTableBindingSource, "Address");
             customerBirthdayText.DataBindings.Add("Text", customerTableBindingSource, "BirthDay");
@@ -217,11 +217,11 @@ namespace QuanLyBanHang.Forms
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if(_state == eFormState.CREATE_NEW)
+            if(State == eFormState.CREATE_NEW)
             {
                 bindingAllText();
             }
-            else if (_state == eFormState.EDIT)
+            else if (State == eFormState.EDIT)
             {
                 sellManagementDbDataSet.CUSTOMER.RejectChanges();
                 customerTableBindingSource.ResetBindings(false);
@@ -261,6 +261,13 @@ namespace QuanLyBanHang.Forms
             {
                 (page.Parent as TabControl).TabPages.Remove(page);
             }
+        }
+
+        private void searchText_TextChanged(object sender, EventArgs e)
+        {
+            customerTableBindingSource.Filter = customerDataGridView.Columns["nameColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'" + "OR " +
+                                                customerDataGridView.Columns["phoneColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'" + "OR " +
+                                                customerDataGridView.Columns["idColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'";
         }
     }
 }
