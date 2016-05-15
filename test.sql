@@ -139,3 +139,58 @@ where Id = 20		-- > success
 
 delete from ORDER_DETAIL
 where Id = 23		--> update order.TotalPrice ->success
+
+
+------------------------------------------
+
+EXEC	[dbo].[Insert_Customer_Order]
+		@documentkey = N'CO002',
+		@creator = 2,
+		@createdate = '01-01-2016',
+		@transactiondate = '01-01-2016',
+		@totalprice = 0,
+		@vat = 0,
+		@finalprice = 0,
+		@status = '',
+		@customer_id = 5,
+		@discount = 0,
+		@extrapaid = 0,
+		@ismultipaid = 0
+GO
+
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(16, 3, 86.1, 4)
+
+exec Insert_Customer_Bill
+	@documentkey = N'CB0001',
+	@creator = 2,
+	@createdate = 2,
+	@debt_id = 17,
+	@paidmethod = N'cash',
+	@customer_id = 5,
+	@changemoney = 0,
+	@receivemoney = 178.84 
+
+update CUSTOMER_BILL
+set ReceiveMoney =  100, ChangeMoney = 50
+where Id = 35
+
+exec Delete_Customer_Bill
+	@id	 = 34
+		
+update CUSTOMER_DEBT
+set InCome = 1
+where Id = 17		-- active trigger trigger_CUSTOMERDEBT_InCome
+
+update DEBT
+set DebtMoney = 3223
+where Id = 17		-- active trigger trigger_DEBT_DebtMoney_FinalPrice
+
+update DEBT
+set Remain = 1
+where Id = 17		-- active trigger trigger_DEBT_Remain
+
+update BILL
+set	PaidMoney = 1
+where Id = 35
