@@ -311,12 +311,7 @@ alter procedure Insert_Customer_Order
 	@creator int,
 	@createdate smalldatetime,
 	@transactiondate smalldatetime,
-	@totalprice float,
-	@vat float,
-	@finalprice float,
-	@status nvarchar(16),
 	@customer_id int,
-	@discount float = 0,
 	@extrapaid float = 0,
 	@ismultipaid bit = 0,
 	@datepaid_debt smalldatetime = null
@@ -331,10 +326,10 @@ begin
 		order by DOCUMENT.Id desc
 
 		insert into [ORDER]
-		values(@id, @transactiondate, @totalprice, @vat, @finalprice, @status)
+		values(@id, @transactiondate, 0, 0, 0, '')
 		
 		insert into PURCHASE_ORDER
-		values(@id, @customer_id, @discount, @extrapaid, @ismultipaid)
+		values(@id, @customer_id, 0, @extrapaid, @ismultipaid)
 
 		declare @debt_key varchar(32)
 		select @debt_key = N'CD_' + @documentkey
@@ -417,9 +412,6 @@ alter procedure Insert_Vendor_Order
 	@creator int,
 	@createdate smalldatetime,
 	@transactiondate smalldatetime,
-	@totalprice float,
-	@vat float,
-	@status nvarchar(16),
 	@vendor_id int,
 	@datepaid_debt smalldatetime = null
 as
@@ -433,8 +425,8 @@ begin
 		select top 1 @id = Id from DOCUMENT
 		order by DOCUMENT.Id desc
 
-		insert into [ORDER](Id, TransactionDate, TotalPrice, VAT, [Status])
-		values(@id, @transactiondate, @totalprice, @vat, @status)
+		insert into [ORDER](Id, TransactionDate, TotalPrice, VAT, FinalPrice,[Status])
+		values(@id, @transactiondate, 0, 0, 0, '')
 		
 		insert into VENDOR_ORDER
 		values(@id, @vendor_id)
@@ -453,7 +445,7 @@ begin
 			@debtmoney = 0,	-- mới insert order thì finalprice = 0
 			@paid = 0,
 			@remain = 0,
-			@datepaid = @datepaid_debt,
+			@datepaid = @date_debt,
 			@extrapaid = 0,
 			@status = 'nopaid',
 			@vendor_id = @vendor_id,

@@ -675,6 +675,14 @@ begin
 			update [ORDER] set FinalPrice = @finalprice
 				where ([ORDER].Id = @id)
 		end
+		if (@document = 'vendororder')
+		begin
+			select @totalprice = TotalPrice, @vat = VAT from inserted
+			select @finalprice = @totalprice + @vat 
+			
+			update [ORDER] set FinalPrice = @finalprice
+				where ([ORDER].Id = @id)
+		end
 	end
 	set nocount on
 end
@@ -903,7 +911,7 @@ for update
 as
 declare @id int, @totalprice float, @vat float
 begin
-	if (UPDATE(TotalPrice) or UPDATE(VAT))
+	if (UPDATE(VAT))
 	begin
 		select @id = Id from inserted
 		declare @isvendororder bit

@@ -197,3 +197,27 @@ where Id = 35
 
 exec Delete_Customer_Order
 	@id = 16
+
+
+
+
+
+--- Vendor  Order
+
+exec Insert_Vendor_Order
+	@documentkey = 'VO_0001',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@transactiondate = '01-01-1990',
+	@vendor_id = 1
+
+exec Insert_Vendor_Bill
+	@documentkey = 'VB_0001',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@debt_id = 60,
+	@paidmethod = 'cash',
+	@paidmoney = 12.4
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(59, 5, 81.6, 5)
