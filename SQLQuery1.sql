@@ -515,6 +515,8 @@ begin
 	select @sum = (select SUM(Result) from ORDER_DETAIL 
 			group by ORDER_DETAIL.Order_id
 			having ORDER_DETAIL.Order_id = @orderid)
+	if (@sum is null)
+		select @sum = 0
 	update [ORDER] set TotalPrice = @sum
 	where [ORDER].Id = @orderid		
 
@@ -669,6 +671,14 @@ begin
 			if (@extrapaid is null)
 				select @extrapaid = 0
 			select @finalprice = @totalprice + @vat + @extrapaid - @discount
+			
+			update [ORDER] set FinalPrice = @finalprice
+				where ([ORDER].Id = @id)
+		end
+		if (@document = 'vendororder')
+		begin
+			select @totalprice = TotalPrice, @vat = VAT from inserted
+			select @finalprice = @totalprice + @vat 
 			
 			update [ORDER] set FinalPrice = @finalprice
 				where ([ORDER].Id = @id)
@@ -901,7 +911,7 @@ for update
 as
 declare @id int, @totalprice float, @vat float
 begin
-	if (UPDATE(TotalPrice) or UPDATE(VAT))
+	if (UPDATE(VAT))
 	begin
 		select @id = Id from inserted
 		declare @isvendororder bit

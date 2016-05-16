@@ -80,7 +80,7 @@ values ('Pr005', 'Man HInh', '6755676','lorem',94.2, 94.2)
 
 
 EXEC	[dbo].[Insert_Customer_Order]
-		@documentkey = N'''CO001''',
+		@documentkey = N'CO001',
 		@creator = 2,
 		@createdate = '01-01-2016',
 		@transactiondate = '01-01-2016',
@@ -93,7 +93,7 @@ EXEC	[dbo].[Insert_Customer_Order]
 		@extrapaid = 0,
 		@ismultipaid = 0
 GO
-
+	
 exec	dbo.Update_Customer_Order
 		@id = 15,
 		@docuemntkey = N'CO001',
@@ -160,17 +160,17 @@ GO
 
 
 insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
-values(16, 3, 86.1, 4)
+values(48, 4, 45.7, 45)
 
 exec Insert_Customer_Bill
-	@documentkey = N'CB0001',
+	@documentkey = N'CB0003',
 	@creator = 2,
 	@createdate = 2,
-	@debt_id = 17,
+	@debt_id = 49,
 	@paidmethod = N'cash',
 	@customer_id = 5,
 	@changemoney = 0,
-	@receivemoney = 178.84 
+	@receivemoney = 500.84 
 
 update CUSTOMER_BILL
 set ReceiveMoney =  100, ChangeMoney = 50
@@ -194,3 +194,30 @@ where Id = 17		-- active trigger trigger_DEBT_Remain
 update BILL
 set	PaidMoney = 1
 where Id = 35
+
+exec Delete_Customer_Order
+	@id = 16
+
+
+
+
+
+--- Vendor  Order
+
+exec Insert_Vendor_Order
+	@documentkey = 'VO_0001',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@transactiondate = '01-01-1990',
+	@vendor_id = 1
+
+exec Insert_Vendor_Bill
+	@documentkey = 'VB_0001',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@debt_id = 60,
+	@paidmethod = 'cash',
+	@paidmoney = 12.4
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(59, 5, 81.6, 5)
