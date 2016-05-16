@@ -515,6 +515,8 @@ begin
 	select @sum = (select SUM(Result) from ORDER_DETAIL 
 			group by ORDER_DETAIL.Order_id
 			having ORDER_DETAIL.Order_id = @orderid)
+	if (@sum is null)
+		select @sum = 0
 	update [ORDER] set TotalPrice = @sum
 	where [ORDER].Id = @orderid		
 
