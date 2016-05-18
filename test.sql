@@ -80,7 +80,7 @@ values ('Pr005', 'Man HInh', '6755676','lorem',94.2, 94.2)
 
 
 EXEC	[dbo].[Insert_Customer_Order]
-		@documentkey = N'''CO001''',
+		@documentkey = N'CO001',
 		@creator = 2,
 		@createdate = '01-01-2016',
 		@transactiondate = '01-01-2016',
@@ -93,7 +93,7 @@ EXEC	[dbo].[Insert_Customer_Order]
 		@extrapaid = 0,
 		@ismultipaid = 0
 GO
-
+	
 exec	dbo.Update_Customer_Order
 		@id = 15,
 		@docuemntkey = N'CO001',
@@ -139,3 +139,100 @@ where Id = 20		-- > success
 
 delete from ORDER_DETAIL
 where Id = 23		--> update order.TotalPrice ->success
+
+
+------------------------------------------
+
+EXEC	[dbo].[Insert_Customer_Order]
+		@documentkey = N'CO002',
+		@creator = 2,
+		@createdate = '01-01-2016',
+		@transactiondate = '01-01-2016',
+		@totalprice = 0,
+		@vat = 0,
+		@finalprice = 0,
+		@status = '',
+		@customer_id = 5,
+		@discount = 0,
+		@extrapaid = 0,
+		@ismultipaid = 0
+GO
+
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(48, 4, 45.7, 45)
+
+exec Insert_Customer_Bill
+	@documentkey = N'CB0003',
+	@creator = 2,
+	@createdate = 2,
+	@debt_id = 49,
+	@paidmethod = N'cash',
+	@customer_id = 5,
+	@changemoney = 0,
+	@receivemoney = 500.84 
+
+update CUSTOMER_BILL
+set ReceiveMoney =  100, ChangeMoney = 50
+where Id = 35
+
+exec Delete_Customer_Bill
+	@id	 = 34
+		
+update CUSTOMER_DEBT
+set InCome = 1
+where Id = 17		-- active trigger trigger_CUSTOMERDEBT_InCome
+
+update DEBT
+set DebtMoney = 3223
+where Id = 17		-- active trigger trigger_DEBT_DebtMoney_FinalPrice
+
+update DEBT
+set Remain = 1
+where Id = 17		-- active trigger trigger_DEBT_Remain
+
+update BILL
+set	PaidMoney = 1
+where Id = 35
+
+exec Delete_Customer_Order
+	@id = 16
+
+
+
+
+
+--- Vendor  Order
+
+exec Insert_Vendor_Order
+	@documentkey = 'VO_0003',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@transactiondate = '01-01-1990',
+	@vendor_id = 1
+
+exec Insert_Vendor_Bill
+	@documentkey = 'VB_0003',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@debt_id = 66,
+	@paidmethod = 'cash',
+	@vendor_id = 1,
+	@paidmoney = 12.4,
+	@paidstaff = 2
+
+exec Delete_Vendor_Bill
+	@id = 61
+
+exec Delete_Vendor_Order
+	@id = 65
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(65, 5, 81.6, 5)
+
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(65, 1, 24.6, 2)
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(65, 4, 24.4, 1)

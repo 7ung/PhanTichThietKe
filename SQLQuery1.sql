@@ -3,7 +3,7 @@
 
 GO
 
-create TRIGGER [dbo].[Trigger_BILL_PaidMoney]
+alter TRIGGER [dbo].[Trigger_BILL_PaidMoney]
     ON [dbo].[BILL]
     FOR INSERT, UPDATE
     AS
@@ -17,7 +17,7 @@ create TRIGGER [dbo].[Trigger_BILL_PaidMoney]
 				having (Debt_id = @debt_id)
 			select @debt = DebtMoney from DEBT where DEBT.Id = @debt_id
 
-			if (@sum_paidmoney > @debt_id)
+			if (@sum_paidmoney > @debt)
 			begin
 				raiserror('R1', 16,1)
 				rollback tran
@@ -29,13 +29,13 @@ create TRIGGER [dbo].[Trigger_BILL_PaidMoney]
 
 Go
 
-create trigger trigger_DEBT_DebtMoney
+alter trigger trigger_DEBT_DebtMoney
 on DEBT
 for update
 as
 declare @debt float, @id int, @sumdebt float
 begin
-	if (UPDATE(DebtMoney))
+	if (UPDATE(DebtMoney) )
 	begin
 		select @debt = DebtMoney, @id = Id from inserted
 		select @sumdebt = SUM(PaidMoney) from BILL
@@ -45,17 +45,17 @@ begin
 			raiserror('R1', 16,1)
 			rollback tran
 		end
-		else 
-		begin
-			if (@sumdebt = @debt)
-			begin
-				update DEBT set [Status] = 'finish'
-					where DEBT.Id = @id
-			end
-			else
-			begin
-			end
-		end
+		--else 
+		--begin
+		--	if (@sumdebt = @debt)
+		--	begin
+		--		update DEBT set [Status] = 'finish'
+		--			where DEBT.Id = @id
+		--	end
+		--	else
+		--	begin
+		--	end
+		--end
 	end
 	set nocount on
 end
@@ -96,6 +96,7 @@ begin
 			if (@paidmoney != @receivemoney - @changemoney)
 			begin
 				raiserror('R2', 16, 1)
+				rollback tran
 			end
 		end
 	end
@@ -506,7 +507,7 @@ end
 go
 alter trigger trigger_ORDERDETAIL_Result_ORDER_TotaPrice_Delete
 on [ORDER_DETAIL]
-for deletes
+for delete
 as
 declare @result float, @id int, @orderid int, @sum float
 begin
@@ -514,6 +515,8 @@ begin
 	select @sum = (select SUM(Result) from ORDER_DETAIL 
 			group by ORDER_DETAIL.Order_id
 			having ORDER_DETAIL.Order_id = @orderid)
+	if (@sum is null)
+		select @sum = 0
 	update [ORDER] set TotalPrice = @sum
 	where [ORDER].Id = @orderid		
 
@@ -558,7 +561,7 @@ begin
 			select @totalprice = TotalPrice from inserted
 			select @discount = Discount from PURCHASE_ORDER
 				where (PURCHASE_ORDER.Id = @id)
-			if (@discount >= @totalprice)
+			if (@discount > @totalprice)
 			begin
 				raiserror('R11: discount phai nho hon totalprice', 16, 1)
 				rollback tran
@@ -668,6 +671,14 @@ begin
 			if (@extrapaid is null)
 				select @extrapaid = 0
 			select @finalprice = @totalprice + @vat + @extrapaid - @discount
+			
+			update [ORDER] set FinalPrice = @finalprice
+				where ([ORDER].Id = @id)
+		end
+		if (@document = 'vendororder')
+		begin
+			select @totalprice = TotalPrice, @vat = VAT from inserted
+			select @finalprice = @totalprice + @vat 
 			
 			update [ORDER] set FinalPrice = @finalprice
 				where ([ORDER].Id = @id)
@@ -854,7 +865,7 @@ begin
 	begin
 		select @id = Id from inserted
 		declare @isPurchaseOrder bit
-		exec @isPurchaseOrder = dbo.CheckDocumentType @id, 'purchaseorder'
+		exec @isPurchaseOrder = dbo.CheckDocumentType @id, 'customerorder'
 		if (@isPurchaseOrder = 1)
 		begin
 			select @totalprice  = TotalPrice from inserted
@@ -900,7 +911,7 @@ for update
 as
 declare @id int, @totalprice float, @vat float
 begin
-	if (UPDATE(TotalPrice) or UPDATE(VAT))
+	if (UPDATE(VAT))
 	begin
 		select @id = Id from inserted
 		declare @isvendororder bit
@@ -988,4 +999,115 @@ begin
 		end
 	end
 	set nocount on
+end
+
+
+-------------------
+
+---- fix
+go
+alter trigger trigger_Bill_Debt_Paid
+on Bill
+for insert, update
+as
+declare @debid int
+begin
+	if (UPDATE(PaidMoney))
+	begin
+		select @debid = Debt_id from inserted
+
+		declare @sum float 
+		select @sum = Sum(PaidMoney) from BILL
+			group by Debt_id
+			having Debt_id = @debid
+
+		update DEBT SET Paid = @sum
+			where Id = @debid			
+	end
+	set nocount on
+end
+
+
+go
+alter trigger trigger_Bill_Debt_Paid_Delete
+on Bill
+for delete
+as
+declare @debid int
+begin
+
+	select @debid = Debt_id from deleted
+
+	declare @sum float 
+	select @sum = Sum(PaidMoney) from BILL
+		group by Debt_id
+		having Debt_id = @debid
+	if (@sum is null)
+		select @sum = 0
+	update DEBT 
+	SET Paid = @sum
+	where Id = @debid			
+
+	set nocount on
+end
+
+go
+create trigger trigger_Debt_DebtMoney_Paid_Status
+on Debt
+for insert, update
+as
+declare @id int, @debtmoney float, @paid float
+begin
+	if (update(DebtMoney) or UPDATE(Paid))
+	begin
+		select @id = Id, @debtmoney = DebtMoney, @paid = Paid from inserted
+		if (@debtmoney = @paid)
+		begin
+			update DEBT
+			set [Status] = 'finish'
+			where Id = @id
+		end
+		if (@debtmoney > @paid and @paid > 0)
+		begin
+			update DEBT
+			set [Status] = 'apart'
+			where Id = @id
+		end
+		if (@paid = 0)
+		begin
+			update DEBT
+			set [Status] = 'nopaid'
+			where Id = @id
+		end
+	end	
+set nocount on
+end
+
+go
+create trigger trigger_Debt_Status_DebtMoney_Paid
+on Debt
+for insert, update
+as
+declare @id int, @debtmoney float, @paid float, @status nvarchar(16)
+begin
+	if (UPDATE([Status]))
+	begin
+		select @id = Id, @debtmoney = DebtMoney, @paid = Paid, @status = [Status] from inserted
+		if (@status = 'finish' and @debtmoney != @paid)
+		begin
+			raiserror('Status', 16, 1)
+			rollback tran
+		end
+		if (@status = 'nopaid' and @paid != 0)
+		begin
+			raiserror('Status', 16, 1)
+			rollback tran
+		end
+		if (@status = 'apart' and (@paid = 0 or @paid = @debtmoney))
+		begin
+			raiserror('Status', 16, 1)
+			rollback tran
+		end
+	end
+set nocount on
 end
