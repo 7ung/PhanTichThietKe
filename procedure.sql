@@ -293,11 +293,14 @@ end
 
 
 go
-create procedure Delete_Vendor_Debt
+alter procedure Delete_Vendor_Debt
 	@id int
 as
 begin
 	begin tran Delete_Vendor_Debt
+		exec Delete_Vendor_Bill_By_Debt
+			@debt_id = @id
+
 		delete from VENDOR_DEBT	where VENDOR_DEBT.Id = @id
 		delete from DEBT where Id = @id
 		delete from DOCUMENT where Id = @id
@@ -456,12 +459,17 @@ return 0
 end
 
 go
-create procedure Delete_Vendor_Order
+alter procedure Delete_Vendor_Order
 	@id int
 as
 begin
 	begin tran Delete_Vendor_Oreder
+
+		exec Delete_Vendor_Debt_By_Order
+			@vendororder_id = @id
+
 		delete from VENDOR_ORDER where Id = @id
+		delete from ORDER_DETAIL where Order_id = @id
 		delete from [ORDER] where Id = @id
 		delete from DOCUMENT where Id = @id
 	commit tran

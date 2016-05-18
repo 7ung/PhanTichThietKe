@@ -205,19 +205,34 @@ exec Delete_Customer_Order
 --- Vendor  Order
 
 exec Insert_Vendor_Order
-	@documentkey = 'VO_0001',
+	@documentkey = 'VO_0003',
 	@creator = 2,
 	@createdate = '01-01-1990',
 	@transactiondate = '01-01-1990',
 	@vendor_id = 1
 
 exec Insert_Vendor_Bill
-	@documentkey = 'VB_0001',
+	@documentkey = 'VB_0003',
 	@creator = 2,
 	@createdate = '01-01-1990',
-	@debt_id = 60,
+	@debt_id = 66,
 	@paidmethod = 'cash',
-	@paidmoney = 12.4
+	@vendor_id = 1,
+	@paidmoney = 12.4,
+	@paidstaff = 2
+
+exec Delete_Vendor_Bill
+	@id = 61
+
+exec Delete_Vendor_Order
+	@id = 65
 
 insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
-values(59, 5, 81.6, 5)
+values(65, 5, 81.6, 5)
+
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(65, 1, 24.6, 2)
+
+insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
+values(65, 4, 24.4, 1)
