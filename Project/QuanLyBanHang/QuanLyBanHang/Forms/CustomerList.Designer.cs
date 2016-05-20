@@ -35,6 +35,9 @@
             this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.customerTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CUSTOMERTableAdapter();
@@ -46,31 +49,28 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.customerTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.customerBirthdayText = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.customerGenderComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.customerAddText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.customerEmailText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.customerPhoneText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.customerIdText = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.customerNameText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.customerKeyText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.deleteBtn = new System.Windows.Forms.Button();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerName = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerId = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerPhone = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerEmail = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerAddress = new WindowsFormsControlLibrary.CustomTextBox();
+            this.birthdayPicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.customerDataGridView)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             this.infoGroupBox.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -113,6 +113,7 @@
             this.customerDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customerDataGridView.Size = new System.Drawing.Size(415, 325);
             this.customerDataGridView.TabIndex = 2;
+            this.customerDataGridView.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerDataGridView_RowLeave);
             // 
             // idColumn
             // 
@@ -135,6 +136,28 @@
             this.phoneColumn.HeaderText = "Số điện thoại";
             this.phoneColumn.Name = "phoneColumn";
             this.phoneColumn.ReadOnly = true;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(95, 48);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editBtn_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // customerTableBindingSource
             // 
@@ -176,24 +199,24 @@
             // 
             this.infoGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.infoGroupBox.Controls.Add(this.birthdayPicker);
+            this.infoGroupBox.Controls.Add(this.customerAddress);
+            this.infoGroupBox.Controls.Add(this.customerEmail);
+            this.infoGroupBox.Controls.Add(this.customerPhone);
+            this.infoGroupBox.Controls.Add(this.customerId);
+            this.infoGroupBox.Controls.Add(this.customerName);
             this.infoGroupBox.Controls.Add(this.editBtn);
             this.infoGroupBox.Controls.Add(this.cancelBtn);
             this.infoGroupBox.Controls.Add(this.saveBtn);
             this.infoGroupBox.Controls.Add(this.customerTypeComboBox);
             this.infoGroupBox.Controls.Add(this.label10);
-            this.infoGroupBox.Controls.Add(this.customerBirthdayText);
             this.infoGroupBox.Controls.Add(this.label9);
             this.infoGroupBox.Controls.Add(this.customerGenderComboBox);
             this.infoGroupBox.Controls.Add(this.label8);
-            this.infoGroupBox.Controls.Add(this.customerAddText);
             this.infoGroupBox.Controls.Add(this.label7);
-            this.infoGroupBox.Controls.Add(this.customerEmailText);
             this.infoGroupBox.Controls.Add(this.label6);
-            this.infoGroupBox.Controls.Add(this.customerPhoneText);
             this.infoGroupBox.Controls.Add(this.label5);
-            this.infoGroupBox.Controls.Add(this.customerIdText);
             this.infoGroupBox.Controls.Add(this.label4);
-            this.infoGroupBox.Controls.Add(this.customerNameText);
             this.infoGroupBox.Controls.Add(this.label3);
             this.infoGroupBox.Controls.Add(this.customerKeyText);
             this.infoGroupBox.Controls.Add(this.label2);
@@ -254,14 +277,6 @@
             this.label10.TabIndex = 16;
             this.label10.Text = "Loại khách hàng";
             // 
-            // customerBirthdayText
-            // 
-            this.customerBirthdayText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "BirthDay", true));
-            this.customerBirthdayText.Location = new System.Drawing.Point(137, 256);
-            this.customerBirthdayText.Name = "customerBirthdayText";
-            this.customerBirthdayText.Size = new System.Drawing.Size(170, 20);
-            this.customerBirthdayText.TabIndex = 10;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -289,15 +304,6 @@
             this.label8.TabIndex = 12;
             this.label8.Text = "Giới tính";
             // 
-            // customerAddText
-            // 
-            this.customerAddText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Address", true));
-            this.customerAddText.Location = new System.Drawing.Point(137, 163);
-            this.customerAddText.Multiline = true;
-            this.customerAddText.Name = "customerAddText";
-            this.customerAddText.Size = new System.Drawing.Size(170, 60);
-            this.customerAddText.TabIndex = 8;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -306,14 +312,6 @@
             this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Địa chỉ";
-            // 
-            // customerEmailText
-            // 
-            this.customerEmailText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Email", true));
-            this.customerEmailText.Location = new System.Drawing.Point(137, 137);
-            this.customerEmailText.Name = "customerEmailText";
-            this.customerEmailText.Size = new System.Drawing.Size(170, 20);
-            this.customerEmailText.TabIndex = 7;
             // 
             // label6
             // 
@@ -324,14 +322,6 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Email";
             // 
-            // customerPhoneText
-            // 
-            this.customerPhoneText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Phone", true));
-            this.customerPhoneText.Location = new System.Drawing.Point(137, 111);
-            this.customerPhoneText.Name = "customerPhoneText";
-            this.customerPhoneText.Size = new System.Drawing.Size(170, 20);
-            this.customerPhoneText.TabIndex = 6;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -341,14 +331,6 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Số điện thoại";
             // 
-            // customerIdText
-            // 
-            this.customerIdText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "IdentifyNumber", true));
-            this.customerIdText.Location = new System.Drawing.Point(137, 85);
-            this.customerIdText.Name = "customerIdText";
-            this.customerIdText.Size = new System.Drawing.Size(170, 20);
-            this.customerIdText.TabIndex = 5;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -357,14 +339,6 @@
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "CMND";
-            // 
-            // customerNameText
-            // 
-            this.customerNameText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Name", true));
-            this.customerNameText.Location = new System.Drawing.Point(137, 59);
-            this.customerNameText.Name = "customerNameText";
-            this.customerNameText.Size = new System.Drawing.Size(170, 20);
-            this.customerNameText.TabIndex = 4;
             // 
             // label3
             // 
@@ -404,27 +378,135 @@
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // contextMenuStrip
+            // customerName
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(95, 48);
+            this.customerName.AutoSize = true;
+            this.customerName.BackColor = System.Drawing.Color.White;
+            this.customerName.BorderColor = System.Drawing.Color.Silver;
+            this.customerName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Name", true));
+            this.customerName.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerName.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerName.isRequired = true;
+            this.customerName.Location = new System.Drawing.Point(137, 60);
+            this.customerName.Multiline = false;
+            this.customerName.Name = "customerName";
+            this.customerName.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerName.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerName.ReadOnly = false;
+            this.customerName.Size = new System.Drawing.Size(170, 19);
+            this.customerName.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
+    ")*$";
+            this.customerName.TabIndex = 3;
+            this.customerName.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerName.TextPanelMessage = "Nhập tên không hợp lệ.";
+            this.customerName.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerName.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerName.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
             // 
-            // editToolStripMenuItem
+            // customerId
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.editToolStripMenuItem.Text = "Sửa";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editBtn_Click);
+            this.customerId.AutoSize = true;
+            this.customerId.BackColor = System.Drawing.Color.White;
+            this.customerId.BorderColor = System.Drawing.Color.Silver;
+            this.customerId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "IdentifyNumber", true));
+            this.customerId.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerId.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerId.isRequired = false;
+            this.customerId.Location = new System.Drawing.Point(137, 85);
+            this.customerId.Multiline = false;
+            this.customerId.Name = "customerId";
+            this.customerId.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerId.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerId.ReadOnly = false;
+            this.customerId.Size = new System.Drawing.Size(170, 19);
+            this.customerId.StringPattern = "^([0-9])*$";
+            this.customerId.TabIndex = 4;
+            this.customerId.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerId.TextPanelMessage = "Nhập cmnd không hợp lệ. (0-9)";
+            this.customerId.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerId.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerId.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
             // 
-            // deleteToolStripMenuItem
+            // customerPhone
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.deleteToolStripMenuItem.Text = "Xóa";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteBtn_Click);
+            this.customerPhone.AutoSize = true;
+            this.customerPhone.BackColor = System.Drawing.Color.White;
+            this.customerPhone.BorderColor = System.Drawing.Color.Silver;
+            this.customerPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Phone", true));
+            this.customerPhone.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerPhone.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerPhone.isRequired = true;
+            this.customerPhone.Location = new System.Drawing.Point(137, 110);
+            this.customerPhone.Multiline = false;
+            this.customerPhone.Name = "customerPhone";
+            this.customerPhone.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerPhone.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerPhone.ReadOnly = false;
+            this.customerPhone.Size = new System.Drawing.Size(170, 19);
+            this.customerPhone.StringPattern = "^([0-9 ])*$";
+            this.customerPhone.TabIndex = 5;
+            this.customerPhone.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerPhone.TextPanelMessage = "Nhập số đt không hợp lệ";
+            this.customerPhone.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerPhone.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerPhone.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
+            // 
+            // customerEmail
+            // 
+            this.customerEmail.AutoSize = true;
+            this.customerEmail.BackColor = System.Drawing.Color.White;
+            this.customerEmail.BorderColor = System.Drawing.Color.Silver;
+            this.customerEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Email", true));
+            this.customerEmail.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerEmail.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerEmail.isRequired = false;
+            this.customerEmail.Location = new System.Drawing.Point(137, 135);
+            this.customerEmail.Multiline = false;
+            this.customerEmail.Name = "customerEmail";
+            this.customerEmail.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerEmail.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerEmail.ReadOnly = false;
+            this.customerEmail.Size = new System.Drawing.Size(170, 19);
+            this.customerEmail.StringPattern = "^\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+            this.customerEmail.TabIndex = 6;
+            this.customerEmail.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerEmail.TextPanelMessage = "Nhập email không hợp lệ.";
+            this.customerEmail.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerEmail.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerEmail.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
+            // 
+            // customerAddress
+            // 
+            this.customerAddress.AutoSize = true;
+            this.customerAddress.BackColor = System.Drawing.Color.White;
+            this.customerAddress.BorderColor = System.Drawing.Color.Silver;
+            this.customerAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Address", true));
+            this.customerAddress.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerAddress.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerAddress.isRequired = false;
+            this.customerAddress.Location = new System.Drawing.Point(137, 160);
+            this.customerAddress.Multiline = true;
+            this.customerAddress.Name = "customerAddress";
+            this.customerAddress.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerAddress.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerAddress.ReadOnly = false;
+            this.customerAddress.Size = new System.Drawing.Size(170, 63);
+            this.customerAddress.StringPattern = "";
+            this.customerAddress.TabIndex = 7;
+            this.customerAddress.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerAddress.TextPanelMessage = "Nhập địa chỉ không hợp lệ.";
+            this.customerAddress.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
+            // 
+            // birthdayPicker
+            // 
+            this.birthdayPicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
+            this.birthdayPicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.customerTableBindingSource, "BirthDay", true));
+            this.birthdayPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.birthdayPicker.Location = new System.Drawing.Point(137, 256);
+            this.birthdayPicker.Name = "birthdayPicker";
+            this.birthdayPicker.Size = new System.Drawing.Size(170, 20);
+            this.birthdayPicker.TabIndex = 22;
             // 
             // CustomerList
             // 
@@ -440,11 +522,11 @@
             this.Name = "CustomerList";
             this.Size = new System.Drawing.Size(800, 430);
             ((System.ComponentModel.ISupportInitialize)(this.customerDataGridView)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             this.infoGroupBox.ResumeLayout(false);
             this.infoGroupBox.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,19 +546,13 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.ComboBox customerTypeComboBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox customerBirthdayText;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox customerGenderComboBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox customerAddText;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox customerEmailText;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox customerPhoneText;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox customerIdText;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox customerNameText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox customerKeyText;
         private System.Windows.Forms.Label label2;
@@ -489,5 +565,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.DateTimePicker birthdayPicker;
+        private WindowsFormsControlLibrary.CustomTextBox customerAddress;
+        private WindowsFormsControlLibrary.CustomTextBox customerEmail;
+        private WindowsFormsControlLibrary.CustomTextBox customerPhone;
+        private WindowsFormsControlLibrary.CustomTextBox customerId;
+        private WindowsFormsControlLibrary.CustomTextBox customerName;
     }
 }

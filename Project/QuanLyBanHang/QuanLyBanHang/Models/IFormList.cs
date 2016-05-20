@@ -15,8 +15,6 @@ namespace QuanLyBanHang.Models
 
         void enableAllControls(bool enable, bool readOnly);
 
-        void clearAllText();
-
-        void bindingAllText();
+        bool IsValidInformation();
     }
 }

@@ -21,6 +21,7 @@ namespace QuanLyBanHang.Forms
     public partial class CustomerList : UserControl, IFormList
     {
         public eFormState State { set; get; }
+        private bool _canDelete = false;
 
         private Gender[] _gender = new Gender[]
         {
@@ -72,10 +73,12 @@ namespace QuanLyBanHang.Forms
                     }
                 case eFormState.CREATE_NEW:
                     {
-                        clearAllText();
                         enableAllControls(true, false);
+                        _canDelete = true;
+
                         cancelBtn.Visible = true;
                         saveBtn.Visible = true;
+                        saveBtn.Enabled = false;
                         editBtn.Visible = false;
                         break;
                     }
@@ -94,74 +97,44 @@ namespace QuanLyBanHang.Forms
 
         public void enableAllControls(bool enable, bool readOnly)
         {
-            customerAddText.Enabled = enable;
-            customerBirthdayText.Enabled = enable;
-            customerEmailText.Enabled = enable;
+            customerAddress.Enabled = enable;
+            birthdayPicker.Enabled = enable;
+            customerEmail.Enabled = enable;
             customerGenderComboBox.Enabled = enable;
-            customerIdText.Enabled = enable;
+            customerId.Enabled = enable;
             //customerKeyText.Enabled = enable;
-            customerNameText.Enabled = enable;
-            customerPhoneText.Enabled = enable;
+            customerName.Enabled = enable;
+            customerPhone.Enabled = enable;
             customerTypeComboBox.Enabled = enable;
 
-            customerAddText.ReadOnly = readOnly;
-            customerBirthdayText.ReadOnly = readOnly;
-            customerEmailText.ReadOnly = readOnly;
+            customerAddress.ReadOnly = readOnly;
+            birthdayPicker.Enabled = !readOnly;
+            customerEmail.ReadOnly = readOnly;
             customerGenderComboBox.Enabled = !readOnly;
-            customerIdText.ReadOnly = readOnly;
+            customerId.ReadOnly = readOnly;
             //customerKeyText.ReadOnly = readOnly;
-            customerNameText.ReadOnly = readOnly;
-            customerPhoneText.ReadOnly = readOnly;
+            customerName.ReadOnly = readOnly;
+            customerPhone.ReadOnly = readOnly;
             customerTypeComboBox.Enabled = !readOnly;
+
+            customerAddress.ResetToNormal();
+            customerEmail.ResetToNormal();
+            customerId.ResetToNormal();
+            customerName.ResetToNormal();
+            customerPhone.ResetToNormal();
         }
-
-        public void clearAllText()
-        {
-            customerAddText.DataBindings.Clear();
-            customerBirthdayText.DataBindings.Clear();
-            customerEmailText.DataBindings.Clear();
-            customerGenderComboBox.DataBindings.Clear();
-            customerIdText.DataBindings.Clear();
-            customerKeyText.DataBindings.Clear();
-            customerNameText.DataBindings.Clear();
-            customerPhoneText.DataBindings.Clear();
-            customerTypeComboBox.DataBindings.Clear();
-
-            customerAddText.Text = "";
-            customerBirthdayText.Text = "";
-            customerEmailText.Text = "";
-            customerGenderComboBox.SelectedValue = true;
-            customerIdText.Text = "";
-            //customerKeyText.Text = "";
-            customerNameText.Text = "";
-            customerPhoneText.Text = "";
-            customerTypeComboBox.SelectedValue = 1;
-        }
-
+        
         private void saveBtn_Click(object sender, EventArgs e)
         {
             if(State == eFormState.CREATE_NEW)
             {
                 try
                 {
-                    var newCustomer = sellManagementDbDataSet.CUSTOMER.NewCUSTOMERRow();
-
-                    newCustomer.Name = customerNameText.Text;
-                    newCustomer.CustomerKey = customerKeyText.Text;
-                    newCustomer.Address = customerAddText.Text;
-                    newCustomer.Email = customerEmailText.Text;
-                    newCustomer.IdentifyNumber = customerIdText.Text;
-                    newCustomer.Phone = customerPhoneText.Text;
-                    newCustomer.Group_id = Convert.ToInt32(customerTypeComboBox.SelectedValue);
-                    newCustomer.Gender = Convert.ToBoolean(customerGenderComboBox.SelectedValue);
-                    newCustomer.BirthDay = Convert.ToDateTime(customerBirthdayText.Text);
-
-                    sellManagementDbDataSet.CUSTOMER.Rows.Add(newCustomer);
+                    customerTableBindingSource.EndEdit();
 
                     customerTableAdapter.Update(sellManagementDbDataSet.CUSTOMER);
                     sellManagementDbDataSet.CUSTOMER.AcceptChanges();
                     
-                    bindingAllText();
                     updateState(eFormState.VIEW);
                 }
                 catch (Exception ex)
@@ -171,35 +144,31 @@ namespace QuanLyBanHang.Forms
             }
             else if (State == eFormState.EDIT)
             {
-                updateState(eFormState.VIEW);
+                try
+                {
+                    customerTableBindingSource.EndEdit();
 
-                customerTableBindingSource.EndEdit();
+                    customerTableAdapter.Update(sellManagementDbDataSet.CUSTOMER);
+                    sellManagementDbDataSet.CUSTOMER.AcceptChanges();
 
-                customerTableAdapter.Update(sellManagementDbDataSet.CUSTOMER);
-                sellManagementDbDataSet.CUSTOMER.AcceptChanges();
+                    customerTableBindingSource.ResetBindings(false);
 
-                customerTableBindingSource.ResetBindings(false);
+                    updateState(eFormState.VIEW);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
         
         private void addNewCustomerBtn_Click(object sender, EventArgs e)
         {
+            customerTableBindingSource.AddNew();
+
             updateState(eFormState.CREATE_NEW);
 
             customerKeyText.Text = generateCustomerKey();
-        }
-
-        public void bindingAllText()
-        {
-            customerAddText.DataBindings.Add("Text", customerTableBindingSource, "Address");
-            customerBirthdayText.DataBindings.Add("Text", customerTableBindingSource, "BirthDay");
-            customerEmailText.DataBindings.Add("Text", customerTableBindingSource, "Email");
-            customerGenderComboBox.DataBindings.Add("SelectedValue", customerTableBindingSource, "Gender");
-            customerIdText.DataBindings.Add("Text", customerTableBindingSource, "IdentifyNumber");
-            customerKeyText.DataBindings.Add("Text", customerTableBindingSource, "CustomerKey");
-            customerNameText.DataBindings.Add("Text", customerTableBindingSource, "Name");
-            customerPhoneText.DataBindings.Add("Text", customerTableBindingSource, "Phone");
-            customerTypeComboBox.DataBindings.Add("SelectedValue", customerTableBindingSource, "Group_id");
         }
 
         private string generateCustomerKey()
@@ -225,14 +194,11 @@ namespace QuanLyBanHang.Forms
         {
             if(State == eFormState.CREATE_NEW)
             {
-                bindingAllText();
-            }
-            else if (State == eFormState.EDIT)
-            {
-                sellManagementDbDataSet.CUSTOMER.RejectChanges();
-                customerTableBindingSource.ResetBindings(false);
+                customerTableBindingSource.RemoveAt(customerTableBindingSource.Count - 1);
             }
 
+            sellManagementDbDataSet.CUSTOMER.RejectChanges();
+            customerTableBindingSource.ResetBindings(false);
             updateState(eFormState.VIEW);
         }
 
@@ -274,6 +240,39 @@ namespace QuanLyBanHang.Forms
             customerTableBindingSource.Filter = customerDataGridView.Columns["nameColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'" + "OR " +
                                                 customerDataGridView.Columns["phoneColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'" + "OR " +
                                                 customerDataGridView.Columns["idColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'";
+        }
+
+        private void customerName_xTextChanged(object sender, EventArgs e)
+        {
+            saveBtn.Enabled = IsValidInformation();
+        }
+
+        public bool IsValidInformation()
+        {
+            if (!customerName.IsValid || !customerId.IsValid || !customerEmail.IsValid || !customerPhone.IsValid)
+                return false;
+
+            return true;
+        }
+
+        private void customerDataGridView_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (State == eFormState.CREATE_NEW && _canDelete)
+            {
+                _canDelete = false;
+
+                customerTableBindingSource.RemoveAt(customerTableBindingSource.Count - 1);
+
+                sellManagementDbDataSet.CUSTOMER.RejectChanges();
+                customerTableBindingSource.ResetBindings(false);
+
+                updateState(eFormState.VIEW);
+            }
+            else if (State == eFormState.EDIT)
+            {
+                sellManagementDbDataSet.CUSTOMER.RejectChanges();
+                updateState(eFormState.VIEW);
+            }
         }
     }
 }

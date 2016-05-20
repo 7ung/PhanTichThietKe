@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace QuanLyBanHang.Forms
 {
-    public partial class VendorList : UserControl
+    public partial class VendorList : UserControl, IFormList
     {
         public VendorList()
         {
@@ -200,6 +200,7 @@ namespace QuanLyBanHang.Forms
 
                 sellManagementDbDataSet.VENDOR.RejectChanges();
                 vendorBindingSource.ResetBindings(false);
+                updateState(eFormState.VIEW);
             }
             else if (State == eFormState.EDIT)
             {
@@ -210,10 +211,10 @@ namespace QuanLyBanHang.Forms
 
         private void vendorName_xTextChanged(object sender, EventArgs e)
         {
-            saveBtn.Enabled = IsValidInfomation();
+            saveBtn.Enabled = IsValidInformation();
         }
 
-        private bool IsValidInfomation()
+        public bool IsValidInformation()
         {
             if (!vendorName.IsValid || !vendorEmail.IsValid || !vendorAddress.IsValid || !vendorAddress.IsValid)
                 return false;
