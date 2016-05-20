@@ -32,6 +32,9 @@
             this.searchText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.vendorDataGridView = new System.Windows.Forms.DataGridView();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,22 +45,17 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
-            this.vendorPhoneText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.vendorEmailText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.vendorAddressText = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.vendorNameText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.vendorIdText = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.newVendorBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
-            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vendorPhone = new WindowsFormsControlLibrary.CustomTextBox();
+            this.vendorEmail = new WindowsFormsControlLibrary.CustomTextBox();
+            this.vendorAddress = new WindowsFormsControlLibrary.CustomTextBox();
+            this.vendorName = new WindowsFormsControlLibrary.CustomTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.vendorDataGridView)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vendorBindingSource)).BeginInit();
@@ -105,6 +103,31 @@
             this.vendorDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vendorDataGridView.Size = new System.Drawing.Size(415, 325);
             this.vendorDataGridView.TabIndex = 4;
+            this.vendorDataGridView.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.vendorDataGridView_RowLeave);
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameColumn.DataPropertyName = "Name";
+            this.nameColumn.HeaderText = "Tên";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
+            // 
+            // phoneColumn
+            // 
+            this.phoneColumn.DataPropertyName = "Phone";
+            this.phoneColumn.HeaderText = "Số điện thoại";
+            this.phoneColumn.Name = "phoneColumn";
+            this.phoneColumn.ReadOnly = true;
+            this.phoneColumn.Width = 150;
+            // 
+            // emailColumn
+            // 
+            this.emailColumn.DataPropertyName = "Email";
+            this.emailColumn.HeaderText = "Email";
+            this.emailColumn.Name = "emailColumn";
+            this.emailColumn.ReadOnly = true;
+            this.emailColumn.Width = 200;
             // 
             // contextMenuStrip
             // 
@@ -146,19 +169,17 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.vendorPhone);
+            this.groupBox1.Controls.Add(this.vendorEmail);
+            this.groupBox1.Controls.Add(this.vendorAddress);
+            this.groupBox1.Controls.Add(this.vendorName);
             this.groupBox1.Controls.Add(this.saveBtn);
             this.groupBox1.Controls.Add(this.cancelBtn);
             this.groupBox1.Controls.Add(this.editBtn);
-            this.groupBox1.Controls.Add(this.vendorPhoneText);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.vendorEmailText);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.vendorAddressText);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.vendorNameText);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.vendorIdText);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(455, 21);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(328, 358);
@@ -199,92 +220,41 @@
             this.editBtn.UseVisualStyleBackColor = true;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
-            // vendorPhoneText
-            // 
-            this.vendorPhoneText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Phone", true));
-            this.vendorPhoneText.Location = new System.Drawing.Point(136, 171);
-            this.vendorPhoneText.Name = "vendorPhoneText";
-            this.vendorPhoneText.Size = new System.Drawing.Size(170, 20);
-            this.vendorPhoneText.TabIndex = 7;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 174);
+            this.label6.Location = new System.Drawing.Point(20, 151);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "Số điện thoại";
             // 
-            // vendorEmailText
-            // 
-            this.vendorEmailText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Email", true));
-            this.vendorEmailText.Location = new System.Drawing.Point(136, 145);
-            this.vendorEmailText.Name = "vendorEmailText";
-            this.vendorEmailText.Size = new System.Drawing.Size(170, 20);
-            this.vendorEmailText.TabIndex = 6;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 148);
+            this.label5.Location = new System.Drawing.Point(20, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "Email";
             // 
-            // vendorAddressText
-            // 
-            this.vendorAddressText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Address", true));
-            this.vendorAddressText.Location = new System.Drawing.Point(136, 79);
-            this.vendorAddressText.Multiline = true;
-            this.vendorAddressText.Name = "vendorAddressText";
-            this.vendorAddressText.Size = new System.Drawing.Size(170, 60);
-            this.vendorAddressText.TabIndex = 5;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 82);
+            this.label4.Location = new System.Drawing.Point(20, 59);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Địa chỉ";
             // 
-            // vendorNameText
-            // 
-            this.vendorNameText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Name", true));
-            this.vendorNameText.Location = new System.Drawing.Point(136, 53);
-            this.vendorNameText.Name = "vendorNameText";
-            this.vendorNameText.Size = new System.Drawing.Size(170, 20);
-            this.vendorNameText.TabIndex = 4;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 56);
+            this.label3.Location = new System.Drawing.Point(20, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Tên";
-            // 
-            // vendorIdText
-            // 
-            this.vendorIdText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Id", true));
-            this.vendorIdText.Location = new System.Drawing.Point(136, 27);
-            this.vendorIdText.Name = "vendorIdText";
-            this.vendorIdText.ReadOnly = true;
-            this.vendorIdText.Size = new System.Drawing.Size(170, 20);
-            this.vendorIdText.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã";
             // 
             // newVendorBtn
             // 
@@ -319,29 +289,103 @@
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
-            // nameColumn
+            // vendorPhone
             // 
-            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameColumn.DataPropertyName = "Name";
-            this.nameColumn.HeaderText = "Tên";
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.ReadOnly = true;
+            this.vendorPhone.AutoSize = true;
+            this.vendorPhone.BackColor = System.Drawing.Color.White;
+            this.vendorPhone.BorderColor = System.Drawing.Color.Silver;
+            this.vendorPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Phone", true));
+            this.vendorPhone.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorPhone.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.vendorPhone.isRequired = false;
+            this.vendorPhone.Location = new System.Drawing.Point(136, 150);
+            this.vendorPhone.Multiline = false;
+            this.vendorPhone.Name = "vendorPhone";
+            this.vendorPhone.NormalBorderColor = System.Drawing.Color.Silver;
+            this.vendorPhone.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorPhone.ReadOnly = false;
+            this.vendorPhone.Size = new System.Drawing.Size(170, 19);
+            this.vendorPhone.StringPattern = "^[0-9 ]*$";
+            this.vendorPhone.TabIndex = 13;
+            this.vendorPhone.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.vendorPhone.TextPanelMessage = "Nhập số điện thoại không hợp lệ";
+            this.vendorPhone.TextPanelMessageColor = System.Drawing.Color.White;
+            this.vendorPhone.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.vendorPhone.xTextChanged += new System.EventHandler(this.vendorName_xTextChanged);
             // 
-            // phoneColumn
+            // vendorEmail
             // 
-            this.phoneColumn.DataPropertyName = "Phone";
-            this.phoneColumn.HeaderText = "Số điện thoại";
-            this.phoneColumn.Name = "phoneColumn";
-            this.phoneColumn.ReadOnly = true;
-            this.phoneColumn.Width = 150;
+            this.vendorEmail.AutoSize = true;
+            this.vendorEmail.BackColor = System.Drawing.Color.White;
+            this.vendorEmail.BorderColor = System.Drawing.Color.Silver;
+            this.vendorEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Email", true));
+            this.vendorEmail.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorEmail.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.vendorEmail.isRequired = false;
+            this.vendorEmail.Location = new System.Drawing.Point(136, 125);
+            this.vendorEmail.Multiline = false;
+            this.vendorEmail.Name = "vendorEmail";
+            this.vendorEmail.NormalBorderColor = System.Drawing.Color.Silver;
+            this.vendorEmail.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorEmail.ReadOnly = false;
+            this.vendorEmail.Size = new System.Drawing.Size(170, 19);
+            this.vendorEmail.StringPattern = "^\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+            this.vendorEmail.TabIndex = 12;
+            this.vendorEmail.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.vendorEmail.TextPanelMessage = "Nhập email không hợp lệ.";
+            this.vendorEmail.TextPanelMessageColor = System.Drawing.Color.White;
+            this.vendorEmail.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.vendorEmail.xTextChanged += new System.EventHandler(this.vendorName_xTextChanged);
             // 
-            // emailColumn
+            // vendorAddress
             // 
-            this.emailColumn.DataPropertyName = "Email";
-            this.emailColumn.HeaderText = "Email";
-            this.emailColumn.Name = "emailColumn";
-            this.emailColumn.ReadOnly = true;
-            this.emailColumn.Width = 200;
+            this.vendorAddress.AutoSize = true;
+            this.vendorAddress.BackColor = System.Drawing.Color.White;
+            this.vendorAddress.BorderColor = System.Drawing.Color.Silver;
+            this.vendorAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Address", true));
+            this.vendorAddress.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorAddress.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.vendorAddress.isRequired = true;
+            this.vendorAddress.Location = new System.Drawing.Point(136, 59);
+            this.vendorAddress.Multiline = true;
+            this.vendorAddress.Name = "vendorAddress";
+            this.vendorAddress.NormalBorderColor = System.Drawing.Color.Silver;
+            this.vendorAddress.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorAddress.ReadOnly = false;
+            this.vendorAddress.Size = new System.Drawing.Size(170, 60);
+            this.vendorAddress.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9/ " +
+    "])*$";
+            this.vendorAddress.TabIndex = 11;
+            this.vendorAddress.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.vendorAddress.TextPanelMessage = "Nhập địa chỉ không hợp lệ.";
+            this.vendorAddress.TextPanelMessageColor = System.Drawing.Color.White;
+            this.vendorAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.vendorAddress.xTextChanged += new System.EventHandler(this.vendorName_xTextChanged);
+            // 
+            // vendorName
+            // 
+            this.vendorName.AutoSize = true;
+            this.vendorName.BackColor = System.Drawing.Color.White;
+            this.vendorName.BorderColor = System.Drawing.Color.Silver;
+            this.vendorName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.vendorBindingSource, "Name", true));
+            this.vendorName.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorName.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.vendorName.isRequired = true;
+            this.vendorName.Location = new System.Drawing.Point(136, 31);
+            this.vendorName.Multiline = false;
+            this.vendorName.Name = "vendorName";
+            this.vendorName.NormalBorderColor = System.Drawing.Color.Silver;
+            this.vendorName.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.vendorName.ReadOnly = false;
+            this.vendorName.Size = new System.Drawing.Size(170, 19);
+            this.vendorName.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
+    ")*$";
+            this.vendorName.TabIndex = 10;
+            this.vendorName.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.vendorName.TextPanelMessage = "Nhập tên không hợp lệ.";
+            this.vendorName.TextPanelMessageColor = System.Drawing.Color.White;
+            this.vendorName.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.vendorName.xTextChanged += new System.EventHandler(this.vendorName_xTextChanged);
             // 
             // VendorList
             // 
@@ -376,15 +420,9 @@
         private SellManagementDbDataSet sellManagementDbDataSet;
         private SellManagementDbDataSetTableAdapters.VENDORTableAdapter vendorTableAdapter;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox vendorIdText;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox vendorPhoneText;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox vendorEmailText;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox vendorAddressText;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox vendorNameText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button newVendorBtn;
         private System.Windows.Forms.Button deleteBtn;
@@ -398,5 +436,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn emailColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private WindowsFormsControlLibrary.CustomTextBox vendorName;
+        private WindowsFormsControlLibrary.CustomTextBox vendorPhone;
+        private WindowsFormsControlLibrary.CustomTextBox vendorEmail;
+        private WindowsFormsControlLibrary.CustomTextBox vendorAddress;
     }
 }

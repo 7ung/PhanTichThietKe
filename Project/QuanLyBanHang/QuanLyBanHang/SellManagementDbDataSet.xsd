@@ -2,7 +2,7 @@
 <xs:schema id="SellManagementDbDataSet" targetNamespace="http://tempuri.org/SellManagementDbDataSet.xsd" xmlns:mstns="http://tempuri.org/SellManagementDbDataSet.xsd" xmlns="http://tempuri.org/SellManagementDbDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SellManagementDbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SellManagementDbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.QuanLyBanHang.Properties.Settings.GlobalReference.Default.SellManagementDbConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
@@ -1634,15 +1634,522 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Customer_Bill_ViewTableAdapter" GeneratorDataComponentClassName="Customer_Bill_ViewTableAdapter" Name="Customer_Bill_View" UserDataComponentName="Customer_Bill_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Customer_Bill_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, Debt_id, PaidMethod, PaidMoney, Customer_id, ChangeMoney, ReceiveMoney FROM dbo.Customer_Bill_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="Debt_id" DataSetColumn="Debt_id" />
+              <Mapping SourceColumn="PaidMethod" DataSetColumn="PaidMethod" />
+              <Mapping SourceColumn="PaidMoney" DataSetColumn="PaidMoney" />
+              <Mapping SourceColumn="Customer_id" DataSetColumn="Customer_id" />
+              <Mapping SourceColumn="ChangeMoney" DataSetColumn="ChangeMoney" />
+              <Mapping SourceColumn="ReceiveMoney" DataSetColumn="ReceiveMoney" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Customer_Debt_ViewTableAdapter" GeneratorDataComponentClassName="Customer_Debt_ViewTableAdapter" Name="Customer_Debt_View" UserDataComponentName="Customer_Debt_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Customer_Debt_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, DebtMoney, Paid, Remain, DatePaid, ExtraPaid, Status, PurchaseOrder_id, Customer_id, InCome FROM dbo.Customer_Debt_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="DebtMoney" DataSetColumn="DebtMoney" />
+              <Mapping SourceColumn="Paid" DataSetColumn="Paid" />
+              <Mapping SourceColumn="Remain" DataSetColumn="Remain" />
+              <Mapping SourceColumn="DatePaid" DataSetColumn="DatePaid" />
+              <Mapping SourceColumn="ExtraPaid" DataSetColumn="ExtraPaid" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="PurchaseOrder_id" DataSetColumn="PurchaseOrder_id" />
+              <Mapping SourceColumn="Customer_id" DataSetColumn="Customer_id" />
+              <Mapping SourceColumn="InCome" DataSetColumn="InCome" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Customer_Order_ViewTableAdapter" GeneratorDataComponentClassName="Customer_Order_ViewTableAdapter" Name="Customer_Order_View" UserDataComponentName="Customer_Order_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Customer_Order_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, TotalPrice, VAT, FinalPrice, TransactionDate, Status, Customer_id, Discount, ExtraPaid, IsMultiPaid FROM dbo.Customer_Order_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="TotalPrice" DataSetColumn="TotalPrice" />
+              <Mapping SourceColumn="VAT" DataSetColumn="VAT" />
+              <Mapping SourceColumn="FinalPrice" DataSetColumn="FinalPrice" />
+              <Mapping SourceColumn="TransactionDate" DataSetColumn="TransactionDate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Customer_id" DataSetColumn="Customer_id" />
+              <Mapping SourceColumn="Discount" DataSetColumn="Discount" />
+              <Mapping SourceColumn="ExtraPaid" DataSetColumn="ExtraPaid" />
+              <Mapping SourceColumn="IsMultiPaid" DataSetColumn="IsMultiPaid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InOut_Inventory_ViewTableAdapter" GeneratorDataComponentClassName="InOut_Inventory_ViewTableAdapter" Name="InOut_Inventory_View" UserDataComponentName="InOut_Inventory_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.InOut_Inventory_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, Inventory_id, Respond, Note, CarryFee FROM dbo.InOut_Inventory_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="Inventory_id" DataSetColumn="Inventory_id" />
+              <Mapping SourceColumn="Respond" DataSetColumn="Respond" />
+              <Mapping SourceColumn="Note" DataSetColumn="Note" />
+              <Mapping SourceColumn="CarryFee" DataSetColumn="CarryFee" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vendor_Bill_ViewTableAdapter" GeneratorDataComponentClassName="Vendor_Bill_ViewTableAdapter" Name="Vendor_Bill_View" UserDataComponentName="Vendor_Bill_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Vendor_Bill_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, Debt_id, PaidMethod, PaidMoney, PaidStaff, Vendor_id FROM dbo.Vendor_Bill_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="Debt_id" DataSetColumn="Debt_id" />
+              <Mapping SourceColumn="PaidMethod" DataSetColumn="PaidMethod" />
+              <Mapping SourceColumn="PaidMoney" DataSetColumn="PaidMoney" />
+              <Mapping SourceColumn="PaidStaff" DataSetColumn="PaidStaff" />
+              <Mapping SourceColumn="Vendor_id" DataSetColumn="Vendor_id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vendor_Debt_ViewTableAdapter" GeneratorDataComponentClassName="Vendor_Debt_ViewTableAdapter" Name="Vendor_Debt_View" UserDataComponentName="Vendor_Debt_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Vendor_Debt_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, DebtMoney, Paid, Remain, DatePaid, ExtraPaid, Status, VendorOrder_id, Vendor_id, OutCome FROM dbo.Vendor_Debt_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="DebtMoney" DataSetColumn="DebtMoney" />
+              <Mapping SourceColumn="Paid" DataSetColumn="Paid" />
+              <Mapping SourceColumn="Remain" DataSetColumn="Remain" />
+              <Mapping SourceColumn="DatePaid" DataSetColumn="DatePaid" />
+              <Mapping SourceColumn="ExtraPaid" DataSetColumn="ExtraPaid" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="VendorOrder_id" DataSetColumn="VendorOrder_id" />
+              <Mapping SourceColumn="Vendor_id" DataSetColumn="Vendor_id" />
+              <Mapping SourceColumn="OutCome" DataSetColumn="OutCome" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vendor_Order_ViewTableAdapter" GeneratorDataComponentClassName="Vendor_Order_ViewTableAdapter" Name="Vendor_Order_View" UserDataComponentName="Vendor_Order_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Vendor_Order_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Id, DocumentKey, Type, Creator, CreateDate, TotalPrice, VAT, FinalPrice, TransactionDate, Status, Vendor_id FROM dbo.Vendor_Order_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="DocumentKey" DataSetColumn="DocumentKey" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Creator" DataSetColumn="Creator" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="TotalPrice" DataSetColumn="TotalPrice" />
+              <Mapping SourceColumn="VAT" DataSetColumn="VAT" />
+              <Mapping SourceColumn="FinalPrice" DataSetColumn="FinalPrice" />
+              <Mapping SourceColumn="TransactionDate" DataSetColumn="TransactionDate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Vendor_id" DataSetColumn="Vendor_id" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
-        <Sources />
+        <Sources>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Bill" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Bill" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Bill" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Delete_Customer_Bill">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Bill</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Bill_By_CustomerId" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Bill_By_CustomerId" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Bill_By_CustomerId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Delete_Customer_Bill_By_CustomerId">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Bill_By_CustomerId</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Bill_By_Debt" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Bill_By_Debt" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Bill_By_Debt" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="Delete_Customer_Bill_By_Debt">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Bill_By_Debt</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@debt_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Debt" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Debt" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Debt" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="Delete_Customer_Debt">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Debt</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Debt_By_CustomerId" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Debt_By_CustomerId" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Debt_By_CustomerId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="Delete_Customer_Debt_By_CustomerId">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Debt_By_CustomerId</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Debt_By_Order" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Debt_By_Order" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Debt_By_Order" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="Delete_Customer_Debt_By_Order">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Debt_By_Order</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@purchaseorder_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Order" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Order" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Order" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="Delete_Customer_Order">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Order</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Customer_Order_By_CustomerId" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Customer_Order_By_CustomerId" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Customer_Order_By_CustomerId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="Delete_Customer_Order_By_CustomerId">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Customer_Order_By_CustomerId</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_InoutInventory" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_InoutInventory" MethodsParameterType="CLR" Modifier="Public" Name="Delete_InoutInventory" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="Delete_InoutInventory">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_InoutInventory</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Bill" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Bill" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Bill" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="Delete_Vendor_Bill">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Bill</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Bill_By_Customer" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Bill_By_Customer" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Bill_By_Customer" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="Delete_Vendor_Bill_By_Customer">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Bill_By_Customer</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Bill_By_Debt" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Bill_By_Debt" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Bill_By_Debt" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="Delete_Vendor_Bill_By_Debt">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Bill_By_Debt</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@debt_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Debt" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Debt" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Debt" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="Delete_Vendor_Debt">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Debt</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Debt_By_Order" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Debt_By_Order" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Debt_By_Order" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="Delete_Vendor_Debt_By_Order">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Debt_By_Order</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendororder_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Debt_By_Vendor" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Debt_By_Vendor" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Debt_By_Vendor" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="Delete_Vendor_Debt_By_Vendor">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Debt_By_Vendor</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendor_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Order" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Order" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Order" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="Delete_Vendor_Order">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Order</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Delete_Vendor_Order_By_Vendor" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Delete_Vendor_Order_By_Vendor" MethodsParameterType="CLR" Modifier="Public" Name="Delete_Vendor_Order_By_Vendor" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy16" UserSourceName="Delete_Vendor_Order_By_Vendor">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Delete_Vendor_Order_By_Vendor</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendor_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_Customer_Bill" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_Customer_Bill" MethodsParameterType="CLR" Modifier="Public" Name="Insert_Customer_Bill" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy17" UserSourceName="Insert_Customer_Bill">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_Customer_Bill</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@debt_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@paidmethod" Precision="0" ProviderType="NVarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@changemoney" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@receivemoney" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_Customer_Debt" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_Customer_Debt" MethodsParameterType="CLR" Modifier="Public" Name="Insert_Customer_Debt" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy18" UserSourceName="Insert_Customer_Debt">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_Customer_Debt</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@debtmoney" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@paid" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@remain" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@datepaid" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@extrapaid" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@status" Precision="0" ProviderType="NVarChar" Scale="0" Size="16" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@purchase_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@income" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_Customer_Order" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_Customer_Order" MethodsParameterType="CLR" Modifier="Public" Name="Insert_Customer_Order" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="Insert_Customer_Order">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_Customer_Order</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@transactiondate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@customer_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@extrapaid" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ismultipaid" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@datepaid_debt" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_InoutInventory" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_InoutInventory" MethodsParameterType="CLR" Modifier="Public" Name="Insert_InoutInventory" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="Insert_InoutInventory">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_InoutInventory</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@respond" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@inventory_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@carry_fee" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@note" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_Vendor_Bill" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_Vendor_Bill" MethodsParameterType="CLR" Modifier="Public" Name="Insert_Vendor_Bill" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="Insert_Vendor_Bill">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_Vendor_Bill</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@debt_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@paidmethod" Precision="0" ProviderType="NVarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@paidmoney" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@paidstaff" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendor_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_Vendor_Debt" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_Vendor_Debt" MethodsParameterType="CLR" Modifier="Public" Name="Insert_Vendor_Debt" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy22" UserSourceName="Insert_Vendor_Debt">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_Vendor_Debt</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@debtmoney" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@paid" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@remain" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@datepaid" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@extrapaid" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@status" Precision="0" ProviderType="NVarChar" Scale="0" Size="16" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendor_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendororder_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="float" DbType="Double" Direction="Input" ParameterName="@outcome" Precision="53" ProviderType="Float" Scale="0" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="SellManagementDbConnectionString (Settings)" DbObjectName="dbo.Insert_Vendor_Order" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="Insert_Vendor_Order" MethodsParameterType="CLR" Modifier="Public" Name="Insert_Vendor_Order" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy23" UserSourceName="Insert_Vendor_Order">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.Insert_Vendor_Order</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@documentkey" Precision="0" ProviderType="VarChar" Scale="0" Size="32" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@creator" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@createdate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@transactiondate" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@vendor_id" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="smalldatetime" DbType="DateTime" Direction="Input" ParameterName="@datepaid_debt" Precision="16" ProviderType="SmallDateTime" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
   <xs:element name="SellManagementDbDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="SellManagementDbDataSet" msprop:Generator_UserDSName="SellManagementDbDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="BILL" msprop:Generator_TableClassName="BILLDataTable" msprop:Generator_TableVarName="tableBILL" msprop:Generator_TablePropName="BILL" msprop:Generator_RowDeletingName="BILLRowDeleting" msprop:Generator_RowChangingName="BILLRowChanging" msprop:Generator_RowEvHandlerName="BILLRowChangeEventHandler" msprop:Generator_RowDeletedName="BILLRowDeleted" msprop:Generator_UserTableName="BILL" msprop:Generator_RowChangedName="BILLRowChanged" msprop:Generator_RowEvArgName="BILLRowChangeEvent" msprop:Generator_RowClassName="BILLRow">
+        <xs:element name="BILL" msprop:Generator_TableClassName="BILLDataTable" msprop:Generator_TableVarName="tableBILL" msprop:Generator_RowChangedName="BILLRowChanged" msprop:Generator_TablePropName="BILL" msprop:Generator_RowDeletingName="BILLRowDeleting" msprop:Generator_RowChangingName="BILLRowChanging" msprop:Generator_RowEvHandlerName="BILLRowChangeEventHandler" msprop:Generator_RowDeletedName="BILLRowDeleted" msprop:Generator_RowClassName="BILLRow" msprop:Generator_UserTableName="BILL" msprop:Generator_RowEvArgName="BILLRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1658,7 +2165,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CONSTANT" msprop:Generator_TableClassName="CONSTANTDataTable" msprop:Generator_TableVarName="tableCONSTANT" msprop:Generator_TablePropName="CONSTANT" msprop:Generator_RowDeletingName="CONSTANTRowDeleting" msprop:Generator_RowChangingName="CONSTANTRowChanging" msprop:Generator_RowEvHandlerName="CONSTANTRowChangeEventHandler" msprop:Generator_RowDeletedName="CONSTANTRowDeleted" msprop:Generator_UserTableName="CONSTANT" msprop:Generator_RowChangedName="CONSTANTRowChanged" msprop:Generator_RowEvArgName="CONSTANTRowChangeEvent" msprop:Generator_RowClassName="CONSTANTRow">
+        <xs:element name="CONSTANT" msprop:Generator_TableClassName="CONSTANTDataTable" msprop:Generator_TableVarName="tableCONSTANT" msprop:Generator_RowChangedName="CONSTANTRowChanged" msprop:Generator_TablePropName="CONSTANT" msprop:Generator_RowDeletingName="CONSTANTRowDeleting" msprop:Generator_RowChangingName="CONSTANTRowChanging" msprop:Generator_RowEvHandlerName="CONSTANTRowChangeEventHandler" msprop:Generator_RowDeletedName="CONSTANTRowDeleted" msprop:Generator_RowClassName="CONSTANTRow" msprop:Generator_UserTableName="CONSTANT" msprop:Generator_RowEvArgName="CONSTANTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1679,7 +2186,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUSTOMER" msprop:Generator_TableClassName="CUSTOMERDataTable" msprop:Generator_TableVarName="tableCUSTOMER" msprop:Generator_TablePropName="CUSTOMER" msprop:Generator_RowDeletingName="CUSTOMERRowDeleting" msprop:Generator_RowChangingName="CUSTOMERRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERRowDeleted" msprop:Generator_UserTableName="CUSTOMER" msprop:Generator_RowChangedName="CUSTOMERRowChanged" msprop:Generator_RowEvArgName="CUSTOMERRowChangeEvent" msprop:Generator_RowClassName="CUSTOMERRow">
+        <xs:element name="CUSTOMER" msprop:Generator_TableClassName="CUSTOMERDataTable" msprop:Generator_TableVarName="tableCUSTOMER" msprop:Generator_RowChangedName="CUSTOMERRowChanged" msprop:Generator_TablePropName="CUSTOMER" msprop:Generator_RowDeletingName="CUSTOMERRowDeleting" msprop:Generator_RowChangingName="CUSTOMERRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERRowDeleted" msprop:Generator_RowClassName="CUSTOMERRow" msprop:Generator_UserTableName="CUSTOMER" msprop:Generator_RowEvArgName="CUSTOMERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1731,7 +2238,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUSTOMER_BILL" msprop:Generator_TableClassName="CUSTOMER_BILLDataTable" msprop:Generator_TableVarName="tableCUSTOMER_BILL" msprop:Generator_TablePropName="CUSTOMER_BILL" msprop:Generator_RowDeletingName="CUSTOMER_BILLRowDeleting" msprop:Generator_RowChangingName="CUSTOMER_BILLRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMER_BILLRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMER_BILLRowDeleted" msprop:Generator_UserTableName="CUSTOMER_BILL" msprop:Generator_RowChangedName="CUSTOMER_BILLRowChanged" msprop:Generator_RowEvArgName="CUSTOMER_BILLRowChangeEvent" msprop:Generator_RowClassName="CUSTOMER_BILLRow">
+        <xs:element name="CUSTOMER_BILL" msprop:Generator_TableClassName="CUSTOMER_BILLDataTable" msprop:Generator_TableVarName="tableCUSTOMER_BILL" msprop:Generator_RowChangedName="CUSTOMER_BILLRowChanged" msprop:Generator_TablePropName="CUSTOMER_BILL" msprop:Generator_RowDeletingName="CUSTOMER_BILLRowDeleting" msprop:Generator_RowChangingName="CUSTOMER_BILLRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMER_BILLRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMER_BILLRowDeleted" msprop:Generator_RowClassName="CUSTOMER_BILLRow" msprop:Generator_UserTableName="CUSTOMER_BILL" msprop:Generator_RowEvArgName="CUSTOMER_BILLRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1741,7 +2248,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUSTOMER_DEBT" msprop:Generator_TableClassName="CUSTOMER_DEBTDataTable" msprop:Generator_TableVarName="tableCUSTOMER_DEBT" msprop:Generator_TablePropName="CUSTOMER_DEBT" msprop:Generator_RowDeletingName="CUSTOMER_DEBTRowDeleting" msprop:Generator_RowChangingName="CUSTOMER_DEBTRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMER_DEBTRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMER_DEBTRowDeleted" msprop:Generator_UserTableName="CUSTOMER_DEBT" msprop:Generator_RowChangedName="CUSTOMER_DEBTRowChanged" msprop:Generator_RowEvArgName="CUSTOMER_DEBTRowChangeEvent" msprop:Generator_RowClassName="CUSTOMER_DEBTRow">
+        <xs:element name="CUSTOMER_DEBT" msprop:Generator_TableClassName="CUSTOMER_DEBTDataTable" msprop:Generator_TableVarName="tableCUSTOMER_DEBT" msprop:Generator_RowChangedName="CUSTOMER_DEBTRowChanged" msprop:Generator_TablePropName="CUSTOMER_DEBT" msprop:Generator_RowDeletingName="CUSTOMER_DEBTRowDeleting" msprop:Generator_RowChangingName="CUSTOMER_DEBTRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMER_DEBTRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMER_DEBTRowDeleted" msprop:Generator_RowClassName="CUSTOMER_DEBTRow" msprop:Generator_UserTableName="CUSTOMER_DEBT" msprop:Generator_RowEvArgName="CUSTOMER_DEBTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1751,7 +2258,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DEBT" msprop:Generator_TableClassName="DEBTDataTable" msprop:Generator_TableVarName="tableDEBT" msprop:Generator_TablePropName="DEBT" msprop:Generator_RowDeletingName="DEBTRowDeleting" msprop:Generator_RowChangingName="DEBTRowChanging" msprop:Generator_RowEvHandlerName="DEBTRowChangeEventHandler" msprop:Generator_RowDeletedName="DEBTRowDeleted" msprop:Generator_UserTableName="DEBT" msprop:Generator_RowChangedName="DEBTRowChanged" msprop:Generator_RowEvArgName="DEBTRowChangeEvent" msprop:Generator_RowClassName="DEBTRow">
+        <xs:element name="DEBT" msprop:Generator_TableClassName="DEBTDataTable" msprop:Generator_TableVarName="tableDEBT" msprop:Generator_RowChangedName="DEBTRowChanged" msprop:Generator_TablePropName="DEBT" msprop:Generator_RowDeletingName="DEBTRowDeleting" msprop:Generator_RowChangingName="DEBTRowChanging" msprop:Generator_RowEvHandlerName="DEBTRowChangeEventHandler" msprop:Generator_RowDeletedName="DEBTRowDeleted" msprop:Generator_RowClassName="DEBTRow" msprop:Generator_UserTableName="DEBT" msprop:Generator_RowEvArgName="DEBTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1770,7 +2277,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DOCUMENT" msprop:Generator_TableClassName="DOCUMENTDataTable" msprop:Generator_TableVarName="tableDOCUMENT" msprop:Generator_TablePropName="DOCUMENT" msprop:Generator_RowDeletingName="DOCUMENTRowDeleting" msprop:Generator_RowChangingName="DOCUMENTRowChanging" msprop:Generator_RowEvHandlerName="DOCUMENTRowChangeEventHandler" msprop:Generator_RowDeletedName="DOCUMENTRowDeleted" msprop:Generator_UserTableName="DOCUMENT" msprop:Generator_RowChangedName="DOCUMENTRowChanged" msprop:Generator_RowEvArgName="DOCUMENTRowChangeEvent" msprop:Generator_RowClassName="DOCUMENTRow">
+        <xs:element name="DOCUMENT" msprop:Generator_TableClassName="DOCUMENTDataTable" msprop:Generator_TableVarName="tableDOCUMENT" msprop:Generator_RowChangedName="DOCUMENTRowChanged" msprop:Generator_TablePropName="DOCUMENT" msprop:Generator_RowDeletingName="DOCUMENTRowDeleting" msprop:Generator_RowChangingName="DOCUMENTRowChanging" msprop:Generator_RowEvHandlerName="DOCUMENTRowChangeEventHandler" msprop:Generator_RowDeletedName="DOCUMENTRowDeleted" msprop:Generator_RowClassName="DOCUMENTRow" msprop:Generator_UserTableName="DOCUMENT" msprop:Generator_RowEvArgName="DOCUMENTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1793,7 +2300,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FEEDBACK" msprop:Generator_TableClassName="FEEDBACKDataTable" msprop:Generator_TableVarName="tableFEEDBACK" msprop:Generator_TablePropName="FEEDBACK" msprop:Generator_RowDeletingName="FEEDBACKRowDeleting" msprop:Generator_RowChangingName="FEEDBACKRowChanging" msprop:Generator_RowEvHandlerName="FEEDBACKRowChangeEventHandler" msprop:Generator_RowDeletedName="FEEDBACKRowDeleted" msprop:Generator_UserTableName="FEEDBACK" msprop:Generator_RowChangedName="FEEDBACKRowChanged" msprop:Generator_RowEvArgName="FEEDBACKRowChangeEvent" msprop:Generator_RowClassName="FEEDBACKRow">
+        <xs:element name="FEEDBACK" msprop:Generator_TableClassName="FEEDBACKDataTable" msprop:Generator_TableVarName="tableFEEDBACK" msprop:Generator_RowChangedName="FEEDBACKRowChanged" msprop:Generator_TablePropName="FEEDBACK" msprop:Generator_RowDeletingName="FEEDBACKRowDeleting" msprop:Generator_RowChangingName="FEEDBACKRowChanging" msprop:Generator_RowEvHandlerName="FEEDBACKRowChangeEventHandler" msprop:Generator_RowDeletedName="FEEDBACKRowDeleted" msprop:Generator_RowClassName="FEEDBACKRow" msprop:Generator_UserTableName="FEEDBACK" msprop:Generator_RowEvArgName="FEEDBACKRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1810,7 +2317,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GROUPofCUSTOMER" msprop:Generator_TableClassName="GROUPofCUSTOMERDataTable" msprop:Generator_TableVarName="tableGROUPofCUSTOMER" msprop:Generator_TablePropName="GROUPofCUSTOMER" msprop:Generator_RowDeletingName="GROUPofCUSTOMERRowDeleting" msprop:Generator_RowChangingName="GROUPofCUSTOMERRowChanging" msprop:Generator_RowEvHandlerName="GROUPofCUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="GROUPofCUSTOMERRowDeleted" msprop:Generator_UserTableName="GROUPofCUSTOMER" msprop:Generator_RowChangedName="GROUPofCUSTOMERRowChanged" msprop:Generator_RowEvArgName="GROUPofCUSTOMERRowChangeEvent" msprop:Generator_RowClassName="GROUPofCUSTOMERRow">
+        <xs:element name="GROUPofCUSTOMER" msprop:Generator_TableClassName="GROUPofCUSTOMERDataTable" msprop:Generator_TableVarName="tableGROUPofCUSTOMER" msprop:Generator_RowChangedName="GROUPofCUSTOMERRowChanged" msprop:Generator_TablePropName="GROUPofCUSTOMER" msprop:Generator_RowDeletingName="GROUPofCUSTOMERRowDeleting" msprop:Generator_RowChangingName="GROUPofCUSTOMERRowChanging" msprop:Generator_RowEvHandlerName="GROUPofCUSTOMERRowChangeEventHandler" msprop:Generator_RowDeletedName="GROUPofCUSTOMERRowDeleted" msprop:Generator_RowClassName="GROUPofCUSTOMERRow" msprop:Generator_UserTableName="GROUPofCUSTOMER" msprop:Generator_RowEvArgName="GROUPofCUSTOMERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1825,7 +2332,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INOUT_INVENTORY_DETAIL" msprop:Generator_TableClassName="INOUT_INVENTORY_DETAILDataTable" msprop:Generator_TableVarName="tableINOUT_INVENTORY_DETAIL" msprop:Generator_TablePropName="INOUT_INVENTORY_DETAIL" msprop:Generator_RowDeletingName="INOUT_INVENTORY_DETAILRowDeleting" msprop:Generator_RowChangingName="INOUT_INVENTORY_DETAILRowChanging" msprop:Generator_RowEvHandlerName="INOUT_INVENTORY_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="INOUT_INVENTORY_DETAILRowDeleted" msprop:Generator_UserTableName="INOUT_INVENTORY_DETAIL" msprop:Generator_RowChangedName="INOUT_INVENTORY_DETAILRowChanged" msprop:Generator_RowEvArgName="INOUT_INVENTORY_DETAILRowChangeEvent" msprop:Generator_RowClassName="INOUT_INVENTORY_DETAILRow">
+        <xs:element name="INOUT_INVENTORY_DETAIL" msprop:Generator_TableClassName="INOUT_INVENTORY_DETAILDataTable" msprop:Generator_TableVarName="tableINOUT_INVENTORY_DETAIL" msprop:Generator_RowChangedName="INOUT_INVENTORY_DETAILRowChanged" msprop:Generator_TablePropName="INOUT_INVENTORY_DETAIL" msprop:Generator_RowDeletingName="INOUT_INVENTORY_DETAILRowDeleting" msprop:Generator_RowChangingName="INOUT_INVENTORY_DETAILRowChanging" msprop:Generator_RowEvHandlerName="INOUT_INVENTORY_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="INOUT_INVENTORY_DETAILRowDeleted" msprop:Generator_RowClassName="INOUT_INVENTORY_DETAILRow" msprop:Generator_UserTableName="INOUT_INVENTORY_DETAIL" msprop:Generator_RowEvArgName="INOUT_INVENTORY_DETAILRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="OrderDetail_id" msprop:Generator_ColumnVarNameInTable="columnOrderDetail_id" msprop:Generator_ColumnPropNameInRow="OrderDetail_id" msprop:Generator_ColumnPropNameInTable="OrderDetail_idColumn" msprop:Generator_UserColumnName="OrderDetail_id" type="xs:int" />
@@ -1835,7 +2342,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INOUTINVENTORY" msprop:Generator_TableClassName="INOUTINVENTORYDataTable" msprop:Generator_TableVarName="tableINOUTINVENTORY" msprop:Generator_TablePropName="INOUTINVENTORY" msprop:Generator_RowDeletingName="INOUTINVENTORYRowDeleting" msprop:Generator_RowChangingName="INOUTINVENTORYRowChanging" msprop:Generator_RowEvHandlerName="INOUTINVENTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="INOUTINVENTORYRowDeleted" msprop:Generator_UserTableName="INOUTINVENTORY" msprop:Generator_RowChangedName="INOUTINVENTORYRowChanged" msprop:Generator_RowEvArgName="INOUTINVENTORYRowChangeEvent" msprop:Generator_RowClassName="INOUTINVENTORYRow">
+        <xs:element name="INOUTINVENTORY" msprop:Generator_TableClassName="INOUTINVENTORYDataTable" msprop:Generator_TableVarName="tableINOUTINVENTORY" msprop:Generator_RowChangedName="INOUTINVENTORYRowChanged" msprop:Generator_TablePropName="INOUTINVENTORY" msprop:Generator_RowDeletingName="INOUTINVENTORYRowDeleting" msprop:Generator_RowChangingName="INOUTINVENTORYRowChanging" msprop:Generator_RowEvHandlerName="INOUTINVENTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="INOUTINVENTORYRowDeleted" msprop:Generator_RowClassName="INOUTINVENTORYRow" msprop:Generator_UserTableName="INOUTINVENTORY" msprop:Generator_RowEvArgName="INOUTINVENTORYRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1852,7 +2359,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INVENTORY" msprop:Generator_TableClassName="INVENTORYDataTable" msprop:Generator_TableVarName="tableINVENTORY" msprop:Generator_TablePropName="INVENTORY" msprop:Generator_RowDeletingName="INVENTORYRowDeleting" msprop:Generator_RowChangingName="INVENTORYRowChanging" msprop:Generator_RowEvHandlerName="INVENTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="INVENTORYRowDeleted" msprop:Generator_UserTableName="INVENTORY" msprop:Generator_RowChangedName="INVENTORYRowChanged" msprop:Generator_RowEvArgName="INVENTORYRowChangeEvent" msprop:Generator_RowClassName="INVENTORYRow">
+        <xs:element name="INVENTORY" msprop:Generator_TableClassName="INVENTORYDataTable" msprop:Generator_TableVarName="tableINVENTORY" msprop:Generator_RowChangedName="INVENTORYRowChanged" msprop:Generator_TablePropName="INVENTORY" msprop:Generator_RowDeletingName="INVENTORYRowDeleting" msprop:Generator_RowChangingName="INVENTORYRowChanging" msprop:Generator_RowEvHandlerName="INVENTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="INVENTORYRowDeleted" msprop:Generator_RowClassName="INVENTORYRow" msprop:Generator_UserTableName="INVENTORY" msprop:Generator_RowEvArgName="INVENTORYRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1881,7 +2388,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INVENTORY_CAPABILITY" msprop:Generator_TableClassName="INVENTORY_CAPABILITYDataTable" msprop:Generator_TableVarName="tableINVENTORY_CAPABILITY" msprop:Generator_TablePropName="INVENTORY_CAPABILITY" msprop:Generator_RowDeletingName="INVENTORY_CAPABILITYRowDeleting" msprop:Generator_RowChangingName="INVENTORY_CAPABILITYRowChanging" msprop:Generator_RowEvHandlerName="INVENTORY_CAPABILITYRowChangeEventHandler" msprop:Generator_RowDeletedName="INVENTORY_CAPABILITYRowDeleted" msprop:Generator_UserTableName="INVENTORY_CAPABILITY" msprop:Generator_RowChangedName="INVENTORY_CAPABILITYRowChanged" msprop:Generator_RowEvArgName="INVENTORY_CAPABILITYRowChangeEvent" msprop:Generator_RowClassName="INVENTORY_CAPABILITYRow">
+        <xs:element name="INVENTORY_CAPABILITY" msprop:Generator_TableClassName="INVENTORY_CAPABILITYDataTable" msprop:Generator_TableVarName="tableINVENTORY_CAPABILITY" msprop:Generator_RowChangedName="INVENTORY_CAPABILITYRowChanged" msprop:Generator_TablePropName="INVENTORY_CAPABILITY" msprop:Generator_RowDeletingName="INVENTORY_CAPABILITYRowDeleting" msprop:Generator_RowChangingName="INVENTORY_CAPABILITYRowChanging" msprop:Generator_RowEvHandlerName="INVENTORY_CAPABILITYRowChangeEventHandler" msprop:Generator_RowDeletedName="INVENTORY_CAPABILITYRowDeleted" msprop:Generator_RowClassName="INVENTORY_CAPABILITYRow" msprop:Generator_UserTableName="INVENTORY_CAPABILITY" msprop:Generator_RowEvArgName="INVENTORY_CAPABILITYRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Inventory_id" msprop:Generator_ColumnVarNameInTable="columnInventory_id" msprop:Generator_ColumnPropNameInRow="Inventory_id" msprop:Generator_ColumnPropNameInTable="Inventory_idColumn" msprop:Generator_UserColumnName="Inventory_id" type="xs:int" />
@@ -1891,7 +2398,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ORDER" msprop:Generator_TableClassName="ORDERDataTable" msprop:Generator_TableVarName="tableORDER" msprop:Generator_TablePropName="ORDER" msprop:Generator_RowDeletingName="ORDERRowDeleting" msprop:Generator_RowChangingName="ORDERRowChanging" msprop:Generator_RowEvHandlerName="ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="ORDERRowDeleted" msprop:Generator_UserTableName="ORDER" msprop:Generator_RowChangedName="ORDERRowChanged" msprop:Generator_RowEvArgName="ORDERRowChangeEvent" msprop:Generator_RowClassName="ORDERRow">
+        <xs:element name="ORDER" msprop:Generator_TableClassName="ORDERDataTable" msprop:Generator_TableVarName="tableORDER" msprop:Generator_RowChangedName="ORDERRowChanged" msprop:Generator_TablePropName="ORDER" msprop:Generator_RowDeletingName="ORDERRowDeleting" msprop:Generator_RowChangingName="ORDERRowChanging" msprop:Generator_RowEvHandlerName="ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="ORDERRowDeleted" msprop:Generator_RowClassName="ORDERRow" msprop:Generator_UserTableName="ORDER" msprop:Generator_RowEvArgName="ORDERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1909,7 +2416,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ORDER_DETAIL" msprop:Generator_TableClassName="ORDER_DETAILDataTable" msprop:Generator_TableVarName="tableORDER_DETAIL" msprop:Generator_TablePropName="ORDER_DETAIL" msprop:Generator_RowDeletingName="ORDER_DETAILRowDeleting" msprop:Generator_RowChangingName="ORDER_DETAILRowChanging" msprop:Generator_RowEvHandlerName="ORDER_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="ORDER_DETAILRowDeleted" msprop:Generator_UserTableName="ORDER_DETAIL" msprop:Generator_RowChangedName="ORDER_DETAILRowChanged" msprop:Generator_RowEvArgName="ORDER_DETAILRowChangeEvent" msprop:Generator_RowClassName="ORDER_DETAILRow">
+        <xs:element name="ORDER_DETAIL" msprop:Generator_TableClassName="ORDER_DETAILDataTable" msprop:Generator_TableVarName="tableORDER_DETAIL" msprop:Generator_RowChangedName="ORDER_DETAILRowChanged" msprop:Generator_TablePropName="ORDER_DETAIL" msprop:Generator_RowDeletingName="ORDER_DETAILRowDeleting" msprop:Generator_RowChangingName="ORDER_DETAILRowChanging" msprop:Generator_RowEvHandlerName="ORDER_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="ORDER_DETAILRowDeleted" msprop:Generator_RowClassName="ORDER_DETAILRow" msprop:Generator_UserTableName="ORDER_DETAIL" msprop:Generator_RowEvArgName="ORDER_DETAILRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1921,7 +2428,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRODUCT" msprop:Generator_TableClassName="PRODUCTDataTable" msprop:Generator_TableVarName="tablePRODUCT" msprop:Generator_TablePropName="PRODUCT" msprop:Generator_RowDeletingName="PRODUCTRowDeleting" msprop:Generator_RowChangingName="PRODUCTRowChanging" msprop:Generator_RowEvHandlerName="PRODUCTRowChangeEventHandler" msprop:Generator_RowDeletedName="PRODUCTRowDeleted" msprop:Generator_UserTableName="PRODUCT" msprop:Generator_RowChangedName="PRODUCTRowChanged" msprop:Generator_RowEvArgName="PRODUCTRowChangeEvent" msprop:Generator_RowClassName="PRODUCTRow">
+        <xs:element name="PRODUCT" msprop:Generator_TableClassName="PRODUCTDataTable" msprop:Generator_TableVarName="tablePRODUCT" msprop:Generator_RowChangedName="PRODUCTRowChanged" msprop:Generator_TablePropName="PRODUCT" msprop:Generator_RowDeletingName="PRODUCTRowDeleting" msprop:Generator_RowChangingName="PRODUCTRowChanging" msprop:Generator_RowEvHandlerName="PRODUCTRowChangeEventHandler" msprop:Generator_RowDeletedName="PRODUCTRowDeleted" msprop:Generator_RowClassName="PRODUCTRow" msprop:Generator_UserTableName="PRODUCT" msprop:Generator_RowEvArgName="PRODUCTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1958,7 +2465,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRODUCT_METADATA" msprop:Generator_TableClassName="PRODUCT_METADATADataTable" msprop:Generator_TableVarName="tablePRODUCT_METADATA" msprop:Generator_TablePropName="PRODUCT_METADATA" msprop:Generator_RowDeletingName="PRODUCT_METADATARowDeleting" msprop:Generator_RowChangingName="PRODUCT_METADATARowChanging" msprop:Generator_RowEvHandlerName="PRODUCT_METADATARowChangeEventHandler" msprop:Generator_RowDeletedName="PRODUCT_METADATARowDeleted" msprop:Generator_UserTableName="PRODUCT_METADATA" msprop:Generator_RowChangedName="PRODUCT_METADATARowChanged" msprop:Generator_RowEvArgName="PRODUCT_METADATARowChangeEvent" msprop:Generator_RowClassName="PRODUCT_METADATARow">
+        <xs:element name="PRODUCT_METADATA" msprop:Generator_TableClassName="PRODUCT_METADATADataTable" msprop:Generator_TableVarName="tablePRODUCT_METADATA" msprop:Generator_RowChangedName="PRODUCT_METADATARowChanged" msprop:Generator_TablePropName="PRODUCT_METADATA" msprop:Generator_RowDeletingName="PRODUCT_METADATARowDeleting" msprop:Generator_RowChangingName="PRODUCT_METADATARowChanging" msprop:Generator_RowEvHandlerName="PRODUCT_METADATARowChangeEventHandler" msprop:Generator_RowDeletedName="PRODUCT_METADATARowDeleted" msprop:Generator_RowClassName="PRODUCT_METADATARow" msprop:Generator_UserTableName="PRODUCT_METADATA" msprop:Generator_RowEvArgName="PRODUCT_METADATARowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1980,7 +2487,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PURCHASE_ORDER" msprop:Generator_TableClassName="PURCHASE_ORDERDataTable" msprop:Generator_TableVarName="tablePURCHASE_ORDER" msprop:Generator_TablePropName="PURCHASE_ORDER" msprop:Generator_RowDeletingName="PURCHASE_ORDERRowDeleting" msprop:Generator_RowChangingName="PURCHASE_ORDERRowChanging" msprop:Generator_RowEvHandlerName="PURCHASE_ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="PURCHASE_ORDERRowDeleted" msprop:Generator_UserTableName="PURCHASE_ORDER" msprop:Generator_RowChangedName="PURCHASE_ORDERRowChanged" msprop:Generator_RowEvArgName="PURCHASE_ORDERRowChangeEvent" msprop:Generator_RowClassName="PURCHASE_ORDERRow">
+        <xs:element name="PURCHASE_ORDER" msprop:Generator_TableClassName="PURCHASE_ORDERDataTable" msprop:Generator_TableVarName="tablePURCHASE_ORDER" msprop:Generator_RowChangedName="PURCHASE_ORDERRowChanged" msprop:Generator_TablePropName="PURCHASE_ORDER" msprop:Generator_RowDeletingName="PURCHASE_ORDERRowDeleting" msprop:Generator_RowChangingName="PURCHASE_ORDERRowChanging" msprop:Generator_RowEvHandlerName="PURCHASE_ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="PURCHASE_ORDERRowDeleted" msprop:Generator_RowClassName="PURCHASE_ORDERRow" msprop:Generator_UserTableName="PURCHASE_ORDER" msprop:Generator_RowEvArgName="PURCHASE_ORDERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1991,7 +2498,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="QUOTE" msprop:Generator_TableClassName="QUOTEDataTable" msprop:Generator_TableVarName="tableQUOTE" msprop:Generator_TablePropName="QUOTE" msprop:Generator_RowDeletingName="QUOTERowDeleting" msprop:Generator_RowChangingName="QUOTERowChanging" msprop:Generator_RowEvHandlerName="QUOTERowChangeEventHandler" msprop:Generator_RowDeletedName="QUOTERowDeleted" msprop:Generator_UserTableName="QUOTE" msprop:Generator_RowChangedName="QUOTERowChanged" msprop:Generator_RowEvArgName="QUOTERowChangeEvent" msprop:Generator_RowClassName="QUOTERow">
+        <xs:element name="QUOTE" msprop:Generator_TableClassName="QUOTEDataTable" msprop:Generator_TableVarName="tableQUOTE" msprop:Generator_RowChangedName="QUOTERowChanged" msprop:Generator_TablePropName="QUOTE" msprop:Generator_RowDeletingName="QUOTERowDeleting" msprop:Generator_RowChangingName="QUOTERowChanging" msprop:Generator_RowEvHandlerName="QUOTERowChangeEventHandler" msprop:Generator_RowDeletedName="QUOTERowDeleted" msprop:Generator_RowClassName="QUOTERow" msprop:Generator_UserTableName="QUOTE" msprop:Generator_RowEvArgName="QUOTERowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -2001,7 +2508,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="QUOTE_DETAIL" msprop:Generator_TableClassName="QUOTE_DETAILDataTable" msprop:Generator_TableVarName="tableQUOTE_DETAIL" msprop:Generator_TablePropName="QUOTE_DETAIL" msprop:Generator_RowDeletingName="QUOTE_DETAILRowDeleting" msprop:Generator_RowChangingName="QUOTE_DETAILRowChanging" msprop:Generator_RowEvHandlerName="QUOTE_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="QUOTE_DETAILRowDeleted" msprop:Generator_UserTableName="QUOTE_DETAIL" msprop:Generator_RowChangedName="QUOTE_DETAILRowChanged" msprop:Generator_RowEvArgName="QUOTE_DETAILRowChangeEvent" msprop:Generator_RowClassName="QUOTE_DETAILRow">
+        <xs:element name="QUOTE_DETAIL" msprop:Generator_TableClassName="QUOTE_DETAILDataTable" msprop:Generator_TableVarName="tableQUOTE_DETAIL" msprop:Generator_RowChangedName="QUOTE_DETAILRowChanged" msprop:Generator_TablePropName="QUOTE_DETAIL" msprop:Generator_RowDeletingName="QUOTE_DETAILRowDeleting" msprop:Generator_RowChangingName="QUOTE_DETAILRowChanging" msprop:Generator_RowEvHandlerName="QUOTE_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="QUOTE_DETAILRowDeleted" msprop:Generator_RowClassName="QUOTE_DETAILRow" msprop:Generator_UserTableName="QUOTE_DETAIL" msprop:Generator_RowEvArgName="QUOTE_DETAILRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Quote_id" msprop:Generator_ColumnVarNameInTable="columnQuote_id" msprop:Generator_ColumnPropNameInRow="Quote_id" msprop:Generator_ColumnPropNameInTable="Quote_idColumn" msprop:Generator_UserColumnName="Quote_id" type="xs:int" />
@@ -2017,7 +2524,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="STAFF" msprop:Generator_TableClassName="STAFFDataTable" msprop:Generator_TableVarName="tableSTAFF" msprop:Generator_TablePropName="STAFF" msprop:Generator_RowDeletingName="STAFFRowDeleting" msprop:Generator_RowChangingName="STAFFRowChanging" msprop:Generator_RowEvHandlerName="STAFFRowChangeEventHandler" msprop:Generator_RowDeletedName="STAFFRowDeleted" msprop:Generator_UserTableName="STAFF" msprop:Generator_RowChangedName="STAFFRowChanged" msprop:Generator_RowEvArgName="STAFFRowChangeEvent" msprop:Generator_RowClassName="STAFFRow">
+        <xs:element name="STAFF" msprop:Generator_TableClassName="STAFFDataTable" msprop:Generator_TableVarName="tableSTAFF" msprop:Generator_RowChangedName="STAFFRowChanged" msprop:Generator_TablePropName="STAFF" msprop:Generator_RowDeletingName="STAFFRowDeleting" msprop:Generator_RowChangingName="STAFFRowChanging" msprop:Generator_RowEvHandlerName="STAFFRowChangeEventHandler" msprop:Generator_RowDeletedName="STAFFRowDeleted" msprop:Generator_RowClassName="STAFFRow" msprop:Generator_UserTableName="STAFF" msprop:Generator_RowEvArgName="STAFFRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -2069,7 +2576,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VENDOR" msprop:Generator_TableClassName="VENDORDataTable" msprop:Generator_TableVarName="tableVENDOR" msprop:Generator_TablePropName="VENDOR" msprop:Generator_RowDeletingName="VENDORRowDeleting" msprop:Generator_RowChangingName="VENDORRowChanging" msprop:Generator_RowEvHandlerName="VENDORRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDORRowDeleted" msprop:Generator_UserTableName="VENDOR" msprop:Generator_RowChangedName="VENDORRowChanged" msprop:Generator_RowEvArgName="VENDORRowChangeEvent" msprop:Generator_RowClassName="VENDORRow">
+        <xs:element name="VENDOR" msprop:Generator_TableClassName="VENDORDataTable" msprop:Generator_TableVarName="tableVENDOR" msprop:Generator_RowChangedName="VENDORRowChanged" msprop:Generator_TablePropName="VENDOR" msprop:Generator_RowDeletingName="VENDORRowDeleting" msprop:Generator_RowChangingName="VENDORRowChanging" msprop:Generator_RowEvHandlerName="VENDORRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDORRowDeleted" msprop:Generator_RowClassName="VENDORRow" msprop:Generator_UserTableName="VENDOR" msprop:Generator_RowEvArgName="VENDORRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -2104,7 +2611,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VENDOR_BILL" msprop:Generator_TableClassName="VENDOR_BILLDataTable" msprop:Generator_TableVarName="tableVENDOR_BILL" msprop:Generator_TablePropName="VENDOR_BILL" msprop:Generator_RowDeletingName="VENDOR_BILLRowDeleting" msprop:Generator_RowChangingName="VENDOR_BILLRowChanging" msprop:Generator_RowEvHandlerName="VENDOR_BILLRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDOR_BILLRowDeleted" msprop:Generator_UserTableName="VENDOR_BILL" msprop:Generator_RowChangedName="VENDOR_BILLRowChanged" msprop:Generator_RowEvArgName="VENDOR_BILLRowChangeEvent" msprop:Generator_RowClassName="VENDOR_BILLRow">
+        <xs:element name="VENDOR_BILL" msprop:Generator_TableClassName="VENDOR_BILLDataTable" msprop:Generator_TableVarName="tableVENDOR_BILL" msprop:Generator_RowChangedName="VENDOR_BILLRowChanged" msprop:Generator_TablePropName="VENDOR_BILL" msprop:Generator_RowDeletingName="VENDOR_BILLRowDeleting" msprop:Generator_RowChangingName="VENDOR_BILLRowChanging" msprop:Generator_RowEvHandlerName="VENDOR_BILLRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDOR_BILLRowDeleted" msprop:Generator_RowClassName="VENDOR_BILLRow" msprop:Generator_UserTableName="VENDOR_BILL" msprop:Generator_RowEvArgName="VENDOR_BILLRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -2113,7 +2620,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VENDOR_DEBT" msprop:Generator_TableClassName="VENDOR_DEBTDataTable" msprop:Generator_TableVarName="tableVENDOR_DEBT" msprop:Generator_TablePropName="VENDOR_DEBT" msprop:Generator_RowDeletingName="VENDOR_DEBTRowDeleting" msprop:Generator_RowChangingName="VENDOR_DEBTRowChanging" msprop:Generator_RowEvHandlerName="VENDOR_DEBTRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDOR_DEBTRowDeleted" msprop:Generator_UserTableName="VENDOR_DEBT" msprop:Generator_RowChangedName="VENDOR_DEBTRowChanged" msprop:Generator_RowEvArgName="VENDOR_DEBTRowChangeEvent" msprop:Generator_RowClassName="VENDOR_DEBTRow">
+        <xs:element name="VENDOR_DEBT" msprop:Generator_TableClassName="VENDOR_DEBTDataTable" msprop:Generator_TableVarName="tableVENDOR_DEBT" msprop:Generator_RowChangedName="VENDOR_DEBTRowChanged" msprop:Generator_TablePropName="VENDOR_DEBT" msprop:Generator_RowDeletingName="VENDOR_DEBTRowDeleting" msprop:Generator_RowChangingName="VENDOR_DEBTRowChanging" msprop:Generator_RowEvHandlerName="VENDOR_DEBTRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDOR_DEBTRowDeleted" msprop:Generator_RowClassName="VENDOR_DEBTRow" msprop:Generator_UserTableName="VENDOR_DEBT" msprop:Generator_RowEvArgName="VENDOR_DEBTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -2123,7 +2630,7 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VENDOR_ORDER" msprop:Generator_TableClassName="VENDOR_ORDERDataTable" msprop:Generator_TableVarName="tableVENDOR_ORDER" msprop:Generator_TablePropName="VENDOR_ORDER" msprop:Generator_RowDeletingName="VENDOR_ORDERRowDeleting" msprop:Generator_RowChangingName="VENDOR_ORDERRowChanging" msprop:Generator_RowEvHandlerName="VENDOR_ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDOR_ORDERRowDeleted" msprop:Generator_UserTableName="VENDOR_ORDER" msprop:Generator_RowChangedName="VENDOR_ORDERRowChanged" msprop:Generator_RowEvArgName="VENDOR_ORDERRowChangeEvent" msprop:Generator_RowClassName="VENDOR_ORDERRow">
+        <xs:element name="VENDOR_ORDER" msprop:Generator_TableClassName="VENDOR_ORDERDataTable" msprop:Generator_TableVarName="tableVENDOR_ORDER" msprop:Generator_RowChangedName="VENDOR_ORDERRowChanged" msprop:Generator_TablePropName="VENDOR_ORDER" msprop:Generator_RowDeletingName="VENDOR_ORDERRowDeleting" msprop:Generator_RowChangingName="VENDOR_ORDERRowChanging" msprop:Generator_RowEvHandlerName="VENDOR_ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDOR_ORDERRowDeleted" msprop:Generator_RowClassName="VENDOR_ORDERRow" msprop:Generator_UserTableName="VENDOR_ORDER" msprop:Generator_RowEvArgName="VENDOR_ORDERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -2131,11 +2638,262 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VENDORORDER_DETAIL" msprop:Generator_TableClassName="VENDORORDER_DETAILDataTable" msprop:Generator_TableVarName="tableVENDORORDER_DETAIL" msprop:Generator_TablePropName="VENDORORDER_DETAIL" msprop:Generator_RowDeletingName="VENDORORDER_DETAILRowDeleting" msprop:Generator_RowChangingName="VENDORORDER_DETAILRowChanging" msprop:Generator_RowEvHandlerName="VENDORORDER_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDORORDER_DETAILRowDeleted" msprop:Generator_UserTableName="VENDORORDER_DETAIL" msprop:Generator_RowChangedName="VENDORORDER_DETAILRowChanged" msprop:Generator_RowEvArgName="VENDORORDER_DETAILRowChangeEvent" msprop:Generator_RowClassName="VENDORORDER_DETAILRow">
+        <xs:element name="VENDORORDER_DETAIL" msprop:Generator_TableClassName="VENDORORDER_DETAILDataTable" msprop:Generator_TableVarName="tableVENDORORDER_DETAIL" msprop:Generator_RowChangedName="VENDORORDER_DETAILRowChanged" msprop:Generator_TablePropName="VENDORORDER_DETAIL" msprop:Generator_RowDeletingName="VENDORORDER_DETAILRowDeleting" msprop:Generator_RowChangingName="VENDORORDER_DETAILRowChanging" msprop:Generator_RowEvHandlerName="VENDORORDER_DETAILRowChangeEventHandler" msprop:Generator_RowDeletedName="VENDORORDER_DETAILRowDeleted" msprop:Generator_RowClassName="VENDORORDER_DETAILRow" msprop:Generator_UserTableName="VENDORORDER_DETAIL" msprop:Generator_RowEvArgName="VENDORORDER_DETAILRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
               <xs:element name="Quote_id" msprop:Generator_ColumnVarNameInTable="columnQuote_id" msprop:Generator_ColumnPropNameInRow="Quote_id" msprop:Generator_ColumnPropNameInTable="Quote_idColumn" msprop:Generator_UserColumnName="Quote_id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Customer_Bill_View" msprop:Generator_TableClassName="Customer_Bill_ViewDataTable" msprop:Generator_TableVarName="tableCustomer_Bill_View" msprop:Generator_TablePropName="Customer_Bill_View" msprop:Generator_RowDeletingName="Customer_Bill_ViewRowDeleting" msprop:Generator_RowChangingName="Customer_Bill_ViewRowChanging" msprop:Generator_RowEvHandlerName="Customer_Bill_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Customer_Bill_ViewRowDeleted" msprop:Generator_UserTableName="Customer_Bill_View" msprop:Generator_RowChangedName="Customer_Bill_ViewRowChanged" msprop:Generator_RowEvArgName="Customer_Bill_ViewRowChangeEvent" msprop:Generator_RowClassName="Customer_Bill_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="Debt_id" msprop:Generator_ColumnVarNameInTable="columnDebt_id" msprop:Generator_ColumnPropNameInRow="Debt_id" msprop:Generator_ColumnPropNameInTable="Debt_idColumn" msprop:Generator_UserColumnName="Debt_id" type="xs:int" />
+              <xs:element name="PaidMethod" msprop:Generator_ColumnVarNameInTable="columnPaidMethod" msprop:Generator_ColumnPropNameInRow="PaidMethod" msprop:Generator_ColumnPropNameInTable="PaidMethodColumn" msprop:Generator_UserColumnName="PaidMethod">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaidMoney" msprop:Generator_ColumnVarNameInTable="columnPaidMoney" msprop:Generator_ColumnPropNameInRow="PaidMoney" msprop:Generator_ColumnPropNameInTable="PaidMoneyColumn" msprop:Generator_UserColumnName="PaidMoney" type="xs:double" />
+              <xs:element name="Customer_id" msprop:Generator_ColumnVarNameInTable="columnCustomer_id" msprop:Generator_ColumnPropNameInRow="Customer_id" msprop:Generator_ColumnPropNameInTable="Customer_idColumn" msprop:Generator_UserColumnName="Customer_id" type="xs:int" />
+              <xs:element name="ChangeMoney" msprop:Generator_ColumnVarNameInTable="columnChangeMoney" msprop:Generator_ColumnPropNameInRow="ChangeMoney" msprop:Generator_ColumnPropNameInTable="ChangeMoneyColumn" msprop:Generator_UserColumnName="ChangeMoney" type="xs:double" />
+              <xs:element name="ReceiveMoney" msprop:Generator_ColumnVarNameInTable="columnReceiveMoney" msprop:Generator_ColumnPropNameInRow="ReceiveMoney" msprop:Generator_ColumnPropNameInTable="ReceiveMoneyColumn" msprop:Generator_UserColumnName="ReceiveMoney" type="xs:double" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Customer_Debt_View" msprop:Generator_TableClassName="Customer_Debt_ViewDataTable" msprop:Generator_TableVarName="tableCustomer_Debt_View" msprop:Generator_TablePropName="Customer_Debt_View" msprop:Generator_RowDeletingName="Customer_Debt_ViewRowDeleting" msprop:Generator_RowChangingName="Customer_Debt_ViewRowChanging" msprop:Generator_RowEvHandlerName="Customer_Debt_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Customer_Debt_ViewRowDeleted" msprop:Generator_UserTableName="Customer_Debt_View" msprop:Generator_RowChangedName="Customer_Debt_ViewRowChanged" msprop:Generator_RowEvArgName="Customer_Debt_ViewRowChangeEvent" msprop:Generator_RowClassName="Customer_Debt_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="DebtMoney" msprop:Generator_ColumnVarNameInTable="columnDebtMoney" msprop:Generator_ColumnPropNameInRow="DebtMoney" msprop:Generator_ColumnPropNameInTable="DebtMoneyColumn" msprop:Generator_UserColumnName="DebtMoney" type="xs:double" />
+              <xs:element name="Paid" msprop:Generator_ColumnVarNameInTable="columnPaid" msprop:Generator_ColumnPropNameInRow="Paid" msprop:Generator_ColumnPropNameInTable="PaidColumn" msprop:Generator_UserColumnName="Paid" type="xs:double" />
+              <xs:element name="Remain" msprop:Generator_ColumnVarNameInTable="columnRemain" msprop:Generator_ColumnPropNameInRow="Remain" msprop:Generator_ColumnPropNameInTable="RemainColumn" msprop:Generator_UserColumnName="Remain" type="xs:double" />
+              <xs:element name="DatePaid" msprop:Generator_ColumnVarNameInTable="columnDatePaid" msprop:Generator_ColumnPropNameInRow="DatePaid" msprop:Generator_ColumnPropNameInTable="DatePaidColumn" msprop:Generator_UserColumnName="DatePaid" type="xs:dateTime" />
+              <xs:element name="ExtraPaid" msprop:Generator_ColumnVarNameInTable="columnExtraPaid" msprop:Generator_ColumnPropNameInRow="ExtraPaid" msprop:Generator_ColumnPropNameInTable="ExtraPaidColumn" msprop:Generator_UserColumnName="ExtraPaid" type="xs:double" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PurchaseOrder_id" msprop:Generator_ColumnVarNameInTable="columnPurchaseOrder_id" msprop:Generator_ColumnPropNameInRow="PurchaseOrder_id" msprop:Generator_ColumnPropNameInTable="PurchaseOrder_idColumn" msprop:Generator_UserColumnName="PurchaseOrder_id" type="xs:int" minOccurs="0" />
+              <xs:element name="Customer_id" msprop:Generator_ColumnVarNameInTable="columnCustomer_id" msprop:Generator_ColumnPropNameInRow="Customer_id" msprop:Generator_ColumnPropNameInTable="Customer_idColumn" msprop:Generator_UserColumnName="Customer_id" type="xs:int" />
+              <xs:element name="InCome" msprop:Generator_ColumnVarNameInTable="columnInCome" msprop:Generator_ColumnPropNameInRow="InCome" msprop:Generator_ColumnPropNameInTable="InComeColumn" msprop:Generator_UserColumnName="InCome" type="xs:double" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Customer_Order_View" msprop:Generator_TableClassName="Customer_Order_ViewDataTable" msprop:Generator_TableVarName="tableCustomer_Order_View" msprop:Generator_TablePropName="Customer_Order_View" msprop:Generator_RowDeletingName="Customer_Order_ViewRowDeleting" msprop:Generator_RowChangingName="Customer_Order_ViewRowChanging" msprop:Generator_RowEvHandlerName="Customer_Order_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Customer_Order_ViewRowDeleted" msprop:Generator_UserTableName="Customer_Order_View" msprop:Generator_RowChangedName="Customer_Order_ViewRowChanged" msprop:Generator_RowEvArgName="Customer_Order_ViewRowChangeEvent" msprop:Generator_RowClassName="Customer_Order_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="TotalPrice" msprop:Generator_ColumnVarNameInTable="columnTotalPrice" msprop:Generator_ColumnPropNameInRow="TotalPrice" msprop:Generator_ColumnPropNameInTable="TotalPriceColumn" msprop:Generator_UserColumnName="TotalPrice" type="xs:double" />
+              <xs:element name="VAT" msprop:Generator_ColumnVarNameInTable="columnVAT" msprop:Generator_ColumnPropNameInRow="VAT" msprop:Generator_ColumnPropNameInTable="VATColumn" msprop:Generator_UserColumnName="VAT" type="xs:double" />
+              <xs:element name="FinalPrice" msprop:Generator_ColumnVarNameInTable="columnFinalPrice" msprop:Generator_ColumnPropNameInRow="FinalPrice" msprop:Generator_ColumnPropNameInTable="FinalPriceColumn" msprop:Generator_UserColumnName="FinalPrice" type="xs:double" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Customer_id" msprop:Generator_ColumnVarNameInTable="columnCustomer_id" msprop:Generator_ColumnPropNameInRow="Customer_id" msprop:Generator_ColumnPropNameInTable="Customer_idColumn" msprop:Generator_UserColumnName="Customer_id" type="xs:int" />
+              <xs:element name="Discount" msprop:Generator_ColumnVarNameInTable="columnDiscount" msprop:Generator_ColumnPropNameInRow="Discount" msprop:Generator_ColumnPropNameInTable="DiscountColumn" msprop:Generator_UserColumnName="Discount" type="xs:double" />
+              <xs:element name="ExtraPaid" msprop:Generator_ColumnVarNameInTable="columnExtraPaid" msprop:Generator_ColumnPropNameInRow="ExtraPaid" msprop:Generator_ColumnPropNameInTable="ExtraPaidColumn" msprop:Generator_UserColumnName="ExtraPaid" type="xs:double" />
+              <xs:element name="IsMultiPaid" msprop:Generator_ColumnVarNameInTable="columnIsMultiPaid" msprop:Generator_ColumnPropNameInRow="IsMultiPaid" msprop:Generator_ColumnPropNameInTable="IsMultiPaidColumn" msprop:Generator_UserColumnName="IsMultiPaid" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="InOut_Inventory_View" msprop:Generator_TableClassName="InOut_Inventory_ViewDataTable" msprop:Generator_TableVarName="tableInOut_Inventory_View" msprop:Generator_TablePropName="InOut_Inventory_View" msprop:Generator_RowDeletingName="InOut_Inventory_ViewRowDeleting" msprop:Generator_RowChangingName="InOut_Inventory_ViewRowChanging" msprop:Generator_RowEvHandlerName="InOut_Inventory_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="InOut_Inventory_ViewRowDeleted" msprop:Generator_UserTableName="InOut_Inventory_View" msprop:Generator_RowChangedName="InOut_Inventory_ViewRowChanged" msprop:Generator_RowEvArgName="InOut_Inventory_ViewRowChangeEvent" msprop:Generator_RowClassName="InOut_Inventory_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="Inventory_id" msprop:Generator_ColumnVarNameInTable="columnInventory_id" msprop:Generator_ColumnPropNameInRow="Inventory_id" msprop:Generator_ColumnPropNameInTable="Inventory_idColumn" msprop:Generator_UserColumnName="Inventory_id" type="xs:int" />
+              <xs:element name="Respond" msprop:Generator_ColumnVarNameInTable="columnRespond" msprop:Generator_ColumnPropNameInRow="Respond" msprop:Generator_ColumnPropNameInTable="RespondColumn" msprop:Generator_UserColumnName="Respond" type="xs:int" />
+              <xs:element name="Note" msprop:Generator_ColumnVarNameInTable="columnNote" msprop:Generator_ColumnPropNameInRow="Note" msprop:Generator_ColumnPropNameInTable="NoteColumn" msprop:Generator_UserColumnName="Note" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CarryFee" msprop:Generator_ColumnVarNameInTable="columnCarryFee" msprop:Generator_ColumnPropNameInRow="CarryFee" msprop:Generator_ColumnPropNameInTable="CarryFeeColumn" msprop:Generator_UserColumnName="CarryFee" type="xs:double" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vendor_Bill_View" msprop:Generator_TableClassName="Vendor_Bill_ViewDataTable" msprop:Generator_TableVarName="tableVendor_Bill_View" msprop:Generator_TablePropName="Vendor_Bill_View" msprop:Generator_RowDeletingName="Vendor_Bill_ViewRowDeleting" msprop:Generator_RowChangingName="Vendor_Bill_ViewRowChanging" msprop:Generator_RowEvHandlerName="Vendor_Bill_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Vendor_Bill_ViewRowDeleted" msprop:Generator_UserTableName="Vendor_Bill_View" msprop:Generator_RowChangedName="Vendor_Bill_ViewRowChanged" msprop:Generator_RowEvArgName="Vendor_Bill_ViewRowChangeEvent" msprop:Generator_RowClassName="Vendor_Bill_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="Debt_id" msprop:Generator_ColumnVarNameInTable="columnDebt_id" msprop:Generator_ColumnPropNameInRow="Debt_id" msprop:Generator_ColumnPropNameInTable="Debt_idColumn" msprop:Generator_UserColumnName="Debt_id" type="xs:int" />
+              <xs:element name="PaidMethod" msprop:Generator_ColumnVarNameInTable="columnPaidMethod" msprop:Generator_ColumnPropNameInRow="PaidMethod" msprop:Generator_ColumnPropNameInTable="PaidMethodColumn" msprop:Generator_UserColumnName="PaidMethod">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaidMoney" msprop:Generator_ColumnVarNameInTable="columnPaidMoney" msprop:Generator_ColumnPropNameInRow="PaidMoney" msprop:Generator_ColumnPropNameInTable="PaidMoneyColumn" msprop:Generator_UserColumnName="PaidMoney" type="xs:double" />
+              <xs:element name="PaidStaff" msprop:Generator_ColumnVarNameInTable="columnPaidStaff" msprop:Generator_ColumnPropNameInRow="PaidStaff" msprop:Generator_ColumnPropNameInTable="PaidStaffColumn" msprop:Generator_UserColumnName="PaidStaff" type="xs:int" />
+              <xs:element name="Vendor_id" msprop:Generator_ColumnVarNameInTable="columnVendor_id" msprop:Generator_ColumnPropNameInRow="Vendor_id" msprop:Generator_ColumnPropNameInTable="Vendor_idColumn" msprop:Generator_UserColumnName="Vendor_id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vendor_Debt_View" msprop:Generator_TableClassName="Vendor_Debt_ViewDataTable" msprop:Generator_TableVarName="tableVendor_Debt_View" msprop:Generator_TablePropName="Vendor_Debt_View" msprop:Generator_RowDeletingName="Vendor_Debt_ViewRowDeleting" msprop:Generator_RowChangingName="Vendor_Debt_ViewRowChanging" msprop:Generator_RowEvHandlerName="Vendor_Debt_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Vendor_Debt_ViewRowDeleted" msprop:Generator_UserTableName="Vendor_Debt_View" msprop:Generator_RowChangedName="Vendor_Debt_ViewRowChanged" msprop:Generator_RowEvArgName="Vendor_Debt_ViewRowChangeEvent" msprop:Generator_RowClassName="Vendor_Debt_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="DebtMoney" msprop:Generator_ColumnVarNameInTable="columnDebtMoney" msprop:Generator_ColumnPropNameInRow="DebtMoney" msprop:Generator_ColumnPropNameInTable="DebtMoneyColumn" msprop:Generator_UserColumnName="DebtMoney" type="xs:double" />
+              <xs:element name="Paid" msprop:Generator_ColumnVarNameInTable="columnPaid" msprop:Generator_ColumnPropNameInRow="Paid" msprop:Generator_ColumnPropNameInTable="PaidColumn" msprop:Generator_UserColumnName="Paid" type="xs:double" />
+              <xs:element name="Remain" msprop:Generator_ColumnVarNameInTable="columnRemain" msprop:Generator_ColumnPropNameInRow="Remain" msprop:Generator_ColumnPropNameInTable="RemainColumn" msprop:Generator_UserColumnName="Remain" type="xs:double" />
+              <xs:element name="DatePaid" msprop:Generator_ColumnVarNameInTable="columnDatePaid" msprop:Generator_ColumnPropNameInRow="DatePaid" msprop:Generator_ColumnPropNameInTable="DatePaidColumn" msprop:Generator_UserColumnName="DatePaid" type="xs:dateTime" />
+              <xs:element name="ExtraPaid" msprop:Generator_ColumnVarNameInTable="columnExtraPaid" msprop:Generator_ColumnPropNameInRow="ExtraPaid" msprop:Generator_ColumnPropNameInTable="ExtraPaidColumn" msprop:Generator_UserColumnName="ExtraPaid" type="xs:double" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VendorOrder_id" msprop:Generator_ColumnVarNameInTable="columnVendorOrder_id" msprop:Generator_ColumnPropNameInRow="VendorOrder_id" msprop:Generator_ColumnPropNameInTable="VendorOrder_idColumn" msprop:Generator_UserColumnName="VendorOrder_id" type="xs:int" minOccurs="0" />
+              <xs:element name="Vendor_id" msprop:Generator_ColumnVarNameInTable="columnVendor_id" msprop:Generator_ColumnPropNameInRow="Vendor_id" msprop:Generator_ColumnPropNameInTable="Vendor_idColumn" msprop:Generator_UserColumnName="Vendor_id" type="xs:int" />
+              <xs:element name="OutCome" msprop:Generator_ColumnVarNameInTable="columnOutCome" msprop:Generator_ColumnPropNameInRow="OutCome" msprop:Generator_ColumnPropNameInTable="OutComeColumn" msprop:Generator_UserColumnName="OutCome" type="xs:double" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vendor_Order_View" msprop:Generator_TableClassName="Vendor_Order_ViewDataTable" msprop:Generator_TableVarName="tableVendor_Order_View" msprop:Generator_TablePropName="Vendor_Order_View" msprop:Generator_RowDeletingName="Vendor_Order_ViewRowDeleting" msprop:Generator_RowChangingName="Vendor_Order_ViewRowChanging" msprop:Generator_RowEvHandlerName="Vendor_Order_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Vendor_Order_ViewRowDeleted" msprop:Generator_UserTableName="Vendor_Order_View" msprop:Generator_RowChangedName="Vendor_Order_ViewRowChanged" msprop:Generator_RowEvArgName="Vendor_Order_ViewRowChangeEvent" msprop:Generator_RowClassName="Vendor_Order_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="DocumentKey" msprop:Generator_ColumnVarNameInTable="columnDocumentKey" msprop:Generator_ColumnPropNameInRow="DocumentKey" msprop:Generator_ColumnPropNameInTable="DocumentKeyColumn" msprop:Generator_UserColumnName="DocumentKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Creator" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" type="xs:int" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" />
+              <xs:element name="TotalPrice" msprop:Generator_ColumnVarNameInTable="columnTotalPrice" msprop:Generator_ColumnPropNameInRow="TotalPrice" msprop:Generator_ColumnPropNameInTable="TotalPriceColumn" msprop:Generator_UserColumnName="TotalPrice" type="xs:double" />
+              <xs:element name="VAT" msprop:Generator_ColumnVarNameInTable="columnVAT" msprop:Generator_ColumnPropNameInRow="VAT" msprop:Generator_ColumnPropNameInTable="VATColumn" msprop:Generator_UserColumnName="VAT" type="xs:double" />
+              <xs:element name="FinalPrice" msprop:Generator_ColumnVarNameInTable="columnFinalPrice" msprop:Generator_ColumnPropNameInRow="FinalPrice" msprop:Generator_ColumnPropNameInTable="FinalPriceColumn" msprop:Generator_UserColumnName="FinalPrice" type="xs:double" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Vendor_id" msprop:Generator_ColumnVarNameInTable="columnVendor_id" msprop:Generator_ColumnPropNameInRow="Vendor_id" msprop:Generator_ColumnPropNameInTable="Vendor_idColumn" msprop:Generator_UserColumnName="Vendor_id" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2248,48 +3006,76 @@ SELECT Id, Quote_id FROM VENDORORDER_DETAIL WHERE (Id = @Id)</CommandText>
       <xs:selector xpath=".//mstns:VENDORORDER_DETAIL" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
+    <xs:unique name="Customer_Bill_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Customer_Bill_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Customer_Debt_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Customer_Debt_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Customer_Order_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Customer_Order_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="InOut_Inventory_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:InOut_Inventory_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Vendor_Bill_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Vendor_Bill_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Vendor_Debt_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Vendor_Debt_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Vendor_Order_View_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Vendor_Order_View" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_BILL_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="BILL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="BILL" msprop:Generator_ChildPropName="GetBILLRows" msprop:Generator_UserRelationName="FK_BILL_DOCUMENT" msprop:Generator_RelationVarName="relationFK_BILL_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" />
-      <msdata:Relationship name="FK_BILLD_DEBT" msdata:parent="DEBT" msdata:child="BILL" msdata:parentkey="Id" msdata:childkey="Debt_id" msprop:Generator_UserChildTable="BILL" msprop:Generator_ChildPropName="GetBILLRows" msprop:Generator_UserRelationName="FK_BILLD_DEBT" msprop:Generator_RelationVarName="relationFK_BILLD_DEBT" msprop:Generator_UserParentTable="DEBT" msprop:Generator_ParentPropName="DEBTRow" />
-      <msdata:Relationship name="FK_CUSTOMER_GROUPCUSTOMER" msdata:parent="GROUPofCUSTOMER" msdata:child="CUSTOMER" msdata:parentkey="Id" msdata:childkey="Group_id" msprop:Generator_UserChildTable="CUSTOMER" msprop:Generator_ChildPropName="GetCUSTOMERRows" msprop:Generator_UserRelationName="FK_CUSTOMER_GROUPCUSTOMER" msprop:Generator_RelationVarName="relationFK_CUSTOMER_GROUPCUSTOMER" msprop:Generator_UserParentTable="GROUPofCUSTOMER" msprop:Generator_ParentPropName="GROUPofCUSTOMERRow" />
-      <msdata:Relationship name="FK_CUSTOMERBILL_BILL" msdata:parent="BILL" msdata:child="CUSTOMER_BILL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="CUSTOMER_BILL" msprop:Generator_ChildPropName="GetCUSTOMER_BILLRows" msprop:Generator_UserRelationName="FK_CUSTOMERBILL_BILL" msprop:Generator_ParentPropName="BILLRow" msprop:Generator_RelationVarName="relationFK_CUSTOMERBILL_BILL" msprop:Generator_UserParentTable="BILL" />
-      <msdata:Relationship name="FK_CUSTOMERBILL_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="CUSTOMER_BILL" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="CUSTOMER_BILL" msprop:Generator_ChildPropName="GetCUSTOMER_BILLRows" msprop:Generator_UserRelationName="FK_CUSTOMERBILL_CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" msprop:Generator_RelationVarName="relationFK_CUSTOMERBILL_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" />
-      <msdata:Relationship name="FK_CUSTOMERDEBT_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="CUSTOMER_DEBT" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="CUSTOMER_DEBT" msprop:Generator_ChildPropName="GetCUSTOMER_DEBTRows" msprop:Generator_UserRelationName="FK_CUSTOMERDEBT_CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" msprop:Generator_RelationVarName="relationFK_CUSTOMERDEBT_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" />
-      <msdata:Relationship name="FK_CUSTOMERDEBT_DEBT" msdata:parent="DEBT" msdata:child="CUSTOMER_DEBT" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="CUSTOMER_DEBT" msprop:Generator_ChildPropName="GetCUSTOMER_DEBTRows" msprop:Generator_UserRelationName="FK_CUSTOMERDEBT_DEBT" msprop:Generator_RelationVarName="relationFK_CUSTOMERDEBT_DEBT" msprop:Generator_UserParentTable="DEBT" msprop:Generator_ParentPropName="DEBTRow" />
-      <msdata:Relationship name="FK_CUSTOMERDEBT_PURCHASEORDER" msdata:parent="PURCHASE_ORDER" msdata:child="CUSTOMER_DEBT" msdata:parentkey="Id" msdata:childkey="PurchaseOrder_id" msprop:Generator_UserChildTable="CUSTOMER_DEBT" msprop:Generator_ChildPropName="GetCUSTOMER_DEBTRows" msprop:Generator_UserRelationName="FK_CUSTOMERDEBT_PURCHASEORDER" msprop:Generator_RelationVarName="relationFK_CUSTOMERDEBT_PURCHASEORDER" msprop:Generator_UserParentTable="PURCHASE_ORDER" msprop:Generator_ParentPropName="PURCHASE_ORDERRow" />
-      <msdata:Relationship name="FK_DEBT_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="DEBT" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="DEBT" msprop:Generator_ChildPropName="GetDEBTRows" msprop:Generator_UserRelationName="FK_DEBT_DOCUMENT" msprop:Generator_RelationVarName="relationFK_DEBT_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" />
-      <msdata:Relationship name="FK_DOCUMENT_STAFF" msdata:parent="STAFF" msdata:child="DOCUMENT" msdata:parentkey="Id" msdata:childkey="Creator" msprop:Generator_UserChildTable="DOCUMENT" msprop:Generator_ChildPropName="GetDOCUMENTRows" msprop:Generator_UserRelationName="FK_DOCUMENT_STAFF" msprop:Generator_RelationVarName="relationFK_DOCUMENT_STAFF" msprop:Generator_UserParentTable="STAFF" msprop:Generator_ParentPropName="STAFFRow" />
-      <msdata:Relationship name="FK_FEEDBACK_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="FEEDBACK" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="FEEDBACK" msprop:Generator_ChildPropName="GetFEEDBACKRows" msprop:Generator_UserRelationName="FK_FEEDBACK_CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" msprop:Generator_RelationVarName="relationFK_FEEDBACK_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" />
-      <msdata:Relationship name="FK_FEEDBACK_ORDERDETAIL" msdata:parent="ORDER_DETAIL" msdata:child="FEEDBACK" msdata:parentkey="Id" msdata:childkey="OrderDetail_id" msprop:Generator_UserChildTable="FEEDBACK" msprop:Generator_ChildPropName="GetFEEDBACKRows" msprop:Generator_UserRelationName="FK_FEEDBACK_ORDERDETAIL" msprop:Generator_RelationVarName="relationFK_FEEDBACK_ORDERDETAIL" msprop:Generator_UserParentTable="ORDER_DETAIL" msprop:Generator_ParentPropName="ORDER_DETAILRow" />
-      <msdata:Relationship name="FK_INOUTINVENTORYDETAIL_INOUTINVENTORY" msdata:parent="INOUTINVENTORY" msdata:child="INOUT_INVENTORY_DETAIL" msdata:parentkey="Id" msdata:childkey="InOutInventory_id" msprop:Generator_UserChildTable="INOUT_INVENTORY_DETAIL" msprop:Generator_ChildPropName="GetINOUT_INVENTORY_DETAILRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORYDETAIL_INOUTINVENTORY" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORYDETAIL_INOUTINVENTORY" msprop:Generator_UserParentTable="INOUTINVENTORY" msprop:Generator_ParentPropName="INOUTINVENTORYRow" />
-      <msdata:Relationship name="FK_INOUTINVENTORYDETAIL_INVENTORY" msdata:parent="INVENTORY" msdata:child="INOUT_INVENTORY_DETAIL" msdata:parentkey="Id" msdata:childkey="Inventory_id" msprop:Generator_UserChildTable="INOUT_INVENTORY_DETAIL" msprop:Generator_ChildPropName="GetINOUT_INVENTORY_DETAILRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORYDETAIL_INVENTORY" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORYDETAIL_INVENTORY" msprop:Generator_UserParentTable="INVENTORY" msprop:Generator_ParentPropName="INVENTORYRow" />
-      <msdata:Relationship name="FK_INOUTINVENTORYDETAIL_ORDERDETAIL" msdata:parent="ORDER_DETAIL" msdata:child="INOUT_INVENTORY_DETAIL" msdata:parentkey="Id" msdata:childkey="OrderDetail_id" msprop:Generator_UserChildTable="INOUT_INVENTORY_DETAIL" msprop:Generator_ChildPropName="GetINOUT_INVENTORY_DETAILRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORYDETAIL_ORDERDETAIL" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORYDETAIL_ORDERDETAIL" msprop:Generator_UserParentTable="ORDER_DETAIL" msprop:Generator_ParentPropName="ORDER_DETAILRow" />
-      <msdata:Relationship name="FK_INOUTINVENTORY_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="INOUTINVENTORY" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="INOUTINVENTORY" msprop:Generator_ChildPropName="GetINOUTINVENTORYRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORY_DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORY_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" />
-      <msdata:Relationship name="FK_INOUTINVENTORY_INVENTORY" msdata:parent="INVENTORY" msdata:child="INOUTINVENTORY" msdata:parentkey="Id" msdata:childkey="Inventory_id" msprop:Generator_UserChildTable="INOUTINVENTORY" msprop:Generator_ChildPropName="GetINOUTINVENTORYRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORY_INVENTORY" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORY_INVENTORY" msprop:Generator_UserParentTable="INVENTORY" msprop:Generator_ParentPropName="INVENTORYRow" />
-      <msdata:Relationship name="FK_INOUTINVENTORY_STAFF" msdata:parent="STAFF" msdata:child="INOUTINVENTORY" msdata:parentkey="Id" msdata:childkey="Respond" msprop:Generator_UserChildTable="INOUTINVENTORY" msprop:Generator_ChildPropName="GetINOUTINVENTORYRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORY_STAFF" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORY_STAFF" msprop:Generator_UserParentTable="STAFF" msprop:Generator_ParentPropName="STAFFRow" />
-      <msdata:Relationship name="FK_INVENTORYCAPABILITY_INVENTORY" msdata:parent="INVENTORY" msdata:child="INVENTORY_CAPABILITY" msdata:parentkey="Id" msdata:childkey="Inventory_id" msprop:Generator_UserChildTable="INVENTORY_CAPABILITY" msprop:Generator_ChildPropName="GetINVENTORY_CAPABILITYRows" msprop:Generator_UserRelationName="FK_INVENTORYCAPABILITY_INVENTORY" msprop:Generator_ParentPropName="INVENTORYRow" msprop:Generator_RelationVarName="relationFK_INVENTORYCAPABILITY_INVENTORY" msprop:Generator_UserParentTable="INVENTORY" />
-      <msdata:Relationship name="FK_INVENTORYCAPABILITY_PRODUCT" msdata:parent="PRODUCT" msdata:child="INVENTORY_CAPABILITY" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="INVENTORY_CAPABILITY" msprop:Generator_ChildPropName="GetINVENTORY_CAPABILITYRows" msprop:Generator_UserRelationName="FK_INVENTORYCAPABILITY_PRODUCT" msprop:Generator_RelationVarName="relationFK_INVENTORYCAPABILITY_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" />
-      <msdata:Relationship name="FK_ORDER_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="ORDER" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="ORDER" msprop:Generator_ChildPropName="GetORDERRows" msprop:Generator_UserRelationName="FK_ORDER_DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" msprop:Generator_RelationVarName="relationFK_ORDER_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" />
-      <msdata:Relationship name="FK_ORDERDETAIL_ORDER" msdata:parent="ORDER" msdata:child="ORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Order_id" msprop:Generator_UserChildTable="ORDER_DETAIL" msprop:Generator_ChildPropName="GetORDER_DETAILRows" msprop:Generator_UserRelationName="FK_ORDERDETAIL_ORDER" msprop:Generator_ParentPropName="ORDERRow" msprop:Generator_RelationVarName="relationFK_ORDERDETAIL_ORDER" msprop:Generator_UserParentTable="ORDER" />
-      <msdata:Relationship name="FK_ORDERDETAIL_PRODUCT" msdata:parent="PRODUCT" msdata:child="ORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="ORDER_DETAIL" msprop:Generator_ChildPropName="GetORDER_DETAILRows" msprop:Generator_UserRelationName="FK_ORDERDETAIL_PRODUCT" msprop:Generator_RelationVarName="relationFK_ORDERDETAIL_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" />
-      <msdata:Relationship name="FK_PRODUCTMETADATA_PRODUCT" msdata:parent="PRODUCT" msdata:child="PRODUCT_METADATA" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="PRODUCT_METADATA" msprop:Generator_ChildPropName="GetPRODUCT_METADATARows" msprop:Generator_UserRelationName="FK_PRODUCTMETADATA_PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" msprop:Generator_RelationVarName="relationFK_PRODUCTMETADATA_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" />
-      <msdata:Relationship name="FK_PURCHASEORDER_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="PURCHASE_ORDER" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="PURCHASE_ORDER" msprop:Generator_ChildPropName="GetPURCHASE_ORDERRows" msprop:Generator_UserRelationName="FK_PURCHASEORDER_CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" msprop:Generator_RelationVarName="relationFK_PURCHASEORDER_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" />
-      <msdata:Relationship name="FK_PURCHASEORDER_DOCUMENT" msdata:parent="ORDER" msdata:child="PURCHASE_ORDER" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="PURCHASE_ORDER" msprop:Generator_ChildPropName="GetPURCHASE_ORDERRows" msprop:Generator_UserRelationName="FK_PURCHASEORDER_DOCUMENT" msprop:Generator_ParentPropName="ORDERRow" msprop:Generator_RelationVarName="relationFK_PURCHASEORDER_DOCUMENT" msprop:Generator_UserParentTable="ORDER" />
-      <msdata:Relationship name="FK_QUOTE_VENDOR" msdata:parent="VENDOR" msdata:child="QUOTE" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="QUOTE" msprop:Generator_ChildPropName="GetQUOTERows" msprop:Generator_UserRelationName="FK_QUOTE_VENDOR" msprop:Generator_RelationVarName="relationFK_QUOTE_VENDOR" msprop:Generator_UserParentTable="VENDOR" msprop:Generator_ParentPropName="VENDORRow" />
-      <msdata:Relationship name="FK_QUOTEDETAIL_PRODUCT" msdata:parent="PRODUCT" msdata:child="QUOTE_DETAIL" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="QUOTE_DETAIL" msprop:Generator_ChildPropName="GetQUOTE_DETAILRows" msprop:Generator_UserRelationName="FK_QUOTEDETAIL_PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" msprop:Generator_RelationVarName="relationFK_QUOTEDETAIL_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" />
-      <msdata:Relationship name="FK_QUOTEDETAIL_QUOTE" msdata:parent="QUOTE" msdata:child="QUOTE_DETAIL" msdata:parentkey="Id" msdata:childkey="Quote_id" msprop:Generator_UserChildTable="QUOTE_DETAIL" msprop:Generator_ChildPropName="GetQUOTE_DETAILRows" msprop:Generator_UserRelationName="FK_QUOTEDETAIL_QUOTE" msprop:Generator_ParentPropName="QUOTERow" msprop:Generator_RelationVarName="relationFK_QUOTEDETAIL_QUOTE" msprop:Generator_UserParentTable="QUOTE" />
-      <msdata:Relationship name="FK_VENDORBILL_BILL" msdata:parent="BILL" msdata:child="VENDOR_BILL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDOR_BILL" msprop:Generator_ChildPropName="GetVENDOR_BILLRows" msprop:Generator_UserRelationName="FK_VENDORBILL_BILL" msprop:Generator_ParentPropName="BILLRow" msprop:Generator_RelationVarName="relationFK_VENDORBILL_BILL" msprop:Generator_UserParentTable="BILL" />
-      <msdata:Relationship name="FK_VENDORBILL_STAFF" msdata:parent="STAFF" msdata:child="VENDOR_BILL" msdata:parentkey="Id" msdata:childkey="PaidStaff" msprop:Generator_UserChildTable="VENDOR_BILL" msprop:Generator_ChildPropName="GetVENDOR_BILLRows" msprop:Generator_UserRelationName="FK_VENDORBILL_STAFF" msprop:Generator_ParentPropName="STAFFRow" msprop:Generator_RelationVarName="relationFK_VENDORBILL_STAFF" msprop:Generator_UserParentTable="STAFF" />
-      <msdata:Relationship name="FK_VENDORBILL_VENDOR" msdata:parent="VENDOR" msdata:child="VENDOR_BILL" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="VENDOR_BILL" msprop:Generator_ChildPropName="GetVENDOR_BILLRows" msprop:Generator_UserRelationName="FK_VENDORBILL_VENDOR" msprop:Generator_ParentPropName="VENDORRow" msprop:Generator_RelationVarName="relationFK_VENDORBILL_VENDOR" msprop:Generator_UserParentTable="VENDOR" />
-      <msdata:Relationship name="FK_VENDORDEBT_DEBT" msdata:parent="DEBT" msdata:child="VENDOR_DEBT" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDOR_DEBT" msprop:Generator_ChildPropName="GetVENDOR_DEBTRows" msprop:Generator_UserRelationName="FK_VENDORDEBT_DEBT" msprop:Generator_ParentPropName="DEBTRow" msprop:Generator_RelationVarName="relationFK_VENDORDEBT_DEBT" msprop:Generator_UserParentTable="DEBT" />
-      <msdata:Relationship name="FK_VENDORDEBT_VENDOR" msdata:parent="VENDOR" msdata:child="VENDOR_DEBT" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="VENDOR_DEBT" msprop:Generator_ChildPropName="GetVENDOR_DEBTRows" msprop:Generator_UserRelationName="FK_VENDORDEBT_VENDOR" msprop:Generator_ParentPropName="VENDORRow" msprop:Generator_RelationVarName="relationFK_VENDORDEBT_VENDOR" msprop:Generator_UserParentTable="VENDOR" />
-      <msdata:Relationship name="FK_VENDORDEBT_VENDORORDER" msdata:parent="VENDOR_ORDER" msdata:child="VENDOR_DEBT" msdata:parentkey="Id" msdata:childkey="VendorOrder_id" msprop:Generator_UserChildTable="VENDOR_DEBT" msprop:Generator_ChildPropName="GetVENDOR_DEBTRows" msprop:Generator_UserRelationName="FK_VENDORDEBT_VENDORORDER" msprop:Generator_RelationVarName="relationFK_VENDORDEBT_VENDORORDER" msprop:Generator_UserParentTable="VENDOR_ORDER" msprop:Generator_ParentPropName="VENDOR_ORDERRow" />
-      <msdata:Relationship name="FK_VENDORORDER_ORDER" msdata:parent="ORDER" msdata:child="VENDOR_ORDER" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDOR_ORDER" msprop:Generator_ChildPropName="GetVENDOR_ORDERRows" msprop:Generator_UserRelationName="FK_VENDORORDER_ORDER" msprop:Generator_ParentPropName="ORDERRow" msprop:Generator_RelationVarName="relationFK_VENDORORDER_ORDER" msprop:Generator_UserParentTable="ORDER" />
-      <msdata:Relationship name="FK_VENDORORDER_VENDOR" msdata:parent="VENDOR" msdata:child="VENDOR_ORDER" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="VENDOR_ORDER" msprop:Generator_ChildPropName="GetVENDOR_ORDERRows" msprop:Generator_UserRelationName="FK_VENDORORDER_VENDOR" msprop:Generator_ParentPropName="VENDORRow" msprop:Generator_RelationVarName="relationFK_VENDORORDER_VENDOR" msprop:Generator_UserParentTable="VENDOR" />
-      <msdata:Relationship name="FK_VENDORORDERDETAIL_ORDERDETAIL" msdata:parent="ORDER_DETAIL" msdata:child="VENDORORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDORORDER_DETAIL" msprop:Generator_ChildPropName="GetVENDORORDER_DETAILRows" msprop:Generator_UserRelationName="FK_VENDORORDERDETAIL_ORDERDETAIL" msprop:Generator_ParentPropName="ORDER_DETAILRow" msprop:Generator_RelationVarName="relationFK_VENDORORDERDETAIL_ORDERDETAIL" msprop:Generator_UserParentTable="ORDER_DETAIL" />
-      <msdata:Relationship name="FK_VENDORORDERDETAIL_QUOTE" msdata:parent="QUOTE" msdata:child="VENDORORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Quote_id" msprop:Generator_UserChildTable="VENDORORDER_DETAIL" msprop:Generator_ChildPropName="GetVENDORORDER_DETAILRows" msprop:Generator_UserRelationName="FK_VENDORORDERDETAIL_QUOTE" msprop:Generator_ParentPropName="QUOTERow" msprop:Generator_RelationVarName="relationFK_VENDORORDERDETAIL_QUOTE" msprop:Generator_UserParentTable="QUOTE" />
+      <msdata:Relationship name="FK_BILL_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="BILL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="BILL" msprop:Generator_ChildPropName="GetBILLRows" msprop:Generator_UserRelationName="FK_BILL_DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" msprop:Generator_RelationVarName="relationFK_BILL_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" />
+      <msdata:Relationship name="FK_BILLD_DEBT" msdata:parent="DEBT" msdata:child="BILL" msdata:parentkey="Id" msdata:childkey="Debt_id" msprop:Generator_UserChildTable="BILL" msprop:Generator_ChildPropName="GetBILLRows" msprop:Generator_UserRelationName="FK_BILLD_DEBT" msprop:Generator_ParentPropName="DEBTRow" msprop:Generator_RelationVarName="relationFK_BILLD_DEBT" msprop:Generator_UserParentTable="DEBT" />
+      <msdata:Relationship name="FK_CUSTOMER_GROUPCUSTOMER" msdata:parent="GROUPofCUSTOMER" msdata:child="CUSTOMER" msdata:parentkey="Id" msdata:childkey="Group_id" msprop:Generator_UserChildTable="CUSTOMER" msprop:Generator_ChildPropName="GetCUSTOMERRows" msprop:Generator_UserRelationName="FK_CUSTOMER_GROUPCUSTOMER" msprop:Generator_ParentPropName="GROUPofCUSTOMERRow" msprop:Generator_RelationVarName="relationFK_CUSTOMER_GROUPCUSTOMER" msprop:Generator_UserParentTable="GROUPofCUSTOMER" />
+      <msdata:Relationship name="FK_CUSTOMERBILL_BILL" msdata:parent="BILL" msdata:child="CUSTOMER_BILL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="CUSTOMER_BILL" msprop:Generator_ChildPropName="GetCUSTOMER_BILLRows" msprop:Generator_UserRelationName="FK_CUSTOMERBILL_BILL" msprop:Generator_RelationVarName="relationFK_CUSTOMERBILL_BILL" msprop:Generator_UserParentTable="BILL" msprop:Generator_ParentPropName="BILLRow" />
+      <msdata:Relationship name="FK_CUSTOMERBILL_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="CUSTOMER_BILL" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="CUSTOMER_BILL" msprop:Generator_ChildPropName="GetCUSTOMER_BILLRows" msprop:Generator_UserRelationName="FK_CUSTOMERBILL_CUSTOMER" msprop:Generator_RelationVarName="relationFK_CUSTOMERBILL_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" />
+      <msdata:Relationship name="FK_CUSTOMERDEBT_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="CUSTOMER_DEBT" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="CUSTOMER_DEBT" msprop:Generator_ChildPropName="GetCUSTOMER_DEBTRows" msprop:Generator_UserRelationName="FK_CUSTOMERDEBT_CUSTOMER" msprop:Generator_RelationVarName="relationFK_CUSTOMERDEBT_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" />
+      <msdata:Relationship name="FK_CUSTOMERDEBT_DEBT" msdata:parent="DEBT" msdata:child="CUSTOMER_DEBT" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="CUSTOMER_DEBT" msprop:Generator_ChildPropName="GetCUSTOMER_DEBTRows" msprop:Generator_UserRelationName="FK_CUSTOMERDEBT_DEBT" msprop:Generator_ParentPropName="DEBTRow" msprop:Generator_RelationVarName="relationFK_CUSTOMERDEBT_DEBT" msprop:Generator_UserParentTable="DEBT" />
+      <msdata:Relationship name="FK_CUSTOMERDEBT_PURCHASEORDER" msdata:parent="PURCHASE_ORDER" msdata:child="CUSTOMER_DEBT" msdata:parentkey="Id" msdata:childkey="PurchaseOrder_id" msprop:Generator_UserChildTable="CUSTOMER_DEBT" msprop:Generator_ChildPropName="GetCUSTOMER_DEBTRows" msprop:Generator_UserRelationName="FK_CUSTOMERDEBT_PURCHASEORDER" msprop:Generator_ParentPropName="PURCHASE_ORDERRow" msprop:Generator_RelationVarName="relationFK_CUSTOMERDEBT_PURCHASEORDER" msprop:Generator_UserParentTable="PURCHASE_ORDER" />
+      <msdata:Relationship name="FK_DEBT_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="DEBT" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="DEBT" msprop:Generator_ChildPropName="GetDEBTRows" msprop:Generator_UserRelationName="FK_DEBT_DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" msprop:Generator_RelationVarName="relationFK_DEBT_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" />
+      <msdata:Relationship name="FK_DOCUMENT_STAFF" msdata:parent="STAFF" msdata:child="DOCUMENT" msdata:parentkey="Id" msdata:childkey="Creator" msprop:Generator_UserChildTable="DOCUMENT" msprop:Generator_ChildPropName="GetDOCUMENTRows" msprop:Generator_UserRelationName="FK_DOCUMENT_STAFF" msprop:Generator_ParentPropName="STAFFRow" msprop:Generator_RelationVarName="relationFK_DOCUMENT_STAFF" msprop:Generator_UserParentTable="STAFF" />
+      <msdata:Relationship name="FK_FEEDBACK_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="FEEDBACK" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="FEEDBACK" msprop:Generator_ChildPropName="GetFEEDBACKRows" msprop:Generator_UserRelationName="FK_FEEDBACK_CUSTOMER" msprop:Generator_RelationVarName="relationFK_FEEDBACK_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" />
+      <msdata:Relationship name="FK_FEEDBACK_ORDERDETAIL" msdata:parent="ORDER_DETAIL" msdata:child="FEEDBACK" msdata:parentkey="Id" msdata:childkey="OrderDetail_id" msprop:Generator_UserChildTable="FEEDBACK" msprop:Generator_ChildPropName="GetFEEDBACKRows" msprop:Generator_UserRelationName="FK_FEEDBACK_ORDERDETAIL" msprop:Generator_ParentPropName="ORDER_DETAILRow" msprop:Generator_RelationVarName="relationFK_FEEDBACK_ORDERDETAIL" msprop:Generator_UserParentTable="ORDER_DETAIL" />
+      <msdata:Relationship name="FK_INOUTINVENTORYDETAIL_INOUTINVENTORY" msdata:parent="INOUTINVENTORY" msdata:child="INOUT_INVENTORY_DETAIL" msdata:parentkey="Id" msdata:childkey="InOutInventory_id" msprop:Generator_UserChildTable="INOUT_INVENTORY_DETAIL" msprop:Generator_ChildPropName="GetINOUT_INVENTORY_DETAILRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORYDETAIL_INOUTINVENTORY" msprop:Generator_ParentPropName="INOUTINVENTORYRow" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORYDETAIL_INOUTINVENTORY" msprop:Generator_UserParentTable="INOUTINVENTORY" />
+      <msdata:Relationship name="FK_INOUTINVENTORYDETAIL_INVENTORY" msdata:parent="INVENTORY" msdata:child="INOUT_INVENTORY_DETAIL" msdata:parentkey="Id" msdata:childkey="Inventory_id" msprop:Generator_UserChildTable="INOUT_INVENTORY_DETAIL" msprop:Generator_ChildPropName="GetINOUT_INVENTORY_DETAILRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORYDETAIL_INVENTORY" msprop:Generator_ParentPropName="INVENTORYRow" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORYDETAIL_INVENTORY" msprop:Generator_UserParentTable="INVENTORY" />
+      <msdata:Relationship name="FK_INOUTINVENTORYDETAIL_ORDERDETAIL" msdata:parent="ORDER_DETAIL" msdata:child="INOUT_INVENTORY_DETAIL" msdata:parentkey="Id" msdata:childkey="OrderDetail_id" msprop:Generator_UserChildTable="INOUT_INVENTORY_DETAIL" msprop:Generator_ChildPropName="GetINOUT_INVENTORY_DETAILRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORYDETAIL_ORDERDETAIL" msprop:Generator_ParentPropName="ORDER_DETAILRow" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORYDETAIL_ORDERDETAIL" msprop:Generator_UserParentTable="ORDER_DETAIL" />
+      <msdata:Relationship name="FK_INOUTINVENTORY_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="INOUTINVENTORY" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="INOUTINVENTORY" msprop:Generator_ChildPropName="GetINOUTINVENTORYRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORY_DOCUMENT" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORY_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" />
+      <msdata:Relationship name="FK_INOUTINVENTORY_INVENTORY" msdata:parent="INVENTORY" msdata:child="INOUTINVENTORY" msdata:parentkey="Id" msdata:childkey="Inventory_id" msprop:Generator_UserChildTable="INOUTINVENTORY" msprop:Generator_ChildPropName="GetINOUTINVENTORYRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORY_INVENTORY" msprop:Generator_ParentPropName="INVENTORYRow" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORY_INVENTORY" msprop:Generator_UserParentTable="INVENTORY" />
+      <msdata:Relationship name="FK_INOUTINVENTORY_STAFF" msdata:parent="STAFF" msdata:child="INOUTINVENTORY" msdata:parentkey="Id" msdata:childkey="Respond" msprop:Generator_UserChildTable="INOUTINVENTORY" msprop:Generator_ChildPropName="GetINOUTINVENTORYRows" msprop:Generator_UserRelationName="FK_INOUTINVENTORY_STAFF" msprop:Generator_ParentPropName="STAFFRow" msprop:Generator_RelationVarName="relationFK_INOUTINVENTORY_STAFF" msprop:Generator_UserParentTable="STAFF" />
+      <msdata:Relationship name="FK_INVENTORYCAPABILITY_INVENTORY" msdata:parent="INVENTORY" msdata:child="INVENTORY_CAPABILITY" msdata:parentkey="Id" msdata:childkey="Inventory_id" msprop:Generator_UserChildTable="INVENTORY_CAPABILITY" msprop:Generator_ChildPropName="GetINVENTORY_CAPABILITYRows" msprop:Generator_UserRelationName="FK_INVENTORYCAPABILITY_INVENTORY" msprop:Generator_RelationVarName="relationFK_INVENTORYCAPABILITY_INVENTORY" msprop:Generator_UserParentTable="INVENTORY" msprop:Generator_ParentPropName="INVENTORYRow" />
+      <msdata:Relationship name="FK_INVENTORYCAPABILITY_PRODUCT" msdata:parent="PRODUCT" msdata:child="INVENTORY_CAPABILITY" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="INVENTORY_CAPABILITY" msprop:Generator_ChildPropName="GetINVENTORY_CAPABILITYRows" msprop:Generator_UserRelationName="FK_INVENTORYCAPABILITY_PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" msprop:Generator_RelationVarName="relationFK_INVENTORYCAPABILITY_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" />
+      <msdata:Relationship name="FK_ORDER_DOCUMENT" msdata:parent="DOCUMENT" msdata:child="ORDER" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="ORDER" msprop:Generator_ChildPropName="GetORDERRows" msprop:Generator_UserRelationName="FK_ORDER_DOCUMENT" msprop:Generator_RelationVarName="relationFK_ORDER_DOCUMENT" msprop:Generator_UserParentTable="DOCUMENT" msprop:Generator_ParentPropName="DOCUMENTRow" />
+      <msdata:Relationship name="FK_ORDERDETAIL_ORDER" msdata:parent="ORDER" msdata:child="ORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Order_id" msprop:Generator_UserChildTable="ORDER_DETAIL" msprop:Generator_ChildPropName="GetORDER_DETAILRows" msprop:Generator_UserRelationName="FK_ORDERDETAIL_ORDER" msprop:Generator_RelationVarName="relationFK_ORDERDETAIL_ORDER" msprop:Generator_UserParentTable="ORDER" msprop:Generator_ParentPropName="ORDERRow" />
+      <msdata:Relationship name="FK_ORDERDETAIL_PRODUCT" msdata:parent="PRODUCT" msdata:child="ORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="ORDER_DETAIL" msprop:Generator_ChildPropName="GetORDER_DETAILRows" msprop:Generator_UserRelationName="FK_ORDERDETAIL_PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" msprop:Generator_RelationVarName="relationFK_ORDERDETAIL_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" />
+      <msdata:Relationship name="FK_PRODUCTMETADATA_PRODUCT" msdata:parent="PRODUCT" msdata:child="PRODUCT_METADATA" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="PRODUCT_METADATA" msprop:Generator_ChildPropName="GetPRODUCT_METADATARows" msprop:Generator_UserRelationName="FK_PRODUCTMETADATA_PRODUCT" msprop:Generator_RelationVarName="relationFK_PRODUCTMETADATA_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" />
+      <msdata:Relationship name="FK_PURCHASEORDER_CUSTOMER" msdata:parent="CUSTOMER" msdata:child="PURCHASE_ORDER" msdata:parentkey="Id" msdata:childkey="Customer_id" msprop:Generator_UserChildTable="PURCHASE_ORDER" msprop:Generator_ChildPropName="GetPURCHASE_ORDERRows" msprop:Generator_UserRelationName="FK_PURCHASEORDER_CUSTOMER" msprop:Generator_RelationVarName="relationFK_PURCHASEORDER_CUSTOMER" msprop:Generator_UserParentTable="CUSTOMER" msprop:Generator_ParentPropName="CUSTOMERRow" />
+      <msdata:Relationship name="FK_PURCHASEORDER_DOCUMENT" msdata:parent="ORDER" msdata:child="PURCHASE_ORDER" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="PURCHASE_ORDER" msprop:Generator_ChildPropName="GetPURCHASE_ORDERRows" msprop:Generator_UserRelationName="FK_PURCHASEORDER_DOCUMENT" msprop:Generator_RelationVarName="relationFK_PURCHASEORDER_DOCUMENT" msprop:Generator_UserParentTable="ORDER" msprop:Generator_ParentPropName="ORDERRow" />
+      <msdata:Relationship name="FK_QUOTE_VENDOR" msdata:parent="VENDOR" msdata:child="QUOTE" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="QUOTE" msprop:Generator_ChildPropName="GetQUOTERows" msprop:Generator_UserRelationName="FK_QUOTE_VENDOR" msprop:Generator_ParentPropName="VENDORRow" msprop:Generator_RelationVarName="relationFK_QUOTE_VENDOR" msprop:Generator_UserParentTable="VENDOR" />
+      <msdata:Relationship name="FK_QUOTEDETAIL_PRODUCT" msdata:parent="PRODUCT" msdata:child="QUOTE_DETAIL" msdata:parentkey="Id" msdata:childkey="Product_id" msprop:Generator_UserChildTable="QUOTE_DETAIL" msprop:Generator_ChildPropName="GetQUOTE_DETAILRows" msprop:Generator_UserRelationName="FK_QUOTEDETAIL_PRODUCT" msprop:Generator_RelationVarName="relationFK_QUOTEDETAIL_PRODUCT" msprop:Generator_UserParentTable="PRODUCT" msprop:Generator_ParentPropName="PRODUCTRow" />
+      <msdata:Relationship name="FK_QUOTEDETAIL_QUOTE" msdata:parent="QUOTE" msdata:child="QUOTE_DETAIL" msdata:parentkey="Id" msdata:childkey="Quote_id" msprop:Generator_UserChildTable="QUOTE_DETAIL" msprop:Generator_ChildPropName="GetQUOTE_DETAILRows" msprop:Generator_UserRelationName="FK_QUOTEDETAIL_QUOTE" msprop:Generator_RelationVarName="relationFK_QUOTEDETAIL_QUOTE" msprop:Generator_UserParentTable="QUOTE" msprop:Generator_ParentPropName="QUOTERow" />
+      <msdata:Relationship name="FK_VENDORBILL_BILL" msdata:parent="BILL" msdata:child="VENDOR_BILL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDOR_BILL" msprop:Generator_ChildPropName="GetVENDOR_BILLRows" msprop:Generator_UserRelationName="FK_VENDORBILL_BILL" msprop:Generator_RelationVarName="relationFK_VENDORBILL_BILL" msprop:Generator_UserParentTable="BILL" msprop:Generator_ParentPropName="BILLRow" />
+      <msdata:Relationship name="FK_VENDORBILL_STAFF" msdata:parent="STAFF" msdata:child="VENDOR_BILL" msdata:parentkey="Id" msdata:childkey="PaidStaff" msprop:Generator_UserChildTable="VENDOR_BILL" msprop:Generator_ChildPropName="GetVENDOR_BILLRows" msprop:Generator_UserRelationName="FK_VENDORBILL_STAFF" msprop:Generator_RelationVarName="relationFK_VENDORBILL_STAFF" msprop:Generator_UserParentTable="STAFF" msprop:Generator_ParentPropName="STAFFRow" />
+      <msdata:Relationship name="FK_VENDORBILL_VENDOR" msdata:parent="VENDOR" msdata:child="VENDOR_BILL" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="VENDOR_BILL" msprop:Generator_ChildPropName="GetVENDOR_BILLRows" msprop:Generator_UserRelationName="FK_VENDORBILL_VENDOR" msprop:Generator_RelationVarName="relationFK_VENDORBILL_VENDOR" msprop:Generator_UserParentTable="VENDOR" msprop:Generator_ParentPropName="VENDORRow" />
+      <msdata:Relationship name="FK_VENDORDEBT_DEBT" msdata:parent="DEBT" msdata:child="VENDOR_DEBT" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDOR_DEBT" msprop:Generator_ChildPropName="GetVENDOR_DEBTRows" msprop:Generator_UserRelationName="FK_VENDORDEBT_DEBT" msprop:Generator_RelationVarName="relationFK_VENDORDEBT_DEBT" msprop:Generator_UserParentTable="DEBT" msprop:Generator_ParentPropName="DEBTRow" />
+      <msdata:Relationship name="FK_VENDORDEBT_VENDOR" msdata:parent="VENDOR" msdata:child="VENDOR_DEBT" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="VENDOR_DEBT" msprop:Generator_ChildPropName="GetVENDOR_DEBTRows" msprop:Generator_UserRelationName="FK_VENDORDEBT_VENDOR" msprop:Generator_RelationVarName="relationFK_VENDORDEBT_VENDOR" msprop:Generator_UserParentTable="VENDOR" msprop:Generator_ParentPropName="VENDORRow" />
+      <msdata:Relationship name="FK_VENDORDEBT_VENDORORDER" msdata:parent="VENDOR_ORDER" msdata:child="VENDOR_DEBT" msdata:parentkey="Id" msdata:childkey="VendorOrder_id" msprop:Generator_UserChildTable="VENDOR_DEBT" msprop:Generator_ChildPropName="GetVENDOR_DEBTRows" msprop:Generator_UserRelationName="FK_VENDORDEBT_VENDORORDER" msprop:Generator_ParentPropName="VENDOR_ORDERRow" msprop:Generator_RelationVarName="relationFK_VENDORDEBT_VENDORORDER" msprop:Generator_UserParentTable="VENDOR_ORDER" />
+      <msdata:Relationship name="FK_VENDORORDER_ORDER" msdata:parent="ORDER" msdata:child="VENDOR_ORDER" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDOR_ORDER" msprop:Generator_ChildPropName="GetVENDOR_ORDERRows" msprop:Generator_UserRelationName="FK_VENDORORDER_ORDER" msprop:Generator_RelationVarName="relationFK_VENDORORDER_ORDER" msprop:Generator_UserParentTable="ORDER" msprop:Generator_ParentPropName="ORDERRow" />
+      <msdata:Relationship name="FK_VENDORORDER_VENDOR" msdata:parent="VENDOR" msdata:child="VENDOR_ORDER" msdata:parentkey="Id" msdata:childkey="Vendor_id" msprop:Generator_UserChildTable="VENDOR_ORDER" msprop:Generator_ChildPropName="GetVENDOR_ORDERRows" msprop:Generator_UserRelationName="FK_VENDORORDER_VENDOR" msprop:Generator_RelationVarName="relationFK_VENDORORDER_VENDOR" msprop:Generator_UserParentTable="VENDOR" msprop:Generator_ParentPropName="VENDORRow" />
+      <msdata:Relationship name="FK_VENDORORDERDETAIL_ORDERDETAIL" msdata:parent="ORDER_DETAIL" msdata:child="VENDORORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="VENDORORDER_DETAIL" msprop:Generator_ChildPropName="GetVENDORORDER_DETAILRows" msprop:Generator_UserRelationName="FK_VENDORORDERDETAIL_ORDERDETAIL" msprop:Generator_RelationVarName="relationFK_VENDORORDERDETAIL_ORDERDETAIL" msprop:Generator_UserParentTable="ORDER_DETAIL" msprop:Generator_ParentPropName="ORDER_DETAILRow" />
+      <msdata:Relationship name="FK_VENDORORDERDETAIL_QUOTE" msdata:parent="QUOTE" msdata:child="VENDORORDER_DETAIL" msdata:parentkey="Id" msdata:childkey="Quote_id" msprop:Generator_UserChildTable="VENDORORDER_DETAIL" msprop:Generator_ChildPropName="GetVENDORORDER_DETAILRows" msprop:Generator_UserRelationName="FK_VENDORORDERDETAIL_QUOTE" msprop:Generator_RelationVarName="relationFK_VENDORORDERDETAIL_QUOTE" msprop:Generator_UserParentTable="QUOTE" msprop:Generator_ParentPropName="QUOTERow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

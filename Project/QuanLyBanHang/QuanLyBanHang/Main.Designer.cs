@@ -566,6 +566,7 @@
             this.viewOrdersBtn.TabIndex = 1;
             this.viewOrdersBtn.Text = "Danh sách đơn bán hàng";
             this.viewOrdersBtn.UseVisualStyleBackColor = true;
+            this.viewOrdersBtn.Click += new System.EventHandler(this.viewOrdersBtn_Click);
             // 
             // tabControl
             // 

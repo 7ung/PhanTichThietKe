@@ -16,7 +16,8 @@ namespace QuanLyBanHang
         MAIN_TAB,           // tab chính
         CUSTOMER_TAB,       // danh sách khách hàng
         VENDOR_TAB,         // danh sách nhà cung cấp
-        ORDER_TAB
+        ORDER_TAB,
+        CUSTOMER_ORDER_LIST_TAB
     }
 
     public partial class Main : Form
@@ -83,6 +84,18 @@ namespace QuanLyBanHang
                         tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
+                case eTabType.CUSTOMER_ORDER_LIST_TAB:
+                    {
+                        var newTab = new TabPage("Danh sách đơn bán hàng");
+                        newTab.AutoScroll = true;
+                        var order = new CustomerOrderList();
+                        order.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(order);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
                 default:
                     break;
             }
@@ -101,6 +114,11 @@ namespace QuanLyBanHang
         private void newOrder_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.ORDER_TAB);
+        }
+
+        private void viewOrdersBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.CUSTOMER_ORDER_LIST_TAB);
         }
     }
 }

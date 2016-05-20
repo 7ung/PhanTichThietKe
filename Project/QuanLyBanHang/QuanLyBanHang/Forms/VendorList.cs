@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
+using System.Diagnostics;
 
 namespace QuanLyBanHang.Forms
 {
-    public partial class VendorList : UserControl, IFormList
+    public partial class VendorList : UserControl
     {
         public VendorList()
         {
@@ -24,41 +25,24 @@ namespace QuanLyBanHang.Forms
 
         public eFormState State { get; set; }
 
-        public void bindingAllText()
-        {
-            vendorIdText.DataBindings.Add("Text", vendorBindingSource, "Id");
-            vendorAddressText.DataBindings.Add("Text", vendorBindingSource, "Address"); ;
-            vendorEmailText.DataBindings.Add("Text", vendorBindingSource, "Email"); ;
-            vendorNameText.DataBindings.Add("Text", vendorBindingSource, "Name"); ;
-            vendorPhoneText.DataBindings.Add("Text", vendorBindingSource, "Phone"); ;
-            
-        }
-
-        public void clearAllText()
-        {
-            vendorIdText.DataBindings.Clear();
-            vendorAddressText.DataBindings.Clear();
-            vendorEmailText.DataBindings.Clear();
-            vendorNameText.DataBindings.Clear();
-            vendorPhoneText.DataBindings.Clear();
-
-            vendorAddressText.Text = "";
-            vendorEmailText.Text = "";
-            vendorNameText.Text = "";
-            vendorPhoneText.Text = "";
-        }
+        private bool canDelete = false;
 
         public void enableAllControls(bool enable, bool readOnly)
         {
-            vendorAddressText.Enabled = enable;
-            vendorEmailText.Enabled = enable;
-            vendorNameText.Enabled = enable;
-            vendorPhoneText.Enabled = enable;
+            vendorAddress.Enabled = enable;
+            vendorEmail.Enabled = enable;
+            vendorName.Enabled = enable;
+            vendorPhone.Enabled = enable;
 
-            vendorAddressText.ReadOnly = readOnly;
-            vendorEmailText.ReadOnly = readOnly;
-            vendorNameText.ReadOnly = readOnly;
-            vendorPhoneText.ReadOnly = readOnly;
+            vendorAddress.ReadOnly = readOnly;
+            vendorEmail.ReadOnly = readOnly;
+            vendorName.ReadOnly = readOnly;
+            vendorPhone.ReadOnly = readOnly;
+
+            vendorAddress.ResetToNormal();
+            vendorEmail.ResetToNormal();
+            vendorName.ResetToNormal();
+            vendorPhone.ResetToNormal();
         }
 
         public void updateState(eFormState state)
@@ -77,10 +61,13 @@ namespace QuanLyBanHang.Forms
                     }
                 case eFormState.CREATE_NEW:
                     {
-                        clearAllText();
+                        vendorBindingSource.AddNew();
+                        canDelete = true;
+
                         enableAllControls(true, false);
                         cancelBtn.Visible = true;
                         saveBtn.Visible = true;
+                        saveBtn.Enabled = false;
                         editBtn.Visible = false;
                         break;
                     }
@@ -108,34 +95,32 @@ namespace QuanLyBanHang.Forms
             {
                 case eFormState.EDIT:
                     {
-                        updateState(eFormState.VIEW);
+                        try
+                        {
+                            vendorBindingSource.EndEdit();
 
-                        vendorBindingSource.EndEdit();
+                            vendorTableAdapter.Update(sellManagementDbDataSet.VENDOR);
+                            sellManagementDbDataSet.VENDOR.AcceptChanges();
 
-                        vendorTableAdapter.Update(sellManagementDbDataSet.VENDOR);
-                        sellManagementDbDataSet.VENDOR.AcceptChanges();
+                            vendorBindingSource.ResetBindings(false);
 
-                        vendorBindingSource.ResetBindings(false);
+                            updateState(eFormState.VIEW);
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         break;
                     }
                 case eFormState.CREATE_NEW:
                     {
                         try
                         {
-                            var newVendor = sellManagementDbDataSet.VENDOR.NewVENDORRow();
-
-                            newVendor.Name = vendorNameText.Text;
-                            newVendor.Phone = vendorPhoneText.Text;
-                            newVendor.Email = vendorEmailText.Text;
-                            newVendor.Address = vendorAddressText.Text;
-
-                            sellManagementDbDataSet.VENDOR.Rows.Add(newVendor);
+                            vendorBindingSource.EndEdit();
 
                             vendorTableAdapter.Update(sellManagementDbDataSet.VENDOR);
                             sellManagementDbDataSet.AcceptChanges();
 
-
-                            bindingAllText();
                             updateState(eFormState.VIEW);
                         }
                         catch (Exception ex)
@@ -156,13 +141,11 @@ namespace QuanLyBanHang.Forms
         {
             if (State == eFormState.CREATE_NEW)
             {
-                bindingAllText();
+                vendorBindingSource.RemoveAt(vendorBindingSource.Count - 1);
             }
-            else if (State == eFormState.EDIT)
-            {
-                sellManagementDbDataSet.VENDOR.RejectChanges();
-                vendorBindingSource.ResetBindings(false);
-            }
+
+            sellManagementDbDataSet.VENDOR.RejectChanges();
+            vendorBindingSource.ResetBindings(false);
 
             updateState(eFormState.VIEW);
         }
@@ -205,6 +188,37 @@ namespace QuanLyBanHang.Forms
             vendorBindingSource.Filter = vendorDataGridView.Columns["nameColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'" + "OR " +
                                          vendorDataGridView.Columns["phoneColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'" + "OR " +
                                          vendorDataGridView.Columns["emailColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'";
+        }
+        
+        private void vendorDataGridView_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (State == eFormState.CREATE_NEW && canDelete)
+            {
+                canDelete = false;
+
+                vendorBindingSource.RemoveAt(vendorBindingSource.Count - 1);
+
+                sellManagementDbDataSet.VENDOR.RejectChanges();
+                vendorBindingSource.ResetBindings(false);
+            }
+            else if (State == eFormState.EDIT)
+            {
+                sellManagementDbDataSet.VENDOR.RejectChanges();
+                updateState(eFormState.VIEW);
+            }
+        }
+
+        private void vendorName_xTextChanged(object sender, EventArgs e)
+        {
+            saveBtn.Enabled = IsValidInfomation();
+        }
+
+        private bool IsValidInfomation()
+        {
+            if (!vendorName.IsValid || !vendorEmail.IsValid || !vendorAddress.IsValid || !vendorAddress.IsValid)
+                return false;
+
+            return true;
         }
     }
 }
