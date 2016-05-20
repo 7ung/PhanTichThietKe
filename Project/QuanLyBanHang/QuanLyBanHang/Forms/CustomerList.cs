@@ -206,13 +206,19 @@ namespace QuanLyBanHang.Forms
         {
             // tạm thời tăng theo thứ tự
             int max = 0;
+            // Tùng
+            // thanh niên rảnh :v
+            // tính max chi hen. lấy last là max rồi.
 
+            // Try it:
+            // max = (sellManagementDbDataSet.CUSTOMER as SellManagementDbDataSet.CUSTOMERDataTable).Last().Id;
             foreach (DataRow item in sellManagementDbDataSet.CUSTOMER.Rows)
             {
                 max = Math.Max(max, Convert.ToInt32(item["CustomerKey"]));
             }
 
             return String.Format("{0:D6}", max + 1);
+
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
