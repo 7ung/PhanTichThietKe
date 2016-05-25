@@ -74,14 +74,29 @@ namespace QuanLyBanHang
                     }
                 case eTabType.ORDER_TAB:
                     {
-                        var newTab = new TabPage("Giao dịch");
-                        newTab.AutoScroll = true;
-                        var order = new OrderForm();
-                        order.Dock = DockStyle.Top;
-                        newTab.Controls.Add(order);
+                        //var newTab = new TabPage("Giao dịch");
+                        //newTab.AutoScroll = true;
+                        //var order = new OrderDetailForm();
+                        //order.Dock = DockStyle.Top;
+                        //newTab.Controls.Add(order);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        //tabControl.TabPages.Add(newTab);
+                        //tabControl.SelectedIndex = tabControl.TabCount - 1;
+
+                        var customerOrder = new CreateCustomerOrderForm();
+                        var result = customerOrder.ShowDialog();
+                        if(result == DialogResult.OK)
+                        {
+                            var newTab = new TabPage("Giao dịch");
+                            newTab.AutoScroll = true;
+                            var order = new OrderDetailForm(customerOrder.OrderId);
+                            order.Dock = DockStyle.Top;
+                            newTab.Controls.Add(order);
+
+                            tabControl.TabPages.Add(newTab);
+                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        }
+
                         break;
                     }
                 case eTabType.CUSTOMER_ORDER_LIST_TAB:
