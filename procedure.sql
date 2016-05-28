@@ -485,8 +485,9 @@ alter procedure Insert_InoutInventory
 	@createdate smalldatetime,
 	@respond int,
 	@inventory_id int,
-	@carry_fee float,
-	@note nvarchar(256)
+	@carry_fee float = 0,
+	@note nvarchar(256) = '',
+	@type bit
 as
 begin
 	begin tran Insert_InoutInventory
@@ -499,7 +500,7 @@ begin
 		order by DOCUMENT.Id desc
 
 		insert into INOUTINVENTORY
-		values(@id, @respond, @inventory_id, @carry_fee, @note)
+		values(@id, @respond, @inventory_id, @carry_fee, @note, @type)
 	end try
 	begin catch
 		rollback tran
