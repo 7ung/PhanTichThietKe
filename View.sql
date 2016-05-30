@@ -53,3 +53,11 @@ as
 select DOCUMENT.*,
 	INOUTINVENTORY.Inventory_id, INOUTINVENTORY.Respond, INOUTINVENTORY.Note, INOUTINVENTORY.CarryFee
 from INOUTINVENTORY join DOCUMENT on INOUTINVENTORY.Id = DOCUMENT.Id
+
+go
+create view InOutInventory_Detail_ProductQuantity_View
+as
+select INOUT_INVENTORY_DETAIL.InOutInventory_id, ORDER_DETAIL.Product_id, Sum(ORDER_DETAIL.Quantity) as Quantity
+from INOUT_INVENTORY_DETAIL, ORDER_DETAIL
+where INOUT_INVENTORY_DETAIL.Order_id = ORDER_DETAIL.Id
+group by INOUT_INVENTORY_DETAIL.InOutInventory_id, ORDER_DETAIL.Product_id
