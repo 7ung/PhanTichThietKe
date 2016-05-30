@@ -486,21 +486,28 @@ alter procedure Insert_InoutInventory
 	@respond int,
 	@inventory_id int,
 	@carry_fee float = 0,
-	@note nvarchar(256) = '',
+	@term int,
 	@type bit
 as
 begin
 	begin tran Insert_InoutInventory
 	begin try
-		insert into DOCUMENT(DocumentKey, [Type], Creator, CreateDate)
-		values (@documentkey, 'inoutinventory', @creator, @createdate)
-	
+		if (@type = 1)
+		begin
+			insert into DOCUMENT(DocumentKey, [Type], Creator, CreateDate)
+			values (@documentkey, 'ininventory', @creator, @createdate)
+		end
+		else
+		begin
+			insert into DOCUMENT(DocumentKey, [Type], Creator, CreateDate)
+			values (@documentkey, 'outinventory', @creator, @createdate)
+		end
 		declare @id int
 		select top 1 @id = Id from DOCUMENT
 		order by DOCUMENT.Id desc
 
 		insert into INOUTINVENTORY
-		values(@id, @respond, @inventory_id, @carry_fee, @note, @type)
+		values(@id, @respond, @inventory_id, @carry_fee, @term, @type)
 	end try
 	begin catch
 		rollback tran
@@ -646,5 +653,66 @@ begin
 			delete top(1) from @ids
 			select @count = COUNT(id) from @ids
 		end
+	commit tran
+end
+
+
+-- update capability, update theo số đơn nhập kho và số đơn xuất kho
+
+go
+create procedure update_inventory_capability
+	@inventory_id int
+as
+begin
+	begin tran update_inventory_capability
+
+	declare @term int
+
+	select @term = Term from INVENTORY
+
+
+	declare @sum_quantity table (
+		inventory_id int,
+		productid int,
+		_count int
+	)
+	---- ================================
+	insert into @sum_quantity
+	select IIF([Out_Product].Inventory_id is null,[In_product].Inventory_id, [Out_Product].Inventory_id) ,
+		IIF([Out_Product].Product_id is null,[In_product].Product_id, [Out_Product].Product_id),
+		IIF([Out_Product].Quantity is null,0, [Out_Product].Quantity)
+			- IIF([In_product].Quantity is null,0, [In_product].Quantity)
+	from
+	(select I1.Inventory_id, A.Product_id, A.Quantity
+	from InOutInventory_Detail_ProductQuantity_View as A, INOUTINVENTORY as I1
+	where A.InOutInventory_id = I1.Id and I1.[Type] = 0 and I1.Term = @term) as [Out_Product]
+
+	full outer join (select I1.Inventory_id, B.Product_id, B.Quantity
+	from InOutInventory_Detail_ProductQuantity_View as B, INOUTINVENTORY as I1
+	where B.InOutInventory_id = I1.Id and I1.[Type] = 1 and I1.Term = @term) as [In_product]
+	
+	on [Out_Product].Inventory_id = [In_product].Inventory_id
+		and [Out_Product].Product_id = [In_product].Product_id
+	where [Out_Product].Inventory_id = @inventory_id or [In_product].Inventory_id = @inventory_id
+	---- ================================
+	declare @count int
+	select @count = COUNT(*) from @sum_quantity
+
+	declare @product int, @quantity int, @last int
+	while (@count > 0)
+	begin
+		select top 1 @product = productid, @quantity = _count from @sum_quantity
+		select @last = [Last] from INVENTORY_CAPABILITY
+		where INVENTORY_CAPABILITY.Product_id = @product and Inventory_id = @inventory_id
+
+		update INVENTORY_CAPABILITY
+		set CurrentCount = (@last + @quantity)
+		where Inventory_id = @inventory_id and Product_id = @product
+
+		delete top(1) from @sum_quantity
+		select @count = COUNT(*) from @sum_quantity
+
+	end
+
 	commit tran
 end
