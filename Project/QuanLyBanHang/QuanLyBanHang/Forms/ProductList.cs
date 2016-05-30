@@ -98,7 +98,6 @@ namespace QuanLyBanHang.Forms
             int id = ((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id - 1;
             (new AddProduct(id)).ShowDialog();
 
-            //sellManagementDbDataSet.AcceptChanges();
             this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
             this.pRODUCT_METADATABindingSource.ResetBindings(true);
             this.pRODUCT_METADATADataGridView.Refresh();
