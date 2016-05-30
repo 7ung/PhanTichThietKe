@@ -17,7 +17,10 @@ namespace QuanLyBanHang
         CUSTOMER_TAB,       // danh sách khách hàng
         VENDOR_TAB,         // danh sách nhà cung cấp
         ORDER_TAB,
-        CUSTOMER_ORDER_LIST_TAB
+        CUSTOMER_ORDER_LIST_TAB,
+        PRODUCT_TAB,
+        STORE_TAB,
+        STAFF_TAB,
     }
 
     public partial class Main : Form
@@ -29,9 +32,7 @@ namespace QuanLyBanHang
 
         private void newProductMenuItem_Click(object sender, EventArgs e)
         {
-            var newTab = new TabPage("Thêm sản phẩm");
-            tabControl.TabPages.Add(newTab);
-            tabControl.SelectedIndex = tabControl.TabCount - 1;
+            (new AddProduct()).ShowDialog();
         }
 
         private void viewCustomerList_Click(object sender, EventArgs e)
@@ -111,6 +112,44 @@ namespace QuanLyBanHang
                         tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
+                case eTabType.STORE_TAB:
+                    {
+                        var newTab = new TabPage("Danh sách kho hàng");
+                        newTab.AutoScroll = true;
+                        var store = new InventoryList();
+                        store.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(store);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
+                case eTabType.PRODUCT_TAB:
+                    {
+                        var newTab = new TabPage("Danh sách mặt hàng");
+                        newTab.AutoScroll = true;
+                        var product = new ProductList();
+                        product.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(product);
+                        this.newProductMenuItem.Click += product.showDialogAddProduct; //7ung
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+
+                        break;
+                    }
+
+                case eTabType.STAFF_TAB:
+                    {
+                        var newTab = new TabPage("Danh sach khach hang");
+                        newTab.AutoScroll = true;
+                        var staff = new StaffList();
+                        staff.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(staff);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
                 default:
                     break;
             }
@@ -134,6 +173,27 @@ namespace QuanLyBanHang
         private void viewOrdersBtn_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.CUSTOMER_ORDER_LIST_TAB);
+        }
+
+        private void productsMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.PRODUCT_TAB);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.STORE_TAB);
+        }
+
+        private void staffListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.STAFF_TAB);
+        }
+
+        // tung
+        public void remove_refresh(EventHandler showDialogAddProduct)
+        {
+            this.newProductMenuItem.Click -= showDialogAddProduct;
         }
     }
 }
