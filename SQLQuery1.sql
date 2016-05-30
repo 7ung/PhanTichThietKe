@@ -1070,10 +1070,10 @@ end
 -- InOutInventtoryDetail	||		+			||		-(*)		||	-
 
 go
-create trigger trigger_InOutInventory_Detail
+alter trigger trigger_InOutInventory_Detail
 on
 INOUT_INVENTORY_DETAIL
-for insert
+for insert, update
 as
 declare @order_id int, @inoutinventory_id int
 begin
@@ -1094,6 +1094,7 @@ begin
 		raiserror('R16', 16, 1)
 		rollback tran		
 	end
+	set nocount on
 
 end
 
@@ -1112,25 +1113,51 @@ alter trigger trigger_InOutInventory_Detail_Product_Quantity
 on INOUT_INVENTORY_DETAIL
 for insert
 as
-declare  @inoutinventory_id int
+declare  @inoutinventory_id int, @inventory_id int
 begin
 	select @inoutinventory_id = InOutInventory_id from inserted
-	declare @temp table(inventory int, product int)
-	insert into @temp
-		select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
-		from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
-		where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
-			and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
-			and INOUTINVENTORY.Id = @inoutinventory_id
-			and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
-			and INOUTINVENTORY.[Type] = 1
-			and InOutInventory_Detail_ProductQuantity_View.Quantity + INVENTORY_CAPABILITY.CurrentCount > INVENTORY_CAPABILITY.MaxCount
-	if ((select COUNT(*) from @temp) > 0)
-	begin
-		raiserror ('R17', 16, 1)
-		rollback tran
-	end
+	select @inventory_id = Inventory_id
+	from INOUTINVENTORY
+	where INOUTINVENTORY.Id = @inoutinventory_id
+	exec dbo.update_inventory_capability
+		@inventory_id = @inventory_id
+	--declare @temp table(inventory int, product int)
+	--insert into @temp
+	--	select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
+	--	from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
+	--	where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
+	--		and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
+	--		and INOUTINVENTORY.Id = @inoutinventory_id
+	--		and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
+	--		and INOUTINVENTORY.[Type] = 1
+	--		and InOutInventory_Detail_ProductQuantity_View.Quantity + INVENTORY_CAPABILITY.CurrentCount > INVENTORY_CAPABILITY.MaxCount
+	--if ((select COUNT(*) from @temp) > 0)
+	--begin
+	--	raiserror ('R17', 16, 1)
+	--	rollback tran
+	--end
+	set nocount on
 end
+
+
+
+go
+create trigger trigger_InOutInventory_Detail_Del
+on INOUT_INVENTORY_DETAIL
+for delete
+as
+declare  @inoutinventory_id int, @inventory_id int
+begin
+	select @inoutinventory_id = InOutInventory_id from deleted
+	select @inventory_id = Inventory_id
+	from INOUTINVENTORY
+	where INOUTINVENTORY.Id = @inoutinventory_id
+	exec dbo.update_inventory_capability
+		@inventory_id = @inventory_id
+
+	set nocount on
+end
+
 
 go
 alter trigger trigger_OrderDetail_Quantity
@@ -1143,10 +1170,6 @@ begin
 	begin
 		
 		select @order_id = Order_id from inserted
-		declare @isPurchaseOrder bit
-		exec @isPurchaseOrder = dbo.CheckDocumentType @order_id, 'vendororder'
-		if (@isPurchaseOrder = 0)
-			return
 
 		select @inoutventory = INOUT_INVENTORY_DETAIL.InOutInventory_id 
 			from INOUT_INVENTORY_DETAIL
@@ -1155,23 +1178,30 @@ begin
 
 		if (@inoutventory is not null)
 		begin
-			declare @temp table(inventory int, product int)
-			insert into @temp
-			select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
-			from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
-			where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
-				and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
-				and INOUTINVENTORY.Id = @inoutventory
-				and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
-				and INOUTINVENTORY.[Type] = 1
-				and InOutInventory_Detail_ProductQuantity_View.Quantity + INVENTORY_CAPABILITY.CurrentCount > INVENTORY_CAPABILITY.MaxCount
-			if ((select COUNT(*) from @temp ) > 0)
-			begin
-				raiserror ('R17', 16, 1)
-				rollback tran
-			end
+			declare @inventory_id int
+			select @inventory_id = Inventory_id
+			from INOUTINVENTORY
+			where INOUTINVENTORY.Id = @inoutventory
+			exec dbo.update_inventory_capability
+			@inventory_id = @inventory_id
+			--declare @temp table(inventory int, product int)
+			--insert into @temp
+			--select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
+			--from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
+			--where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
+			--	and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
+			--	and INOUTINVENTORY.Id = @inoutventory
+			--	and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
+			--	and INOUTINVENTORY.[Type] = 1
+			--	and InOutInventory_Detail_ProductQuantity_View.Quantity + INVENTORY_CAPABILITY.CurrentCount > INVENTORY_CAPABILITY.MaxCount
+			--if ((select COUNT(*) from @temp ) > 0)
+			--begin
+			--	raiserror ('R17', 16, 1)
+			--	rollback tran
+			--end
 		end
 	end
+	set nocount on
 end
 
 go
@@ -1181,7 +1211,7 @@ for update
 as
 declare @productid int, @inventoryid int
 begin
-	if (Update (MaxCount))
+	if (Update (MaxCount) or update(Last))
 	begin
 
 		declare @inoutinventory table(id int)
@@ -1202,30 +1232,39 @@ begin
 		begin
 			select top 1 @curID = id from @inoutinventory
 			--
-			declare @temp table(inventory int, product int)
-			insert into @temp
-			select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
-			from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
-			where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
-				and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
-				and INOUTINVENTORY.Id = @curID
-				and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
-				and INOUTINVENTORY.[Type] = 1
-				and InOutInventory_Detail_ProductQuantity_View.Quantity + INVENTORY_CAPABILITY.CurrentCount > INVENTORY_CAPABILITY.MaxCount
+			declare @inventory_id int
+			select @inventory_id = Inventory_id
+			from INOUTINVENTORY
+			where INOUTINVENTORY.Id = @curID
 
-			if ((select COUNT(*) from @temp ) > 0)
-			begin
-				raiserror ('R17', 16, 1)
-				rollback tran
-			end
+			exec dbo.update_inventory_capability
+			@inventory_id = @inventory_id
+
+			--declare @temp table(inventory int, product int)
+			--insert into @temp
+			--select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
+			--from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
+			--where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
+			--	and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
+			--	and INOUTINVENTORY.Id = @curID
+			--	and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
+			--	and INOUTINVENTORY.[Type] = 1
+			--	and InOutInventory_Detail_ProductQuantity_View.Quantity + INVENTORY_CAPABILITY.CurrentCount > INVENTORY_CAPABILITY.MaxCount
+
+			--if ((select COUNT(*) from @temp ) > 0)
+			--begin
+			--	raiserror ('R17', 16, 1)
+			--	rollback tran
+			--end
 				
 			--
 			delete top (1) from @inoutinventory
 			select @count = COUNT(*) from @inoutinventory
 
 		end
-
+		
 	end
+	set nocount on
 end
 
 
@@ -1238,85 +1277,15 @@ end
 --	Inventory_Capability	||		-			||		+(MaxCount)	||		-(*)
 
 
-go
-create trigger trigger_InOutInventory_Detail_Product_Quantity_Out
-on INOUT_INVENTORY_DETAIL
-for insert
-as
-declare  @inoutinventory_id int
-begin
-	select @inoutinventory_id = InOutInventory_id from inserted
-	declare @temp table(inventory int, product int)
-	insert into @temp
-		select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
-		from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
-		where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
-			and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
-			and INOUTINVENTORY.Id = @inoutinventory_id
-			and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
-			and INOUTINVENTORY.[Type] = 0
-			and InOutInventory_Detail_ProductQuantity_View.Quantity > INVENTORY_CAPABILITY.CurrentCount
-	if ((select COUNT(*) from @temp) > 0)
-	begin
-		raiserror ('R18', 16, 1)
-		rollback tran
-	end
-end
-
-
 
 go
-create trigger trigger_OrderDetail_Quantity_Out
-on [ORDER_DETAIL]
-for update
-as
-declare @order_id int, @inoutventory int
-begin
-	if (UPDATE(Quantity))
-	begin
-		
-		select @order_id = Order_id from inserted
-		declare @isPurchaseOrder bit
-		exec @isPurchaseOrder = dbo.CheckDocumentType @order_id, 'customerorder'
-		if (@isPurchaseOrder = 0)
-			return
-
-		select @inoutventory = INOUT_INVENTORY_DETAIL.InOutInventory_id 
-			from INOUT_INVENTORY_DETAIL
-			where INOUT_INVENTORY_DETAIL.Order_id = @order_id
-
-
-		if (@inoutventory is not null)
-		begin
-			declare @temp table(inventory int, product int)
-			insert into @temp
-			select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
-			from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
-			where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
-				and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
-				and INOUTINVENTORY.Id = @inoutventory
-				and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
-				and INOUTINVENTORY.[Type] = 0
-				and InOutInventory_Detail_ProductQuantity_View.Quantity > INVENTORY_CAPABILITY.CurrentCount 
-			if ((select COUNT(*) from @temp ) > 0)
-			begin
-				raiserror ('R18', 16, 1)
-				rollback tran
-			end
-		end
-	end
-end
-
-
-
-go
-create trigger trigger_Inventory_Capability_Out
+alter trigger trigger_Inventory_Capability_Out
 on INVENTORY_CAPABILITY
 for update
 as
 declare @productid int, @inventoryid int
 begin
-	if (Update (CurrentCount))
+	if (Update (CurrentCount) or update([Last]))
 	begin
 
 		declare @inoutinventory table(id int)
@@ -1336,22 +1305,28 @@ begin
 		begin
 			select top 1 @curID = id from @inoutinventory
 			--
-			declare @temp table(inventory int, product int)
-			insert into @temp
-			select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
-			from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
-			where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
-				and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
-				and INOUTINVENTORY.Id = @curID
-				and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
-				and INOUTINVENTORY.[Type] = 0
-				and InOutInventory_Detail_ProductQuantity_View.Quantity >  INVENTORY_CAPABILITY.CurrentCount
+			declare @inventory_id int
+			select @inventory_id = Inventory_id
+			from INOUTINVENTORY
+			where INOUTINVENTORY.Id = @curID
+			exec dbo.update_inventory_capability
+			@inventory_id = @inventory_id
+			--declare @temp table(inventory int, product int)
+			--insert into @temp
+			--select INVENTORY_CAPABILITY.Inventory_id, INVENTORY_CAPABILITY.Product_id
+			--from INVENTORY_CAPABILITY, INOUTINVENTORY, InOutInventory_Detail_ProductQuantity_View
+			--where INVENTORY_CAPABILITY.Inventory_id = INOUTINVENTORY.Inventory_id
+			--	and INOUTINVENTORY.Id = InOutInventory_Detail_ProductQuantity_View.InOutInventory_id
+			--	and INOUTINVENTORY.Id = @curID
+			--	and INVENTORY_CAPABILITY.Product_id = InOutInventory_Detail_ProductQuantity_View.Product_id
+			--	and INOUTINVENTORY.[Type] = 0
+			--	and InOutInventory_Detail_ProductQuantity_View.Quantity >  INVENTORY_CAPABILITY.CurrentCount
 
-			if ((select COUNT(*) from @temp ) > 0)
-			begin
-				raiserror ('R18', 16, 1)
-				rollback tran
-			end
+			--if ((select COUNT(*) from @temp ) > 0)
+			--begin
+			--	raiserror ('R18', 16, 1)
+			--	rollback tran
+			--end
 				
 			--
 			delete top (1) from @inoutinventory
@@ -1359,5 +1334,54 @@ begin
 
 		end
 
+	end
+	set nocount on
+end
+
+-- 4+. Khi thay đổi Type trong inoutventory thì thay đổi document type tương ứng
+go
+create trigger trigger_INOUTVENTORY_TYPE
+on INOUTINVENTORY
+for update
+as
+declare @id int, @type bit
+begin
+	if (update([Type]))
+	begin
+		select @id = Id, @type = [Type] from inserted
+		if (@type = 1)
+		begin
+			update DOCUMENT
+			set [Type] = 'ininventory'
+			where Id = @id
+		end
+		else
+		begin
+			update DOCUMENT
+			set [Type] = 'outinventory'
+			where Id = @id
+		end
+	end
+end
+
+
+-- 5. Số lượng hiện tại của một mặt hàng trong một kho hàng không âm
+--		Số lượng tối đa một mặt hàng trong một kho hàng không bé hơn số lượng hiện tại
+
+go
+create trigger trigger_INVENTORY_CAPABILITY_Max_Current
+on [INVENTORY_CAPABILITY]
+for insert, update
+as
+declare @maxcount float, @currentcount float
+begin
+	if (UPDATE([MaxCount]) or update([CurrentCount]))
+	begin
+		select @maxcount = MaxCount, @currentcount = CurrentCount from inserted
+		if (@currentcount < 0 or @maxcount < @currentcount)
+		begin
+			raiserror('R19', 16,1)
+			rollback tran
+		end
 	end
 end

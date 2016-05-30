@@ -144,23 +144,18 @@ where Id = 23		--> update order.TotalPrice ->success
 ------------------------------------------
 
 EXEC	[dbo].[Insert_Customer_Order]
-		@documentkey = N'CO002',
+		@documentkey = N'CO009',
 		@creator = 2,
 		@createdate = '01-01-2016',
 		@transactiondate = '01-01-2016',
-		@totalprice = 0,
-		@vat = 0,
-		@finalprice = 0,
-		@status = '',
 		@customer_id = 5,
-		@discount = 0,
 		@extrapaid = 0,
 		@ismultipaid = 0
 GO
 
 
 insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
-values(48, 4, 45.7, 45)
+values(70, 1, 18.9, 1)
 
 exec Insert_Customer_Bill
 	@documentkey = N'CB0003',
@@ -236,3 +231,28 @@ values(65, 1, 24.6, 2)
 
 insert into ORDER_DETAIL(Order_id, Product_id, Price, Quantity)
 values(65, 4, 24.4, 1)
+
+exec Insert_InoutInventory
+	@documentkey = 'OUT0001',
+	@creator = 2,
+	@createdate = '01-01-1990',
+	@respond = 2,
+	@inventory_id = 1,
+	@carry_fee = 8.9,
+	@term = 1,
+	@type = 1
+
+
+
+-- thêm chi tiết đơn xuất kho
+--
+
+insert into INOUT_INVENTORY_DETAIL
+values (70, 69)
+
+
+
+select INOUT_INVENTORY_DETAIL.InOutInventory_id, ORDER_DETAIL.Product_id, Sum(ORDER_DETAIL.Quantity) as Quantity
+from INOUT_INVENTORY_DETAIL, ORDER_DETAIL
+where INOUT_INVENTORY_DETAIL.Order_id = ORDER_DETAIL.Order_id
+group by INOUT_INVENTORY_DETAIL.InOutInventory_id, ORDER_DETAIL.Product_id
