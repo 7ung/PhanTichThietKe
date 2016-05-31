@@ -99,15 +99,23 @@
             this.createDatePicker = new System.Windows.Forms.DateTimePicker();
             this.multiPaidCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.discountText = new System.Windows.Forms.TextBox();
+            this.statusOrderComboBox = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.debtTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DEBTTableAdapter();
             this.billTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BILLTableAdapter();
+            this.discountComboBox = new System.Windows.Forms.ComboBox();
+            this.gROUPofCUSTOMERBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gROUPofCUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.GROUPofCUSTOMERTableAdapter();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cONSTANTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cONSTANTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
+            this.vatText = new System.Windows.Forms.TextBox();
+            this.oRDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -121,6 +129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gROUPofCUSTOMERBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cONSTANTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -534,6 +545,7 @@
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(121, 21);
             this.typeComboBox.TabIndex = 10;
+            this.typeComboBox.Text = "Tiền mặt";
             // 
             // label15
             // 
@@ -546,6 +558,7 @@
             // 
             // totalPriceText
             // 
+            this.totalPriceText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.totalPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalPriceText.Location = new System.Drawing.Point(146, 498);
             this.totalPriceText.Name = "totalPriceText";
@@ -587,6 +600,7 @@
             // 
             // finalPriceText
             // 
+            this.finalPriceText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.finalPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.finalPriceText.Location = new System.Drawing.Point(146, 530);
             this.finalPriceText.Name = "finalPriceText";
@@ -744,6 +758,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.statusOrderComboBox);
+            this.groupBox3.Controls.Add(this.label27);
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.label24);
             this.groupBox3.Controls.Add(this.recieveCashText);
@@ -762,28 +778,43 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thanh toán";
             // 
-            // label7
+            // statusOrderComboBox
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(685, 501);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(23, 20);
-            this.label7.TabIndex = 35;
-            this.label7.Text = "%";
+            this.statusOrderComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.statusOrderComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.oRDERBindingSource, "Status", true));
+            this.statusOrderComboBox.FormattingEnabled = true;
+            this.statusOrderComboBox.Location = new System.Drawing.Point(717, 24);
+            this.statusOrderComboBox.Name = "statusOrderComboBox";
+            this.statusOrderComboBox.Size = new System.Drawing.Size(121, 21);
+            this.statusOrderComboBox.TabIndex = 40;
             // 
-            // discountText
+            // label27
             // 
-            this.discountText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.discountText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "Discount", true));
-            this.discountText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discountText.Location = new System.Drawing.Point(619, 498);
-            this.discountText.Name = "discountText";
-            this.discountText.ReadOnly = true;
-            this.discountText.Size = new System.Drawing.Size(60, 26);
-            this.discountText.TabIndex = 19;
-            this.discountText.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(607, 27);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(104, 13);
+            this.label27.TabIndex = 41;
+            this.label27.Text = "Trạng thái đơn hàng";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(389, 91);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(30, 13);
+            this.label25.TabIndex = 39;
+            this.label25.Text = "VNĐ";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(389, 59);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(30, 13);
+            this.label24.TabIndex = 38;
+            this.label24.Text = "VNĐ";
             // 
             // label13
             // 
@@ -803,24 +834,6 @@
             this.label23.TabIndex = 37;
             this.label23.Text = "VNĐ";
             // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(389, 59);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(30, 13);
-            this.label24.TabIndex = 38;
-            this.label24.Text = "VNĐ";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(389, 91);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(30, 13);
-            this.label25.TabIndex = 39;
-            this.label25.Text = "VNĐ";
-            // 
             // label26
             // 
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -839,14 +852,78 @@
             // 
             this.billTableAdapter.ClearBeforeFill = true;
             // 
+            // discountComboBox
+            // 
+            this.discountComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.discountComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cUSTOMERBindingSource, "Group_id", true));
+            this.discountComboBox.DataSource = this.gROUPofCUSTOMERBindingSource;
+            this.discountComboBox.DisplayMember = "Discount";
+            this.discountComboBox.DropDownHeight = 60;
+            this.discountComboBox.Enabled = false;
+            this.discountComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discountComboBox.FormattingEnabled = true;
+            this.discountComboBox.IntegralHeight = false;
+            this.discountComboBox.Location = new System.Drawing.Point(619, 496);
+            this.discountComboBox.Name = "discountComboBox";
+            this.discountComboBox.Size = new System.Drawing.Size(80, 28);
+            this.discountComboBox.TabIndex = 40;
+            this.discountComboBox.ValueMember = "Id";
+            this.discountComboBox.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
+            // 
+            // gROUPofCUSTOMERBindingSource
+            // 
+            this.gROUPofCUSTOMERBindingSource.DataMember = "GROUPofCUSTOMER";
+            this.gROUPofCUSTOMERBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // gROUPofCUSTOMERTableAdapter
+            // 
+            this.gROUPofCUSTOMERTableAdapter.ClearBeforeFill = true;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(729, 504);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "VAT";
+            // 
+            // cONSTANTBindingSource
+            // 
+            this.cONSTANTBindingSource.DataMember = "CONSTANT";
+            this.cONSTANTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // cONSTANTTableAdapter
+            // 
+            this.cONSTANTTableAdapter.ClearBeforeFill = true;
+            // 
+            // vatText
+            // 
+            this.vatText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.vatText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vatText.Location = new System.Drawing.Point(763, 498);
+            this.vatText.Name = "vatText";
+            this.vatText.ReadOnly = true;
+            this.vatText.Size = new System.Drawing.Size(80, 26);
+            this.vatText.TabIndex = 42;
+            this.vatText.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
+            // 
+            // oRDERBindingSource
+            // 
+            this.oRDERBindingSource.DataMember = "ORDER";
+            this.oRDERBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
             // OrderDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.vatText);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.discountComboBox);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.createDatePicker);
             this.Controls.Add(this.staffComboBox);
@@ -855,7 +932,6 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.extraText);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.discountText);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.totalPriceText);
             this.Controls.Add(this.label15);
@@ -885,6 +961,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gROUPofCUSTOMERBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cONSTANTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -961,8 +1040,6 @@
         private System.Windows.Forms.DateTimePicker createDatePicker;
         private System.Windows.Forms.CheckBox multiPaidCheckBox;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox discountText;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label13;
@@ -970,5 +1047,15 @@
         private System.Windows.Forms.Label label26;
         private SellManagementDbDataSetTableAdapters.DEBTTableAdapter debtTableAdapter;
         private SellManagementDbDataSetTableAdapters.BILLTableAdapter billTableAdapter;
+        private System.Windows.Forms.ComboBox discountComboBox;
+        private System.Windows.Forms.BindingSource gROUPofCUSTOMERBindingSource;
+        private SellManagementDbDataSetTableAdapters.GROUPofCUSTOMERTableAdapter gROUPofCUSTOMERTableAdapter;
+        private System.Windows.Forms.BindingSource cONSTANTBindingSource;
+        private SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter cONSTANTTableAdapter;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox vatText;
+        private System.Windows.Forms.ComboBox statusOrderComboBox;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.BindingSource oRDERBindingSource;
     }
 }
