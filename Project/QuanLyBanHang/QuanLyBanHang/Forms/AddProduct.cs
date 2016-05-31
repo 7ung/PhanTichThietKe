@@ -158,8 +158,11 @@ namespace QuanLyBanHang.Forms
             {
                 try
                 {
-                    DataRowView row = (DataRowView)this.pRODUCTBindingSource.CurrencyManager.Current;
-                    row.Delete();
+                    if (((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id >= 0)
+                    {
+                        DataRowView row = (DataRowView)this.pRODUCTBindingSource.CurrencyManager.Current;
+                        row.Delete();
+                    }
                     this.pRODUCTBindingSource.EndEdit();
                     this.pRODUCTTableAdapter.Update(this.sellManagementDbDataSet.PRODUCT);
                     this.sellManagementDbDataSet.AcceptChanges();
@@ -231,10 +234,17 @@ namespace QuanLyBanHang.Forms
         {
             if (((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id < 0)
             {
-                (this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).EndEdit();
-                this.pRODUCTTableAdapter.Update(sellManagementDbDataSet.PRODUCT);
-                this.sellManagementDbDataSet.PRODUCT.AcceptChanges();
-                this.pRODUCTBindingSource.ResetBindings(false);
+                try
+                {
+                    (this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).EndEdit();
+                    this.pRODUCTTableAdapter.Update(sellManagementDbDataSet.PRODUCT);
+                    this.sellManagementDbDataSet.PRODUCT.AcceptChanges();
+                    this.pRODUCTBindingSource.ResetBindings(false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

@@ -33,6 +33,7 @@
             System.Windows.Forms.Label addressLabel;
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label inventoryKeyLabel;
+            System.Windows.Forms.Label termLabel;
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
@@ -60,10 +61,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
+            this.termTextBox = new System.Windows.Forms.TextBox();
             rentPriceLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             inventoryKeyLabel = new System.Windows.Forms.Label();
+            termLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYDataGridView)).BeginInit();
@@ -76,7 +79,7 @@
             // rentPriceLabel
             // 
             rentPriceLabel.AutoSize = true;
-            rentPriceLabel.Location = new System.Drawing.Point(43, 167);
+            rentPriceLabel.Location = new System.Drawing.Point(43, 193);
             rentPriceLabel.Name = "rentPriceLabel";
             rentPriceLabel.Size = new System.Drawing.Size(47, 13);
             rentPriceLabel.TabIndex = 16;
@@ -202,6 +205,8 @@
             // 
             // gbInfo
             // 
+            this.gbInfo.Controls.Add(termLabel);
+            this.gbInfo.Controls.Add(this.termTextBox);
             this.gbInfo.Controls.Add(this.tbRentPrice);
             this.gbInfo.Controls.Add(this.tbAddress);
             this.gbInfo.Controls.Add(this.tbName);
@@ -214,7 +219,7 @@
             this.gbInfo.Controls.Add(inventoryKeyLabel);
             this.gbInfo.Location = new System.Drawing.Point(474, 19);
             this.gbInfo.Name = "gbInfo";
-            this.gbInfo.Size = new System.Drawing.Size(415, 486);
+            this.gbInfo.Size = new System.Drawing.Size(407, 497);
             this.gbInfo.TabIndex = 2;
             this.gbInfo.TabStop = false;
             this.gbInfo.Text = "Thông tin";
@@ -222,7 +227,7 @@
             // tbRentPrice
             // 
             this.tbRentPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "RentPrice", true));
-            this.tbRentPrice.Location = new System.Drawing.Point(132, 164);
+            this.tbRentPrice.Location = new System.Drawing.Point(132, 190);
             this.tbRentPrice.Name = "tbRentPrice";
             this.tbRentPrice.Size = new System.Drawing.Size(252, 20);
             this.tbRentPrice.TabIndex = 29;
@@ -255,9 +260,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.iNVENTORY_CAPABILITYDataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(11, 210);
+            this.groupBox1.Location = new System.Drawing.Point(11, 237);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 235);
+            this.groupBox1.Size = new System.Drawing.Size(383, 220);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sức chứa";
@@ -273,10 +278,10 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.iNVENTORY_CAPABILITYDataGridView.DataSource = this.iNVENTORY_CAPABILITYBindingSource;
-            this.iNVENTORY_CAPABILITYDataGridView.Location = new System.Drawing.Point(9, 19);
+            this.iNVENTORY_CAPABILITYDataGridView.Location = new System.Drawing.Point(6, 19);
             this.iNVENTORY_CAPABILITYDataGridView.Name = "iNVENTORY_CAPABILITYDataGridView";
             this.iNVENTORY_CAPABILITYDataGridView.ReadOnly = true;
-            this.iNVENTORY_CAPABILITYDataGridView.Size = new System.Drawing.Size(364, 210);
+            this.iNVENTORY_CAPABILITYDataGridView.Size = new System.Drawing.Size(367, 185);
             this.iNVENTORY_CAPABILITYDataGridView.TabIndex = 25;
             // 
             // dataGridViewTextBoxColumn6
@@ -309,7 +314,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(309, 454);
+            this.btnEdit.Location = new System.Drawing.Point(309, 463);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 18;
@@ -368,6 +373,23 @@
             // 
             this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
             // 
+            // termLabel
+            // 
+            termLabel.AutoSize = true;
+            termLabel.Location = new System.Drawing.Point(43, 142);
+            termLabel.Name = "termLabel";
+            termLabel.Size = new System.Drawing.Size(40, 13);
+            termLabel.TabIndex = 29;
+            termLabel.Text = "Kỳ hạn";
+            // 
+            // termTextBox
+            // 
+            this.termTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "Term", true));
+            this.termTextBox.Location = new System.Drawing.Point(132, 135);
+            this.termTextBox.Name = "termTextBox";
+            this.termTextBox.Size = new System.Drawing.Size(252, 20);
+            this.termTextBox.TabIndex = 30;
+            // 
             // InventoryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,7 +402,7 @@
             this.Controls.Add(this.gbInfo);
             this.Controls.Add(this.iNVENTORYDataGridView);
             this.Name = "InventoryList";
-            this.Size = new System.Drawing.Size(901, 561);
+            this.Size = new System.Drawing.Size(890, 561);
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYDataGridView)).EndInit();
@@ -423,5 +445,6 @@
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbInventoryKey;
+        private System.Windows.Forms.TextBox termTextBox;
     }
 }

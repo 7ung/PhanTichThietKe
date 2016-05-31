@@ -18,6 +18,8 @@ namespace QuanLyBanHang.Forms
         public AddInventory()
         {
             InitializeComponent();
+
+            _new = true;
         }
 
         public AddInventory(int id)
@@ -27,14 +29,6 @@ namespace QuanLyBanHang.Forms
             this.Text = "Chinh sua thong tin kho";
             _new = false;
             _id = id;
-        }
-
-        private void iNVENTORY_CAPABILITYBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.iNVENTORY_CAPABILITYBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.sellManagementDbDataSet);
-
         }
 
         private void AddInventory_Load(object sender, EventArgs e)
@@ -98,6 +92,7 @@ namespace QuanLyBanHang.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -106,8 +101,11 @@ namespace QuanLyBanHang.Forms
             {
                 try
                 {
-                    DataRowView row = (DataRowView)this.iNVENTORYBindingSource.CurrencyManager.Current;
-                    row.Delete();
+                    if (((this.iNVENTORYBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow).Id >= 0)
+                    {
+                        DataRowView row = (DataRowView)this.iNVENTORYBindingSource.CurrencyManager.Current;
+                        row.Delete();
+                    }
 
                     this.sellManagementDbDataSet.INVENTORY_CAPABILITY.RejectChanges();
 
@@ -124,6 +122,26 @@ namespace QuanLyBanHang.Forms
             {
                 this.sellManagementDbDataSet.INVENTORY_CAPABILITY.RejectChanges();
                 this.sellManagementDbDataSet.INVENTORY.RejectChanges();              
+            }
+            
+            this.Close();
+        }
+
+        private void iNVENTORY_CAPABILITYDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (((this.iNVENTORYBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow).Id < 0)
+            {
+                try
+                {
+                    this.iNVENTORYBindingSource.EndEdit();
+                    this.iNVENTORYTableAdapter.Update(sellManagementDbDataSet.INVENTORY);
+                    sellManagementDbDataSet.AcceptChanges();
+                    this.iNVENTORYBindingSource.ResetBindings(false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }
