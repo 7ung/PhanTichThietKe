@@ -48,10 +48,10 @@ select  DOCUMENT.*,
 from VENDOR_ORDER join [ORDER] on VENDOR_ORDER.Id = [ORDER].Id join DOCUMENT on [ORDER].Id = DOCUMENT.Id
 
 go
-create view InOut_Inventory_View
+alter view InOut_Inventory_View
 as
 select DOCUMENT.*,
-	INOUTINVENTORY.Inventory_id, INOUTINVENTORY.Respond, INOUTINVENTORY.Note, INOUTINVENTORY.CarryFee
+	INOUTINVENTORY.Inventory_id, INOUTINVENTORY.Respond, INOUTINVENTORY.CarryFee, INOUTINVENTORY.Term ,INOUTINVENTORY.[Type] as InOutType
 from INOUTINVENTORY join DOCUMENT on INOUTINVENTORY.Id = DOCUMENT.Id
 
 go
