@@ -21,6 +21,7 @@ namespace QuanLyBanHang
         PRODUCT_TAB,
         STORE_TAB,
         STAFF_TAB,
+        INOUT_INVENTORY     // nhập xuất đơn hàng.
     }
 
     public partial class Main : Form
@@ -142,13 +143,24 @@ namespace QuanLyBanHang
                     {
                         var newTab = new TabPage("Danh sach khach hang");
                         newTab.AutoScroll = true;
-                        var staff = new StaffList();
-                        staff.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(staff);
+                        //var staff = new StaffList();
+                        //staff.Dock = DockStyle.Fill;
+                        //newTab.Controls.Add(staff);
+
+                        //tabControl.TabPages.Add(newTab);
+                        //tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
+                case eTabType.INOUT_INVENTORY:
+                    {
+                        var newTab = new TabPage("Quản lý kho hàng");
+                        newTab.AutoScroll = true;
+                        var store = new InOutInventory();
+                        store.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(store);
 
                         tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
-                        break;
+                        tabControl.SelectedIndex = tabControl.TabCount - 1; break;
                     }
                 default:
                     break;
@@ -190,10 +202,18 @@ namespace QuanLyBanHang
             createNewTab(eTabType.STAFF_TAB);
         }
 
+        private void listDocToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.INOUT_INVENTORY);
+        }
+
         // tung
         public void remove_refresh(EventHandler showDialogAddProduct)
         {
             this.newProductMenuItem.Click -= showDialogAddProduct;
         }
+
+
+
     }
 }

@@ -884,6 +884,35 @@ begin
 end
 
 go
+create trigger trigger_ORDER_TotalPrice_IsMultipaid
+on [Order]
+for update
+as
+declare @id int, @totalprice float
+begin
+	if (update(TotalPrice))
+	begin
+		select @id = Id, @totalprice = TotalPrice from inserted
+		declare @isCustomerorder bit
+		exec @isCustomerorder =  dbo.CheckDocumentType @id, 'customerorder'
+		if (@isCustomerorder = 1)
+		begin
+			if (@totalprice >= 
+				CAST((select Value from CONSTANT where Name = ('price_multi_paid')) as float))
+			begin
+				update PURCHASE_ORDER set IsMultiPaid = 1
+					where PURCHASE_ORDER.Id = @id
+			end
+			else
+			begin
+				update PURCHASE_ORDER set IsMultiPaid = 0
+					where PURCHASE_ORDER.Id = @id
+			end
+		end
+	end
+end
+
+go
 alter trigger trigger_VENDORORDER_FinalPrice
 on [ORDER]
 for insert
@@ -1385,3 +1414,4 @@ begin
 		end
 	end
 end
+
