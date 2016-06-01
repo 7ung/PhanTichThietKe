@@ -17,6 +17,9 @@ namespace QuanLyBanHang.Forms
         {
             InitializeComponent();
 
+            this.iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
+            this.iNVENTORY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
+
             this.tbAddress.ReadOnly = true;
             this.tbInventoryKey.ReadOnly = true;
             this.tbName.ReadOnly = true;
@@ -54,7 +57,7 @@ namespace QuanLyBanHang.Forms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             int id = ((this.iNVENTORYBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow).Id - 1;
-            (new AddInventory()).ShowDialog();
+            (new AddInventory(id)).ShowDialog();
 
             this.iNVENTORY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
             this.iNVENTORY_CAPABILITYBindingSource.ResetBindings(false);

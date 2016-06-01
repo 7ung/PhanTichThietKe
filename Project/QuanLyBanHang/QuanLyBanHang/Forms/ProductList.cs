@@ -29,7 +29,6 @@ namespace QuanLyBanHang.Forms
             this.tbProductKey.ReadOnly = true;
             this.btnAdd.Click += btAdd_Click;
             this.btnAdd.Click += showDialogAddProduct;
-
         }
 
         private void btAdd_Click(object sender, EventArgs e)

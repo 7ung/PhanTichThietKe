@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyBanHang.Models;
 
 namespace QuanLyBanHang.Forms
 {
@@ -43,18 +44,45 @@ namespace QuanLyBanHang.Forms
             debtTableAdapter.Fill(sellManagementDbDataSet.DEBT);
             billTableAdapter.Fill(sellManagementDbDataSet.BILL);
             oRDER_DETAILTableAdapter.Fill(sellManagementDbDataSet.ORDER_DETAIL);
+            gROUPofCUSTOMERTableAdapter.Fill(sellManagementDbDataSet.GROUPofCUSTOMER);
+            cONSTANTTableAdapter.Fill(sellManagementDbDataSet.CONSTANT);
+            orderTableAdapter.Fill(sellManagementDbDataSet.ORDER);
 
             // các document, purchase order, order detail hiện tại của giao dịch
             dOCUMENTBindingSource.Filter = "Id = " + _currentOrderId;
             pURCHASEORDERBindingSource.Filter = "Id = " + _currentOrderId;
             oRDERDETAILBindingSource.Filter = "Order_id = " + _currentOrderId;
 
+            var order = sellManagementDbDataSet.ORDER.Where(o => o.Id == _currentOrderId).First();
+            oRDERBindingSource.DataSource = order;
+
             // lấy thông tin nguyên cái row của order document hiện tại
             orderDocumentRow = ((dOCUMENTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.DOCUMENTRow);
-
+            
             // fill lại lên nguyên cái bảng khác tìm cái debt, 
             // vì cái sellManagementDbDataSet.DOCUMENT đang xài cho cái current rồi
             dOCUMENTTableAdapter.Fill(docTable);
+
+            // vat
+            vatText.Text = sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "VAT_rate").First().Value;
+
+            bindOrderStatus();
+        }
+
+        private void bindOrderStatus()
+        {
+            var types = new StringNStringBindingData[]
+            {
+                new StringNStringBindingData("Hoàn thành" ,"complete"),
+                new StringNStringBindingData("Hết hàng", "outofstock"),
+                new StringNStringBindingData("Đang giao hàng", "shipping")
+            };
+
+            statusOrderComboBox.DataSource = types;
+            statusOrderComboBox.DisplayMember = "Name";
+            statusOrderComboBox.ValueMember = "Value";
+
+            statusOrderComboBox.SelectedValue = "complete";
         }
         
         private void saveBtn_Click(object sender, EventArgs e)
@@ -82,6 +110,11 @@ namespace QuanLyBanHang.Forms
             pURCHASEORDERBindingSource.EndEdit();
             pURCHASE_ORDERTableAdapter.Update(sellManagementDbDataSet.PURCHASE_ORDER);
             sellManagementDbDataSet.PURCHASE_ORDER.AcceptChanges();
+
+            // order
+            oRDERBindingSource.EndEdit();
+            orderTableAdapter.Update(sellManagementDbDataSet.ORDER);
+            sellManagementDbDataSet.ORDER.AcceptChanges();
 
             // order detail
             oRDERDETAILBindingSource.EndEdit();
@@ -195,17 +228,21 @@ namespace QuanLyBanHang.Forms
             double discount = 0;
             double extra = 0;
             double total = 0;
+            double vat = 0;
 
             if (totalPriceText.Text != "")
                 total = Convert.ToDouble(totalPriceText.Text);
 
-            if (discountText.Text != "")
-                discount = Convert.ToDouble(discountText.Text) / 100;
+            if (discountComboBox.Text != "")
+                discount = Convert.ToDouble(discountComboBox.Text);
 
             if (extraText.Text != "")
                 extra = Convert.ToDouble(extraText.Text);
 
-            double finalPrice = total * (1 - discount) + extra;
+            if (vatText.Text != "")
+                vat = Convert.ToDouble(vatText.Text);
+
+            double finalPrice = total * (1 - discount + vat) + extra;
             finalPriceText.Text = finalPrice.ToString();
 
             double recieve = 0;
