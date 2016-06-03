@@ -54,6 +54,7 @@ namespace QuanLyBanHang.Forms
             BindingType();
             BindingOrderStatus();
             BindingDebtStatus();
+            BindingTypeBill();
 
             // filter order
             SelectOrderById(this.OrderId);
@@ -64,52 +65,54 @@ namespace QuanLyBanHang.Forms
             // update constant
             var value = sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "VAT_rate").First().Value;
             vatValueText.Text = (Convert.ToDouble(value) * 100).ToString() + "%";
+
+            CheckBillForButton();
         }
 
         private void SelectOrderById(int orderId)
         {
+            // sử dụng kiểu where(...) làm binding source không cập nhật được với dataset
+
             // tìm document order
             var docOrder = sellManagementDbDataSet.DOCUMENT.Where(d => d.Id == orderId).First();
-            dOCUMENTBindingSource.DataSource = docOrder;
+            
+            //dOCUMENTBindingSource.DataSource = docOrder;
+            dOCUMENTBindingSource.Filter = "Id = " + orderId;
 
             // orders
-            var orders = sellManagementDbDataSet.ORDER.Where(o => o.Id == orderId);
-            var orderdetail = sellManagementDbDataSet.ORDER_DETAIL.Where(o => o.Order_id == orderId);
+            //var orders = sellManagementDbDataSet.ORDER.Where(o => o.Id == orderId);
 
-            if(orders.Count() > 0)
-            {
-                oRDERBindingSource.DataSource = orders.ToList();
-            }
-
-            if(orderdetail.Count() > 0)
-            {
-                oRDERDETAILBindingSource.DataSource = orderdetail.ToList();
-            }
+            //if (orders.Count() > 0)
+            //{
+            //    oRDERBindingSource.DataSource = orders.First();
+            //}
+            oRDERBindingSource.Filter = "Id = " + orderId;
             
+            //var orderdetail = sellManagementDbDataSet.ORDER_DETAIL.Where(o => o.Order_id == orderId);
+            //if (orderdetail.Count() > 0)
+            //{
+            //    oRDERDETAILBindingSource.DataSource = orderdetail;
+            //}
+            oRDERDETAILBindingSource.Filter = "Order_id = " + orderId;
+
             // tìm document debt id
             var docDebtId = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey.Contains("CD_" + docOrder.DocumentKey)).First().Id;
 
             // debt
-            var debt = sellManagementDbDataSet.DEBT.Where(d => d.Id == docDebtId);
-            if(debt.Count() > 0)
-            {
-                dEBTBindingSource.DataSource = debt.ToList();
-            }
+            //var debt = sellManagementDbDataSet.DEBT.Where(d => d.Id == docDebtId);
+            //if(debt.Count() > 0)
+            //{
+            //    dEBTBindingSource.DataSource = debt.ToList();
+            //}
+            dEBTBindingSource.Filter = "Id = " + docDebtId;
 
             // bill
-            var customerBill = from bill in sellManagementDbDataSet.BILL
-                               join billdetail in sellManagementDbDataSet.CUSTOMER_BILL on bill.Id equals billdetail.Id
-                               where bill.Debt_id == docDebtId
-                               select new { bill.Id, bill.Debt_id, bill.PaidMethod, billdetail.ReceiveMoney, billdetail.ChangeMoney };
-
-            if(customerBill.Count() > 0)
-            {
-                billDataGridView.DataSource = customerBill.ToList();
-            }
+            SelectBill(docDebtId);
 
             // purchase order
             var purchase = sellManagementDbDataSet.PURCHASE_ORDER.Where(p => p.Id == orderId).First();
-            pURCHASEORDERBindingSource.DataSource = purchase;
+            //pURCHASEORDERBindingSource.DataSource = purchase;
+            pURCHASEORDERBindingSource.Filter = "Id = " + orderId;
 
             // update discount
             var customer = sellManagementDbDataSet.CUSTOMER.Where(c => c.Id == purchase.Customer_id).First();
@@ -163,6 +166,20 @@ namespace QuanLyBanHang.Forms
             statusDebtComboBox.ValueMember = "Value";
         }
 
+        private void BindingTypeBill()
+        {
+            var types = new StringNStringBindingData[]
+            {
+                new StringNStringBindingData("Tiền mặt" ,"cash"),
+                new StringNStringBindingData("Thẻ", "credit"),
+                new StringNStringBindingData("Online", "online")
+            };
+
+            typeColumn.DataSource = types;
+            typeColumn.DisplayMember = "Name";
+            typeColumn.ValueMember = "Value";
+        }
+
         public void updateState(eFormState state)
         {
             switch (state)
@@ -173,7 +190,6 @@ namespace QuanLyBanHang.Forms
                         saveBtn.Visible = true;
                         editBtn.Visible = false;
                         cancelBtn.Visible = true;
-                        addBillBtn.Visible = isMultiPaid.Checked;
                         addProductBtn.Visible = true;
                         
                         break;
@@ -186,7 +202,6 @@ namespace QuanLyBanHang.Forms
                         saveBtn.Visible = false;
                         editBtn.Visible = true;
                         cancelBtn.Visible = false;
-                        addBillBtn.Visible = false;
                         addProductBtn.Visible = false;
                         break;
                     }
@@ -223,19 +238,31 @@ namespace QuanLyBanHang.Forms
             oRDERBindingSource.EndEdit();
             orderTableAdapter.Update(sellManagementDbDataSet.ORDER);
             sellManagementDbDataSet.ORDER.AcceptChanges();
-
+            
+            oRDERDETAILBindingSource.EndEdit();
+            oRDER_DETAILTableAdapter.Update(sellManagementDbDataSet.ORDER_DETAIL);
+            sellManagementDbDataSet.ORDER_DETAIL.AcceptChanges();
+            
             pURCHASEORDERBindingSource.EndEdit();
             pURCHASE_ORDERTableAdapter.Update(sellManagementDbDataSet.PURCHASE_ORDER);
             sellManagementDbDataSet.PURCHASE_ORDER.AcceptChanges();
-
+            
             dOCUMENTBindingSource.EndEdit();
             documentTableAdapter.Update(sellManagementDbDataSet.DOCUMENT);
             sellManagementDbDataSet.DOCUMENT.AcceptChanges();
+           
+            // fill lại
+            orderTableAdapter.Fill(sellManagementDbDataSet.ORDER);
+            oRDER_DETAILTableAdapter.Fill(sellManagementDbDataSet.ORDER_DETAIL);
+            documentTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
+            pURCHASE_ORDERTableAdapter.Fill(sellManagementDbDataSet.PURCHASE_ORDER);
+            dEBTTableAdapter.Fill(sellManagementDbDataSet.DEBT);
+
+            CheckBillForButton();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-
             saveData();
             updateState(eFormState.VIEW);
         }
@@ -270,6 +297,106 @@ namespace QuanLyBanHang.Forms
         {
             // không cập nhật discount vì ko cho thay đổi customer
             // updateDiscount();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            var page = this.Parent as TabPage;
+            if (page != null)
+            {
+                (page.Parent as TabControl).TabPages.Remove(page);
+            }
+        }
+
+        private void totalPriceText_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void addProductBtn_Click(object sender, EventArgs e)
+        {
+            var selectProduct = new SelectProductForm(OrderId);
+            var result = selectProduct.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                var resultRow = selectProduct.ResultOrderDetailRow;
+                var index = oRDERDETAILBindingSource.Find("Product_id", resultRow.Product_id);
+
+                if (index == -1)
+                {
+                    var newRow = sellManagementDbDataSet.ORDER_DETAIL.NewORDER_DETAILRow();
+
+                    newRow.BeginEdit();
+
+                    newRow.Order_id = OrderId;
+                    newRow.Product_id = resultRow.Product_id;
+                    newRow.Quantity = resultRow.Quantity;
+                    newRow.Price = resultRow.Price;
+                    newRow.Result = resultRow.Result;
+
+                    newRow.EndEdit();
+
+                    oRDERDETAILBindingSource.Position = -1;
+
+                    sellManagementDbDataSet.ORDER_DETAIL.AddORDER_DETAILRow(newRow);
+                }
+                else
+                {
+                    var product = (oRDERDETAILBindingSource[index] as DataRowView).Row as SellManagementDbDataSet.ORDER_DETAILRow;
+
+                    product.BeginEdit();
+                    product.Quantity += resultRow.Quantity;
+                    product.Result = product.Quantity * product.Price;
+                    product.EndEdit();
+
+                    oRDERDETAILBindingSource.Position = -1;
+                }
+            }
+        }
+
+        private void addBillBtn_Click(object sender, EventArgs e)
+        {
+            var billForm = new CreateBillForm(this.OrderId);
+            var result = billForm.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                // refresh lại
+                pURCHASE_ORDERTableAdapter.Fill(sellManagementDbDataSet.PURCHASE_ORDER);
+                dEBTTableAdapter.Fill(sellManagementDbDataSet.DEBT);
+
+                // bill
+                SelectBill(billForm.DebtId);
+
+                CheckBillForButton();
+            }
+        }
+
+        private void SelectBill(int debtId)
+        {
+            billTableAdapter.Fill(sellManagementDbDataSet.BILL);
+            cUSTOMER_BILLTableAdapter.Fill(sellManagementDbDataSet.CUSTOMER_BILL);
+
+            var customerBill = from bill in sellManagementDbDataSet.BILL
+                               join billdetail in sellManagementDbDataSet.CUSTOMER_BILL on bill.Id equals billdetail.Id
+                               where bill.Debt_id == debtId
+                               select new { bill.Id, bill.Debt_id, bill.PaidMethod, billdetail.ReceiveMoney, billdetail.ChangeMoney };
+
+            if (customerBill.Count() > 0)
+            {
+                billDataGridView.DataSource = customerBill.ToList();
+            }
+        }
+
+        private void CheckBillForButton()
+        {
+            if (isMultiPaid.Checked || Convert.ToDouble(debtText.Text) > 0)
+            {
+                addBillBtn.Visible = true;
+            }
+            else
+            {
+                addBillBtn.Visible = false;
+            }
         }
     }
 }

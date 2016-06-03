@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyBanHang.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace QuanLyBanHang.Forms
     public partial class SelectOrderForm : Form
     {
         public int OrderId { get; set; }
+        public string OrderKey { get; set; }
 
         public SelectOrderForm()
         {
@@ -26,6 +28,7 @@ namespace QuanLyBanHang.Forms
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.Customer_Order_View' table. You can move, or remove it, as needed.
             this.customer_Order_ViewTableAdapter.Fill(this.sellManagementDbDataSet.Customer_Order_View);
 
+            BindingOrderStatus();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -40,6 +43,7 @@ namespace QuanLyBanHang.Forms
             {
                 var row = billDataGridView.SelectedRows[0].Cells["idColumn"];
                 OrderId = Convert.ToInt32(row.Value);
+                OrderKey = billDataGridView.SelectedRows[0].Cells["keyColumn"].Value.ToString();
             }
 
             this.DialogResult = DialogResult.OK;
@@ -49,6 +53,21 @@ namespace QuanLyBanHang.Forms
         private void searchText_TextChanged(object sender, EventArgs e)
         {
             customerOrderViewBindingSource.Filter = billDataGridView.Columns["keyColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'";
+        }
+
+        private void BindingOrderStatus()
+        {
+            var types = new StringNStringBindingData[]
+            {
+                new StringNStringBindingData("Hoàn thành" ,"complete"),
+                new StringNStringBindingData("Hết hàng", "outofstock"),
+                new StringNStringBindingData("Đang giao hàng", "shipping"),
+                new StringNStringBindingData("Không", "")
+            };
+
+            statusColumn.DataSource = types;
+            statusColumn.DisplayMember = "Name";
+            statusColumn.ValueMember = "Value";
         }
     }
 }

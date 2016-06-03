@@ -100,6 +100,7 @@
             this.multiPaidCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.statusOrderComboBox = new System.Windows.Forms.ComboBox();
+            this.oRDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -115,7 +116,6 @@
             this.cONSTANTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cONSTANTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.vatText = new System.Windows.Forms.TextBox();
-            this.oRDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -129,9 +129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gROUPofCUSTOMERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cONSTANTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -211,7 +211,6 @@
             this.productPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productPriceText.Location = new System.Drawing.Point(166, 114);
             this.productPriceText.Name = "productPriceText";
-            this.productPriceText.ReadOnly = true;
             this.productPriceText.Size = new System.Drawing.Size(114, 26);
             this.productPriceText.TabIndex = 14;
             // 
@@ -788,6 +787,11 @@
             this.statusOrderComboBox.Size = new System.Drawing.Size(121, 21);
             this.statusOrderComboBox.TabIndex = 40;
             // 
+            // oRDERBindingSource
+            // 
+            this.oRDERBindingSource.DataMember = "ORDER";
+            this.oRDERBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
             // label27
             // 
             this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -909,11 +913,6 @@
             this.vatText.TabIndex = 42;
             this.vatText.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
             // 
-            // oRDERBindingSource
-            // 
-            this.oRDERBindingSource.DataMember = "ORDER";
-            this.oRDERBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // OrderDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -961,9 +960,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gROUPofCUSTOMERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cONSTANTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

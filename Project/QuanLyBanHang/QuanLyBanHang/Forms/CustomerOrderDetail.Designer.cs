@@ -38,7 +38,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.debtText = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -82,9 +82,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.addBillBtn = new System.Windows.Forms.Button();
             this.billDataGridView = new System.Windows.Forms.DataGridView();
-            this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.recieveMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.returnMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.addProductBtn = new System.Windows.Forms.Button();
             this.orderDetailDataGridView = new System.Windows.Forms.DataGridView();
@@ -108,6 +105,10 @@
             this.billTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BILLTableAdapter();
             this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.groupofCUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.GROUPofCUSTOMERTableAdapter();
+            this.closeBtn = new System.Windows.Forms.Button();
+            this.typeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.recieveMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.returnMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
@@ -139,7 +140,7 @@
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.debtText);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label12);
@@ -246,14 +247,15 @@
             this.label19.TabIndex = 65;
             this.label19.Text = "VNĐ";
             // 
-            // textBox3
+            // debtText
             // 
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Remain", true));
-            this.textBox3.Location = new System.Drawing.Point(99, 358);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(150, 20);
-            this.textBox3.TabIndex = 64;
+            this.debtText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.debtText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Remain", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.debtText.Location = new System.Drawing.Point(99, 358);
+            this.debtText.Name = "debtText";
+            this.debtText.ReadOnly = true;
+            this.debtText.Size = new System.Drawing.Size(150, 20);
+            this.debtText.TabIndex = 64;
             // 
             // label18
             // 
@@ -284,7 +286,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Paid", true));
+            this.textBox2.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Paid", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.textBox2.Location = new System.Drawing.Point(99, 332);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -311,7 +314,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "Discount", true));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "Discount", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.textBox1.Location = new System.Drawing.Point(99, 255);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -352,7 +355,7 @@
             // 
             // vatText
             // 
-            this.vatText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "VAT", true));
+            this.vatText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "VAT", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.vatText.Location = new System.Drawing.Point(99, 229);
             this.vatText.Name = "vatText";
             this.vatText.ReadOnly = true;
@@ -379,7 +382,7 @@
             // 
             this.staffComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dOCUMENTBindingSource, "Creator", true));
             this.staffComboBox.DataSource = this.sTAFFBindingSource;
-            this.staffComboBox.DisplayMember = "StaffKey";
+            this.staffComboBox.DisplayMember = "Name";
             this.staffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.staffComboBox.FormattingEnabled = true;
             this.staffComboBox.Location = new System.Drawing.Point(99, 124);
@@ -423,7 +426,7 @@
             // editBtn
             // 
             this.editBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.editBtn.Location = new System.Drawing.Point(13, 511);
+            this.editBtn.Location = new System.Drawing.Point(13, 504);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(75, 23);
             this.editBtn.TabIndex = 43;
@@ -434,7 +437,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelBtn.Location = new System.Drawing.Point(213, 511);
+            this.cancelBtn.Location = new System.Drawing.Point(213, 504);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 42;
@@ -445,7 +448,7 @@
             // saveBtn
             // 
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveBtn.Location = new System.Drawing.Point(294, 511);
+            this.saveBtn.Location = new System.Drawing.Point(294, 504);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 41;
@@ -458,7 +461,7 @@
             this.extraTextBox.AutoSize = true;
             this.extraTextBox.BackColor = System.Drawing.Color.White;
             this.extraTextBox.BorderColor = System.Drawing.Color.Silver;
-            this.extraTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "ExtraPaid", true));
+            this.extraTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "ExtraPaid", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.extraTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.extraTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
             this.extraTextBox.isRequired = false;
@@ -472,7 +475,7 @@
             this.extraTextBox.StringPattern = "^([0-9. ])*$";
             this.extraTextBox.TabIndex = 39;
             this.extraTextBox.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.extraTextBox.TextPanelMessage = "This is an error message.";
+            this.extraTextBox.TextPanelMessage = "Giá trị không hợp lệ.";
             this.extraTextBox.TextPanelMessageColor = System.Drawing.Color.White;
             this.extraTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
@@ -518,7 +521,8 @@
             // 
             // finalPriceText
             // 
-            this.finalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "FinalPrice", true));
+            this.finalPriceText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.finalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "FinalPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.finalPriceText.Location = new System.Drawing.Point(99, 306);
             this.finalPriceText.Name = "finalPriceText";
             this.finalPriceText.ReadOnly = true;
@@ -574,12 +578,13 @@
             // 
             // totalPriceText
             // 
-            this.totalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "TotalPrice", true));
+            this.totalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "TotalPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N2"));
             this.totalPriceText.Location = new System.Drawing.Point(99, 203);
             this.totalPriceText.Name = "totalPriceText";
             this.totalPriceText.ReadOnly = true;
             this.totalPriceText.Size = new System.Drawing.Size(150, 20);
             this.totalPriceText.TabIndex = 11;
+            this.totalPriceText.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
             // 
             // label5
             // 
@@ -643,7 +648,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Size = new System.Drawing.Size(455, 552);
-            this.splitContainer1.SplitterDistance = 269;
+            this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 13;
             // 
             // groupBox2
@@ -653,7 +658,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(455, 269);
+            this.groupBox2.Size = new System.Drawing.Size(455, 266);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách phiếu thanh toán";
@@ -661,12 +666,13 @@
             // addBillBtn
             // 
             this.addBillBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addBillBtn.Location = new System.Drawing.Point(330, 240);
+            this.addBillBtn.Location = new System.Drawing.Point(330, 234);
             this.addBillBtn.Name = "addBillBtn";
             this.addBillBtn.Size = new System.Drawing.Size(110, 23);
             this.addBillBtn.TabIndex = 1;
             this.addBillBtn.Text = "Thanh toán";
             this.addBillBtn.UseVisualStyleBackColor = true;
+            this.addBillBtn.Click += new System.EventHandler(this.addBillBtn_Click);
             // 
             // billDataGridView
             // 
@@ -686,30 +692,8 @@
             this.billDataGridView.ReadOnly = true;
             this.billDataGridView.RowHeadersVisible = false;
             this.billDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.billDataGridView.Size = new System.Drawing.Size(425, 214);
+            this.billDataGridView.Size = new System.Drawing.Size(425, 208);
             this.billDataGridView.TabIndex = 0;
-            // 
-            // typeColumn
-            // 
-            this.typeColumn.DataPropertyName = "PaidMethod";
-            this.typeColumn.HeaderText = "Hình thức";
-            this.typeColumn.Name = "typeColumn";
-            this.typeColumn.ReadOnly = true;
-            // 
-            // recieveMoneyColumn
-            // 
-            this.recieveMoneyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.recieveMoneyColumn.DataPropertyName = "ReceiveMoney";
-            this.recieveMoneyColumn.HeaderText = "Số tiền nhận";
-            this.recieveMoneyColumn.Name = "recieveMoneyColumn";
-            this.recieveMoneyColumn.ReadOnly = true;
-            // 
-            // returnMoneyColumn
-            // 
-            this.returnMoneyColumn.DataPropertyName = "ChangeMoney";
-            this.returnMoneyColumn.HeaderText = "Số tiền trả lại";
-            this.returnMoneyColumn.Name = "returnMoneyColumn";
-            this.returnMoneyColumn.ReadOnly = true;
             // 
             // groupBox3
             // 
@@ -718,7 +702,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(455, 279);
+            this.groupBox3.Size = new System.Drawing.Size(455, 282);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Danh sách sản phẩm";
@@ -726,12 +710,13 @@
             // addProductBtn
             // 
             this.addProductBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addProductBtn.Location = new System.Drawing.Point(330, 246);
+            this.addProductBtn.Location = new System.Drawing.Point(330, 245);
             this.addProductBtn.Name = "addProductBtn";
             this.addProductBtn.Size = new System.Drawing.Size(110, 23);
             this.addProductBtn.TabIndex = 1;
             this.addProductBtn.Text = "Thêm sản phẩm";
             this.addProductBtn.UseVisualStyleBackColor = true;
+            this.addProductBtn.Click += new System.EventHandler(this.addProductBtn_Click);
             // 
             // orderDetailDataGridView
             // 
@@ -755,7 +740,7 @@
             this.orderDetailDataGridView.ReadOnly = true;
             this.orderDetailDataGridView.RowHeadersVisible = false;
             this.orderDetailDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.orderDetailDataGridView.Size = new System.Drawing.Size(425, 216);
+            this.orderDetailDataGridView.Size = new System.Drawing.Size(425, 215);
             this.orderDetailDataGridView.TabIndex = 0;
             // 
             // orderidDataGridViewTextBoxColumn
@@ -864,10 +849,47 @@
             // 
             this.groupofCUSTOMERTableAdapter.ClearBeforeFill = true;
             // 
+            // closeBtn
+            // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.Location = new System.Drawing.Point(770, 573);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(75, 23);
+            this.closeBtn.TabIndex = 14;
+            this.closeBtn.Text = "Đóng";
+            this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // typeColumn
+            // 
+            this.typeColumn.DataPropertyName = "PaidMethod";
+            this.typeColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.typeColumn.HeaderText = "Hình thức";
+            this.typeColumn.Name = "typeColumn";
+            this.typeColumn.ReadOnly = true;
+            this.typeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.typeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // recieveMoneyColumn
+            // 
+            this.recieveMoneyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.recieveMoneyColumn.DataPropertyName = "ReceiveMoney";
+            this.recieveMoneyColumn.HeaderText = "Số tiền nhận";
+            this.recieveMoneyColumn.Name = "recieveMoneyColumn";
+            this.recieveMoneyColumn.ReadOnly = true;
+            // 
+            // returnMoneyColumn
+            // 
+            this.returnMoneyColumn.DataPropertyName = "ChangeMoney";
+            this.returnMoneyColumn.HeaderText = "Số tiền trả lại";
+            this.returnMoneyColumn.Name = "returnMoneyColumn";
+            this.returnMoneyColumn.ReadOnly = true;
+            // 
             // CustomerOrderDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Name = "CustomerOrderDetail";
@@ -941,7 +963,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox debtText;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox2;
@@ -972,11 +994,12 @@
         private System.Windows.Forms.BindingSource cUSTOMERBindingSource;
         private SellManagementDbDataSetTableAdapters.CUSTOMERTableAdapter cUSTOMERTableAdapter;
         private SellManagementDbDataSetTableAdapters.BILLTableAdapter billTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn returnMoneyColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn recieveMoneyColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeColumn;
         private System.Windows.Forms.ComboBox statusDebtComboBox;
         private SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter constantTableAdapter;
         private SellManagementDbDataSetTableAdapters.GROUPofCUSTOMERTableAdapter groupofCUSTOMERTableAdapter;
+        private System.Windows.Forms.Button closeBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn returnMoneyColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn recieveMoneyColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn typeColumn;
     }
 }

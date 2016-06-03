@@ -117,28 +117,28 @@ namespace QuanLyBanHang
 
                         if (result == DialogResult.OK)
                         {
-                            var newTab = new TabPage("Đơn bán hàng");
-                        newTab.AutoScroll = true;
+                            var newTab = new TabPage("Đơn hàng " + selectForm.OrderKey);
+                            newTab.AutoScroll = true;
                             var order = new CustomerOrderDetail(selectForm.OrderId);
-                        order.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(order);
+                            order.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(order);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            tabControl.TabPages.Add(newTab);
+                            tabControl.SelectedIndex = tabControl.TabCount - 1;
                         }
 
                         break;
                     }
                 case eTabType.STORE_TAB:
                     {
-                        //var newTab = new TabPage("Danh sách kho hàng");
-                        //newTab.AutoScroll = true;
-                        //var store = new InventoryList();
-                        //store.Dock = DockStyle.Fill;
-                        //newTab.Controls.Add(store);
+                        var newTab = new TabPage("Danh sách kho hàng");
+                        newTab.AutoScroll = true;
+                        var store = new InventoryList();
+                        store.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(store);
 
-                        //tabControl.TabPages.Add(newTab);
-                        //tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
                 case eTabType.PRODUCT_TAB:
@@ -159,12 +159,12 @@ namespace QuanLyBanHang
                     {
                         var newTab = new TabPage("Danh sach khach hang");
                         newTab.AutoScroll = true;
-                        //var staff = new StaffList();
-                        //staff.Dock = DockStyle.Fill;
-                        //newTab.Controls.Add(staff);
+                        var staff = new StaffList();
+                        staff.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(staff);
 
-                        //tabControl.TabPages.Add(newTab);
-                        //tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
                 case eTabType.INOUT_INVENTORY:
