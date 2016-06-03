@@ -29488,12 +29488,21 @@ FROM            InOut_Inventory_View INNER JOIN
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT InOutInventory_id, Product_id, Quantity FROM dbo.InOutInventory_Detail_Pro" +
                 "ductQuantity_View";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        InOutInventory_Detail_ProductQuantity_View.InOutInventory_id, InOutInventory_Detail_ProductQuantity_View.Product_id, InOutInventory_Detail_ProductQuantity_View.Quantity, PRODUCT.ProductKey, 
+                         PRODUCT.Name AS ProductName
+FROM            InOutInventory_Detail_ProductQuantity_View INNER JOIN
+                         PRODUCT ON InOutInventory_Detail_ProductQuantity_View.Product_id = PRODUCT.Id
+WHERE        (InOutInventory_Detail_ProductQuantity_View.InOutInventory_id = @inout)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inout", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "InOutInventory_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -29515,6 +29524,32 @@ FROM            InOut_Inventory_View INNER JOIN
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable dataTable = new SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByInOutId(SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable dataTable, int inout) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(inout));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable GetDataByInOutId(int inout) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(inout));
             SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable dataTable = new SellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_ViewDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

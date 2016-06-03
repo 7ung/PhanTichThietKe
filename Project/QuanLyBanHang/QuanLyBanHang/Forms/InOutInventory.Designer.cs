@@ -1,4 +1,5 @@
-﻿namespace QuanLyBanHang.Forms
+﻿using WindowsFormsControlLibrary;
+namespace QuanLyBanHang.Forms
 {
     partial class InOutInventory
     {
@@ -51,13 +52,20 @@
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             this.inOutTypeCheckBox = new System.Windows.Forms.CheckBox();
             this.termNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.carryFeeTextBox = new System.Windows.Forms.TextBox();
+            this.carryFeeTextBox = new WindowsFormsControlLibrary.CustomTextBox();
             this.respondComboBox = new System.Windows.Forms.ComboBox();
             this.createDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.creatorComboBox = new System.Windows.Forms.ComboBox();
-            this.documentKeyTextBox = new System.Windows.Forms.TextBox();
+            this.documentKeyTextBox = new WindowsFormsControlLibrary.CustomTextBox();
             this.fKINOUTINVENTORYSTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iNOUTINVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter();
+            this.inOutInventory_Detail_ProductQuantity_ViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.InOutInventory_Detail_ProductQuantity_ViewTableAdapter();
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView = new System.Windows.Forms.DataGridView();
+            this.Product_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             inOutTypeLabel = new System.Windows.Forms.Label();
             termLabel = new System.Windows.Forms.Label();
             carryFeeLabel = new System.Windows.Forms.Label();
@@ -72,6 +80,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.inventory_bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKINOUTINVENTORYSTAFFBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inOutInventory_Detail_ProductQuantity_ViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inOutInventory_Detail_ProductQuantity_ViewDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // inOutTypeLabel
@@ -133,9 +143,9 @@
             documentKeyLabel.AutoSize = true;
             documentKeyLabel.Location = new System.Drawing.Point(488, 56);
             documentKeyLabel.Name = "documentKeyLabel";
-            documentKeyLabel.Size = new System.Drawing.Size(80, 13);
+            documentKeyLabel.Size = new System.Drawing.Size(25, 13);
             documentKeyLabel.TabIndex = 21;
-            documentKeyLabel.Text = "Document Key:";
+            documentKeyLabel.Text = "Mã ";
             // 
             // sellManagementDbDataSet
             // 
@@ -146,6 +156,7 @@
             // 
             this.inOut_Inventory_ViewBindingSource.DataMember = "InOut_Inventory_View";
             this.inOut_Inventory_ViewBindingSource.DataSource = this.sellManagementDbDataSet;
+            this.inOut_Inventory_ViewBindingSource.CurrentChanged += new System.EventHandler(this.inOut_Inventory_ViewBindingSource_CurrentChanged);
             // 
             // inOut_Inventory_ViewTableAdapter
             // 
@@ -271,11 +282,26 @@
             // 
             // carryFeeTextBox
             // 
+            this.carryFeeTextBox.AutoSize = true;
+            this.carryFeeTextBox.BackColor = System.Drawing.Color.White;
+            this.carryFeeTextBox.BorderColor = System.Drawing.Color.Silver;
             this.carryFeeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOut_Inventory_ViewBindingSource, "CarryFee", true));
+            this.carryFeeTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.carryFeeTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.carryFeeTextBox.isRequired = true;
             this.carryFeeTextBox.Location = new System.Drawing.Point(574, 159);
+            this.carryFeeTextBox.Multiline = false;
             this.carryFeeTextBox.Name = "carryFeeTextBox";
-            this.carryFeeTextBox.Size = new System.Drawing.Size(200, 20);
+            this.carryFeeTextBox.NormalBorderColor = System.Drawing.Color.Silver;
+            this.carryFeeTextBox.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.carryFeeTextBox.ReadOnly = false;
+            this.carryFeeTextBox.Size = new System.Drawing.Size(200, 19);
+            this.carryFeeTextBox.StringPattern = "[0-9.]";
             this.carryFeeTextBox.TabIndex = 32;
+            this.carryFeeTextBox.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.carryFeeTextBox.TextPanelMessage = "This is an error message.";
+            this.carryFeeTextBox.TextPanelMessageColor = System.Drawing.Color.White;
+            this.carryFeeTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
             // respondComboBox
             // 
@@ -311,11 +337,26 @@
             // 
             // documentKeyTextBox
             // 
+            this.documentKeyTextBox.AutoSize = true;
+            this.documentKeyTextBox.BackColor = System.Drawing.Color.White;
+            this.documentKeyTextBox.BorderColor = System.Drawing.Color.Silver;
             this.documentKeyTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOut_Inventory_ViewBindingSource, "DocumentKey", true));
+            this.documentKeyTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.documentKeyTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.documentKeyTextBox.isRequired = true;
             this.documentKeyTextBox.Location = new System.Drawing.Point(574, 53);
+            this.documentKeyTextBox.Multiline = false;
             this.documentKeyTextBox.Name = "documentKeyTextBox";
-            this.documentKeyTextBox.Size = new System.Drawing.Size(200, 20);
+            this.documentKeyTextBox.NormalBorderColor = System.Drawing.Color.Silver;
+            this.documentKeyTextBox.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.documentKeyTextBox.ReadOnly = true;
+            this.documentKeyTextBox.Size = new System.Drawing.Size(200, 19);
+            this.documentKeyTextBox.StringPattern = "[A-Za-z0-9.-]";
             this.documentKeyTextBox.TabIndex = 22;
+            this.documentKeyTextBox.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.documentKeyTextBox.TextPanelMessage = "This is an error message.";
+            this.documentKeyTextBox.TextPanelMessageColor = System.Drawing.Color.White;
+            this.documentKeyTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
             // fKINOUTINVENTORYSTAFFBindingSource
             // 
@@ -326,10 +367,66 @@
             // 
             this.iNOUTINVENTORYTableAdapter.ClearBeforeFill = true;
             // 
+            // inOutInventory_Detail_ProductQuantity_ViewBindingSource
+            // 
+            this.inOutInventory_Detail_ProductQuantity_ViewBindingSource.DataMember = "InOutInventory_Detail_ProductQuantity_View";
+            this.inOutInventory_Detail_ProductQuantity_ViewBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // inOutInventory_Detail_ProductQuantity_ViewTableAdapter
+            // 
+            this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter.ClearBeforeFill = true;
+            // 
+            // inOutInventory_Detail_ProductQuantity_ViewDataGridView
+            // 
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.AutoGenerateColumns = false;
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Product_id,
+            this.Column2,
+            this.dataGridViewTextBoxColumn4});
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.DataSource = this.inOutInventory_Detail_ProductQuantity_ViewBindingSource;
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.Location = new System.Drawing.Point(491, 254);
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.Name = "inOutInventory_Detail_ProductQuantity_ViewDataGridView";
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.ReadOnly = true;
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.Size = new System.Drawing.Size(344, 149);
+            this.inOutInventory_Detail_ProductQuantity_ViewDataGridView.TabIndex = 36;
+            // 
+            // Product_id
+            // 
+            this.Product_id.DataPropertyName = "ProductKey";
+            this.Product_id.HeaderText = "Mã sản phẩm";
+            this.Product_id.Name = "Product_id";
+            this.Product_id.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ProductName";
+            this.Column2.HeaderText = "Tên sản phẩm";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Quantity";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Số lượng";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(25, 446);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // InOutInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.inOutInventory_Detail_ProductQuantity_ViewDataGridView);
             this.Controls.Add(documentKeyLabel);
             this.Controls.Add(this.documentKeyTextBox);
             this.Controls.Add(creatorLabel);
@@ -355,6 +452,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.inventory_bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKINOUTINVENTORYSTAFFBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inOutInventory_Detail_ProductQuantity_ViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inOutInventory_Detail_ProductQuantity_ViewDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,17 +472,24 @@
         private SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter iNVENTORYTableAdapter;
         private System.Windows.Forms.CheckBox inOutTypeCheckBox;
         private System.Windows.Forms.NumericUpDown termNumericUpDown;
-        private System.Windows.Forms.TextBox carryFeeTextBox;
+        private CustomTextBox carryFeeTextBox;
         private System.Windows.Forms.ComboBox respondComboBox;
         private System.Windows.Forms.DateTimePicker createDateDateTimePicker;
         private System.Windows.Forms.ComboBox creatorComboBox;
-        private System.Windows.Forms.TextBox documentKeyTextBox;
+        private CustomTextBox documentKeyTextBox;
         private System.Windows.Forms.BindingSource fKINOUTINVENTORYSTAFFBindingSource;
         private SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter iNOUTINVENTORYTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Creator;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.BindingSource inOutInventory_Detail_ProductQuantity_ViewBindingSource;
+        private SellManagementDbDataSetTableAdapters.InOutInventory_Detail_ProductQuantity_ViewTableAdapter inOutInventory_Detail_ProductQuantity_ViewTableAdapter;
+        private System.Windows.Forms.DataGridView inOutInventory_Detail_ProductQuantity_ViewDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button button1;
 
     }
 }

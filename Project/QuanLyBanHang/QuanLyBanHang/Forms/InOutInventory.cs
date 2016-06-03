@@ -94,5 +94,14 @@ namespace QuanLyBanHang.Forms
             }
         }
 
+        private void inOut_Inventory_ViewBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            int id = (((sender as BindingSource).CurrencyManager.Current as DataRowView)
+                .Row as SellManagementDbDataSet.InOut_Inventory_ViewRow).Id;
+            this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter.FillByInOutId(
+                sellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_View, id);
+            
+        }
+
     }
 }
