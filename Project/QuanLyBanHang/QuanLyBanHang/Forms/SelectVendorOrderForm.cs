@@ -1,0 +1,73 @@
+﻿using QuanLyBanHang.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace QuanLyBanHang.Forms
+{
+    public partial class SelectVendorOrderForm : Form
+    {
+        public int OrderId { get; set; }
+        public string DocumentKey { get; set; }
+
+        public SelectVendorOrderForm()
+        {
+            InitializeComponent();
+        }
+
+        private void SelectVendorOrderForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.VENDOR' table. You can move, or remove it, as needed.
+            this.vENDORTableAdapter.Fill(this.sellManagementDbDataSet.VENDOR);
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.Vendor_Order_View' table. You can move, or remove it, as needed.
+            this.vendor_Order_ViewTableAdapter.Fill(this.sellManagementDbDataSet.Vendor_Order_View);
+
+            BindingOrderStatus();
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void searchText_TextChanged(object sender, EventArgs e)
+        {
+            vendorOrderViewBindingSource.Filter = dataGridView1.Columns["keyColumn"].DataPropertyName.ToString() + " LIKE '%" + searchText.Text + "%'";
+        }
+
+        private void selectBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var row = dataGridView1.SelectedRows[0].Cells["idColumn"];
+                OrderId = Convert.ToInt32(row.Value);
+                DocumentKey = dataGridView1.SelectedRows[0].Cells["keyColumn"].Value.ToString();
+            }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void BindingOrderStatus()
+        {
+            var types = new StringNStringBindingData[]
+            {
+                new StringNStringBindingData("Hoàn thành" ,"complete"),
+                new StringNStringBindingData("Hết hàng", "outofstock"),
+                new StringNStringBindingData("Đang giao hàng", "shipping"),
+                new StringNStringBindingData("Không", "")
+            };
+
+            statusColumn.DataSource = types;
+            statusColumn.DisplayMember = "Name";
+            statusColumn.ValueMember = "Value";
+        }
+    }
+}

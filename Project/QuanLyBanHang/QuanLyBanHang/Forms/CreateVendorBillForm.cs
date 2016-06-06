@@ -10,65 +10,56 @@ using System.Windows.Forms;
 
 namespace QuanLyBanHang.Forms
 {
-    public partial class CreateBillForm : Form
+    public partial class CreateVendorBillForm : Form
     {
         public int OrderId { get; set; }
         public int DebtId { get; set; }
+        public int VendorId { get; set; }
 
-        public CreateBillForm()
+        public CreateVendorBillForm()
         {
             InitializeComponent();
         }
 
-        public CreateBillForm(int orderId)
+        public CreateVendorBillForm(int orderId)
         {
             InitializeComponent();
 
             OrderId = orderId;
         }
 
-        private void CreateBillForm_Load(object sender, EventArgs e)
+        private void CreateVendorBillForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.VENDOR' table. You can move, or remove it, as needed.
+            this.vENDORTableAdapter.Fill(this.sellManagementDbDataSet.VENDOR);
+
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.DEBT' table. You can move, or remove it, as needed.
             this.dEBTTableAdapter.Fill(this.sellManagementDbDataSet.DEBT);
-            // TODO: This line of code loads data into the 'sellManagementDbDataSet.PURCHASE_ORDER' table. You can move, or remove it, as needed.
-            this.pURCHASE_ORDERTableAdapter.Fill(this.sellManagementDbDataSet.PURCHASE_ORDER);
-            // TODO: This line of code loads data into the 'sellManagementDbDataSet.STAFF' table. You can move, or remove it, as needed.
-            this.sTAFFTableAdapter.Fill(this.sellManagementDbDataSet.STAFF);
-            // TODO: This line of code loads data into the 'sellManagementDbDataSet.CUSTOMER' table. You can move, or remove it, as needed.
-            this.cUSTOMERTableAdapter.Fill(this.sellManagementDbDataSet.CUSTOMER);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.ORDER' table. You can move, or remove it, as needed.
             this.oRDERTableAdapter.Fill(this.sellManagementDbDataSet.ORDER);
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.STAFF' table. You can move, or remove it, as needed.
+            this.sTAFFTableAdapter.Fill(this.sellManagementDbDataSet.STAFF);
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.DOCUMENT' table. You can move, or remove it, as needed.
+            this.dOCUMENTTableAdapter.Fill(this.sellManagementDbDataSet.DOCUMENT);
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.VENDOR_ORDER' table. You can move, or remove it, as needed.
+            this.vENDOR_ORDERTableAdapter.Fill(this.sellManagementDbDataSet.VENDOR_ORDER);
 
-            documentTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
-
-            SelectById(this.OrderId);
+            SelectById(OrderId);
         }
 
         private void SelectById(int id)
         {
-            pURCHASEORDERBindingSource.Filter = "Id = " + id;
+            vENDORORDERBindingSource.Filter = "Id = " + id;
             oRDERBindingSource.Filter = "Id = " + id;
             dOCUMENTBindingSource.Filter = "Id = " + id;
 
             var docOrder = sellManagementDbDataSet.DOCUMENT.Where(d => d.Id == this.OrderId).First();
-            var docDebtId = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey.Contains("CD_" + docOrder.DocumentKey)).First().Id;
+            var docDebtId = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey.Contains("VD_" + docOrder.DocumentKey)).First().Id;
 
             DebtId = docDebtId;
             dEBTBindingSource.Filter = "Id = " + docDebtId;
-        }
 
-        private string generateBillDocumentKey()
-        {
-            int max = 0;
-
-            foreach (DataRow item in sellManagementDbDataSet.DOCUMENT.Where(c => c.DocumentKey.Substring(0, 2) == "CB"))
-            {
-                var value = item["DocumentKey"].ToString().TrimStart(new char[] { 'C', 'B' });
-                max = Math.Max(max, Convert.ToInt32(value));
-            }
-
-            return "CB" + String.Format("{0:D6}", max + 1);
+            VendorId = sellManagementDbDataSet.VENDOR_ORDER.Where(v => v.Id == this.OrderId).First().Vendor_id;
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -83,6 +74,7 @@ namespace QuanLyBanHang.Forms
             // tính bill
             double changeMoney = 0;
             double recieveMoney = 0;
+            double remain = 0;
 
             try
             {
@@ -91,6 +83,9 @@ namespace QuanLyBanHang.Forms
 
                 if (recieveMoneyText.Text != "")
                     recieveMoney = Convert.ToDouble(recieveMoneyText.Text);
+
+                if (remainPriceText.Text != "")
+                    remain = Convert.ToDouble(remainPriceText.Text);
             }
             catch (Exception ex)
             {
@@ -98,28 +93,36 @@ namespace QuanLyBanHang.Forms
                 return;
             }
 
-            
-            queriesTableAdapter.Insert_Customer_Bill(generateBillDocumentKey(),
+
+            queriesTableAdapter.Insert_Vendor_Bill( generateBillDocumentKey(),
                                                     (int)staffComboBox.SelectedValue,
                                                     createDatePicker.Value,
                                                     DebtId,
                                                     "cash",
-                                                    (int)customerComboBox.SelectedValue,
-                                                    changeMoney,
-                                                    recieveMoney);
+                                                    remain, // phải trả đủ cho vendor -_- 
+                                                    (int)paidStaffComboBox.SelectedValue, 
+                                                    VendorId);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Bạn có chắc muốn hủy?", "Cảnh báo!", MessageBoxButtons.OKCancel);
 
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
                 this.Close();
         }
 
-        private void recieveMoneyText_TextChanged(object sender, EventArgs e)
+        private string generateBillDocumentKey()
         {
-            UpdateMoney();
+            int max = 0;
+
+            foreach (DataRow item in sellManagementDbDataSet.DOCUMENT.Where(c => c.DocumentKey.Substring(0, 2) == "VB"))
+            {
+                var value = item["DocumentKey"].ToString().TrimStart(new char[] { 'V', 'B' });
+                max = Math.Max(max, Convert.ToInt32(value));
+            }
+
+            return "VB" + String.Format("{0:D6}", max + 1);
         }
 
         private void UpdateMoney()
@@ -140,7 +143,7 @@ namespace QuanLyBanHang.Forms
                 okBtn.Enabled = false;
                 return;
             }
-            
+
             if (recieveMoney >= remainPrice)
             {
                 //changeMoneyText.Text = (recieveMoney - remainPrice).ToString("0.00");
@@ -159,6 +162,11 @@ namespace QuanLyBanHang.Forms
                 MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 okBtn.Enabled = false;
             }
+        }
+
+        private void recieveMoneyText_TextChanged(object sender, EventArgs e)
+        {
+            UpdateMoney();
         }
     }
 }

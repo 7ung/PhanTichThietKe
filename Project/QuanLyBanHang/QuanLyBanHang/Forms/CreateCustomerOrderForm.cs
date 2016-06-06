@@ -80,5 +80,11 @@ namespace QuanLyBanHang.Forms
             this.Close();
             DialogResult = DialogResult.Cancel;
         }
+
+        private void createCustomerBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            DialogResult = DialogResult.Retry;
+        }
     }
 }

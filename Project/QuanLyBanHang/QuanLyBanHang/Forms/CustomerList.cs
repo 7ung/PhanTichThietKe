@@ -52,7 +52,7 @@ namespace QuanLyBanHang.Forms
             customerTypeComboBox.DisplayMember = "Name";
             customerTypeComboBox.ValueMember = "Value";
 
-            // 
+            //
             updateState(eFormState.VIEW);
             
         }
@@ -69,6 +69,7 @@ namespace QuanLyBanHang.Forms
                         cancelBtn.Visible = true;
                         saveBtn.Visible = true;
                         editBtn.Visible = false;
+                        deleteBtn.Visible = false;
                         break;
                     }
                 case eFormState.CREATE_NEW:
@@ -80,6 +81,7 @@ namespace QuanLyBanHang.Forms
                         saveBtn.Visible = true;
                         saveBtn.Enabled = false;
                         editBtn.Visible = false;
+                        deleteBtn.Visible = false;
                         break;
                     }
                 case eFormState.VIEW:
@@ -88,6 +90,7 @@ namespace QuanLyBanHang.Forms
                         cancelBtn.Visible = false;
                         saveBtn.Visible = false;
                         editBtn.Visible = true;
+                        deleteBtn.Visible = true;
                         break;
                     }
                 default:

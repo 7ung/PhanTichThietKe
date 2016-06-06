@@ -11,113 +11,78 @@ using QuanLyBanHang.Models;
 
 namespace QuanLyBanHang.Forms
 {
-    public partial class CustomerOrderDetail : UserControl, IFormList
+    public partial class VendorOrderDetail : UserControl, IFormList
     {
         public int OrderId { get; set; }
+        public string DocumentKey { get; set; }
 
         public eFormState State
         {
-            get;  set;
+            get; set;
         }
 
-        public CustomerOrderDetail(int orderId)
+        public VendorOrderDetail()
         {
+            InitializeComponent();
+        }
+
+        public VendorOrderDetail(int orderId)
+        {
+            InitializeComponent();
+
             OrderId = orderId;
-
-            InitializeComponent();
         }
 
-        public CustomerOrderDetail()
+        private void VendorOrderDetail_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-        }
-
-        private void CustomerOrderDetail_Load(object sender, EventArgs e)
-        {
-            // datagridview settings
             billDataGridView.AutoGenerateColumns = false;
             
-            // bind type combobox
+            // binding
             BindingType();
             BindingOrderStatus();
             BindingDebtStatus();
             BindingTypeBill();
-
-            orderTableAdapter.Fill(sellManagementDbDataSet.ORDER);
+            
+            // fill
+            oRDERTableAdapter.Fill(sellManagementDbDataSet.ORDER);
             oRDER_DETAILTableAdapter.Fill(sellManagementDbDataSet.ORDER_DETAIL);
-            billTableAdapter.Fill(sellManagementDbDataSet.BILL);
-            cUSTOMER_BILLTableAdapter.Fill(sellManagementDbDataSet.CUSTOMER_BILL);
-            pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
+            dOCUMENTTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
+            vENDORTableAdapter.Fill(sellManagementDbDataSet.VENDOR);
+            vENDOR_ORDERTableAdapter.Fill(sellManagementDbDataSet.VENDOR_ORDER);
             sTAFFTableAdapter.Fill(sellManagementDbDataSet.STAFF);
             dEBTTableAdapter.Fill(sellManagementDbDataSet.DEBT);
-            pURCHASE_ORDERTableAdapter.Fill(sellManagementDbDataSet.PURCHASE_ORDER);
-            documentTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
-            cUSTOMERTableAdapter.Fill(sellManagementDbDataSet.CUSTOMER);
+            pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
+            billTableAdapter.Fill(sellManagementDbDataSet.BILL);
+            vendoR_BILLTableAdapter.Fill(sellManagementDbDataSet.VENDOR_BILL);
             constantTableAdapter.Fill(sellManagementDbDataSet.CONSTANT);
-            groupofCUSTOMERTableAdapter.Fill(sellManagementDbDataSet.GROUPofCUSTOMER);
-            
-            // filter order
-            SelectOrderById(this.OrderId);
 
-            // update state
+            // order
+            SelectByOrderId(OrderId);
+
+            //stage
             updateState(eFormState.VIEW);
 
-            // update constant
+            CheckBillForButton();
+
             var value = sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "VAT_rate").First().Value;
             vatValueText.Text = (Convert.ToDouble(value) * 100).ToString() + "%";
-
-            CheckBillForButton();
         }
 
-        private void SelectOrderById(int orderId)
+        private void SelectByOrderId(int orderId)
         {
-            // sử dụng kiểu where(...) làm binding source không cập nhật được với dataset
-
+            dOCUMENTBindingSource.Filter = "Id = " + orderId;
+            oRDERBindingSource.Filter = "Id = " + orderId;
+            oRDERDETAILBindingSource.Filter = "Order_id = " + orderId;
+            
             // tìm document order
             var docOrder = sellManagementDbDataSet.DOCUMENT.Where(d => d.Id == orderId).First();
-            
-            //dOCUMENTBindingSource.DataSource = docOrder;
-            dOCUMENTBindingSource.Filter = "Id = " + orderId;
-
-            // orders
-            //var orders = sellManagementDbDataSet.ORDER.Where(o => o.Id == orderId);
-
-            //if (orders.Count() > 0)
-            //{
-            //    oRDERBindingSource.DataSource = orders.First();
-            //}
-            oRDERBindingSource.Filter = "Id = " + orderId;
-            
-            //var orderdetail = sellManagementDbDataSet.ORDER_DETAIL.Where(o => o.Order_id == orderId);
-            //if (orderdetail.Count() > 0)
-            //{
-            //    oRDERDETAILBindingSource.DataSource = orderdetail;
-            //}
-            oRDERDETAILBindingSource.Filter = "Order_id = " + orderId;
 
             // tìm document debt id
-            var docDebtId = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey.Contains("CD_" + docOrder.DocumentKey)).First().Id;
+            var docDebtId = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey.Contains("VD_" + docOrder.DocumentKey)).First().Id;
 
-            // debt
-            //var debt = sellManagementDbDataSet.DEBT.Where(d => d.Id == docDebtId);
-            //if(debt.Count() > 0)
-            //{
-            //    dEBTBindingSource.DataSource = debt.ToList();
-            //}
             dEBTBindingSource.Filter = "Id = " + docDebtId;
 
-            // bill
             SelectBill(docDebtId);
-
-            // purchase order
-            var purchase = sellManagementDbDataSet.PURCHASE_ORDER.Where(p => p.Id == orderId).First();
-            //pURCHASEORDERBindingSource.DataSource = purchase;
-            pURCHASEORDERBindingSource.Filter = "Id = " + orderId;
-
-            // update discount
-            var customer = sellManagementDbDataSet.CUSTOMER.Where(c => c.Id == purchase.Customer_id).First();
-            var group = sellManagementDbDataSet.GROUPofCUSTOMER.Where(g => g.Id == customer.Group_id).First();
-            discountText.Text = (group.Discount * 100).ToString() + "%";
         }
 
         private void BindingType()
@@ -191,7 +156,7 @@ namespace QuanLyBanHang.Forms
                         editBtn.Visible = false;
                         cancelBtn.Visible = true;
                         addProductBtn.Visible = true;
-                        
+
                         break;
                     }
                 case eFormState.CREATE_NEW:
@@ -217,14 +182,12 @@ namespace QuanLyBanHang.Forms
             createDateTimePicker.Enabled = enable;
             staffComboBox.Enabled = enable;
             statusOrderComboBox.Enabled = enable;
-            extraTextBox.Enabled = enable;
 
             //customerNameComboBox.Enabled = !readOnly;
             typeComboBox.Enabled = !readOnly;
             createDateTimePicker.Enabled = !readOnly;
             staffComboBox.Enabled = !readOnly;
             statusOrderComboBox.Enabled = !readOnly;
-            extraTextBox.ReadOnly = readOnly;
 
         }
 
@@ -233,29 +196,57 @@ namespace QuanLyBanHang.Forms
             return true;
         }
 
+        private void SelectBill(int debtId)
+        {
+            billTableAdapter.Fill(sellManagementDbDataSet.BILL);
+            vendoR_BILLTableAdapter.Fill(sellManagementDbDataSet.VENDOR_BILL);
+
+            var customerBill = from bill in sellManagementDbDataSet.BILL
+                               join billdetail in sellManagementDbDataSet.VENDOR_BILL on bill.Id equals billdetail.Id
+                               where bill.Debt_id == debtId
+                               select new { bill.Id, bill.Debt_id, bill.PaidMethod, bill.PaidMoney, billdetail.PaidStaff };
+
+            if (customerBill.Count() > 0)
+            {
+                billDataGridView.DataSource = customerBill.ToList();
+            }
+        }
+
+        private void CheckBillForButton()
+        {
+            if (isMultiPaid.Checked || Convert.ToDouble(debtText.Text) > 0)
+            {
+                addBillBtn.Visible = true;
+            }
+            else
+            {
+                addBillBtn.Visible = false;
+            }
+        }
+
         private void saveData()
         {
             oRDERBindingSource.EndEdit();
-            orderTableAdapter.Update(sellManagementDbDataSet.ORDER);
+            oRDERTableAdapter.Update(sellManagementDbDataSet.ORDER);
             sellManagementDbDataSet.ORDER.AcceptChanges();
-            
+
             oRDERDETAILBindingSource.EndEdit();
             oRDER_DETAILTableAdapter.Update(sellManagementDbDataSet.ORDER_DETAIL);
             sellManagementDbDataSet.ORDER_DETAIL.AcceptChanges();
-            
-            pURCHASEORDERBindingSource.EndEdit();
-            pURCHASE_ORDERTableAdapter.Update(sellManagementDbDataSet.PURCHASE_ORDER);
+
+            vENDORORDERBindingSource.EndEdit();
+            vENDOR_ORDERTableAdapter.Update(sellManagementDbDataSet.VENDOR_ORDER);
             sellManagementDbDataSet.PURCHASE_ORDER.AcceptChanges();
-            
+
             dOCUMENTBindingSource.EndEdit();
-            documentTableAdapter.Update(sellManagementDbDataSet.DOCUMENT);
+            dOCUMENTTableAdapter.Update(sellManagementDbDataSet.DOCUMENT);
             sellManagementDbDataSet.DOCUMENT.AcceptChanges();
-           
+
             // fill lại
-            orderTableAdapter.Fill(sellManagementDbDataSet.ORDER);
+            oRDERTableAdapter.Fill(sellManagementDbDataSet.ORDER);
             oRDER_DETAILTableAdapter.Fill(sellManagementDbDataSet.ORDER_DETAIL);
-            documentTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
-            pURCHASE_ORDERTableAdapter.Fill(sellManagementDbDataSet.PURCHASE_ORDER);
+            dOCUMENTTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
+            vENDOR_ORDERTableAdapter.Fill(sellManagementDbDataSet.VENDOR_ORDER);
             dEBTTableAdapter.Fill(sellManagementDbDataSet.DEBT);
 
             CheckBillForButton();
@@ -270,7 +261,6 @@ namespace QuanLyBanHang.Forms
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             sellManagementDbDataSet.RejectChanges();
-
             updateState(eFormState.VIEW);
         }
 
@@ -279,45 +269,11 @@ namespace QuanLyBanHang.Forms
             updateState(eFormState.EDIT);
         }
 
-        private void customerNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            updateDiscount();
-        }
-
-        private void updateDiscount()
-        {
-            // update discount
-            // var purchase = pURCHASEORDERBindingSource.DataSource as SellManagementDbDataSet.PURCHASE_ORDERRow;
-            var customer = sellManagementDbDataSet.CUSTOMER.Where(c => c.Id == (int)customerNameComboBox.SelectedValue).First();
-            var group = sellManagementDbDataSet.GROUPofCUSTOMER.Where(g => g.Id == customer.Group_id).First();
-            discountText.Text = (group.Discount * 100).ToString() + "%";
-        }
-
-        private void customerNameComboBox_TextChanged(object sender, EventArgs e)
-        {
-            // không cập nhật discount vì ko cho thay đổi customer
-            // updateDiscount();
-        }
-
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            var page = this.Parent as TabPage;
-            if (page != null)
-            {
-                (page.Parent as TabControl).TabPages.Remove(page);
-            }
-        }
-
-        private void totalPriceText_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void addProductBtn_Click(object sender, EventArgs e)
         {
             var selectProduct = new SelectProductForm(OrderId);
             var result = selectProduct.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 var resultRow = selectProduct.ResultOrderDetailRow;
                 var index = oRDERDETAILBindingSource.Find("Product_id", resultRow.Product_id);
@@ -356,12 +312,12 @@ namespace QuanLyBanHang.Forms
 
         private void addBillBtn_Click(object sender, EventArgs e)
         {
-            var billForm = new CreateBillForm(this.OrderId);
+            var billForm = new CreateVendorBillForm(this.OrderId);
             var result = billForm.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 // refresh lại
-                pURCHASE_ORDERTableAdapter.Fill(sellManagementDbDataSet.PURCHASE_ORDER);
+                vENDOR_ORDERTableAdapter.Fill(sellManagementDbDataSet.VENDOR_ORDER);
                 dEBTTableAdapter.Fill(sellManagementDbDataSet.DEBT);
 
                 // bill
@@ -371,31 +327,12 @@ namespace QuanLyBanHang.Forms
             }
         }
 
-        private void SelectBill(int debtId)
+        private void closeBtn_Click(object sender, EventArgs e)
         {
-            billTableAdapter.Fill(sellManagementDbDataSet.BILL);
-            cUSTOMER_BILLTableAdapter.Fill(sellManagementDbDataSet.CUSTOMER_BILL);
-
-            var customerBill = from bill in sellManagementDbDataSet.BILL
-                               join billdetail in sellManagementDbDataSet.CUSTOMER_BILL on bill.Id equals billdetail.Id
-                               where bill.Debt_id == debtId
-                               select new { bill.Id, bill.Debt_id, bill.PaidMethod, billdetail.ReceiveMoney, billdetail.ChangeMoney };
-
-            if (customerBill.Count() > 0)
+            var page = this.Parent as TabPage;
+            if (page != null)
             {
-                billDataGridView.DataSource = customerBill.ToList();
-            }
-        }
-
-        private void CheckBillForButton()
-        {
-            if (isMultiPaid.Checked || Convert.ToDouble(debtText.Text) > 0)
-            {
-                addBillBtn.Visible = true;
-            }
-            else
-            {
-                addBillBtn.Visible = false;
+                (page.Parent as TabControl).TabPages.Remove(page);
             }
         }
     }

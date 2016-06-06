@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateCustomerOrderForm));
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             this.documentTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
@@ -40,7 +41,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.staffComboBox = new System.Windows.Forms.ComboBox();
+            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.customerComboBox = new System.Windows.Forms.ComboBox();
+            this.cUSTOMERBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.createCustomerBtn = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -48,20 +54,15 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.createBtn = new System.Windows.Forms.Button();
-            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
-            this.customerComboBox = new System.Windows.Forms.ComboBox();
-            this.cUSTOMERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CUSTOMERTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // documentTableAdapter
@@ -138,7 +139,7 @@
             // staffComboBox
             // 
             this.staffComboBox.DataSource = this.sTAFFBindingSource;
-            this.staffComboBox.DisplayMember = "StaffKey";
+            this.staffComboBox.DisplayMember = "Name";
             this.staffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.staffComboBox.FormattingEnabled = true;
             this.staffComboBox.Location = new System.Drawing.Point(382, 42);
@@ -146,6 +147,11 @@
             this.staffComboBox.Size = new System.Drawing.Size(141, 21);
             this.staffComboBox.TabIndex = 7;
             this.staffComboBox.ValueMember = "Id";
+            // 
+            // sTAFFBindingSource
+            // 
+            this.sTAFFBindingSource.DataMember = "STAFF";
+            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // groupBox2
             // 
@@ -166,6 +172,41 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin khách hàng";
             // 
+            // customerComboBox
+            // 
+            this.customerComboBox.DataSource = this.cUSTOMERBindingSource;
+            this.customerComboBox.DisplayMember = "Name";
+            this.customerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.customerComboBox.FormattingEnabled = true;
+            this.customerComboBox.Location = new System.Drawing.Point(238, 25);
+            this.customerComboBox.Name = "customerComboBox";
+            this.customerComboBox.Size = new System.Drawing.Size(164, 21);
+            this.customerComboBox.TabIndex = 11;
+            this.customerComboBox.ValueMember = "Id";
+            // 
+            // cUSTOMERBindingSource
+            // 
+            this.cUSTOMERBindingSource.DataMember = "CUSTOMER";
+            this.cUSTOMERBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUSTOMERBindingSource, "Email", true));
+            this.textBox2.Location = new System.Drawing.Point(238, 104);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(164, 20);
+            this.textBox2.TabIndex = 25;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(150, 107);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Email";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::QuanLyBanHang.Properties.Resources.Customer;
@@ -182,8 +223,9 @@
             this.createCustomerBtn.Name = "createCustomerBtn";
             this.createCustomerBtn.Size = new System.Drawing.Size(70, 23);
             this.createCustomerBtn.TabIndex = 17;
-            this.createCustomerBtn.Text = "Danh sách";
+            this.createCustomerBtn.Text = "Tạo mới";
             this.createCustomerBtn.UseVisualStyleBackColor = true;
+            this.createCustomerBtn.Click += new System.EventHandler(this.createCustomerBtn_Click);
             // 
             // textBox10
             // 
@@ -230,69 +272,45 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Tên";
             // 
-            // textBox2
-            // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUSTOMERBindingSource, "Email", true));
-            this.textBox2.Location = new System.Drawing.Point(238, 104);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(164, 20);
-            this.textBox2.TabIndex = 25;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(150, 107);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Email";
-            // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(176, 277);
+            this.cancelBtn.BackColor = System.Drawing.Color.Transparent;
+            this.cancelBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.cancelBtn.FlatAppearance.BorderSize = 2;
+            this.cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelBtn.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.cancelBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cancelBtn.Location = new System.Drawing.Point(153, 277);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.cancelBtn.Size = new System.Drawing.Size(98, 45);
             this.cancelBtn.TabIndex = 9;
             this.cancelBtn.Text = "Hủy";
-            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cancelBtn.UseVisualStyleBackColor = false;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // createBtn
             // 
+            this.createBtn.BackColor = System.Drawing.Color.Transparent;
+            this.createBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.createBtn.FlatAppearance.BorderSize = 2;
+            this.createBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createBtn.Image = ((System.Drawing.Image)(resources.GetObject("createBtn.Image")));
+            this.createBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.createBtn.Location = new System.Drawing.Point(261, 277);
             this.createBtn.Name = "createBtn";
-            this.createBtn.Size = new System.Drawing.Size(115, 23);
+            this.createBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.createBtn.Size = new System.Drawing.Size(150, 45);
             this.createBtn.TabIndex = 10;
             this.createBtn.Text = "Tạo đơn hàng";
-            this.createBtn.UseVisualStyleBackColor = true;
+            this.createBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.createBtn.UseVisualStyleBackColor = false;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
-            // 
-            // sTAFFBindingSource
-            // 
-            this.sTAFFBindingSource.DataMember = "STAFF";
-            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // sTAFFTableAdapter
             // 
             this.sTAFFTableAdapter.ClearBeforeFill = true;
-            // 
-            // customerComboBox
-            // 
-            this.customerComboBox.DataSource = this.cUSTOMERBindingSource;
-            this.customerComboBox.DisplayMember = "Name";
-            this.customerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(238, 25);
-            this.customerComboBox.Name = "customerComboBox";
-            this.customerComboBox.Size = new System.Drawing.Size(164, 21);
-            this.customerComboBox.TabIndex = 11;
-            this.customerComboBox.ValueMember = "Id";
-            // 
-            // cUSTOMERBindingSource
-            // 
-            this.cUSTOMERBindingSource.DataMember = "CUSTOMER";
-            this.cUSTOMERBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // cUSTOMERTableAdapter
             // 
@@ -302,7 +320,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 321);
+            this.ClientSize = new System.Drawing.Size(544, 336);
             this.Controls.Add(this.createBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.groupBox2);
@@ -314,16 +332,19 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.documentKeyText);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CreateCustomerOrderForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tạo đơn hàng";
             this.Load += new System.EventHandler(this.CreateCustomerOrderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

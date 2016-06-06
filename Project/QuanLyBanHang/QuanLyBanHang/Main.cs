@@ -21,7 +21,9 @@ namespace QuanLyBanHang
         PRODUCT_TAB,
         STORE_TAB,
         STAFF_TAB,
-        INOUT_INVENTORY     // nhập xuất đơn hàng.
+        INOUT_INVENTORY,    // nhập xuất đơn hàng.
+        VENDOR_ORDER_TAB,
+        VENDOR_ORDER_LIST_TAB
     }
 
     public partial class Main : Form
@@ -97,6 +99,10 @@ namespace QuanLyBanHang
 
                             tabControl.TabPages.Add(newTab);
                             tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        }
+                        else if(result == DialogResult.Retry)
+                        {
+                            createNewTab(eTabType.CUSTOMER_TAB);
                         }
 
                         break;
@@ -176,7 +182,48 @@ namespace QuanLyBanHang
                         newTab.Controls.Add(store);
 
                         tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1; break;
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
+                case eTabType.VENDOR_ORDER_TAB:
+                    {
+                        var vendorOrder = new CreateVendorOrderForm();
+                        var result = vendorOrder.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            var newTab = new TabPage("Giao dịch đơn hàng " + vendorOrder.DocumentKey);
+                            newTab.AutoScroll = true;
+                            var order = new VendorOrderDetailForm(vendorOrder.OrderId);
+                            order.Dock = DockStyle.Top;
+                            newTab.Controls.Add(order);
+
+                            tabControl.TabPages.Add(newTab);
+                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        }
+                        else if (result == DialogResult.Retry)
+                        {
+                            createNewTab(eTabType.VENDOR_TAB);
+                        }
+                        break;
+                    }
+                case eTabType.VENDOR_ORDER_LIST_TAB:
+                    {
+                        var selectForm = new SelectVendorOrderForm();
+                        var result = selectForm.ShowDialog();
+
+                        if (result == DialogResult.OK)
+                        {
+                            var newTab = new TabPage("Đơn hàng " + selectForm.DocumentKey);
+                            newTab.AutoScroll = true;
+                            var order = new VendorOrderDetail(selectForm.OrderId);
+                            order.DocumentKey = selectForm.DocumentKey;
+                            order.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(order);
+
+                            tabControl.TabPages.Add(newTab);
+                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        }
+                        break;
                     }
                 default:
                     break;
@@ -229,7 +276,14 @@ namespace QuanLyBanHang
             this.newProductMenuItem.Click -= showDialogAddProduct;
         }
 
+        private void newVendorOrderBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.VENDOR_ORDER_TAB);
+        }
 
-
+        private void vendorOrdersBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.VENDOR_ORDER_LIST_TAB);
+        }
     }
 }
