@@ -81,7 +81,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.inventoryListBtn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -93,6 +93,7 @@
             this.viewCustomersBtn = new System.Windows.Forms.Button();
             this.viewOrdersBtn = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.inoutInventoryBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -500,7 +501,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.inoutInventoryBtn);
+            this.groupBox2.Controls.Add(this.inventoryListBtn);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Location = new System.Drawing.Point(20, 267);
@@ -510,14 +512,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Kho hàng";
             // 
-            // button6
+            // inventoryListBtn
             // 
-            this.button6.Location = new System.Drawing.Point(207, 35);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(222, 40);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Danh sách kho";
-            this.button6.UseVisualStyleBackColor = true;
+            this.inventoryListBtn.Location = new System.Drawing.Point(207, 35);
+            this.inventoryListBtn.Name = "inventoryListBtn";
+            this.inventoryListBtn.Size = new System.Drawing.Size(222, 40);
+            this.inventoryListBtn.TabIndex = 4;
+            this.inventoryListBtn.Text = "Danh sách kho";
+            this.inventoryListBtn.UseVisualStyleBackColor = true;
+            this.inventoryListBtn.Click += new System.EventHandler(this.inventoryListBtn_Click);
             // 
             // button5
             // 
@@ -668,6 +671,16 @@
             this.tabControl.Size = new System.Drawing.Size(984, 537);
             this.tabControl.TabIndex = 1;
             // 
+            // inoutInventoryBtn
+            // 
+            this.inoutInventoryBtn.Location = new System.Drawing.Point(207, 81);
+            this.inoutInventoryBtn.Name = "inoutInventoryBtn";
+            this.inoutInventoryBtn.Size = new System.Drawing.Size(222, 40);
+            this.inoutInventoryBtn.TabIndex = 6;
+            this.inoutInventoryBtn.Text = "Danh sách đơn nhập kho";
+            this.inoutInventoryBtn.UseVisualStyleBackColor = true;
+            this.inoutInventoryBtn.Click += new System.EventHandler(this.inoutInventoryBtn_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -716,7 +729,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button inventoryListBtn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -760,6 +773,7 @@
         private System.Windows.Forms.ToolStripMenuItem xToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createDocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listDocToolStripMenuItem;
+        private System.Windows.Forms.Button inoutInventoryBtn;
     }
 }
 

@@ -22,6 +22,7 @@ namespace QuanLyBanHang
         STORE_TAB,
         STAFF_TAB,
         INOUT_INVENTORY,    // nhập xuất đơn hàng.
+        INVENTORY_LIST,
         VENDOR_ORDER_TAB,
         VENDOR_ORDER_LIST_TAB
     }
@@ -185,6 +186,18 @@ namespace QuanLyBanHang
                         tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
+                case eTabType.INVENTORY_LIST:
+                    {
+                        var newTab = new TabPage("Quản lý kho hàng");
+                        newTab.AutoScroll = true;
+                        var store = new InventoryList();
+                        store.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(store);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
                 case eTabType.VENDOR_ORDER_TAB:
                     {
                         var vendorOrder = new CreateVendorOrderForm();
@@ -284,6 +297,16 @@ namespace QuanLyBanHang
         private void vendorOrdersBtn_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.VENDOR_ORDER_LIST_TAB);
+        }
+
+        private void inventoryListBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.INVENTORY_LIST);
+        }
+
+        private void inoutInventoryBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.INOUT_INVENTORY);
         }
     }
 }

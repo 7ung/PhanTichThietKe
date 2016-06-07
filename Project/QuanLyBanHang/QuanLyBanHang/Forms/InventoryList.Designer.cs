@@ -34,6 +34,8 @@
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label inventoryKeyLabel;
             System.Windows.Forms.Label termLabel;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
@@ -44,15 +46,13 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbInfo = new System.Windows.Forms.GroupBox();
+            this.termTextBox = new System.Windows.Forms.TextBox();
             this.tbRentPrice = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbInventoryKey = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.iNVENTORY_CAPABILITYDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iNVENTORY_CAPABILITYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnEdit = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
@@ -61,12 +61,19 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
-            this.termTextBox = new System.Windows.Forms.TextBox();
+            this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             rentPriceLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             inventoryKeyLabel = new System.Windows.Forms.Label();
             termLabel = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYDataGridView)).BeginInit();
@@ -74,12 +81,13 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORY_CAPABILITYDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORY_CAPABILITYBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rentPriceLabel
             // 
             rentPriceLabel.AutoSize = true;
-            rentPriceLabel.Location = new System.Drawing.Point(43, 193);
+            rentPriceLabel.Location = new System.Drawing.Point(14, 164);
             rentPriceLabel.Name = "rentPriceLabel";
             rentPriceLabel.Size = new System.Drawing.Size(47, 13);
             rentPriceLabel.TabIndex = 16;
@@ -88,7 +96,7 @@
             // addressLabel
             // 
             addressLabel.AutoSize = true;
-            addressLabel.Location = new System.Drawing.Point(41, 78);
+            addressLabel.Location = new System.Drawing.Point(14, 78);
             addressLabel.Name = "addressLabel";
             addressLabel.Size = new System.Drawing.Size(40, 13);
             addressLabel.TabIndex = 14;
@@ -97,7 +105,7 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(41, 52);
+            nameLabel.Location = new System.Drawing.Point(14, 52);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new System.Drawing.Size(47, 13);
             nameLabel.TabIndex = 12;
@@ -106,11 +114,20 @@
             // inventoryKeyLabel
             // 
             inventoryKeyLabel.AutoSize = true;
-            inventoryKeyLabel.Location = new System.Drawing.Point(43, 26);
+            inventoryKeyLabel.Location = new System.Drawing.Point(14, 26);
             inventoryKeyLabel.Name = "inventoryKeyLabel";
             inventoryKeyLabel.Size = new System.Drawing.Size(43, 13);
             inventoryKeyLabel.TabIndex = 10;
             inventoryKeyLabel.Text = "Mã kho";
+            // 
+            // termLabel
+            // 
+            termLabel.AutoSize = true;
+            termLabel.Location = new System.Drawing.Point(14, 138);
+            termLabel.Name = "termLabel";
+            termLabel.Size = new System.Drawing.Size(40, 13);
+            termLabel.TabIndex = 29;
+            termLabel.Text = "Kỳ hạn";
             // 
             // sellManagementDbDataSet
             // 
@@ -161,6 +178,9 @@
             // 
             this.iNVENTORYDataGridView.AllowUserToAddRows = false;
             this.iNVENTORYDataGridView.AllowUserToDeleteRows = false;
+            this.iNVENTORYDataGridView.AllowUserToResizeRows = false;
+            this.iNVENTORYDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.iNVENTORYDataGridView.AutoGenerateColumns = false;
             this.iNVENTORYDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.iNVENTORYDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -169,10 +189,12 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.iNVENTORYDataGridView.DataSource = this.iNVENTORYBindingSource;
-            this.iNVENTORYDataGridView.Location = new System.Drawing.Point(13, 62);
+            this.iNVENTORYDataGridView.Location = new System.Drawing.Point(13, 45);
             this.iNVENTORYDataGridView.Name = "iNVENTORYDataGridView";
             this.iNVENTORYDataGridView.ReadOnly = true;
-            this.iNVENTORYDataGridView.Size = new System.Drawing.Size(444, 443);
+            this.iNVENTORYDataGridView.RowHeadersVisible = false;
+            this.iNVENTORYDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.iNVENTORYDataGridView.Size = new System.Drawing.Size(444, 460);
             this.iNVENTORYDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn2
@@ -184,6 +206,7 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Name";
             this.dataGridViewTextBoxColumn3.HeaderText = "Tên kho";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -205,6 +228,11 @@
             // 
             // gbInfo
             // 
+            this.gbInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbInfo.Controls.Add(label3);
+            this.gbInfo.Controls.Add(label2);
             this.gbInfo.Controls.Add(termLabel);
             this.gbInfo.Controls.Add(this.termTextBox);
             this.gbInfo.Controls.Add(this.tbRentPrice);
@@ -224,12 +252,20 @@
             this.gbInfo.TabStop = false;
             this.gbInfo.Text = "Thông tin";
             // 
+            // termTextBox
+            // 
+            this.termTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "Term", true));
+            this.termTextBox.Location = new System.Drawing.Point(132, 135);
+            this.termTextBox.Name = "termTextBox";
+            this.termTextBox.Size = new System.Drawing.Size(50, 20);
+            this.termTextBox.TabIndex = 30;
+            // 
             // tbRentPrice
             // 
             this.tbRentPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "RentPrice", true));
-            this.tbRentPrice.Location = new System.Drawing.Point(132, 190);
+            this.tbRentPrice.Location = new System.Drawing.Point(132, 161);
             this.tbRentPrice.Name = "tbRentPrice";
-            this.tbRentPrice.Size = new System.Drawing.Size(252, 20);
+            this.tbRentPrice.Size = new System.Drawing.Size(219, 20);
             this.tbRentPrice.TabIndex = 29;
             // 
             // tbAddress
@@ -259,6 +295,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.iNVENTORY_CAPABILITYDataGridView);
             this.groupBox1.Location = new System.Drawing.Point(11, 237);
             this.groupBox1.Name = "groupBox1";
@@ -271,6 +310,10 @@
             // 
             this.iNVENTORY_CAPABILITYDataGridView.AllowUserToAddRows = false;
             this.iNVENTORY_CAPABILITYDataGridView.AllowUserToDeleteRows = false;
+            this.iNVENTORY_CAPABILITYDataGridView.AllowUserToResizeRows = false;
+            this.iNVENTORY_CAPABILITYDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.iNVENTORY_CAPABILITYDataGridView.AutoGenerateColumns = false;
             this.iNVENTORY_CAPABILITYDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.iNVENTORY_CAPABILITYDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -278,18 +321,124 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.iNVENTORY_CAPABILITYDataGridView.DataSource = this.iNVENTORY_CAPABILITYBindingSource;
-            this.iNVENTORY_CAPABILITYDataGridView.Location = new System.Drawing.Point(6, 19);
+            this.iNVENTORY_CAPABILITYDataGridView.Location = new System.Drawing.Point(12, 20);
             this.iNVENTORY_CAPABILITYDataGridView.Name = "iNVENTORY_CAPABILITYDataGridView";
             this.iNVENTORY_CAPABILITYDataGridView.ReadOnly = true;
-            this.iNVENTORY_CAPABILITYDataGridView.Size = new System.Drawing.Size(367, 185);
+            this.iNVENTORY_CAPABILITYDataGridView.RowHeadersVisible = false;
+            this.iNVENTORY_CAPABILITYDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.iNVENTORY_CAPABILITYDataGridView.Size = new System.Drawing.Size(358, 185);
             this.iNVENTORY_CAPABILITYDataGridView.TabIndex = 25;
+            // 
+            // iNVENTORY_CAPABILITYBindingSource
+            // 
+            this.iNVENTORY_CAPABILITYBindingSource.DataMember = "FK_INVENTORYCAPABILITY_INVENTORY";
+            this.iNVENTORY_CAPABILITYBindingSource.DataSource = this.iNVENTORYBindingSource;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.Location = new System.Drawing.Point(309, 463);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 18;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Location = new System.Drawing.Point(67, 19);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(200, 20);
+            this.tbSearch.TabIndex = 3;
+            this.tbSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Tìm kiếm";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Location = new System.Drawing.Point(13, 523);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(382, 523);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Location = new System.Drawing.Point(783, 523);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Đóng";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // iNVENTORY_CAPABILITYTableAdapter
+            // 
+            this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(188, 138);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(29, 13);
+            label2.TabIndex = 31;
+            label2.Text = "Năm";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(355, 164);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(30, 13);
+            label3.TabIndex = 32;
+            label3.Text = "VNĐ";
+            // 
+            // pRODUCTBindingSource
+            // 
+            this.pRODUCTBindingSource.DataMember = "PRODUCT";
+            this.pRODUCTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // pRODUCTTableAdapter
+            // 
+            this.pRODUCTTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridViewTextBoxColumn6
             // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Product_id";
+            this.dataGridViewTextBoxColumn6.DataSource = this.pRODUCTBindingSource;
+            this.dataGridViewTextBoxColumn6.DisplayMember = "Name";
+            this.dataGridViewTextBoxColumn6.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.dataGridViewTextBoxColumn6.HeaderText = "Mã sản phẩm";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn6.ValueMember = "Id";
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -306,89 +455,6 @@
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Width = 110;
-            // 
-            // iNVENTORY_CAPABILITYBindingSource
-            // 
-            this.iNVENTORY_CAPABILITYBindingSource.DataMember = "FK_INVENTORYCAPABILITY_INVENTORY";
-            this.iNVENTORY_CAPABILITYBindingSource.DataSource = this.iNVENTORYBindingSource;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(309, 463);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 18;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // tbSearch
-            // 
-            this.tbSearch.Location = new System.Drawing.Point(104, 19);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(254, 20);
-            this.tbSearch.TabIndex = 3;
-            this.tbSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tìm kiếm";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(13, 523);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(382, 523);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(783, 523);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // iNVENTORY_CAPABILITYTableAdapter
-            // 
-            this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
-            // 
-            // termLabel
-            // 
-            termLabel.AutoSize = true;
-            termLabel.Location = new System.Drawing.Point(43, 142);
-            termLabel.Name = "termLabel";
-            termLabel.Size = new System.Drawing.Size(40, 13);
-            termLabel.TabIndex = 29;
-            termLabel.Text = "Kỳ hạn";
-            // 
-            // termTextBox
-            // 
-            this.termTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "Term", true));
-            this.termTextBox.Location = new System.Drawing.Point(132, 135);
-            this.termTextBox.Name = "termTextBox";
-            this.termTextBox.Size = new System.Drawing.Size(252, 20);
-            this.termTextBox.TabIndex = 30;
             // 
             // InventoryList
             // 
@@ -411,6 +477,7 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORY_CAPABILITYDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORY_CAPABILITYBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,17 +501,20 @@
         private System.Windows.Forms.DataGridView iNVENTORY_CAPABILITYDataGridView;
         private System.Windows.Forms.BindingSource iNVENTORY_CAPABILITYBindingSource;
         private SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter iNVENTORY_CAPABILITYTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.TextBox tbRentPrice;
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbInventoryKey;
         private System.Windows.Forms.TextBox termTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.BindingSource pRODUCTBindingSource;
+        private SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter pRODUCTTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
+        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
     }
 }
