@@ -24,6 +24,7 @@ namespace QuanLyBanHang.Forms
             pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
             sTAFFTableAdapter.Fill(sellManagementDbDataSet.STAFF);
             iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
+            inouT_INVENTORY_DETAILTableAdapter.Fill(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
 
             if (inOutTypeCheckBox.Checked == false)
             {
@@ -47,6 +48,11 @@ namespace QuanLyBanHang.Forms
 
         private void inOutInventoryViewBindingSource_CurrentChanged(object sender, EventArgs e)
         {
+            if (inOutInventoryViewBindingSource.Current == null)
+            {
+                return;
+            }
+
             var curRow = (inOutInventoryViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.InOut_Inventory_ViewRow;
 
             inOutInventoryDetailProductQuantityViewBindingSource.Filter = "InOutInventory_id = " + curRow.Id;
@@ -75,6 +81,34 @@ namespace QuanLyBanHang.Forms
             if (page != null)
             {
                 (page.Parent as TabControl).TabPages.Remove(page);
+            }
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            
+            var result = MessageBox.Show("Bạn có chắt muốn xóa không?", "Cảnh báo", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                var curRow = (inOutInventoryViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.InOut_Inventory_ViewRow;
+
+                // xóa mấy cái trong detail trước -_-
+                var details = sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Where(d => d.InOutInventory_id == curRow.Id);
+                foreach (var item in details)
+                {
+                    item.Delete();
+                }
+
+                inouT_INVENTORY_DETAILTableAdapter.Update(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
+                sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.AcceptChanges();
+                
+                queriesTableAdapter.Delete_InoutInventory(curRow.Id);
+
+
+                // fill lại nè
+                inOut_Inventory_ViewTableAdapter.Fill(sellManagementDbDataSet.InOut_Inventory_View);
+                inOutInventory_Detail_ProductQuantity_ViewTableAdapter.Fill(sellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_View);
             }
         }
     }

@@ -345,5 +345,10 @@ namespace QuanLyBanHang.Forms
                 return;
             }
         }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

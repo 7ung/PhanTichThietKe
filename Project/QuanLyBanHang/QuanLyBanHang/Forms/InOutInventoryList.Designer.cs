@@ -43,8 +43,13 @@
             this.addBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.inOutInventoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inOutTypeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.documentKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inventoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
+            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inOutInventoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.closeBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.editBtn = new System.Windows.Forms.Button();
@@ -66,12 +71,9 @@
             this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.InOutInventory_Detail_ProductQuantity_ViewTableAdapter();
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
             this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
-            this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
-            this.inOutTypeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.documentKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inventoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
+            this.inouT_INVENTORY_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter();
             documentKeyLabel = new System.Windows.Forms.Label();
             creatorLabel = new System.Windows.Forms.Label();
             createDateLabel = new System.Windows.Forms.Label();
@@ -87,8 +89,9 @@
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inOutInventoryViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inOutInventoryViewBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
@@ -96,7 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // documentKeyLabel
@@ -209,6 +211,7 @@
             this.deleteBtn.TabIndex = 56;
             this.deleteBtn.Text = "Xóa";
             this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // addBtn
             // 
@@ -259,16 +262,57 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // inOutInventoryViewBindingSource
+            // inOutTypeDataGridViewCheckBoxColumn
             // 
-            this.inOutInventoryViewBindingSource.DataMember = "InOut_Inventory_View";
-            this.inOutInventoryViewBindingSource.DataSource = this.sellManagementDbDataSet;
-            this.inOutInventoryViewBindingSource.CurrentChanged += new System.EventHandler(this.inOutInventoryViewBindingSource_CurrentChanged);
+            this.inOutTypeDataGridViewCheckBoxColumn.DataPropertyName = "InOutType";
+            this.inOutTypeDataGridViewCheckBoxColumn.HeaderText = "Nhập";
+            this.inOutTypeDataGridViewCheckBoxColumn.Name = "inOutTypeDataGridViewCheckBoxColumn";
+            this.inOutTypeDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.inOutTypeDataGridViewCheckBoxColumn.Width = 50;
+            // 
+            // documentKeyDataGridViewTextBoxColumn
+            // 
+            this.documentKeyDataGridViewTextBoxColumn.DataPropertyName = "DocumentKey";
+            this.documentKeyDataGridViewTextBoxColumn.HeaderText = "Mã đơn";
+            this.documentKeyDataGridViewTextBoxColumn.Name = "documentKeyDataGridViewTextBoxColumn";
+            this.documentKeyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // inventoryidDataGridViewTextBoxColumn
+            // 
+            this.inventoryidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.inventoryidDataGridViewTextBoxColumn.DataPropertyName = "Inventory_id";
+            this.inventoryidDataGridViewTextBoxColumn.DataSource = this.iNVENTORYBindingSource;
+            this.inventoryidDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.inventoryidDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.inventoryidDataGridViewTextBoxColumn.HeaderText = "Kho hàng";
+            this.inventoryidDataGridViewTextBoxColumn.Name = "inventoryidDataGridViewTextBoxColumn";
+            this.inventoryidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.inventoryidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.inventoryidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.inventoryidDataGridViewTextBoxColumn.ValueMember = "Id";
+            // 
+            // iNVENTORYBindingSource
+            // 
+            this.iNVENTORYBindingSource.DataMember = "INVENTORY";
+            this.iNVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // sellManagementDbDataSet
             // 
             this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
             this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // createDateDataGridViewTextBoxColumn
+            // 
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "Ngày lập";
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // inOutInventoryViewBindingSource
+            // 
+            this.inOutInventoryViewBindingSource.DataMember = "InOut_Inventory_View";
+            this.inOutInventoryViewBindingSource.DataSource = this.sellManagementDbDataSet;
+            this.inOutInventoryViewBindingSource.CurrentChanged += new System.EventHandler(this.inOutInventoryViewBindingSource_CurrentChanged);
             // 
             // closeBtn
             // 
@@ -512,50 +556,13 @@
             // 
             this.pRODUCTTableAdapter.ClearBeforeFill = true;
             // 
-            // iNVENTORYBindingSource
-            // 
-            this.iNVENTORYBindingSource.DataMember = "INVENTORY";
-            this.iNVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // iNVENTORYTableAdapter
             // 
             this.iNVENTORYTableAdapter.ClearBeforeFill = true;
             // 
-            // inOutTypeDataGridViewCheckBoxColumn
+            // inouT_INVENTORY_DETAILTableAdapter
             // 
-            this.inOutTypeDataGridViewCheckBoxColumn.DataPropertyName = "InOutType";
-            this.inOutTypeDataGridViewCheckBoxColumn.HeaderText = "Nhập";
-            this.inOutTypeDataGridViewCheckBoxColumn.Name = "inOutTypeDataGridViewCheckBoxColumn";
-            this.inOutTypeDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.inOutTypeDataGridViewCheckBoxColumn.Width = 50;
-            // 
-            // documentKeyDataGridViewTextBoxColumn
-            // 
-            this.documentKeyDataGridViewTextBoxColumn.DataPropertyName = "DocumentKey";
-            this.documentKeyDataGridViewTextBoxColumn.HeaderText = "Mã đơn";
-            this.documentKeyDataGridViewTextBoxColumn.Name = "documentKeyDataGridViewTextBoxColumn";
-            this.documentKeyDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // inventoryidDataGridViewTextBoxColumn
-            // 
-            this.inventoryidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.inventoryidDataGridViewTextBoxColumn.DataPropertyName = "Inventory_id";
-            this.inventoryidDataGridViewTextBoxColumn.DataSource = this.iNVENTORYBindingSource;
-            this.inventoryidDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.inventoryidDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.inventoryidDataGridViewTextBoxColumn.HeaderText = "Kho hàng";
-            this.inventoryidDataGridViewTextBoxColumn.Name = "inventoryidDataGridViewTextBoxColumn";
-            this.inventoryidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.inventoryidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inventoryidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.inventoryidDataGridViewTextBoxColumn.ValueMember = "Id";
-            // 
-            // createDateDataGridViewTextBoxColumn
-            // 
-            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
-            this.createDateDataGridViewTextBoxColumn.HeaderText = "Ngày lập";
-            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
-            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.inouT_INVENTORY_DETAILTableAdapter.ClearBeforeFill = true;
             // 
             // InOutInventoryList
             // 
@@ -571,8 +578,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inOutInventoryViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inOutInventoryViewBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -581,7 +589,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -622,5 +629,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn inventoryidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentKeyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inOutTypeDataGridViewCheckBoxColumn;
+        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
+        private SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter inouT_INVENTORY_DETAILTableAdapter;
     }
 }

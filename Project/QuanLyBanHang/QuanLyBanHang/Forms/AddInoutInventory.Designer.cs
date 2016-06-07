@@ -72,7 +72,7 @@
             this.oRDER_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.ORDER_DETAILTableAdapter();
             this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
             this.createBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.dOCUMENTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
             this.addOrderBtn = new System.Windows.Forms.Button();
             this.removeOrderBtn = new System.Windows.Forms.Button();
@@ -212,7 +212,7 @@
             this.groupBox1.Controls.Add(this.isInCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(960, 232);
+            this.groupBox1.Size = new System.Drawing.Size(860, 232);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
@@ -403,7 +403,7 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(304, 137);
+            this.dataGridView2.Size = new System.Drawing.Size(273, 137);
             this.dataGridView2.TabIndex = 0;
             // 
             // productidDataGridViewTextBoxColumn
@@ -461,7 +461,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(368, 137);
+            this.dataGridView1.Size = new System.Drawing.Size(299, 137);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -515,7 +515,7 @@
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Location = new System.Drawing.Point(220, 260);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(405, 200);
+            this.groupBox3.Size = new System.Drawing.Size(336, 200);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đơn hàng được xuất/nhập";
@@ -524,7 +524,7 @@
             // 
             this.totalProductLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalProductLabel.AutoSize = true;
-            this.totalProductLabel.Location = new System.Drawing.Point(219, 174);
+            this.totalProductLabel.Location = new System.Drawing.Point(150, 174);
             this.totalProductLabel.Name = "totalProductLabel";
             this.totalProductLabel.Size = new System.Drawing.Size(69, 13);
             this.totalProductLabel.TabIndex = 2;
@@ -560,15 +560,16 @@
             this.createBtn.UseVisualStyleBackColor = true;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
             // 
-            // button2
+            // cancelBtn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(419, 481);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Hủy";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cancelBtn.Location = new System.Drawing.Point(419, 481);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.TabIndex = 4;
+            this.cancelBtn.Text = "Hủy";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // dOCUMENTTableAdapter
             // 
@@ -599,9 +600,9 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dataGridView2);
-            this.groupBox4.Location = new System.Drawing.Point(631, 260);
+            this.groupBox4.Location = new System.Drawing.Point(562, 260);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(341, 200);
+            this.groupBox4.Size = new System.Drawing.Size(310, 200);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Mặt hàng";
@@ -618,11 +619,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 526);
+            this.ClientSize = new System.Drawing.Size(884, 526);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.removeOrderBtn);
             this.Controls.Add(this.addOrderBtn);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.createBtn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -675,7 +676,7 @@
         private System.Windows.Forms.BindingSource pRODUCTBindingSource;
         private SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter pRODUCTTableAdapter;
         private System.Windows.Forms.Button createBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.BindingSource dOCUMENTBindingSource;
         private SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter dOCUMENTTableAdapter;
         private System.Windows.Forms.Button addOrderBtn;
