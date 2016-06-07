@@ -17,7 +17,7 @@ namespace QuanLyBanHang.Forms
         {
             InitializeComponent();
 
-            this.inOut_Inventory_ViewTableAdapter.FillStaffName(sellManagementDbDataSet.InOut_Inventory_View);
+            this.inOut_Inventory_ViewTableAdapter.Fill(sellManagementDbDataSet.InOut_Inventory_View);
             this.sTAFFTableAdapter.Fill(sellManagementDbDataSet.STAFF);
             this.iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
         }
@@ -96,10 +96,10 @@ namespace QuanLyBanHang.Forms
 
         private void inOut_Inventory_ViewBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            int id = (((sender as BindingSource).CurrencyManager.Current as DataRowView)
-                .Row as SellManagementDbDataSet.InOut_Inventory_ViewRow).Id;
-            this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter.FillByInOutId(
-                sellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_View, id);
+            //int id = (((sender as BindingSource).CurrencyManager.Current as DataRowView)
+            //    .Row as SellManagementDbDataSet.InOut_Inventory_ViewRow).Id;
+            //this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter.FillByInOutId(
+            //    sellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_View, id);
             
         }
 

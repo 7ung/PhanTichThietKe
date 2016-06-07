@@ -196,6 +196,8 @@ namespace QuanLyBanHang.Forms
             // 
             // inOut_Inventory_ViewDataGridView
             // 
+            this.inOut_Inventory_ViewDataGridView.AllowUserToAddRows = false;
+            this.inOut_Inventory_ViewDataGridView.AllowUserToDeleteRows = false;
             this.inOut_Inventory_ViewDataGridView.AutoGenerateColumns = false;
             this.inOut_Inventory_ViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.inOut_Inventory_ViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -212,6 +214,7 @@ namespace QuanLyBanHang.Forms
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "DocumentKey";
             this.dataGridViewTextBoxColumn2.HeaderText = "Mã đơn";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -479,10 +482,6 @@ namespace QuanLyBanHang.Forms
         private CustomTextBox documentKeyTextBox;
         private System.Windows.Forms.BindingSource fKINOUTINVENTORYSTAFFBindingSource;
         private SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter iNOUTINVENTORYTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Creator;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.BindingSource inOutInventory_Detail_ProductQuantity_ViewBindingSource;
         private SellManagementDbDataSetTableAdapters.InOutInventory_Detail_ProductQuantity_ViewTableAdapter inOutInventory_Detail_ProductQuantity_ViewTableAdapter;
         private System.Windows.Forms.DataGridView inOutInventory_Detail_ProductQuantity_ViewDataGridView;
@@ -490,6 +489,9 @@ namespace QuanLyBanHang.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button button1;
-
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Creator;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

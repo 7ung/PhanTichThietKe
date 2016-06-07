@@ -81,19 +81,20 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.inoutInventoryBtn = new System.Windows.Forms.Button();
             this.inventoryListBtn = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.exportBtn = new System.Windows.Forms.Button();
+            this.inInventoryBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.vendorListBtn = new System.Windows.Forms.Button();
             this.vendorOrdersBtn = new System.Windows.Forms.Button();
             this.newVendorOrderBtn = new System.Windows.Forms.Button();
             this.sellGroupBox = new System.Windows.Forms.GroupBox();
+            this.productListBtn = new System.Windows.Forms.Button();
             this.newOrder = new System.Windows.Forms.Button();
             this.viewCustomersBtn = new System.Windows.Forms.Button();
             this.viewOrdersBtn = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.inoutInventoryBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -503,8 +504,8 @@
             // 
             this.groupBox2.Controls.Add(this.inoutInventoryBtn);
             this.groupBox2.Controls.Add(this.inventoryListBtn);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.exportBtn);
+            this.groupBox2.Controls.Add(this.inInventoryBtn);
             this.groupBox2.Location = new System.Drawing.Point(20, 267);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(458, 225);
@@ -512,33 +513,73 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Kho hàng";
             // 
+            // inoutInventoryBtn
+            // 
+            this.inoutInventoryBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.inoutInventoryBtn.FlatAppearance.BorderSize = 2;
+            this.inoutInventoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.inoutInventoryBtn.Image = global::QuanLyBanHang.Properties.Resources.paper;
+            this.inoutInventoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.inoutInventoryBtn.Location = new System.Drawing.Point(207, 86);
+            this.inoutInventoryBtn.Name = "inoutInventoryBtn";
+            this.inoutInventoryBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.inoutInventoryBtn.Size = new System.Drawing.Size(222, 45);
+            this.inoutInventoryBtn.TabIndex = 6;
+            this.inoutInventoryBtn.Text = "Danh sách đơn nhập / xuất";
+            this.inoutInventoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.inoutInventoryBtn.UseVisualStyleBackColor = true;
+            this.inoutInventoryBtn.Click += new System.EventHandler(this.inoutInventoryBtn_Click);
+            // 
             // inventoryListBtn
             // 
+            this.inventoryListBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.inventoryListBtn.FlatAppearance.BorderSize = 2;
+            this.inventoryListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.inventoryListBtn.Image = global::QuanLyBanHang.Properties.Resources.box_2;
+            this.inventoryListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.inventoryListBtn.Location = new System.Drawing.Point(207, 35);
             this.inventoryListBtn.Name = "inventoryListBtn";
-            this.inventoryListBtn.Size = new System.Drawing.Size(222, 40);
+            this.inventoryListBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.inventoryListBtn.Size = new System.Drawing.Size(222, 45);
             this.inventoryListBtn.TabIndex = 4;
             this.inventoryListBtn.Text = "Danh sách kho";
+            this.inventoryListBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.inventoryListBtn.UseVisualStyleBackColor = true;
             this.inventoryListBtn.Click += new System.EventHandler(this.inventoryListBtn_Click);
             // 
-            // button5
+            // exportBtn
             // 
-            this.button5.Location = new System.Drawing.Point(20, 121);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(160, 80);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Xuất kho";
-            this.button5.UseVisualStyleBackColor = true;
+            this.exportBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.exportBtn.FlatAppearance.BorderSize = 2;
+            this.exportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exportBtn.Image = global::QuanLyBanHang.Properties.Resources.Export;
+            this.exportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.exportBtn.Location = new System.Drawing.Point(20, 121);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.exportBtn.Size = new System.Drawing.Size(160, 80);
+            this.exportBtn.TabIndex = 5;
+            this.exportBtn.Text = "Xuất kho";
+            this.exportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.exportBtn.UseVisualStyleBackColor = true;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
-            // button4
+            // inInventoryBtn
             // 
-            this.button4.Location = new System.Drawing.Point(20, 35);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(160, 80);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Nhập kho";
-            this.button4.UseVisualStyleBackColor = true;
+            this.inInventoryBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.inInventoryBtn.FlatAppearance.BorderSize = 2;
+            this.inInventoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.inInventoryBtn.Image = global::QuanLyBanHang.Properties.Resources.Import;
+            this.inInventoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.inInventoryBtn.Location = new System.Drawing.Point(20, 35);
+            this.inInventoryBtn.Name = "inInventoryBtn";
+            this.inInventoryBtn.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.inInventoryBtn.Size = new System.Drawing.Size(160, 80);
+            this.inInventoryBtn.TabIndex = 4;
+            this.inInventoryBtn.Text = "Nhập kho";
+            this.inInventoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.inInventoryBtn.UseVisualStyleBackColor = true;
+            this.inInventoryBtn.Click += new System.EventHandler(this.inInventoryBtn_Click);
             // 
             // groupBox1
             // 
@@ -559,7 +600,7 @@
             this.vendorListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vendorListBtn.Image = global::QuanLyBanHang.Properties.Resources.user_list;
             this.vendorListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.vendorListBtn.Location = new System.Drawing.Point(210, 86);
+            this.vendorListBtn.Location = new System.Drawing.Point(210, 93);
             this.vendorListBtn.Name = "vendorListBtn";
             this.vendorListBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.vendorListBtn.Size = new System.Drawing.Size(222, 45);
@@ -602,6 +643,7 @@
             // 
             // sellGroupBox
             // 
+            this.sellGroupBox.Controls.Add(this.productListBtn);
             this.sellGroupBox.Controls.Add(this.newOrder);
             this.sellGroupBox.Controls.Add(this.viewCustomersBtn);
             this.sellGroupBox.Controls.Add(this.viewOrdersBtn);
@@ -611,6 +653,23 @@
             this.sellGroupBox.TabIndex = 0;
             this.sellGroupBox.TabStop = false;
             this.sellGroupBox.Text = "Bán hàng";
+            // 
+            // productListBtn
+            // 
+            this.productListBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.productListBtn.FlatAppearance.BorderSize = 2;
+            this.productListBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.productListBtn.Image = global::QuanLyBanHang.Properties.Resources.favorite;
+            this.productListBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.productListBtn.Location = new System.Drawing.Point(207, 150);
+            this.productListBtn.Name = "productListBtn";
+            this.productListBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.productListBtn.Size = new System.Drawing.Size(222, 45);
+            this.productListBtn.TabIndex = 4;
+            this.productListBtn.Text = "Danh sách mặt hàng";
+            this.productListBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.productListBtn.UseVisualStyleBackColor = true;
+            this.productListBtn.Click += new System.EventHandler(this.productListBtn_Click);
             // 
             // newOrder
             // 
@@ -634,7 +693,7 @@
             this.viewCustomersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewCustomersBtn.Image = global::QuanLyBanHang.Properties.Resources.user_list;
             this.viewCustomersBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.viewCustomersBtn.Location = new System.Drawing.Point(207, 86);
+            this.viewCustomersBtn.Location = new System.Drawing.Point(207, 93);
             this.viewCustomersBtn.Name = "viewCustomersBtn";
             this.viewCustomersBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.viewCustomersBtn.Size = new System.Drawing.Size(222, 45);
@@ -670,16 +729,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(984, 537);
             this.tabControl.TabIndex = 1;
-            // 
-            // inoutInventoryBtn
-            // 
-            this.inoutInventoryBtn.Location = new System.Drawing.Point(207, 81);
-            this.inoutInventoryBtn.Name = "inoutInventoryBtn";
-            this.inoutInventoryBtn.Size = new System.Drawing.Size(222, 40);
-            this.inoutInventoryBtn.TabIndex = 6;
-            this.inoutInventoryBtn.Text = "Danh sách đơn nhập kho";
-            this.inoutInventoryBtn.UseVisualStyleBackColor = true;
-            this.inoutInventoryBtn.Click += new System.EventHandler(this.inoutInventoryBtn_Click);
             // 
             // Main
             // 
@@ -727,8 +776,8 @@
         private System.Windows.Forms.Button vendorOrdersBtn;
         private System.Windows.Forms.Button vendorListBtn;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button inInventoryBtn;
+        private System.Windows.Forms.Button exportBtn;
         private System.Windows.Forms.Button inventoryListBtn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button7;
@@ -774,6 +823,7 @@
         private System.Windows.Forms.ToolStripMenuItem createDocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listDocToolStripMenuItem;
         private System.Windows.Forms.Button inoutInventoryBtn;
+        private System.Windows.Forms.Button productListBtn;
     }
 }
 

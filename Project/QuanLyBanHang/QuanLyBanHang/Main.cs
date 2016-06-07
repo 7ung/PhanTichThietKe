@@ -176,9 +176,9 @@ namespace QuanLyBanHang
                     }
                 case eTabType.INOUT_INVENTORY:
                     {
-                        var newTab = new TabPage("Quản lý kho hàng");
+                        var newTab = new TabPage("Quản lý đơn hàng nhập xuất kho");
                         newTab.AutoScroll = true;
-                        var store = new InOutInventory();
+                        var store = new InOutInventoryList();
                         store.Dock = DockStyle.Fill;
                         newTab.Controls.Add(store);
 
@@ -307,6 +307,23 @@ namespace QuanLyBanHang
         private void inoutInventoryBtn_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.INOUT_INVENTORY);
+        }
+
+        private void inInventoryBtn_Click(object sender, EventArgs e)
+        {
+            var addForm = new AddInoutInventory(true);
+            addForm.ShowDialog();
+        }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            var addForm = new AddInoutInventory(false);
+            addForm.ShowDialog();
+        }
+
+        private void productListBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.PRODUCT_TAB);
         }
     }
 }
