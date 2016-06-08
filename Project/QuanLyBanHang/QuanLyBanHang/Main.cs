@@ -49,6 +49,22 @@ namespace QuanLyBanHang
             createNewTab(eTabType.VENDOR_TAB);
         }
 
+        // Hieu
+        // Kiem tra su ton tai cua tabpage
+        private TabPage isExitTabPage(string nameTab)
+        {
+            foreach (TabPage tab in tabControl.TabPages)
+            {
+                if(tab.Text == nameTab)
+                {
+                    return tab;
+                }
+            }
+          
+                return null;
+        }
+        
+
         private void createNewTab(eTabType type)
         {
             switch (type)
@@ -57,13 +73,26 @@ namespace QuanLyBanHang
                     break;
                 case eTabType.CUSTOMER_TAB:
                     {
-                        var newTab = new TabPage("Danh sách khách hàng");
-                        var customerList = new CustomerList();
-                        customerList.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(customerList);
+                        //Hieu 
+                        //Edit
+                        var newTab = isExitTabPage("Danh sách khách hàng");
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage("Danh sách khách hàng");
+                            var customerList = new CustomerList();
+                            customerList.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(customerList);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            tabControl.TabPages.Add(newTab);
+                            //tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            //Hieu
+                            //Su dung cai nay cho gon
+                            tabControl.SelectedTab = newTab;
+                        }
+                        else
+                        {
+                            tabControl.SelectedTab = newTab;
+                        }
                         break;
                     }
                 case eTabType.VENDOR_TAB:
@@ -325,5 +354,7 @@ namespace QuanLyBanHang
         {
             createNewTab(eTabType.PRODUCT_TAB);
         }
+
+
     }
 }
