@@ -37,7 +37,6 @@
             System.Windows.Forms.Label termLabel;
             System.Windows.Forms.Label inOutTypeLabel;
             System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label2;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
@@ -58,14 +57,11 @@
             this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inOutInventoryDetailProductQuantityViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentKeyTextBox = new WindowsFormsControlLibrary.CustomTextBox();
             this.creatorComboBox = new System.Windows.Forms.ComboBox();
             this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.createDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.respondComboBox = new System.Windows.Forms.ComboBox();
             this.sTAFFBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.carryFeeTextBox = new WindowsFormsControlLibrary.CustomTextBox();
-            this.termNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.inOutTypeCheckBox = new System.Windows.Forms.CheckBox();
             this.inOut_Inventory_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.InOut_Inventory_ViewTableAdapter();
             this.inOutInventory_Detail_ProductQuantity_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.InOutInventory_Detail_ProductQuantity_ViewTableAdapter();
@@ -74,6 +70,9 @@
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             this.inouT_INVENTORY_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.documentKeyText = new System.Windows.Forms.TextBox();
             documentKeyLabel = new System.Windows.Forms.Label();
             creatorLabel = new System.Windows.Forms.Label();
             createDateLabel = new System.Windows.Forms.Label();
@@ -82,7 +81,6 @@
             termLabel = new System.Windows.Forms.Label();
             inOutTypeLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -98,7 +96,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.inOutInventoryDetailProductQuantityViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // documentKeyLabel
@@ -149,11 +146,11 @@
             // termLabel
             // 
             termLabel.AutoSize = true;
-            termLabel.Location = new System.Drawing.Point(16, 160);
+            termLabel.Location = new System.Drawing.Point(16, 162);
             termLabel.Name = "termLabel";
-            termLabel.Size = new System.Drawing.Size(37, 13);
+            termLabel.Size = new System.Drawing.Size(19, 13);
             termLabel.TabIndex = 47;
-            termLabel.Text = "Kì hạn";
+            termLabel.Text = "Kỳ";
             // 
             // inOutTypeLabel
             // 
@@ -172,15 +169,6 @@
             label1.Size = new System.Drawing.Size(30, 13);
             label1.TabIndex = 53;
             label1.Text = "VNĐ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(204, 160);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(29, 13);
-            label2.TabIndex = 54;
-            label2.Text = "Năm";
             // 
             // splitContainer1
             // 
@@ -222,6 +210,7 @@
             this.addBtn.TabIndex = 55;
             this.addBtn.Text = "Thêm";
             this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Visible = false;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // groupBox1
@@ -331,12 +320,13 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(label2);
+            this.groupBox2.Controls.Add(this.documentKeyText);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(label1);
             this.groupBox2.Controls.Add(this.editBtn);
             this.groupBox2.Controls.Add(this.dataGridView2);
             this.groupBox2.Controls.Add(documentKeyLabel);
-            this.groupBox2.Controls.Add(this.documentKeyTextBox);
             this.groupBox2.Controls.Add(creatorLabel);
             this.groupBox2.Controls.Add(this.creatorComboBox);
             this.groupBox2.Controls.Add(createDateLabel);
@@ -344,9 +334,7 @@
             this.groupBox2.Controls.Add(respondLabel);
             this.groupBox2.Controls.Add(this.respondComboBox);
             this.groupBox2.Controls.Add(carryFeeLabel);
-            this.groupBox2.Controls.Add(this.carryFeeTextBox);
             this.groupBox2.Controls.Add(termLabel);
-            this.groupBox2.Controls.Add(this.termNumericUpDown);
             this.groupBox2.Controls.Add(inOutTypeLabel);
             this.groupBox2.Controls.Add(this.inOutTypeCheckBox);
             this.groupBox2.Location = new System.Drawing.Point(20, 20);
@@ -381,12 +369,12 @@
             this.productidDataGridViewTextBoxColumn,
             this.quantityDataGridViewTextBoxColumn});
             this.dataGridView2.DataSource = this.inOutInventoryDetailProductQuantityViewBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(19, 238);
+            this.dataGridView2.Location = new System.Drawing.Point(19, 230);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(463, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(463, 158);
             this.dataGridView2.TabIndex = 51;
             // 
             // productidDataGridViewTextBoxColumn
@@ -419,29 +407,6 @@
             // 
             this.inOutInventoryDetailProductQuantityViewBindingSource.DataMember = "InOutInventory_Detail_ProductQuantity_View";
             this.inOutInventoryDetailProductQuantityViewBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
-            // documentKeyTextBox
-            // 
-            this.documentKeyTextBox.AutoSize = true;
-            this.documentKeyTextBox.BackColor = System.Drawing.Color.White;
-            this.documentKeyTextBox.BorderColor = System.Drawing.Color.Silver;
-            this.documentKeyTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "DocumentKey", true));
-            this.documentKeyTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.documentKeyTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.documentKeyTextBox.isRequired = false;
-            this.documentKeyTextBox.Location = new System.Drawing.Point(138, 16);
-            this.documentKeyTextBox.Multiline = false;
-            this.documentKeyTextBox.Name = "documentKeyTextBox";
-            this.documentKeyTextBox.NormalBorderColor = System.Drawing.Color.Silver;
-            this.documentKeyTextBox.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.documentKeyTextBox.ReadOnly = true;
-            this.documentKeyTextBox.Size = new System.Drawing.Size(200, 19);
-            this.documentKeyTextBox.StringPattern = "[A-Za-z0-9.-]";
-            this.documentKeyTextBox.TabIndex = 38;
-            this.documentKeyTextBox.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.documentKeyTextBox.TextPanelMessage = "This is an error message.";
-            this.documentKeyTextBox.TextPanelMessageColor = System.Drawing.Color.White;
-            this.documentKeyTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
             // creatorComboBox
             // 
@@ -490,40 +455,6 @@
             this.sTAFFBindingSource1.DataMember = "STAFF";
             this.sTAFFBindingSource1.DataSource = this.sellManagementDbDataSet;
             // 
-            // carryFeeTextBox
-            // 
-            this.carryFeeTextBox.AutoSize = true;
-            this.carryFeeTextBox.BackColor = System.Drawing.Color.White;
-            this.carryFeeTextBox.BorderColor = System.Drawing.Color.Silver;
-            this.carryFeeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "CarryFee", true));
-            this.carryFeeTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.carryFeeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carryFeeTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.carryFeeTextBox.isRequired = false;
-            this.carryFeeTextBox.Location = new System.Drawing.Point(138, 122);
-            this.carryFeeTextBox.Multiline = false;
-            this.carryFeeTextBox.Name = "carryFeeTextBox";
-            this.carryFeeTextBox.NormalBorderColor = System.Drawing.Color.Silver;
-            this.carryFeeTextBox.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.carryFeeTextBox.ReadOnly = true;
-            this.carryFeeTextBox.Size = new System.Drawing.Size(160, 25);
-            this.carryFeeTextBox.StringPattern = "[0-9.]";
-            this.carryFeeTextBox.TabIndex = 46;
-            this.carryFeeTextBox.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.carryFeeTextBox.TextPanelMessage = "This is an error message.";
-            this.carryFeeTextBox.TextPanelMessageColor = System.Drawing.Color.White;
-            this.carryFeeTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // termNumericUpDown
-            // 
-            this.termNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.inOutInventoryViewBindingSource, "Term", true));
-            this.termNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.termNumericUpDown.Location = new System.Drawing.Point(138, 153);
-            this.termNumericUpDown.Name = "termNumericUpDown";
-            this.termNumericUpDown.ReadOnly = true;
-            this.termNumericUpDown.Size = new System.Drawing.Size(60, 26);
-            this.termNumericUpDown.TabIndex = 48;
-            // 
             // inOutTypeCheckBox
             // 
             this.inOutTypeCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
@@ -566,6 +497,36 @@
             // 
             this.inouT_INVENTORY_DETAILTableAdapter.ClearBeforeFill = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "Term", true));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(138, 154);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(50, 26);
+            this.textBox1.TabIndex = 54;
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "CarryFee", true));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(138, 122);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(157, 26);
+            this.textBox2.TabIndex = 55;
+            // 
+            // documentKeyText
+            // 
+            this.documentKeyText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "DocumentKey", true));
+            this.documentKeyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.documentKeyText.Location = new System.Drawing.Point(138, 16);
+            this.documentKeyText.Name = "documentKeyText";
+            this.documentKeyText.ReadOnly = true;
+            this.documentKeyText.Size = new System.Drawing.Size(157, 20);
+            this.documentKeyText.TabIndex = 56;
+            // 
             // InOutInventoryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,7 +551,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.inOutInventoryDetailProductQuantityViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -602,12 +562,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private SellManagementDbDataSet sellManagementDbDataSet;
-        private WindowsFormsControlLibrary.CustomTextBox documentKeyTextBox;
         private System.Windows.Forms.ComboBox creatorComboBox;
         private System.Windows.Forms.DateTimePicker createDateDateTimePicker;
         private System.Windows.Forms.ComboBox respondComboBox;
-        private WindowsFormsControlLibrary.CustomTextBox carryFeeTextBox;
-        private System.Windows.Forms.NumericUpDown termNumericUpDown;
         private System.Windows.Forms.CheckBox inOutTypeCheckBox;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource inOutInventoryViewBindingSource;
@@ -627,11 +584,14 @@
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.BindingSource iNVENTORYBindingSource;
         private SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter iNVENTORYTableAdapter;
+        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
+        private SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter inouT_INVENTORY_DETAILTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn inventoryidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentKeyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inOutTypeDataGridViewCheckBoxColumn;
-        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
-        private SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter inouT_INVENTORY_DETAILTableAdapter;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox documentKeyText;
     }
 }

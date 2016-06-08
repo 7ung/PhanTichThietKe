@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label documentKeyLabel;
             System.Windows.Forms.Label creatorLabel;
@@ -39,9 +38,13 @@
             System.Windows.Forms.Label termLabel;
             System.Windows.Forms.Label inOutTypeLabel;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
+            this.iNVENTORYCAPABILITYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.inventoryComboBox = new System.Windows.Forms.ComboBox();
             this.iNOUTINVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.documentKeyTextBox = new WindowsFormsControlLibrary.CustomTextBox();
@@ -59,7 +62,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.productidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oRDERDETAILBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -83,7 +85,10 @@
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             this.iNOUTINVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter();
-            label2 = new System.Windows.Forms.Label();
+            this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
+            this.productidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.maxCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             label1 = new System.Windows.Forms.Label();
             documentKeyLabel = new System.Windows.Forms.Label();
             creatorLabel = new System.Windows.Forms.Label();
@@ -93,8 +98,12 @@
             termLabel = new System.Windows.Forms.Label();
             inOutTypeLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYBindingSource)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYCAPABILITYBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentBindingSourceForEdit)).BeginInit();
@@ -104,22 +113,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYDETAILBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(323, 169);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(29, 13);
-            label2.TabIndex = 70;
-            label2.Text = "Năm";
             // 
             // label1
             // 
@@ -178,28 +177,30 @@
             // termLabel
             // 
             termLabel.AutoSize = true;
-            termLabel.Location = new System.Drawing.Point(135, 169);
+            termLabel.Location = new System.Drawing.Point(135, 196);
             termLabel.Name = "termLabel";
-            termLabel.Size = new System.Drawing.Size(37, 13);
+            termLabel.Size = new System.Drawing.Size(19, 13);
             termLabel.TabIndex = 65;
-            termLabel.Text = "Kì hạn";
+            termLabel.Text = "Kỳ";
+            termLabel.Visible = false;
             // 
             // inOutTypeLabel
             // 
             inOutTypeLabel.AutoSize = true;
-            inOutTypeLabel.Location = new System.Drawing.Point(135, 197);
+            inOutTypeLabel.Location = new System.Drawing.Point(135, 168);
             inOutTypeLabel.Name = "inOutTypeLabel";
             inOutTypeLabel.Size = new System.Drawing.Size(26, 13);
             inOutTypeLabel.TabIndex = 67;
             inOutTypeLabel.Text = "Kho";
+            inOutTypeLabel.Visible = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.inventoryComboBox);
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(label2);
             this.groupBox1.Controls.Add(label1);
             this.groupBox1.Controls.Add(documentKeyLabel);
             this.groupBox1.Controls.Add(this.documentKeyTextBox);
@@ -217,32 +218,79 @@
             this.groupBox1.Controls.Add(this.isInCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(860, 232);
+            this.groupBox1.Size = new System.Drawing.Size(960, 232);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.dataGridView3);
+            this.groupBox5.Location = new System.Drawing.Point(463, 19);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(480, 196);
+            this.groupBox5.TabIndex = 73;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Sức chứa";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.productidDataGridViewTextBoxColumn1,
+            this.maxCountDataGridViewTextBoxColumn,
+            this.currentCountDataGridViewTextBoxColumn});
+            this.dataGridView3.DataSource = this.iNVENTORYCAPABILITYBindingSource;
+            this.dataGridView3.Location = new System.Drawing.Point(20, 19);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(445, 163);
+            this.dataGridView3.TabIndex = 0;
+            // 
+            // pRODUCTBindingSource
+            // 
+            this.pRODUCTBindingSource.DataMember = "PRODUCT";
+            this.pRODUCTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sellManagementDbDataSet
+            // 
+            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
+            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // iNVENTORYCAPABILITYBindingSource
+            // 
+            this.iNVENTORYCAPABILITYBindingSource.DataMember = "INVENTORY_CAPABILITY";
+            this.iNVENTORYCAPABILITYBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // inventoryComboBox
             // 
             this.inventoryComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iNOUTINVENTORYBindingSource, "Inventory_id", true));
             this.inventoryComboBox.DataSource = this.iNVENTORYBindingSource;
             this.inventoryComboBox.DisplayMember = "Name";
+            this.inventoryComboBox.Enabled = false;
             this.inventoryComboBox.FormattingEnabled = true;
-            this.inventoryComboBox.Location = new System.Drawing.Point(257, 194);
+            this.inventoryComboBox.Location = new System.Drawing.Point(257, 162);
             this.inventoryComboBox.Name = "inventoryComboBox";
             this.inventoryComboBox.Size = new System.Drawing.Size(160, 21);
             this.inventoryComboBox.TabIndex = 72;
             this.inventoryComboBox.ValueMember = "Id";
+            this.inventoryComboBox.TextChanged += new System.EventHandler(this.inventoryComboBox_TextChanged);
             // 
             // iNOUTINVENTORYBindingSource
             // 
             this.iNOUTINVENTORYBindingSource.DataMember = "INOUTINVENTORY";
             this.iNOUTINVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
-            // sellManagementDbDataSet
-            // 
-            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
-            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // iNVENTORYBindingSource
             // 
@@ -360,16 +408,18 @@
             // 
             this.termNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iNOUTINVENTORYBindingSource, "Term", true));
             this.termNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.termNumericUpDown.Location = new System.Drawing.Point(257, 162);
+            this.termNumericUpDown.Location = new System.Drawing.Point(257, 189);
             this.termNumericUpDown.Name = "termNumericUpDown";
             this.termNumericUpDown.Size = new System.Drawing.Size(60, 26);
             this.termNumericUpDown.TabIndex = 66;
+            this.termNumericUpDown.Visible = false;
             // 
             // isInCheckBox
             // 
             this.isInCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.isInCheckBox.BackColor = System.Drawing.Color.White;
             this.isInCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.iNOUTINVENTORYBindingSource, "Type", true));
+            this.isInCheckBox.Enabled = false;
             this.isInCheckBox.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.isInCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.isInCheckBox.ForeColor = System.Drawing.Color.Black;
@@ -448,11 +498,6 @@
             this.productidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.productidDataGridViewTextBoxColumn.ValueMember = "Id";
             // 
-            // pRODUCTBindingSource
-            // 
-            this.pRODUCTBindingSource.DataMember = "PRODUCT";
-            this.pRODUCTBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // quantityDataGridViewTextBoxColumn
             // 
             this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
@@ -484,7 +529,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(299, 137);
+            this.dataGridView1.Size = new System.Drawing.Size(399, 137);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -538,7 +583,7 @@
             this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Location = new System.Drawing.Point(220, 260);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(336, 200);
+            this.groupBox3.Size = new System.Drawing.Size(436, 200);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đơn hàng được xuất/nhập";
@@ -547,7 +592,7 @@
             // 
             this.totalProductLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalProductLabel.AutoSize = true;
-            this.totalProductLabel.Location = new System.Drawing.Point(150, 174);
+            this.totalProductLabel.Location = new System.Drawing.Point(250, 174);
             this.totalProductLabel.Name = "totalProductLabel";
             this.totalProductLabel.Size = new System.Drawing.Size(69, 13);
             this.totalProductLabel.TabIndex = 2;
@@ -574,8 +619,8 @@
             // 
             // createBtn
             // 
-            this.createBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.createBtn.Location = new System.Drawing.Point(533, 481);
+            this.createBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.createBtn.Location = new System.Drawing.Point(897, 481);
             this.createBtn.Name = "createBtn";
             this.createBtn.Size = new System.Drawing.Size(75, 23);
             this.createBtn.TabIndex = 3;
@@ -585,8 +630,8 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancelBtn.Location = new System.Drawing.Point(419, 481);
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.Location = new System.Drawing.Point(816, 481);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 4;
@@ -600,6 +645,7 @@
             // 
             // addOrderBtn
             // 
+            this.addOrderBtn.Enabled = false;
             this.addOrderBtn.Location = new System.Drawing.Point(173, 317);
             this.addOrderBtn.Name = "addOrderBtn";
             this.addOrderBtn.Size = new System.Drawing.Size(45, 45);
@@ -610,6 +656,7 @@
             // 
             // removeOrderBtn
             // 
+            this.removeOrderBtn.Enabled = false;
             this.removeOrderBtn.Location = new System.Drawing.Point(173, 368);
             this.removeOrderBtn.Name = "removeOrderBtn";
             this.removeOrderBtn.Size = new System.Drawing.Size(45, 45);
@@ -623,7 +670,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dataGridView2);
-            this.groupBox4.Location = new System.Drawing.Point(562, 260);
+            this.groupBox4.Location = new System.Drawing.Point(662, 260);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(310, 200);
             this.groupBox4.TabIndex = 7;
@@ -642,11 +689,45 @@
             // 
             this.iNOUTINVENTORYTableAdapter.ClearBeforeFill = true;
             // 
+            // iNVENTORY_CAPABILITYTableAdapter
+            // 
+            this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
+            // 
+            // productidDataGridViewTextBoxColumn1
+            // 
+            this.productidDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.productidDataGridViewTextBoxColumn1.DataPropertyName = "Product_id";
+            this.productidDataGridViewTextBoxColumn1.DataSource = this.pRODUCTBindingSource;
+            this.productidDataGridViewTextBoxColumn1.DisplayMember = "Name";
+            this.productidDataGridViewTextBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.productidDataGridViewTextBoxColumn1.HeaderText = "Sản phẩm";
+            this.productidDataGridViewTextBoxColumn1.Name = "productidDataGridViewTextBoxColumn1";
+            this.productidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.productidDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.productidDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.productidDataGridViewTextBoxColumn1.ValueMember = "Id";
+            // 
+            // maxCountDataGridViewTextBoxColumn
+            // 
+            this.maxCountDataGridViewTextBoxColumn.DataPropertyName = "MaxCount";
+            this.maxCountDataGridViewTextBoxColumn.HeaderText = "Số lượng tối đa";
+            this.maxCountDataGridViewTextBoxColumn.Name = "maxCountDataGridViewTextBoxColumn";
+            this.maxCountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maxCountDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // currentCountDataGridViewTextBoxColumn
+            // 
+            this.currentCountDataGridViewTextBoxColumn.DataPropertyName = "CurrentCount";
+            this.currentCountDataGridViewTextBoxColumn.HeaderText = "Số lượng hiện tại";
+            this.currentCountDataGridViewTextBoxColumn.Name = "currentCountDataGridViewTextBoxColumn";
+            this.currentCountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.currentCountDataGridViewTextBoxColumn.Width = 150;
+            // 
             // AddInoutInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 526);
+            this.ClientSize = new System.Drawing.Size(984, 526);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.removeOrderBtn);
             this.Controls.Add(this.addOrderBtn);
@@ -662,8 +743,12 @@
             this.Load += new System.EventHandler(this.AddInoutInventory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYBindingSource)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYCAPABILITYBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentBindingSourceForEdit)).EndInit();
@@ -673,7 +758,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYDETAILBindingSource)).EndInit();
@@ -730,5 +814,12 @@
         private System.Windows.Forms.BindingSource iNOUTINVENTORYBindingSource;
         private SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter iNOUTINVENTORYTableAdapter;
         private System.Windows.Forms.BindingSource documentBindingSourceForEdit;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.BindingSource iNVENTORYCAPABILITYBindingSource;
+        private SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter iNVENTORY_CAPABILITYTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentCountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxCountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn productidDataGridViewTextBoxColumn1;
     }
 }

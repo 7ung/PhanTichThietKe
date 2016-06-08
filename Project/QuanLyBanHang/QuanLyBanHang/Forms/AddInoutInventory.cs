@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,13 @@ namespace QuanLyBanHang.Forms
     public partial class AddInoutInventory : Form
     {
         private bool _isAddNew = true;
+        private bool _canClearList = false;
+        private string _currentDocumentKey = "";
 
         public bool IsImport { get; set; }
         public int DocumentId { get; set; }
+
+        public int InventoryId { get; set; }
 
         public AddInoutInventory()
         {
@@ -42,6 +47,8 @@ namespace QuanLyBanHang.Forms
 
         private void AddInoutInventory_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY_CAPABILITY' table. You can move, or remove it, as needed.
+            this.iNVENTORY_CAPABILITYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY_CAPABILITY);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY' table. You can move, or remove it, as needed.
             this.iNVENTORYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.STAFF' table. You can move, or remove it, as needed.
@@ -52,13 +59,17 @@ namespace QuanLyBanHang.Forms
             this.pRODUCTTableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.ORDER_DETAIL' table. You can move, or remove it, as needed.
             this.oRDER_DETAILTableAdapter.Fill(this.sellManagementDbDataSet.ORDER_DETAIL);
-            
+
+
             if (_isAddNew)
             {
-                documentKeyTextBox.Text = generateDocumentKey(isInCheckBox.Checked);
+                RemoveBindingControls();
 
                 // check
                 isInCheckBox.Checked = IsImport;
+
+                documentKeyTextBox.Text = generateDocumentKey(isInCheckBox.Checked);
+                carryFeeTextBox.Text = "0";
             }
             else
             {
@@ -68,6 +79,8 @@ namespace QuanLyBanHang.Forms
                 this.iNOUTINVENTORYTableAdapter.Fill(this.sellManagementDbDataSet.INOUTINVENTORY);
 
                 SelectById(this.DocumentId);
+
+                InventoryId = (int)inventoryComboBox.SelectedValue;
             }
 
             SelectDocumentBindToComboBox(isInCheckBox.Checked);
@@ -86,20 +99,39 @@ namespace QuanLyBanHang.Forms
             }
 
             updateControls();
+
+            // load xong hết thì mới có thể xóa list
+            _canClearList = true;
         }
 
         private void updateControls()
         {
-            if(_isAddNew)
+            iNVENTORYBindingSource.Filter = "Id = " + InventoryId;
+            iNVENTORYCAPABILITYBindingSource.Filter = "Inventory_id = " + InventoryId;
+
+            var current = (iNVENTORYBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow;
+            var text = "xuất";
+            if(isInCheckBox.Checked)
+                text = "nhập";
+
+            if (_isAddNew)
             {
                 createBtn.Text = "Tạo";
-                this.Text = "Tạo đơn nhập xuất";
+                this.Text = "Tạo đơn " + text + " hàng | Kho " + current.Name;
             }
             else
             {
                 createBtn.Text = "Lưu";
-                this.Text = "Chỉnh sửa đơn " + documentKeyTextBox.Text;
+                this.Text = "Chỉnh sửa đơn " + documentKeyTextBox.Text + " | Kho " + current.Name;
             }
+            
+        }
+
+        private void RemoveBindingControls()
+        {
+            documentKeyTextBox.DataBindings.Clear();
+            createDateDateTimePicker.DataBindings.Clear();
+            creatorComboBox.DataBindings.Clear();
         }
 
         private void SelectById(int id)
@@ -114,11 +146,11 @@ namespace QuanLyBanHang.Forms
             iNOUTINVENTORYBindingSource.Filter = "Id = " + curRow.Id;
         }
 
-        private void SelectDocumentBindToComboBox(bool isIn)
+        private void SelectDocumentBindToComboBox(bool isImport)
         {
             // lọc document là order
             var prefix = "CO";
-            if (isIn)
+            if (isImport)
                 prefix = "VO";
 
             var doc = sellManagementDbDataSet.DOCUMENT.Where(d => (d.DocumentKey.Substring(0,2).Contains(prefix))).ToList();
@@ -142,14 +174,29 @@ namespace QuanLyBanHang.Forms
             listBox1.DisplayMember = "DocumentKey";
             listBox1.ValueMember = "Id";
 
-            //oRDERDETAILBindingSource.Filter = "Order_id = " + listBox1.SelectedValue;
+            if(listBox1.SelectedValue != null)
+                oRDERDETAILBindingSource.Filter = "Order_id = " + listBox1.SelectedValue;
+            else
+            {
+                oRDERDETAILBindingSource.Filter = "Order_id = -1";
+            }
+
+            if (doc.Count == 0)
+                addOrderBtn.Enabled = false;
+            else
+                addOrderBtn.Enabled = true;
+
+            if (dataGridView1.Rows.Count > 0)
+                removeOrderBtn.Enabled = true;
+            else
+                removeOrderBtn.Enabled = false;
         }
 
-        private string generateDocumentKey(bool isIn)
+        private string generateDocumentKey(bool isImport)
         {
             int max = 0;
             string prefix = "OUT";
-            if (isIn)
+            if (isImport)
                 prefix = "IN";
 
             foreach (DataRow item in sellManagementDbDataSet.DOCUMENT.Where(c => c.DocumentKey.Substring(0, prefix.Length) == prefix))
@@ -158,7 +205,9 @@ namespace QuanLyBanHang.Forms
                 max = Math.Max(max, Convert.ToInt32(value));
             }
 
-            return prefix + String.Format("{0:D6}", max + 1);
+            _currentDocumentKey = prefix + String.Format("{0:D6}", max + 1);
+
+            return _currentDocumentKey;
         }
 
         private void iNOUTINVENTORYDETAILBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -328,12 +377,47 @@ namespace QuanLyBanHang.Forms
                 checkbox.TextAlign = ContentAlignment.MiddleLeft;
             }
 
-            // generate key
-            if (_isAddNew)
-                documentKeyTextBox.Text = generateDocumentKey(checkbox.Checked);
+            if (_canClearList)
+                clearDetailOrdersList();
+                
 
             // get lại đơn hàng
             SelectDocumentBindToComboBox(checkbox.Checked);
+        }
+
+        private void clearDetailOrdersList()
+        {
+            if (_isAddNew)
+            {
+                // generate key
+                documentKeyTextBox.Text = generateDocumentKey(isInCheckBox.Checked);
+
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        if ((int)dataGridView1.Rows[i].Cells["inOutInventoryidColumn"].Value == 0)
+                        {
+                            dataGridView1.Rows.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        if ((int)dataGridView1.Rows[i].Cells["inOutInventoryidColumn"].Value == this.DocumentId)
+                        {
+                            dataGridView1.Rows.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
         }
 
         private void createBtn_Click(object sender, EventArgs e)
@@ -363,58 +447,112 @@ namespace QuanLyBanHang.Forms
                 iNOUTINVENTORYDETAILBindingSource.EndEdit();
                 iNOUT_INVENTORY_DETAILTableAdapter.Update(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
                 sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.AcceptChanges();
-
+                
                 this.Close();
+            }
+            catch (SqlException ex)
+            {
+                SQLExceptionHandler(ex);
+
+                // fill lại
+                iNOUT_INVENTORY_DETAILTableAdapter.Fill(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
+                iNOUTINVENTORYTableAdapter.Fill(sellManagementDbDataSet.INOUTINVENTORY);
+                dOCUMENTTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
+
+                // bind lại
+                SelectDocumentBindToComboBox(isInCheckBox.Checked);
+
+                updateLabels();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra rồi rồi. \n\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Có lỗi xảy ra. \n\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
                 return;
             }
         }
 
         private void createInOutInventory()
         {
+            int docId = -1;
+
             try
             {
+                var current = (iNVENTORYBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow;
+
                 queriesTableAdapter.Insert_InoutInventory(documentKeyTextBox.Text, 
                     (int)creatorComboBox.SelectedValue,
                     createDateDateTimePicker.Value,
                     (int)respondComboBox.SelectedValue,
                     (int)inventoryComboBox.SelectedValue,
                     Convert.ToDouble(carryFeeTextBox.Text),
-                    (int)termNumericUpDown.Value,
+                    current.Term,
                     isInCheckBox.Checked);
 
                 // update detail
                 dOCUMENTTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
-                var resultDoc = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey == documentKeyTextBox.Text);
+                var resultDoc = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey == _currentDocumentKey);
 
                 if (resultDoc.Count() == 0)
                     throw new Exception("Không tạo được chi đơn hàng. :(");
 
+                docId = resultDoc.First().Id;
+
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    item.Cells["inOutInventoryidColumn"].Value = resultDoc.First().Id;
+                    item.Cells["inOutInventoryidColumn"].Value = docId;
                 }
 
                 // save
                 iNOUTINVENTORYDETAILBindingSource.EndEdit();
                 iNOUT_INVENTORY_DETAILTableAdapter.Update(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
                 sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.AcceptChanges();
-
+                
                 this.Close();
+            }
+            catch(SqlException ex)
+            {
+                SQLExceptionHandler(ex);
+
+                // xóa cái tạo bị lỗi đi
+                if (docId != -1)
+                    queriesTableAdapter.Delete_InoutInventory(docId);
+
+                // bind lại
+                SelectDocumentBindToComboBox(isInCheckBox.Checked);
+
+                sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Clear();
+                removeOrderBtn.Enabled = false;
+                updateLabels();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra rồi rồi. \n\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Có lỗi xảy ra. \n\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
                 return;
+            }
+        }
+
+        private void SQLExceptionHandler(SqlException ex)
+        {
+            if(ex.Message.Contains("R19"))
+            {
+                if(isInCheckBox.Checked)
+                    MessageBox.Show("Số lượng sản phẩm nhập vào kho hàng quá sức chứa. \nErrors:\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Không đủ số lượng để xuất hàng. \nErrors:\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
             }
         }
 
         private void carryFeeTextBox_xTextChanged(object sender, EventArgs e)
         {
+            if (carryFeeTextBox.Text == "")
+                return;
+
             try
             {
                 var value = Convert.ToDouble(carryFeeTextBox.Text);
@@ -429,6 +567,11 @@ namespace QuanLyBanHang.Forms
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void inventoryComboBox_TextChanged(object sender, EventArgs e)
+        {
+            //iNVENTORYBindingSource.Filter = "Name LIKE '%" + inventoryComboBox.Text + "%'";
         }
     }
 }

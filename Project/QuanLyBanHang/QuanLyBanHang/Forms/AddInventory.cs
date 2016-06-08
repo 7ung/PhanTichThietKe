@@ -102,7 +102,7 @@ namespace QuanLyBanHang.Forms
                     this.iNVENTORY_CAPABILITYBindingSource.EndEdit();
                     this.iNVENTORY_CAPABILITYTableAdapter.Update(sellManagementDbDataSet.INVENTORY_CAPABILITY);
                     sellManagementDbDataSet.INVENTORY_CAPABILITY.AcceptChanges();
-                    
+
                     this.Close();
                 }
                 catch(Exception ex)

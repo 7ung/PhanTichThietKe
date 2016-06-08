@@ -311,14 +311,29 @@ namespace QuanLyBanHang
 
         private void inInventoryBtn_Click(object sender, EventArgs e)
         {
-            var addForm = new AddInoutInventory(true);
-            addForm.ShowDialog();
+            var listForm = new SelectInventoryForm();
+            var result = listForm.ShowDialog();
+
+            if(result == DialogResult.OK)
+            {
+                var addForm = new AddInoutInventory(true);
+                addForm.InventoryId = listForm.InventoryId;
+                addForm.ShowDialog();
+            }
+
         }
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
-            var addForm = new AddInoutInventory(false);
-            addForm.ShowDialog();
+            var listForm = new SelectInventoryForm();
+            var result = listForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                var addForm = new AddInoutInventory(false);
+                addForm.InventoryId = listForm.InventoryId;
+                addForm.ShowDialog();
+            }
         }
 
         private void productListBtn_Click(object sender, EventArgs e)

@@ -41,7 +41,7 @@ namespace QuanLyBanHang.Forms
         {
             this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
             this.pRODUCT_METADATABindingSource.ResetBindings(true);
-            this.pRODUCT_METADATADataGridView.Refresh();
+            //this.pRODUCT_METADATADataGridView.Refresh();
 
             this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
             this.pRODUCTBindingSource.ResetBindings(false);           
@@ -99,7 +99,7 @@ namespace QuanLyBanHang.Forms
 
             this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
             this.pRODUCT_METADATABindingSource.ResetBindings(true);
-            this.pRODUCT_METADATADataGridView.Refresh();
+            //this.pRODUCT_METADATADataGridView.Refresh();
 
             this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
             this.pRODUCTBindingSource.ResetBindings(false);
