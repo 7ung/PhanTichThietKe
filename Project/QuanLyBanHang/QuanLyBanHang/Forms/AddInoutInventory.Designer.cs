@@ -40,10 +40,12 @@
             System.Windows.Forms.Label inOutTypeLabel;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.inventoryComboBox = new System.Windows.Forms.ComboBox();
-            this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iNOUTINVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
+            this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.documentKeyTextBox = new WindowsFormsControlLibrary.CustomTextBox();
+            this.documentBindingSourceForEdit = new System.Windows.Forms.BindingSource(this.components);
             this.creatorComboBox = new System.Windows.Forms.ComboBox();
             this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.createDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -52,6 +54,7 @@
             this.carryFeeTextBox = new WindowsFormsControlLibrary.CustomTextBox();
             this.termNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.isInCheckBox = new System.Windows.Forms.CheckBox();
+            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -59,7 +62,6 @@
             this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oRDERDETAILBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.inOutInventoryidColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -80,6 +82,7 @@
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
+            this.iNOUTINVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             documentKeyLabel = new System.Windows.Forms.Label();
@@ -90,17 +93,19 @@
             termLabel = new System.Windows.Forms.Label();
             inOutTypeLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentBindingSourceForEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYDETAILBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -219,6 +224,7 @@
             // 
             // inventoryComboBox
             // 
+            this.inventoryComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iNOUTINVENTORYBindingSource, "Inventory_id", true));
             this.inventoryComboBox.DataSource = this.iNVENTORYBindingSource;
             this.inventoryComboBox.DisplayMember = "Name";
             this.inventoryComboBox.FormattingEnabled = true;
@@ -228,15 +234,20 @@
             this.inventoryComboBox.TabIndex = 72;
             this.inventoryComboBox.ValueMember = "Id";
             // 
-            // iNVENTORYBindingSource
+            // iNOUTINVENTORYBindingSource
             // 
-            this.iNVENTORYBindingSource.DataMember = "INVENTORY";
-            this.iNVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
+            this.iNOUTINVENTORYBindingSource.DataMember = "INOUTINVENTORY";
+            this.iNOUTINVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // sellManagementDbDataSet
             // 
             this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
             this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // iNVENTORYBindingSource
+            // 
+            this.iNVENTORYBindingSource.DataMember = "INVENTORY";
+            this.iNVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // pictureBox1
             // 
@@ -253,6 +264,7 @@
             this.documentKeyTextBox.AutoSize = true;
             this.documentKeyTextBox.BackColor = System.Drawing.Color.White;
             this.documentKeyTextBox.BorderColor = System.Drawing.Color.Silver;
+            this.documentKeyTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentBindingSourceForEdit, "DocumentKey", true));
             this.documentKeyTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.documentKeyTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
             this.documentKeyTextBox.isRequired = true;
@@ -270,8 +282,14 @@
             this.documentKeyTextBox.TextPanelMessageColor = System.Drawing.Color.White;
             this.documentKeyTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
+            // documentBindingSourceForEdit
+            // 
+            this.documentBindingSourceForEdit.DataMember = "DOCUMENT";
+            this.documentBindingSourceForEdit.DataSource = this.sellManagementDbDataSet;
+            // 
             // creatorComboBox
             // 
+            this.creatorComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.documentBindingSourceForEdit, "Creator", true));
             this.creatorComboBox.DataSource = this.sTAFFBindingSource;
             this.creatorComboBox.DisplayMember = "Name";
             this.creatorComboBox.FormattingEnabled = true;
@@ -289,6 +307,7 @@
             // createDateDateTimePicker
             // 
             this.createDateDateTimePicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
+            this.createDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.documentBindingSourceForEdit, "CreateDate", true));
             this.createDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDateDateTimePicker.Location = new System.Drawing.Point(257, 78);
             this.createDateDateTimePicker.Name = "createDateDateTimePicker";
@@ -297,6 +316,7 @@
             // 
             // respondComboBox
             // 
+            this.respondComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iNOUTINVENTORYBindingSource, "Respond", true));
             this.respondComboBox.DataSource = this.sTAFFBindingSource1;
             this.respondComboBox.DisplayMember = "Name";
             this.respondComboBox.FormattingEnabled = true;
@@ -316,6 +336,7 @@
             this.carryFeeTextBox.AutoSize = true;
             this.carryFeeTextBox.BackColor = System.Drawing.Color.White;
             this.carryFeeTextBox.BorderColor = System.Drawing.Color.Silver;
+            this.carryFeeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNOUTINVENTORYBindingSource, "CarryFee", true));
             this.carryFeeTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.carryFeeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.carryFeeTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
@@ -337,6 +358,7 @@
             // 
             // termNumericUpDown
             // 
+            this.termNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iNOUTINVENTORYBindingSource, "Term", true));
             this.termNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.termNumericUpDown.Location = new System.Drawing.Point(257, 162);
             this.termNumericUpDown.Name = "termNumericUpDown";
@@ -347,6 +369,7 @@
             // 
             this.isInCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.isInCheckBox.BackColor = System.Drawing.Color.White;
+            this.isInCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.iNOUTINVENTORYBindingSource, "Type", true));
             this.isInCheckBox.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.isInCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.isInCheckBox.ForeColor = System.Drawing.Color.Black;
@@ -358,6 +381,11 @@
             this.isInCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.isInCheckBox.UseVisualStyleBackColor = false;
             this.isInCheckBox.CheckedChanged += new System.EventHandler(this.inOutTypeCheckBox_CheckedChanged);
+            // 
+            // dOCUMENTBindingSource
+            // 
+            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
+            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // groupBox2
             // 
@@ -436,11 +464,6 @@
             // 
             this.oRDERDETAILBindingSource.DataMember = "ORDER_DETAIL";
             this.oRDERDETAILBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
-            // dOCUMENTBindingSource
-            // 
-            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
-            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // dataGridView1
             // 
@@ -615,6 +638,10 @@
             // 
             this.iNVENTORYTableAdapter.ClearBeforeFill = true;
             // 
+            // iNOUTINVENTORYTableAdapter
+            // 
+            this.iNOUTINVENTORYTableAdapter.ClearBeforeFill = true;
+            // 
             // AddInoutInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,23 +655,26 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MinimumSize = new System.Drawing.Size(900, 565);
             this.Name = "AddInoutInventory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Đơn nhập xuất kho";
             this.Load += new System.EventHandler(this.AddInoutInventory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentBindingSourceForEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.termNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNOUTINVENTORYDETAILBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -697,5 +727,8 @@
         private System.Windows.Forms.DataGridViewLinkColumn detailBtn;
         private System.Windows.Forms.DataGridViewComboBoxColumn orderidDataGridViewTextBoxColumn;
         private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
+        private System.Windows.Forms.BindingSource iNOUTINVENTORYBindingSource;
+        private SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter iNOUTINVENTORYTableAdapter;
+        private System.Windows.Forms.BindingSource documentBindingSourceForEdit;
     }
 }

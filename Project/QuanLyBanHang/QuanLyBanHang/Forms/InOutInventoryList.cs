@@ -111,5 +111,37 @@ namespace QuanLyBanHang.Forms
                 inOutInventory_Detail_ProductQuantity_ViewTableAdapter.Fill(sellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_View);
             }
         }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            if (inOutInventoryViewBindingSource.Current == null)
+            {
+                return;
+            }
+
+            var curRow = (inOutInventoryViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.InOut_Inventory_ViewRow;
+
+            var editForm = new AddInoutInventory(curRow.Id);
+            editForm.ShowDialog();
+
+            // fill lại
+            fillData();
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            var addForm = new AddInoutInventory(false);
+            addForm.ShowDialog();
+
+            // fill lại
+            fillData();
+        }
+
+        private void fillData()
+        {
+            // fill lại
+            inOutInventory_Detail_ProductQuantity_ViewTableAdapter.Fill(sellManagementDbDataSet.InOutInventory_Detail_ProductQuantity_View);
+            inOut_Inventory_ViewTableAdapter.Fill(sellManagementDbDataSet.InOut_Inventory_View);
+        }
     }
 }

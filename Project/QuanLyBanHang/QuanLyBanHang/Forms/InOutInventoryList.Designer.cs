@@ -222,6 +222,7 @@
             this.addBtn.TabIndex = 55;
             this.addBtn.Text = "Thêm";
             this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // groupBox1
             // 
@@ -364,6 +365,7 @@
             this.editBtn.TabIndex = 52;
             this.editBtn.Text = "Sửa";
             this.editBtn.UseVisualStyleBackColor = true;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // dataGridView2
             // 
@@ -426,7 +428,7 @@
             this.documentKeyTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "DocumentKey", true));
             this.documentKeyTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.documentKeyTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.documentKeyTextBox.isRequired = true;
+            this.documentKeyTextBox.isRequired = false;
             this.documentKeyTextBox.Location = new System.Drawing.Point(138, 16);
             this.documentKeyTextBox.Multiline = false;
             this.documentKeyTextBox.Name = "documentKeyTextBox";
@@ -474,7 +476,7 @@
             // 
             this.respondComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.inOutInventoryViewBindingSource, "Respond", true));
             this.respondComboBox.DataSource = this.sTAFFBindingSource1;
-            this.respondComboBox.DisplayMember = "Id";
+            this.respondComboBox.DisplayMember = "Name";
             this.respondComboBox.Enabled = false;
             this.respondComboBox.FormattingEnabled = true;
             this.respondComboBox.Location = new System.Drawing.Point(138, 95);
@@ -497,7 +499,7 @@
             this.carryFeeTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.carryFeeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.carryFeeTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.carryFeeTextBox.isRequired = true;
+            this.carryFeeTextBox.isRequired = false;
             this.carryFeeTextBox.Location = new System.Drawing.Point(138, 122);
             this.carryFeeTextBox.Multiline = false;
             this.carryFeeTextBox.Name = "carryFeeTextBox";
