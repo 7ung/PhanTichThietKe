@@ -193,4 +193,28 @@
   <data name="VendorOrderDocumentPrefixKey" xml:space="preserve">
     <value>VO</value>
   </data>
+  <data name="ConfirmMessage" xml:space="preserve">
+    <value>Bạn có chắc không?</value>
+  </data>
+  <data name="CustomerBillDocumentPrefixKey" xml:space="preserve">
+    <value>CB</value>
+  </data>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Có lỗi xảy ra</value>
+  </data>
+  <data name="InvalidValueMessage" xml:space="preserve">
+    <value>Giá trị nhập không hợp lệ</value>
+  </data>
+  <data name="NotiLabel" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="WarningLabel" xml:space="preserve">
+    <value>Chú ý</value>
+  </data>
 </root>

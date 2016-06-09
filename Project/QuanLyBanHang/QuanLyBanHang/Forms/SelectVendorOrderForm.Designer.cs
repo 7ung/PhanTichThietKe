@@ -45,10 +45,15 @@
             this.vENDORTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDORTableAdapter();
             this.selectBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorOrderViewBindingSource)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,6 +87,7 @@
             this.createDateDataGridViewTextBoxColumn,
             this.finalPriceDataGridViewTextBoxColumn,
             this.idColumn});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip;
             this.dataGridView1.DataSource = this.vendorOrderViewBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(23, 43);
             this.dataGridView1.Name = "dataGridView1";
@@ -187,6 +193,28 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectMenuItem,
+            this.deleteMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(138, 48);
+            // 
+            // selectMenuItem
+            // 
+            this.selectMenuItem.Name = "selectMenuItem";
+            this.selectMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.selectMenuItem.Text = "Xem chi tiết";
+            this.selectMenuItem.Click += new System.EventHandler(this.selectMenuItem_Click);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.deleteMenuItem.Text = "Xóa";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            // 
             // SelectVendorOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,6 +238,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorOrderViewBindingSource)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,5 +262,9 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn statusColumn;
         private System.Windows.Forms.Button selectBtn;
         private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem selectMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
     }
 }

@@ -36,17 +36,22 @@
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.productNameComboBox = new System.Windows.Forms.ComboBox();
+            this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label28 = new System.Windows.Forms.Label();
+            this.inventoryComboBox = new System.Windows.Forms.ComboBox();
+            this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productIdComboBox = new System.Windows.Forms.ComboBox();
+            this.currentComboBox = new System.Windows.Forms.ComboBox();
+            this.iNVENTORYCAPABILITYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.productPriceText = new System.Windows.Forms.TextBox();
             this.productQuantityText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.currentCountText = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.productNameText = new System.Windows.Forms.TextBox();
             this.addProductBtn = new System.Windows.Forms.Button();
             this.chooseProductBtn = new System.Windows.Forms.Button();
-            this.productIdText = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -56,7 +61,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.changeCustomerBtn = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -64,10 +68,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.productDataGridView = new System.Windows.Forms.DataGridView();
             this.productidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oRDERDETAILBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -116,16 +121,21 @@
             this.cONSTANTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cONSTANTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.vatText = new System.Windows.Forms.TextBox();
+            this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
+            this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYCAPABILITYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pURCHASEORDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -175,25 +185,109 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.productNameComboBox);
+            this.groupBox1.Controls.Add(this.label28);
+            this.groupBox1.Controls.Add(this.inventoryComboBox);
+            this.groupBox1.Controls.Add(this.productIdComboBox);
+            this.groupBox1.Controls.Add(this.currentComboBox);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.productPriceText);
             this.groupBox1.Controls.Add(this.productQuantityText);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.currentCountText);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.productNameText);
             this.groupBox1.Controls.Add(this.addProductBtn);
             this.groupBox1.Controls.Add(this.chooseProductBtn);
-            this.groupBox1.Controls.Add(this.productIdText);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(23, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(500, 175);
+            this.groupBox1.Size = new System.Drawing.Size(600, 175);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sản phẩm";
+            // 
+            // productNameComboBox
+            // 
+            this.productNameComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productNameComboBox.DataSource = this.pRODUCTBindingSource;
+            this.productNameComboBox.DisplayMember = "Name";
+            this.productNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productNameComboBox.FormattingEnabled = true;
+            this.productNameComboBox.Location = new System.Drawing.Point(166, 60);
+            this.productNameComboBox.Name = "productNameComboBox";
+            this.productNameComboBox.Size = new System.Drawing.Size(152, 28);
+            this.productNameComboBox.TabIndex = 21;
+            this.productNameComboBox.ValueMember = "Id";
+            // 
+            // pRODUCTBindingSource
+            // 
+            this.pRODUCTBindingSource.DataMember = "PRODUCT";
+            this.pRODUCTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // label28
+            // 
+            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(381, 45);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(26, 13);
+            this.label28.TabIndex = 20;
+            this.label28.Text = "Kho";
+            // 
+            // inventoryComboBox
+            // 
+            this.inventoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.inventoryComboBox.DataSource = this.iNVENTORYBindingSource;
+            this.inventoryComboBox.DisplayMember = "Name";
+            this.inventoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inventoryComboBox.FormattingEnabled = true;
+            this.inventoryComboBox.Location = new System.Drawing.Point(384, 60);
+            this.inventoryComboBox.Name = "inventoryComboBox";
+            this.inventoryComboBox.Size = new System.Drawing.Size(103, 28);
+            this.inventoryComboBox.TabIndex = 19;
+            this.inventoryComboBox.ValueMember = "Id";
+            this.inventoryComboBox.SelectedIndexChanged += new System.EventHandler(this.inventoryComboBox_SelectedIndexChanged);
+            // 
+            // iNVENTORYBindingSource
+            // 
+            this.iNVENTORYBindingSource.DataMember = "INVENTORY";
+            this.iNVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // productIdComboBox
+            // 
+            this.productIdComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productIdComboBox.DataSource = this.pRODUCTBindingSource;
+            this.productIdComboBox.DisplayMember = "ProductKey";
+            this.productIdComboBox.FormattingEnabled = true;
+            this.productIdComboBox.Location = new System.Drawing.Point(218, 19);
+            this.productIdComboBox.Name = "productIdComboBox";
+            this.productIdComboBox.Size = new System.Drawing.Size(269, 21);
+            this.productIdComboBox.TabIndex = 18;
+            this.productIdComboBox.ValueMember = "Id";
+            this.productIdComboBox.TextChanged += new System.EventHandler(this.productIdText_TextChanged);
+            // 
+            // currentComboBox
+            // 
+            this.currentComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.currentComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.pRODUCTBindingSource, "Id", true));
+            this.currentComboBox.DataSource = this.iNVENTORYCAPABILITYBindingSource;
+            this.currentComboBox.DisplayMember = "CurrentCount";
+            this.currentComboBox.Enabled = false;
+            this.currentComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentComboBox.FormattingEnabled = true;
+            this.currentComboBox.Location = new System.Drawing.Point(324, 60);
+            this.currentComboBox.Name = "currentComboBox";
+            this.currentComboBox.Size = new System.Drawing.Size(56, 28);
+            this.currentComboBox.TabIndex = 17;
+            this.currentComboBox.ValueMember = "Product_id";
+            // 
+            // iNVENTORYCAPABILITYBindingSource
+            // 
+            this.iNVENTORYCAPABILITYBindingSource.DataMember = "INVENTORY_CAPABILITY";
+            this.iNVENTORYCAPABILITYBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // label8
             // 
@@ -208,27 +302,29 @@
             // 
             this.productPriceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.productPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "OutPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.productPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productPriceText.Location = new System.Drawing.Point(166, 114);
             this.productPriceText.Name = "productPriceText";
-            this.productPriceText.Size = new System.Drawing.Size(114, 26);
+            this.productPriceText.Size = new System.Drawing.Size(214, 26);
             this.productPriceText.TabIndex = 14;
             // 
             // productQuantityText
             // 
             this.productQuantityText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.productQuantityText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productQuantityText.Location = new System.Drawing.Point(284, 114);
+            this.productQuantityText.Location = new System.Drawing.Point(384, 114);
             this.productQuantityText.Name = "productQuantityText";
             this.productQuantityText.Size = new System.Drawing.Size(103, 26);
             this.productQuantityText.TabIndex = 13;
             this.productQuantityText.Text = "1";
+            this.productQuantityText.TextChanged += new System.EventHandler(this.productQuantityText_TextChanged);
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(281, 98);
+            this.label6.Location = new System.Drawing.Point(381, 98);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 12;
@@ -243,67 +339,41 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Tên";
             // 
-            // currentCountText
-            // 
-            this.currentCountText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.currentCountText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentCountText.Location = new System.Drawing.Point(284, 60);
-            this.currentCountText.Name = "currentCountText";
-            this.currentCountText.ReadOnly = true;
-            this.currentCountText.Size = new System.Drawing.Size(103, 26);
-            this.currentCountText.TabIndex = 10;
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(281, 45);
+            this.label4.Location = new System.Drawing.Point(321, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Hiện tồn";
             // 
-            // productNameText
-            // 
-            this.productNameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.productNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productNameText.Location = new System.Drawing.Point(166, 60);
-            this.productNameText.Name = "productNameText";
-            this.productNameText.ReadOnly = true;
-            this.productNameText.Size = new System.Drawing.Size(114, 26);
-            this.productNameText.TabIndex = 8;
-            // 
             // addProductBtn
             // 
             this.addProductBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addProductBtn.Location = new System.Drawing.Point(393, 59);
+            this.addProductBtn.BackColor = System.Drawing.Color.Transparent;
+            this.addProductBtn.BackgroundImage = global::QuanLyBanHang.Properties.Resources.add_1;
+            this.addProductBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.addProductBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.addProductBtn.Location = new System.Drawing.Point(493, 45);
             this.addProductBtn.Name = "addProductBtn";
-            this.addProductBtn.Size = new System.Drawing.Size(101, 81);
+            this.addProductBtn.Size = new System.Drawing.Size(101, 95);
             this.addProductBtn.TabIndex = 7;
-            this.addProductBtn.Text = "Thêm";
-            this.addProductBtn.UseVisualStyleBackColor = true;
+            this.addProductBtn.TabStop = false;
+            this.addProductBtn.UseVisualStyleBackColor = false;
             this.addProductBtn.Click += new System.EventHandler(this.addProductBtn_Click);
             // 
             // chooseProductBtn
             // 
             this.chooseProductBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chooseProductBtn.Location = new System.Drawing.Point(393, 17);
+            this.chooseProductBtn.Location = new System.Drawing.Point(493, 18);
             this.chooseProductBtn.Name = "chooseProductBtn";
             this.chooseProductBtn.Size = new System.Drawing.Size(101, 23);
             this.chooseProductBtn.TabIndex = 6;
-            this.chooseProductBtn.Text = "Chọn sản phẩm";
+            this.chooseProductBtn.Text = "Danh sách";
             this.chooseProductBtn.UseVisualStyleBackColor = true;
-            // 
-            // productIdText
-            // 
-            this.productIdText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.productIdText.Location = new System.Drawing.Point(218, 19);
-            this.productIdText.Name = "productIdText";
-            this.productIdText.Size = new System.Drawing.Size(169, 20);
-            this.productIdText.TabIndex = 5;
-            this.productIdText.TextChanged += new System.EventHandler(this.productIdText_TextChanged);
+            this.chooseProductBtn.Click += new System.EventHandler(this.chooseProductBtn_Click);
             // 
             // label3
             // 
@@ -316,7 +386,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::QuanLyBanHang.Properties.Resources.Product;
+            this.pictureBox1.BackgroundImage = global::QuanLyBanHang.Properties.Resources.box_3;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("ImageLocation", this.pRODUCTBindingSource, "Picture", true));
             this.pictureBox1.Location = new System.Drawing.Point(6, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
@@ -331,13 +403,12 @@
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.pictureBox2);
-            this.groupBox2.Controls.Add(this.changeCustomerBtn);
             this.groupBox2.Controls.Add(this.textBox10);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.textBox9);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(529, 67);
+            this.groupBox2.Location = new System.Drawing.Point(629, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(350, 174);
             this.groupBox2.TabIndex = 5;
@@ -395,15 +466,6 @@
             this.pictureBox2.TabIndex = 23;
             this.pictureBox2.TabStop = false;
             // 
-            // changeCustomerBtn
-            // 
-            this.changeCustomerBtn.Location = new System.Drawing.Point(265, 136);
-            this.changeCustomerBtn.Name = "changeCustomerBtn";
-            this.changeCustomerBtn.Size = new System.Drawing.Size(70, 23);
-            this.changeCustomerBtn.TabIndex = 17;
-            this.changeCustomerBtn.Text = "Danh sách";
-            this.changeCustomerBtn.UseVisualStyleBackColor = true;
-            // 
             // textBox10
             // 
             this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUSTOMERBindingSource, "Phone", true));
@@ -452,7 +514,6 @@
             // productDataGridView
             // 
             this.productDataGridView.AllowUserToAddRows = false;
-            this.productDataGridView.AllowUserToDeleteRows = false;
             this.productDataGridView.AllowUserToResizeRows = false;
             this.productDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -463,14 +524,13 @@
             this.priceDataGridViewTextBoxColumn,
             this.quantityDataGridViewTextBoxColumn,
             this.resultDataGridViewTextBoxColumn});
+            this.productDataGridView.ContextMenuStrip = this.contextMenuStrip;
             this.productDataGridView.DataSource = this.oRDERDETAILBindingSource;
             this.productDataGridView.Location = new System.Drawing.Point(23, 283);
             this.productDataGridView.Name = "productDataGridView";
-            this.productDataGridView.ReadOnly = true;
-            this.productDataGridView.RowHeadersVisible = false;
-            this.productDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.productDataGridView.Size = new System.Drawing.Size(856, 200);
+            this.productDataGridView.Size = new System.Drawing.Size(956, 200);
             this.productDataGridView.TabIndex = 6;
+            this.productDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.productDataGridView_CellEndEdit);
             // 
             // productidDataGridViewTextBoxColumn
             // 
@@ -486,11 +546,6 @@
             this.productidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.productidDataGridViewTextBoxColumn.ValueMember = "Id";
             // 
-            // pRODUCTBindingSource
-            // 
-            this.pRODUCTBindingSource.DataMember = "PRODUCT";
-            this.pRODUCTBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // priceDataGridViewTextBoxColumn
             // 
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
@@ -503,7 +558,6 @@
             this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
             this.quantityDataGridViewTextBoxColumn.HeaderText = "Số lượng";
             this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // resultDataGridViewTextBoxColumn
             // 
@@ -511,6 +565,21 @@
             this.resultDataGridViewTextBoxColumn.HeaderText = "Thành tiền";
             this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
             this.resultDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(95, 26);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.deleteMenuItem.Text = "Xóa";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
             // oRDERDETAILBindingSource
             // 
@@ -564,13 +633,14 @@
             this.totalPriceText.ReadOnly = true;
             this.totalPriceText.Size = new System.Drawing.Size(260, 26);
             this.totalPriceText.TabIndex = 17;
+            this.totalPriceText.Text = "0";
             this.totalPriceText.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
             // 
             // label16
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(521, 506);
+            this.label16.Location = new System.Drawing.Point(621, 506);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(85, 13);
             this.label16.TabIndex = 18;
@@ -579,9 +649,9 @@
             // extraText
             // 
             this.extraText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.extraText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "ExtraPaid", true));
+            this.extraText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pURCHASEORDERBindingSource, "ExtraPaid", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.extraText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraText.Location = new System.Drawing.Point(619, 530);
+            this.extraText.Location = new System.Drawing.Point(719, 530);
             this.extraText.Name = "extraText";
             this.extraText.Size = new System.Drawing.Size(224, 26);
             this.extraText.TabIndex = 21;
@@ -591,7 +661,7 @@
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(521, 538);
+            this.label17.Location = new System.Drawing.Point(621, 538);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(44, 13);
             this.label17.TabIndex = 20;
@@ -606,6 +676,7 @@
             this.finalPriceText.ReadOnly = true;
             this.finalPriceText.Size = new System.Drawing.Size(260, 26);
             this.finalPriceText.TabIndex = 23;
+            this.finalPriceText.Text = "0";
             // 
             // label18
             // 
@@ -624,6 +695,7 @@
             this.recieveCashText.Size = new System.Drawing.Size(260, 26);
             this.recieveCashText.TabIndex = 25;
             this.recieveCashText.TextChanged += new System.EventHandler(this.recieveCashText_TextChanged);
+            this.recieveCashText.Leave += new System.EventHandler(this.recieveCashText_Leave);
             // 
             // label19
             // 
@@ -655,7 +727,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelBtn.Location = new System.Drawing.Point(682, 86);
+            this.cancelBtn.Location = new System.Drawing.Point(782, 86);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 28;
@@ -667,7 +739,7 @@
             // 
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.Enabled = false;
-            this.saveBtn.Location = new System.Drawing.Point(763, 86);
+            this.saveBtn.Location = new System.Drawing.Point(863, 86);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 29;
@@ -679,7 +751,7 @@
             // 
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(616, 30);
+            this.label21.Location = new System.Drawing.Point(716, 30);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(56, 13);
             this.label21.TabIndex = 30;
@@ -708,7 +780,7 @@
             this.staffComboBox.DataSource = this.sTAFFBindingSource;
             this.staffComboBox.DisplayMember = "StaffKey";
             this.staffComboBox.FormattingEnabled = true;
-            this.staffComboBox.Location = new System.Drawing.Point(704, 27);
+            this.staffComboBox.Location = new System.Drawing.Point(804, 27);
             this.staffComboBox.Name = "staffComboBox";
             this.staffComboBox.Size = new System.Drawing.Size(175, 21);
             this.staffComboBox.TabIndex = 31;
@@ -772,7 +844,7 @@
             this.groupBox3.Controls.Add(this.returnCashText);
             this.groupBox3.Location = new System.Drawing.Point(23, 588);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(856, 136);
+            this.groupBox3.Size = new System.Drawing.Size(956, 136);
             this.groupBox3.TabIndex = 34;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thanh toán";
@@ -782,7 +854,7 @@
             this.statusOrderComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.statusOrderComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.oRDERBindingSource, "Status", true));
             this.statusOrderComboBox.FormattingEnabled = true;
-            this.statusOrderComboBox.Location = new System.Drawing.Point(717, 24);
+            this.statusOrderComboBox.Location = new System.Drawing.Point(817, 24);
             this.statusOrderComboBox.Name = "statusOrderComboBox";
             this.statusOrderComboBox.Size = new System.Drawing.Size(121, 21);
             this.statusOrderComboBox.TabIndex = 40;
@@ -796,7 +868,7 @@
             // 
             this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(607, 27);
+            this.label27.Location = new System.Drawing.Point(707, 27);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(104, 13);
             this.label27.TabIndex = 41;
@@ -842,7 +914,7 @@
             // 
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(849, 538);
+            this.label26.Location = new System.Drawing.Point(949, 538);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(30, 13);
             this.label26.TabIndex = 38;
@@ -867,7 +939,7 @@
             this.discountComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discountComboBox.FormattingEnabled = true;
             this.discountComboBox.IntegralHeight = false;
-            this.discountComboBox.Location = new System.Drawing.Point(619, 496);
+            this.discountComboBox.Location = new System.Drawing.Point(719, 496);
             this.discountComboBox.Name = "discountComboBox";
             this.discountComboBox.Size = new System.Drawing.Size(80, 28);
             this.discountComboBox.TabIndex = 40;
@@ -887,7 +959,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(729, 504);
+            this.label7.Location = new System.Drawing.Point(829, 504);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 41;
@@ -906,12 +978,20 @@
             // 
             this.vatText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vatText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vatText.Location = new System.Drawing.Point(763, 498);
+            this.vatText.Location = new System.Drawing.Point(863, 498);
             this.vatText.Name = "vatText";
             this.vatText.ReadOnly = true;
             this.vatText.Size = new System.Drawing.Size(80, 26);
             this.vatText.TabIndex = 42;
             this.vatText.TextChanged += new System.EventHandler(this.totalPriceText_TextChanged);
+            // 
+            // iNVENTORY_CAPABILITYTableAdapter
+            // 
+            this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
+            // 
+            // iNVENTORYTableAdapter
+            // 
+            this.iNVENTORYTableAdapter.ClearBeforeFill = true;
             // 
             // OrderDetailForm
             // 
@@ -942,12 +1022,15 @@
             this.Controls.Add(this.documentKey);
             this.Controls.Add(this.label1);
             this.Name = "OrderDetailForm";
-            this.Size = new System.Drawing.Size(900, 752);
+            this.Size = new System.Drawing.Size(1000, 752);
             this.Load += new System.EventHandler(this.OrderDetailForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYCAPABILITYBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -955,7 +1038,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -979,16 +1062,11 @@
         private System.Windows.Forms.TextBox productQuantityText;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox currentCountText;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox productNameText;
         private System.Windows.Forms.Button addProductBtn;
-        private System.Windows.Forms.Button chooseProductBtn;
-        private System.Windows.Forms.TextBox productIdText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button changeCustomerBtn;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox9;
@@ -1018,10 +1096,6 @@
         private System.Windows.Forms.BindingSource oRDERDETAILBindingSource;
         private SellManagementDbDataSetTableAdapters.ORDER_DETAILTableAdapter oRDER_DETAILTableAdapter;
         private SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter pRODUCTTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn productidDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource dOCUMENTBindingSource;
         private SellManagementDbDataSetTableAdapters.ORDERTableAdapter orderTableAdapter;
         private SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter dOCUMENTTableAdapter;
@@ -1056,5 +1130,21 @@
         private System.Windows.Forms.ComboBox statusOrderComboBox;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.BindingSource oRDERBindingSource;
+        private System.Windows.Forms.ComboBox currentComboBox;
+        private System.Windows.Forms.BindingSource iNVENTORYCAPABILITYBindingSource;
+        private SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter iNVENTORY_CAPABILITYTableAdapter;
+        private System.Windows.Forms.ComboBox productIdComboBox;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox inventoryComboBox;
+        private System.Windows.Forms.BindingSource iNVENTORYBindingSource;
+        private SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter iNVENTORYTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn productidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private System.Windows.Forms.ComboBox productNameComboBox;
+        private System.Windows.Forms.Button chooseProductBtn;
     }
 }

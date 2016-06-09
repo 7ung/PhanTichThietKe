@@ -30,8 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.billDataGridView = new System.Windows.Forms.DataGridView();
+            this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cUSTOMERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
+            this.finalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerOrderViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customer_Order_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.Customer_Order_ViewTableAdapter();
             this.cUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CUSTOMERTableAdapter();
@@ -39,16 +45,15 @@
             this.selectBtn = new System.Windows.Forms.Button();
             this.searchText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.keyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.finalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerOrderViewBindingSource)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // billDataGridView
@@ -65,6 +70,7 @@
             this.createDateDataGridViewTextBoxColumn,
             this.nameColumn,
             this.finalColumn});
+            this.billDataGridView.ContextMenuStrip = this.contextMenuStrip;
             this.billDataGridView.DataSource = this.customerOrderViewBindingSource;
             this.billDataGridView.Location = new System.Drawing.Point(12, 44);
             this.billDataGridView.Name = "billDataGridView";
@@ -73,6 +79,52 @@
             this.billDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.billDataGridView.Size = new System.Drawing.Size(560, 193);
             this.billDataGridView.TabIndex = 0;
+            // 
+            // idColumn
+            // 
+            this.idColumn.DataPropertyName = "Id";
+            this.idColumn.HeaderText = "Id";
+            this.idColumn.Name = "idColumn";
+            this.idColumn.ReadOnly = true;
+            this.idColumn.Visible = false;
+            // 
+            // statusColumn
+            // 
+            this.statusColumn.DataPropertyName = "Status";
+            this.statusColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.statusColumn.HeaderText = "Trạng thái";
+            this.statusColumn.Name = "statusColumn";
+            this.statusColumn.ReadOnly = true;
+            this.statusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.statusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // keyColumn
+            // 
+            this.keyColumn.DataPropertyName = "DocumentKey";
+            this.keyColumn.HeaderText = "Mã hóa đơn";
+            this.keyColumn.Name = "keyColumn";
+            this.keyColumn.ReadOnly = true;
+            // 
+            // createDateDataGridViewTextBoxColumn
+            // 
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "Ngày lập";
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameColumn.DataPropertyName = "Customer_id";
+            this.nameColumn.DataSource = this.cUSTOMERBindingSource;
+            this.nameColumn.DisplayMember = "Name";
+            this.nameColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.nameColumn.HeaderText = "Khách hàng";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
+            this.nameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.nameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.nameColumn.ValueMember = "Id";
             // 
             // cUSTOMERBindingSource
             // 
@@ -83,6 +135,13 @@
             // 
             this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
             this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // finalColumn
+            // 
+            this.finalColumn.DataPropertyName = "FinalPrice";
+            this.finalColumn.HeaderText = "Tổng hóa đơn";
+            this.finalColumn.Name = "finalColumn";
+            this.finalColumn.ReadOnly = true;
             // 
             // customerOrderViewBindingSource
             // 
@@ -134,58 +193,27 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tìm kiếm";
             // 
-            // idColumn
+            // contextMenuStrip
             // 
-            this.idColumn.DataPropertyName = "Id";
-            this.idColumn.HeaderText = "Id";
-            this.idColumn.Name = "idColumn";
-            this.idColumn.ReadOnly = true;
-            this.idColumn.Visible = false;
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectMenuItem,
+            this.deleteMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(138, 48);
             // 
-            // statusColumn
+            // selectMenuItem
             // 
-            this.statusColumn.DataPropertyName = "Status";
-            this.statusColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.statusColumn.HeaderText = "Trạng thái";
-            this.statusColumn.Name = "statusColumn";
-            this.statusColumn.ReadOnly = true;
-            this.statusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.statusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.selectMenuItem.Name = "selectMenuItem";
+            this.selectMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.selectMenuItem.Text = "Xem chi tiết";
+            this.selectMenuItem.Click += new System.EventHandler(this.selectMenuItem_Click);
             // 
-            // keyColumn
+            // deleteMenuItem
             // 
-            this.keyColumn.DataPropertyName = "DocumentKey";
-            this.keyColumn.HeaderText = "Mã hóa đơn";
-            this.keyColumn.Name = "keyColumn";
-            this.keyColumn.ReadOnly = true;
-            // 
-            // createDateDataGridViewTextBoxColumn
-            // 
-            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "CreateDate";
-            this.createDateDataGridViewTextBoxColumn.HeaderText = "Ngày lập";
-            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
-            this.createDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameColumn
-            // 
-            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameColumn.DataPropertyName = "Customer_id";
-            this.nameColumn.DataSource = this.cUSTOMERBindingSource;
-            this.nameColumn.DisplayMember = "Name";
-            this.nameColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.nameColumn.HeaderText = "Khách hàng";
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.ReadOnly = true;
-            this.nameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.nameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.nameColumn.ValueMember = "Id";
-            // 
-            // finalColumn
-            // 
-            this.finalColumn.DataPropertyName = "FinalPrice";
-            this.finalColumn.HeaderText = "Tổng hóa đơn";
-            this.finalColumn.Name = "finalColumn";
-            this.finalColumn.ReadOnly = true;
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.deleteMenuItem.Text = "Xóa";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
             // SelectOrderForm
             // 
@@ -209,6 +237,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerOrderViewBindingSource)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,5 +261,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn statusColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem selectMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
     }
 }

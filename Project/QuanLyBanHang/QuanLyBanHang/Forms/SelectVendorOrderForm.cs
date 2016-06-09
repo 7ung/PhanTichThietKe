@@ -69,5 +69,22 @@ namespace QuanLyBanHang.Forms
             statusColumn.DisplayMember = "Name";
             statusColumn.ValueMember = "Value";
         }
+
+        private void deleteMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var row = dataGridView1.SelectedRows[0].Cells["idColumn"];
+                queriesTableAdapter.Delete_Vendor_Order(Convert.ToInt32(row.Value));
+
+                // fill
+                vendor_Order_ViewTableAdapter.Fill(sellManagementDbDataSet.Vendor_Order_View);
+            }
+        }
+
+        private void selectMenuItem_Click(object sender, EventArgs e)
+        {
+            selectBtn_Click(sender, e);
+        }
     }
 }

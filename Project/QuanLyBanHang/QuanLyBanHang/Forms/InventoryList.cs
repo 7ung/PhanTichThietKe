@@ -108,10 +108,10 @@ namespace QuanLyBanHang.Forms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            this.iNVENTORYBindingSource.Filter = this.iNVENTORYDataGridView.Columns["dataGridViewTextBoxColumn2"].DataPropertyName.ToString() + " LIKE '%" + this.tbSearch.Text + "%'" + "OR " +
-                                              this.iNVENTORYDataGridView.Columns["dataGridViewTextBoxColumn3"].DataPropertyName.ToString() + " LIKE '%" + this.tbSearch.Text + "%'" + "OR " +
-                                              this.iNVENTORYDataGridView.Columns["dataGridViewTextBoxColumn5"].DataPropertyName.ToString() + " LIKE '%" + this.tbSearch.Text + "%'";
- 
+            this.iNVENTORYBindingSource.Filter = this.iNVENTORYDataGridView.Columns[0].DataPropertyName.ToString() + " LIKE '%" + this.tbSearch.Text + "%' OR " +
+                                                    this.iNVENTORYDataGridView.Columns[1].DataPropertyName.ToString() + " LIKE '%" + this.tbSearch.Text + "%' OR " +
+                                                    this.iNVENTORYDataGridView.Columns[2].DataPropertyName.ToString() + " LIKE '%" + this.tbSearch.Text + "%'";
+
         }
     }
 }

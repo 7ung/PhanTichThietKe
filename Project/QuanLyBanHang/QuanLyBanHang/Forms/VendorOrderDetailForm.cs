@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
+using QuanLyBanHang.Properties;
 
 namespace QuanLyBanHang.Forms
 {
@@ -42,20 +43,23 @@ namespace QuanLyBanHang.Forms
             debtTableAdapter.Fill(sellManagementDbDataSet.DEBT);
             constantTableAdapter.Fill(sellManagementDbDataSet.CONSTANT);
             iNVENTORY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
+            iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
 
             // order
             SelectByOrderId(OrderId);
 
             documentKey.Select(0, 0);
-            productIdCombobox.SelectedIndex = -1;
-            currentComboBox.SelectedIndex = -1;
-            productNameText.Text = "";
-            productPriceText.Text = "";
+            //productIdCombobox.SelectedIndex = -1;
+            //currentComboBox.SelectedIndex = -1;
+            //productNameComboBox.Text = "";
+            //productPriceText.Text = "";
 
             // vat
             vatText.Text = sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "VAT_rate").First().Value;
 
             bindOrderStatus();
+
+            _currentProductId = ((pRODUCTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id;
         }
 
         private void SelectByOrderId(int id)
@@ -88,16 +92,20 @@ namespace QuanLyBanHang.Forms
 
             if (products.Count() == 0)
             {
-                productNameText.Text = "Không tìm thấy!";
+                productNameComboBox.Text = "Không tìm thấy!";
                 productPriceText.Text = "";
                 _currentProductId = 0;
+                addProductBtn.Enabled = false;
                 return;
             }
 
+            if (productQuantityText.Text != "")
+                addProductBtn.Enabled = true;
+
             _currentProductId = products.First().Id;
-            productNameText.Text = products.First().Name;
-            productPriceText.Text = products.First().OutPrice.ToString();
-            currentComboBox.SelectedValue = _currentProductId;
+            //productNameComboBox.Text = products.First().Name;
+            //productPriceText.Text = products.First().OutPrice.ToString();
+            //currentComboBox.SelectedValue = _currentProductId;
         }
 
         private void addProductBtn_Click(object sender, EventArgs e)
@@ -133,11 +141,7 @@ namespace QuanLyBanHang.Forms
                 oRDERDETAILBindingSource.Position = -1;
             }
 
-            var currentOrderDetail = from order_detail in sellManagementDbDataSet.ORDER_DETAIL
-                                     where order_detail.Order_id == OrderId
-                                     select order_detail.Result;
-
-            totalPriceText.Text = currentOrderDetail.Sum().ToString();
+            calculateTotalPrice();
         }
 
         private void createBill()
@@ -240,6 +244,9 @@ namespace QuanLyBanHang.Forms
                 MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 doneBtn.Enabled = false;
             }
+
+            if (returnCashText.Text != "")
+                returnCashText.Text = string.Format("{0:#,##0.00}", double.Parse(returnCashText.Text));
         }
 
         private void totalPriceText_TextChanged(object sender, EventArgs e)
@@ -255,6 +262,10 @@ namespace QuanLyBanHang.Forms
                 vat = Convert.ToDouble(vatText.Text);
 
             finalPriceText.Text = (total * (1 + vat)).ToString();
+
+            // định dạng
+            totalPriceText.Text = string.Format("{0:#,##0.00}", double.Parse(totalPriceText.Text));
+            finalPriceText.Text = string.Format("{0:#,##0.00}", double.Parse(finalPriceText.Text));
         }
 
         private void paidCashText_TextChanged(object sender, EventArgs e)
@@ -286,7 +297,7 @@ namespace QuanLyBanHang.Forms
             {
 
                 var value = Convert.ToDouble(productPriceText.Text);
-                if(!addProductBtn.Enabled)
+                if (!addProductBtn.Enabled)
                     addProductBtn.Enabled = true;
             }
             catch (Exception)
@@ -301,6 +312,78 @@ namespace QuanLyBanHang.Forms
         {
             queriesTableAdapter.Delete_Vendor_Order(OrderId);
             closeTab();
+        }
+
+        private void inventoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (inventoryComboBox.SelectedValue == null)
+                return;
+
+            iNVENTORYCAPABILITYBindingSource.Filter = "Inventory_id = " + inventoryComboBox.SelectedValue;
+        }
+
+        private void productQuantityText_TextChanged(object sender, EventArgs e)
+        {
+            if (productQuantityText.Text == "")
+            {
+                addProductBtn.Enabled = false;
+                return;
+            }
+
+            // kiểm tra max sức chứa
+            // ...
+        }
+
+        private void productDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var product = (oRDERDETAILBindingSource[e.RowIndex] as DataRowView).Row as SellManagementDbDataSet.ORDER_DETAILRow;
+
+            product.BeginEdit();
+            product.Result = product.Quantity * product.Price;
+            product.EndEdit();
+
+            if (product.Quantity <= 0)
+                oRDERDETAILBindingSource.RemoveAt(e.RowIndex);
+
+            calculateTotalPrice();
+        }
+
+        private void calculateTotalPrice()
+        {
+            var currentOrderDetail = from order_detail in sellManagementDbDataSet.ORDER_DETAIL
+                                     where order_detail.Order_id == OrderId
+                                     select order_detail.Result;
+
+            totalPriceText.Text = currentOrderDetail.Sum().ToString();
+        }
+
+        private void deleteMenuItem_Click(object sender, EventArgs e)
+        {
+            var r = MessageBox.Show(Resources.ConfirmMessage, Resources.DeleteLabel, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (r == DialogResult.Yes)
+            {
+                oRDERDETAILBindingSource.RemoveCurrent();
+                calculateTotalPrice();
+            }
+
+        }
+
+        private void paidCashText_Leave(object sender, EventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null)
+                return;
+
+            try
+            {
+                if (textBox.Text != "")
+                    textBox.Text = string.Format("{0:#,##0.00}", double.Parse(textBox.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                doneBtn.Enabled = false;
+            }
         }
     }
 }

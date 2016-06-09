@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyBanHang.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,23 +38,21 @@ namespace QuanLyBanHang.Forms
             this.pRODUCTTableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY' table. You can move, or remove it, as needed.
             this.iNVENTORYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY);
-            
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY_CAPABILITY' table. You can move, or remove it, as needed.
+            this.iNVENTORY_CAPABILITYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY_CAPABILITY);
+
             if (_new)
             {
                 this.iNVENTORYBindingSource.CurrencyManager.AddNew();
                 tbInventoryKey.Text = generateKey();
+
             }
             else
             {
-                // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY_CAPABILITY' table. You can move, or remove it, as needed.
-                this.iNVENTORY_CAPABILITYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY_CAPABILITY);
-
                 this.iNVENTORYBindingSource.CurrencyManager.Position = _id;
                 var currentRow = (this.iNVENTORYBindingSource.CurrencyManager.Current as DataRowView);
                 currentRow.BeginEdit();
-                iNVENTORY_CAPABILITYBindingSource.Filter = "Inventory_id = " + currentRow["Id"];
             }
-
         }
 
         private string generateKey()
@@ -85,36 +84,32 @@ namespace QuanLyBanHang.Forms
                     {
                         curRow.Term = (int)termNumericUpDown.Value;
                     }
-
+                    
                     this.iNVENTORYBindingSource.EndEdit();
                     this.iNVENTORYTableAdapter.Update(sellManagementDbDataSet.INVENTORY);
                     sellManagementDbDataSet.INVENTORY.AcceptChanges();
 
-                    // lấy id row mới
-                    var lastRow = sellManagementDbDataSet.INVENTORY.Last();
-
-                    // gán id inventory cho mấy cái row mới add
-                    foreach (DataGridViewRow item in iNVENTORY_CAPABILITYDataGridView.Rows)
+                    var capability = sellManagementDbDataSet.INVENTORY_CAPABILITY.Where(i => i.Inventory_id == -1).Select(i => i);
+                    foreach (var item in capability)
                     {
-                        item.Cells["idColumn"].Value = lastRow["Id"];
+                        item.Inventory_id = curRow.Id;
                     }
-
-                    this.iNVENTORY_CAPABILITYBindingSource.EndEdit();
+                    
                     this.iNVENTORY_CAPABILITYTableAdapter.Update(sellManagementDbDataSet.INVENTORY_CAPABILITY);
                     sellManagementDbDataSet.INVENTORY_CAPABILITY.AcceptChanges();
-
+                    
                     this.Close();
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra rồi. :( \n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.ErrorMessage + "\n" + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 try
                 {
-                    this.iNVENTORY_CAPABILITYBindingSource.EndEdit();
+                    this.iNVENTORY_CAPABILITYBindingSource1.EndEdit();
                     this.iNVENTORY_CAPABILITYTableAdapter.Update(sellManagementDbDataSet.INVENTORY_CAPABILITY);
                     sellManagementDbDataSet.INVENTORY_CAPABILITY.AcceptChanges();
 
@@ -127,40 +122,13 @@ namespace QuanLyBanHang.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra rồi. :( \n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //if (_new)
-            //{
-            //    try
-            //    {
-            //        if (((this.iNVENTORYBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow).Id >= 0)
-            //        {
-            //            DataRowView row = (DataRowView)this.iNVENTORYBindingSource.CurrencyManager.Current;
-            //            row.Delete();
-            //        }
-
-            //        this.sellManagementDbDataSet.INVENTORY_CAPABILITY.RejectChanges();
-
-            //        this.iNVENTORYBindingSource.EndEdit();
-            //        this.iNVENTORYTableAdapter.Update(sellManagementDbDataSet.INVENTORY);
-            //        this.sellManagementDbDataSet.INVENTORY.AcceptChanges();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Có lỗi xảy ra rồi. :( \n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-            //else
-            //{
-            //    this.sellManagementDbDataSet.INVENTORY_CAPABILITY.RejectChanges();
-            //    this.sellManagementDbDataSet.INVENTORY.RejectChanges();              
-            //}
-
             this.sellManagementDbDataSet.INVENTORY_CAPABILITY.RejectChanges();
             this.sellManagementDbDataSet.INVENTORY.RejectChanges();          
             this.Close();
@@ -168,24 +136,6 @@ namespace QuanLyBanHang.Forms
 
         private void iNVENTORY_CAPABILITYDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            //if (((this.iNVENTORYBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow).Id < 0)
-            {
-                try
-                {
-                    //this.iNVENTORYBindingSource.EndEdit();
-                    //this.iNVENTORYTableAdapter.Update(sellManagementDbDataSet.INVENTORY);
-                    //sellManagementDbDataSet.AcceptChanges();
-                    //this.iNVENTORYBindingSource.ResetBindings(false);
-
-                    // gán id inventory tạm cho nó
-                    var newRow = iNVENTORY_CAPABILITYDataGridView.Rows[iNVENTORY_CAPABILITYDataGridView.Rows.Count - 2];
-                    newRow.Cells["idColumn"].Value = 0;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Có lỗi xảy ra rồi. :( \n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
 
         private void tbRentPrice_xTextChanged(object sender, EventArgs e)
@@ -200,7 +150,7 @@ namespace QuanLyBanHang.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("Giá trị không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.InvalidValueMessage, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Enabled = false;
                 return;
             }
@@ -209,6 +159,11 @@ namespace QuanLyBanHang.Forms
         private void iNVENTORY_CAPABILITYDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             
+        }
+
+        private void iNVENTORY_CAPABILITYDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + e.Exception.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

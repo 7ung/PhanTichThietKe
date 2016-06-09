@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
+using QuanLyBanHang.Properties;
 
 namespace QuanLyBanHang.Forms
 {
     public partial class OrderDetailForm : UserControl
     {
         private int _currentProductId = 0;
-        private int _currentOrderId = 48;
+        private int _currentOrderId = 0;
 
         // để chứa row order document hiện tại
         private SellManagementDbDataSet.DOCUMENTRow orderDocumentRow;
 
         // table document để fill lại cái khác
         private SellManagementDbDataSet.DOCUMENTDataTable docTable = new SellManagementDbDataSet.DOCUMENTDataTable();
+        private string _billPrefix = Resources.CustomerBillDocumentPrefixKey;
 
         public OrderDetailForm()
         {
@@ -47,6 +49,8 @@ namespace QuanLyBanHang.Forms
             gROUPofCUSTOMERTableAdapter.Fill(sellManagementDbDataSet.GROUPofCUSTOMER);
             cONSTANTTableAdapter.Fill(sellManagementDbDataSet.CONSTANT);
             orderTableAdapter.Fill(sellManagementDbDataSet.ORDER);
+            iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
+            iNVENTORY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
 
             // các document, purchase order, order detail hiện tại của giao dịch
             dOCUMENTBindingSource.Filter = "Id = " + _currentOrderId;
@@ -67,6 +71,9 @@ namespace QuanLyBanHang.Forms
             vatText.Text = sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "VAT_rate").First().Value;
 
             bindOrderStatus();
+
+            _currentProductId = ((pRODUCTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id;
+            
         }
 
         private void bindOrderStatus()
@@ -152,30 +159,34 @@ namespace QuanLyBanHang.Forms
         {
             int max = 0;
 
-            foreach (DataRow item in sellManagementDbDataSet.DOCUMENT.Where(c => c.DocumentKey.Substring(0, 2) == "CB"))
+            foreach (DataRow item in sellManagementDbDataSet.DOCUMENT.Where(c => c.DocumentKey.Substring(0, 2) == _billPrefix))
             {
-                var value = item["DocumentKey"].ToString().TrimStart(new char[] { 'C', 'B' });
+                var value = item["DocumentKey"].ToString().TrimStart(_billPrefix.ToArray());
                 max = Math.Max(max, Convert.ToInt32(value));
             }
 
-            return "CB" + String.Format("{0:D6}", max + 1);
+            return _billPrefix + String.Format("{0:D6}", max + 1);
         }
 
         private void productIdText_TextChanged(object sender, EventArgs e)
         {
-            var products = sellManagementDbDataSet.PRODUCT.Where(x => x.ProductKey.ToLower().Contains(productIdText.Text.ToLower()));
+            var products = sellManagementDbDataSet.PRODUCT.Where(x => x.ProductKey.ToLower().Contains(productIdComboBox.Text.ToLower()));
 
             if (products.Count() == 0)
             {
-                productNameText.Text = "";
+                productNameComboBox.Text = "Không tìm thấy!";
                 productPriceText.Text = "";
                 _currentProductId = 0;
+                addProductBtn.Enabled = false;
                 return;
             }
 
+            if(productQuantityText.Text != "")
+                addProductBtn.Enabled = true;
+
             _currentProductId = products.First().Id;
-            productNameText.Text = products.First().Name;
-            productPriceText.Text = products.First().OutPrice.ToString();
+            //productNameText.Text = products.First().Name;
+            //productPriceText.Text = products.First().OutPrice.ToString();
         }
 
         private void addProductBtn_Click(object sender, EventArgs e)
@@ -210,12 +221,8 @@ namespace QuanLyBanHang.Forms
 
                 oRDERDETAILBindingSource.Position = -1;
             }
-            
-            var currentOrderDetail = from order_detail in sellManagementDbDataSet.ORDER_DETAIL
-                                      where order_detail.Order_id == _currentOrderId
-                                      select order_detail.Result;
 
-            totalPriceText.Text = currentOrderDetail.Sum().ToString();
+            calculateTotalPrice();
         }
 
         private void totalPriceText_TextChanged(object sender, EventArgs e)
@@ -229,6 +236,7 @@ namespace QuanLyBanHang.Forms
             double extra = 0;
             double total = 0;
             double vat = 0;
+            double recieve = 0;
 
             if (totalPriceText.Text != "")
                 total = Convert.ToDouble(totalPriceText.Text);
@@ -244,10 +252,24 @@ namespace QuanLyBanHang.Forms
 
             double finalPrice = total * (1 - discount + vat) + extra;
             finalPriceText.Text = finalPrice.ToString();
+            
+            // định dạng
+            totalPriceText.Text = string.Format("{0:#,##0.00}", double.Parse(totalPriceText.Text));
+            finalPriceText.Text = string.Format("{0:#,##0.00}", double.Parse(finalPriceText.Text));
 
-            double recieve = 0;
-            if(recieveCashText.Text != "")
-                recieve = Convert.ToDouble(recieveCashText.Text);
+            try
+            {
+                if (recieveCashText.Text != "")
+                    recieve = Convert.ToDouble(recieveCashText.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                returnCashText.Text = "0";
+                saveBtn.Enabled = false;
+                return;
+            }
 
             if (recieve > finalPrice)
             {
@@ -259,29 +281,23 @@ namespace QuanLyBanHang.Forms
                 returnCashText.Text = "0";
                 saveBtn.Enabled = false;
             }
-            
+
+            // tiền thối lớn hơn tiền trả
+            if ((recieve - finalPrice) > finalPrice)
+            {
+                MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                saveBtn.Enabled = false;
+            }
+
+            if (returnCashText.Text != "")
+                returnCashText.Text = string.Format("{0:#,##0.00}", double.Parse(returnCashText.Text));
         }
 
         private void recieveCashText_TextChanged(object sender, EventArgs e)
         {
             updatePrice();
+            
 
-            //try
-            //{
-            //    double recieve = Convert.ToDouble(recieveCashText.Text);
-            //    double finalPrice = Convert.ToDouble(finalPriceText.Text);
-
-            //    if(recieve > finalPrice)
-            //        returnCashText.Text = (recieve - finalPrice).ToString();
-            //    else
-            //    {
-            //        returnCashText.Text = "0";
-            //    }
-            //}
-            //catch  (Exception ex)
-            //{
-            //    //hihi
-            //}
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -298,6 +314,103 @@ namespace QuanLyBanHang.Forms
             {
                 (page.Parent as TabControl).TabPages.Remove(page);
             }
+        }
+
+        private void inventoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (inventoryComboBox.SelectedValue == null)
+                return;
+
+            iNVENTORYCAPABILITYBindingSource.Filter = "Inventory_id = " + inventoryComboBox.SelectedValue; 
+        }
+
+        private void productQuantityText_TextChanged(object sender, EventArgs e)
+        {
+            if(productQuantityText.Text == "")
+            {
+                addProductBtn.Enabled = false;
+                return;
+            }
+
+            try
+            {
+                var count = Convert.ToInt32(productQuantityText.Text);
+                if (count > Convert.ToInt32(currentComboBox.Text))
+                    throw new Exception("Số lượng nhiều hơn hiện tồn.");
+
+                addProductBtn.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                addProductBtn.Enabled = false;
+            }
+        }
+
+        private void recieveCashText_Leave(object sender, EventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null)
+                return;
+
+            try
+            {
+                if (textBox.Text != "")
+                    textBox.Text = string.Format("{0:#,##0.00}", double.Parse(textBox.Text));
+            }
+            catch  (Exception ex)
+            {
+                MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saveBtn.Enabled = false;
+            }
+        }
+
+        private void productDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var product = (oRDERDETAILBindingSource[e.RowIndex] as DataRowView).Row as SellManagementDbDataSet.ORDER_DETAILRow;
+            
+            product.BeginEdit();
+            product.Result = product.Quantity * product.Price;
+            product.EndEdit();
+            
+            if (product.Quantity <= 0)
+                oRDERDETAILBindingSource.RemoveAt(e.RowIndex);
+
+            calculateTotalPrice();
+        }
+
+        private void deleteMenuItem_Click(object sender, EventArgs e)
+        {
+            var r = MessageBox.Show(Resources.ConfirmMessage, Resources.DeleteLabel, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(r == DialogResult.Yes)
+            {
+                oRDERDETAILBindingSource.RemoveCurrent();
+                calculateTotalPrice();
+            }
+
+        }
+
+        private void calculateTotalPrice()
+        {
+            var currentOrderDetail = from order_detail in sellManagementDbDataSet.ORDER_DETAIL
+                                     where order_detail.Order_id == _currentOrderId
+                                     select order_detail.Result;
+
+            totalPriceText.Text = currentOrderDetail.Sum().ToString();
+        }
+
+        private void chooseProductBtn_Click(object sender, EventArgs e)
+        {
+            var newTab = new TabPage("Danh sách sản phẩm");
+            newTab.AutoScroll = true;
+            var product = new ProductList();
+            product.Dock = DockStyle.Fill;
+            newTab.Controls.Add(product);
+
+            var tabControl = (this.Parent.Parent as TabControl);
+
+            tabControl.TabPages.Add(newTab);
+            tabControl.SelectedIndex = tabControl.TabCount - 1;
         }
     }
 }

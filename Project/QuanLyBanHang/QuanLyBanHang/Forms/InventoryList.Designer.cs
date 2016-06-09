@@ -85,7 +85,7 @@
             // rentPriceLabel
             // 
             rentPriceLabel.AutoSize = true;
-            rentPriceLabel.Location = new System.Drawing.Point(14, 164);
+            rentPriceLabel.Location = new System.Drawing.Point(14, 169);
             rentPriceLabel.Name = "rentPriceLabel";
             rentPriceLabel.Size = new System.Drawing.Size(47, 13);
             rentPriceLabel.TabIndex = 16;
@@ -130,7 +130,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(355, 164);
+            label3.Location = new System.Drawing.Point(354, 169);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(30, 13);
             label3.TabIndex = 32;
@@ -263,15 +263,19 @@
             this.termTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "Term", true));
             this.termTextBox.Location = new System.Drawing.Point(132, 135);
             this.termTextBox.Name = "termTextBox";
+            this.termTextBox.ReadOnly = true;
             this.termTextBox.Size = new System.Drawing.Size(50, 20);
             this.termTextBox.TabIndex = 30;
             // 
             // tbRentPrice
             // 
-            this.tbRentPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "RentPrice", true));
+            this.tbRentPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tbRentPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "RentPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.tbRentPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRentPrice.Location = new System.Drawing.Point(132, 161);
             this.tbRentPrice.Name = "tbRentPrice";
-            this.tbRentPrice.Size = new System.Drawing.Size(219, 20);
+            this.tbRentPrice.ReadOnly = true;
+            this.tbRentPrice.Size = new System.Drawing.Size(219, 26);
             this.tbRentPrice.TabIndex = 29;
             // 
             // tbAddress
@@ -280,6 +284,7 @@
             this.tbAddress.Location = new System.Drawing.Point(132, 75);
             this.tbAddress.Multiline = true;
             this.tbAddress.Name = "tbAddress";
+            this.tbAddress.ReadOnly = true;
             this.tbAddress.Size = new System.Drawing.Size(252, 54);
             this.tbAddress.TabIndex = 28;
             // 
@@ -288,6 +293,7 @@
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "Name", true));
             this.tbName.Location = new System.Drawing.Point(132, 49);
             this.tbName.Name = "tbName";
+            this.tbName.ReadOnly = true;
             this.tbName.Size = new System.Drawing.Size(252, 20);
             this.tbName.TabIndex = 27;
             // 
@@ -296,6 +302,7 @@
             this.tbInventoryKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNVENTORYBindingSource, "InventoryKey", true));
             this.tbInventoryKey.Location = new System.Drawing.Point(132, 23);
             this.tbInventoryKey.Name = "tbInventoryKey";
+            this.tbInventoryKey.ReadOnly = true;
             this.tbInventoryKey.Size = new System.Drawing.Size(252, 20);
             this.tbInventoryKey.TabIndex = 26;
             // 

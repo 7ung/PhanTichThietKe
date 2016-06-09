@@ -101,12 +101,30 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bạn có chắc không?.
+        /// </summary>
+        internal static string ConfirmMessage {
+            get {
+                return ResourceManager.GetString("ConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Customer {
             get {
                 object obj = ResourceManager.GetObject("Customer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CB.
+        /// </summary>
+        internal static string CustomerBillDocumentPrefixKey {
+            get {
+                return ResourceManager.GetString("CustomerBillDocumentPrefixKey", resourceCulture);
             }
         }
         
@@ -130,6 +148,15 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xóa.
+        /// </summary>
+        internal static string DeleteLabel {
+            get {
+                return ResourceManager.GetString("DeleteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap documents {
@@ -146,6 +173,24 @@ namespace QuanLyBanHang.Properties {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lỗi.
+        /// </summary>
+        internal static string ErrorLabel {
+            get {
+                return ResourceManager.GetString("ErrorLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Có lỗi xảy ra.
+        /// </summary>
+        internal static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
             }
         }
         
@@ -180,12 +225,30 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Giá trị nhập không hợp lệ.
+        /// </summary>
+        internal static string InvalidValueMessage {
+            get {
+                return ResourceManager.GetString("InvalidValueMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap layers {
             get {
                 object obj = ResourceManager.GetObject("layers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông báo.
+        /// </summary>
+        internal static string NotiLabel {
+            get {
+                return ResourceManager.GetString("NotiLabel", resourceCulture);
             }
         }
         
@@ -298,6 +361,15 @@ namespace QuanLyBanHang.Properties {
         internal static string VNPatternNoNumber {
             get {
                 return ResourceManager.GetString("VNPatternNoNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chú ý.
+        /// </summary>
+        internal static string WarningLabel {
+            get {
+                return ResourceManager.GetString("WarningLabel", resourceCulture);
             }
         }
     }
