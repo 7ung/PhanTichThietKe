@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
 using System.Diagnostics;
+using QuanLyBanHang.Properties;
 
 namespace QuanLyBanHang.Forms
 {
@@ -94,7 +95,7 @@ namespace QuanLyBanHang.Forms
 
         private void btEdit_Click(object sender, EventArgs e)
         {
-            int id = ((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id - 1;
+            int id = ((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id;
             (new AddProduct(id)).ShowDialog();
 
             this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
@@ -103,6 +104,41 @@ namespace QuanLyBanHang.Forms
 
             this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
             this.pRODUCTBindingSource.ResetBindings(false);
+        }
+
+        private void ProductList_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pRODUCTDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.pRODUCTBindingSource.Count <= 0)
+                return;
+
+            int id = ((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id;
+
+            // bind
+            var typeRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == id && p.Key == Resources.ProductTypeKey)).Select(p => p.Value);
+
+            if (typeRow.Count() > 0)
+                typeText.Text = typeRow.First();
+            else
+                typeText.Text = Resources.NoValueText;
+
+            var brandRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == id && p.Key == Resources.ProductBrandKey)).Select(p => p.Value);
+
+            if (brandRow.Count() > 0)
+                brandText.Text = brandRow.First();
+            else
+                brandText.Text = Resources.NoValueText;
+
+            var unitRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == id && p.Key == Resources.ProductUnitKey)).Select(p => p.Value);
+
+            if (unitRow.Count() > 0)
+                unitText.Text = unitRow.First();
+            else
+                unitText.Text = Resources.NoValueText;
         }
     }
 }

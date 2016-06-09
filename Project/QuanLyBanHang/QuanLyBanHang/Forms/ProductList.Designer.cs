@@ -56,16 +56,17 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btEdit = new System.Windows.Forms.Button();
             this.gbDetailInfo = new System.Windows.Forms.GroupBox();
-            this.ptrbPicture = new System.Windows.Forms.PictureBox();
-            this.gbInfo = new System.Windows.Forms.GroupBox();
             this.tbOurPrice = new System.Windows.Forms.TextBox();
             this.tbInPrice = new System.Windows.Forms.TextBox();
+            this.ptrbPicture = new System.Windows.Forms.PictureBox();
+            this.gbInfo = new System.Windows.Forms.GroupBox();
+            this.unitText = new System.Windows.Forms.TextBox();
+            this.brandText = new System.Windows.Forms.TextBox();
+            this.typeText = new System.Windows.Forms.TextBox();
             this.tbBarCode = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbProductKey = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             lbProductKey = new System.Windows.Forms.Label();
             lbName = new System.Windows.Forms.Label();
             lbBarCode = new System.Windows.Forms.Label();
@@ -83,6 +84,10 @@
             this.gbDetailInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptrbPicture)).BeginInit();
             this.gbInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbProductKey
@@ -129,6 +134,53 @@
             lbOutPrice.Size = new System.Drawing.Size(44, 13);
             lbOutPrice.TabIndex = 14;
             lbOutPrice.Text = "Giá bán";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(210, 128);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(27, 13);
+            label1.TabIndex = 23;
+            label1.Text = "Loại";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(210, 154);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(33, 13);
+            label2.TabIndex = 25;
+            label2.Text = "Hãng";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(210, 180);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(38, 13);
+            label3.TabIndex = 27;
+            label3.Text = "Đơn vị";
+            // 
+            // label4
+            // 
+            label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(390, 32);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(30, 13);
+            label4.TabIndex = 25;
+            label4.Text = "VNĐ";
+            // 
+            // label5
+            // 
+            label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(390, 68);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(30, 13);
+            label5.TabIndex = 26;
+            label5.Text = "VNĐ";
             // 
             // sellManagementDbDataSet
             // 
@@ -177,7 +229,7 @@
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(80, 22);
+            this.tbSearch.Location = new System.Drawing.Point(70, 19);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(220, 20);
             this.tbSearch.TabIndex = 2;
@@ -186,7 +238,7 @@
             // lbSearch
             // 
             this.lbSearch.AutoSize = true;
-            this.lbSearch.Location = new System.Drawing.Point(25, 25);
+            this.lbSearch.Location = new System.Drawing.Point(15, 22);
             this.lbSearch.Name = "lbSearch";
             this.lbSearch.Size = new System.Drawing.Size(49, 13);
             this.lbSearch.TabIndex = 3;
@@ -195,7 +247,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(25, 540);
+            this.btnAdd.Location = new System.Drawing.Point(15, 533);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 4;
@@ -204,8 +256,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(334, 540);
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(270, 533);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 5;
@@ -221,7 +273,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(833, 540);
+            this.btnClose.Location = new System.Drawing.Point(438, 533);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 7;
@@ -248,13 +300,14 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.pRODUCTDataGridView.DataSource = this.pRODUCTBindingSource;
-            this.pRODUCTDataGridView.Location = new System.Drawing.Point(25, 61);
+            this.pRODUCTDataGridView.Location = new System.Drawing.Point(15, 49);
             this.pRODUCTDataGridView.Name = "pRODUCTDataGridView";
             this.pRODUCTDataGridView.ReadOnly = true;
             this.pRODUCTDataGridView.RowHeadersVisible = false;
             this.pRODUCTDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.pRODUCTDataGridView.Size = new System.Drawing.Size(384, 458);
+            this.pRODUCTDataGridView.Size = new System.Drawing.Size(330, 468);
             this.pRODUCTDataGridView.TabIndex = 7;
+            this.pRODUCTDataGridView.SelectionChanged += new System.EventHandler(this.pRODUCTDataGridView_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -280,7 +333,8 @@
             // 
             // btEdit
             // 
-            this.btEdit.Location = new System.Drawing.Point(387, 470);
+            this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btEdit.Location = new System.Drawing.Point(423, 467);
             this.btEdit.Name = "btEdit";
             this.btEdit.Size = new System.Drawing.Size(75, 23);
             this.btEdit.TabIndex = 4;
@@ -290,6 +344,8 @@
             // 
             // gbDetailInfo
             // 
+            this.gbDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbDetailInfo.Controls.Add(label5);
             this.gbDetailInfo.Controls.Add(label4);
             this.gbDetailInfo.Controls.Add(this.tbOurPrice);
@@ -298,15 +354,44 @@
             this.gbDetailInfo.Controls.Add(lbOutPrice);
             this.gbDetailInfo.Location = new System.Drawing.Point(20, 218);
             this.gbDetailInfo.Name = "gbDetailInfo";
-            this.gbDetailInfo.Size = new System.Drawing.Size(440, 110);
+            this.gbDetailInfo.Size = new System.Drawing.Size(478, 110);
             this.gbDetailInfo.TabIndex = 17;
             this.gbDetailInfo.TabStop = false;
             this.gbDetailInfo.Text = "Giá sản phẩm";
             // 
+            // tbOurPrice
+            // 
+            this.tbOurPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbOurPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tbOurPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "OutPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.tbOurPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbOurPrice.Location = new System.Drawing.Point(128, 60);
+            this.tbOurPrice.Name = "tbOurPrice";
+            this.tbOurPrice.ReadOnly = true;
+            this.tbOurPrice.Size = new System.Drawing.Size(256, 26);
+            this.tbOurPrice.TabIndex = 24;
+            // 
+            // tbInPrice
+            // 
+            this.tbInPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbInPrice.BackColor = System.Drawing.Color.LavenderBlush;
+            this.tbInPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "InPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.tbInPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInPrice.Location = new System.Drawing.Point(128, 24);
+            this.tbInPrice.Name = "tbInPrice";
+            this.tbInPrice.ReadOnly = true;
+            this.tbInPrice.Size = new System.Drawing.Size(256, 26);
+            this.tbInPrice.TabIndex = 23;
+            // 
             // ptrbPicture
             // 
+            this.ptrbPicture.BackgroundImage = global::QuanLyBanHang.Properties.Resources.box_3;
+            this.ptrbPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ptrbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ptrbPicture.DataBindings.Add(new System.Windows.Forms.Binding("ImageLocation", this.pRODUCTBindingSource, "Picture", true));
+            this.ptrbPicture.ErrorImage = null;
             this.ptrbPicture.Location = new System.Drawing.Point(20, 25);
             this.ptrbPicture.Name = "ptrbPicture";
             this.ptrbPicture.Size = new System.Drawing.Size(170, 170);
@@ -315,13 +400,14 @@
             // 
             // gbInfo
             // 
-            this.gbInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbInfo.Controls.Add(this.textBox3);
+            this.gbInfo.Controls.Add(this.unitText);
             this.gbInfo.Controls.Add(label3);
-            this.gbInfo.Controls.Add(this.textBox2);
+            this.gbInfo.Controls.Add(this.brandText);
             this.gbInfo.Controls.Add(label2);
-            this.gbInfo.Controls.Add(this.textBox1);
+            this.gbInfo.Controls.Add(this.typeText);
             this.gbInfo.Controls.Add(label1);
             this.gbInfo.Controls.Add(this.tbBarCode);
             this.gbInfo.Controls.Add(this.tbName);
@@ -332,46 +418,56 @@
             this.gbInfo.Controls.Add(lbBarCode);
             this.gbInfo.Controls.Add(lbName);
             this.gbInfo.Controls.Add(lbProductKey);
-            this.gbInfo.Location = new System.Drawing.Point(428, 12);
+            this.gbInfo.Location = new System.Drawing.Point(17, 13);
             this.gbInfo.Name = "gbInfo";
-            this.gbInfo.Size = new System.Drawing.Size(478, 507);
+            this.gbInfo.Size = new System.Drawing.Size(514, 504);
             this.gbInfo.TabIndex = 6;
             this.gbInfo.TabStop = false;
             this.gbInfo.Text = "Thông tin";
             // 
-            // tbOurPrice
+            // unitText
             // 
-            this.tbOurPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "OutPrice", true));
-            this.tbOurPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOurPrice.Location = new System.Drawing.Point(128, 60);
-            this.tbOurPrice.Name = "tbOurPrice";
-            this.tbOurPrice.Size = new System.Drawing.Size(220, 26);
-            this.tbOurPrice.TabIndex = 24;
+            this.unitText.Location = new System.Drawing.Point(301, 177);
+            this.unitText.Name = "unitText";
+            this.unitText.ReadOnly = true;
+            this.unitText.Size = new System.Drawing.Size(67, 20);
+            this.unitText.TabIndex = 28;
             // 
-            // tbInPrice
+            // brandText
             // 
-            this.tbInPrice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "InPrice", true));
-            this.tbInPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInPrice.Location = new System.Drawing.Point(128, 24);
-            this.tbInPrice.Name = "tbInPrice";
-            this.tbInPrice.Size = new System.Drawing.Size(220, 26);
-            this.tbInPrice.TabIndex = 23;
+            this.brandText.Location = new System.Drawing.Point(301, 151);
+            this.brandText.Name = "brandText";
+            this.brandText.ReadOnly = true;
+            this.brandText.Size = new System.Drawing.Size(160, 20);
+            this.brandText.TabIndex = 26;
+            // 
+            // typeText
+            // 
+            this.typeText.Location = new System.Drawing.Point(301, 125);
+            this.typeText.Name = "typeText";
+            this.typeText.ReadOnly = true;
+            this.typeText.Size = new System.Drawing.Size(160, 20);
+            this.typeText.TabIndex = 24;
             // 
             // tbBarCode
             // 
             this.tbBarCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "BarCode", true));
             this.tbBarCode.Location = new System.Drawing.Point(301, 84);
             this.tbBarCode.Name = "tbBarCode";
+            this.tbBarCode.ReadOnly = true;
             this.tbBarCode.Size = new System.Drawing.Size(160, 20);
             this.tbBarCode.TabIndex = 22;
             // 
             // tbName
             // 
+            this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "Name", true));
             this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbName.Location = new System.Drawing.Point(301, 26);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(160, 26);
+            this.tbName.ReadOnly = true;
+            this.tbName.Size = new System.Drawing.Size(197, 26);
             this.tbName.TabIndex = 21;
             // 
             // tbProductKey
@@ -379,91 +475,42 @@
             this.tbProductKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "ProductKey", true));
             this.tbProductKey.Location = new System.Drawing.Point(301, 58);
             this.tbProductKey.Name = "tbProductKey";
+            this.tbProductKey.ReadOnly = true;
             this.tbProductKey.Size = new System.Drawing.Size(160, 20);
             this.tbProductKey.TabIndex = 20;
             // 
-            // textBox1
+            // splitContainer1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "BarCode", true));
-            this.textBox1.Location = new System.Drawing.Point(301, 125);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 20);
-            this.textBox1.TabIndex = 24;
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // label1
+            // splitContainer1.Panel1
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(210, 128);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(27, 13);
-            label1.TabIndex = 23;
-            label1.Text = "Loại";
+            this.splitContainer1.Panel1.Controls.Add(this.lbSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.pRODUCTDataGridView);
+            this.splitContainer1.Panel1.Controls.Add(this.tbSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.btnAdd);
+            this.splitContainer1.Panel1.Controls.Add(this.btnDelete);
             // 
-            // textBox2
+            // splitContainer1.Panel2
             // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "BarCode", true));
-            this.textBox2.Location = new System.Drawing.Point(301, 151);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 20);
-            this.textBox2.TabIndex = 26;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(210, 154);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(33, 13);
-            label2.TabIndex = 25;
-            label2.Text = "Hãng";
-            // 
-            // textBox3
-            // 
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "BarCode", true));
-            this.textBox3.Location = new System.Drawing.Point(301, 177);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(67, 20);
-            this.textBox3.TabIndex = 28;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(210, 180);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(38, 13);
-            label3.TabIndex = 27;
-            label3.Text = "Đơn vị";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(354, 32);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(30, 13);
-            label4.TabIndex = 25;
-            label4.Text = "VNĐ";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(354, 68);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(30, 13);
-            label5.TabIndex = 26;
-            label5.Text = "VNĐ";
+            this.splitContainer1.Panel2.Controls.Add(this.gbInfo);
+            this.splitContainer1.Panel2.Controls.Add(this.btnClose);
+            this.splitContainer1.Panel2MinSize = 550;
+            this.splitContainer1.Size = new System.Drawing.Size(918, 576);
+            this.splitContainer1.SplitterDistance = 364;
+            this.splitContainer1.TabIndex = 8;
             // 
             // ProductList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pRODUCTDataGridView);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.gbInfo);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.lbSearch);
-            this.Controls.Add(this.tbSearch);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "ProductList";
             this.Size = new System.Drawing.Size(918, 576);
+            this.Load += new System.EventHandler(this.ProductList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCT_METADATABindingSource)).EndInit();
@@ -473,8 +520,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptrbPicture)).EndInit();
             this.gbInfo.ResumeLayout(false);
             this.gbInfo.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -504,8 +555,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox unitText;
+        private System.Windows.Forms.TextBox brandText;
+        private System.Windows.Forms.TextBox typeText;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

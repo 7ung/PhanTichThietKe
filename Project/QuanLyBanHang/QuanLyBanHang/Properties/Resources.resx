@@ -169,4 +169,28 @@
   <data name="Import" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="box_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CustomerOrderDocumentPrefixKey" xml:space="preserve">
+    <value>CO</value>
+  </data>
+  <data name="NoValueText" xml:space="preserve">
+    <value>Không có</value>
+  </data>
+  <data name="ProductBrandKey" xml:space="preserve">
+    <value>product_brand</value>
+  </data>
+  <data name="ProductPrefixKey" xml:space="preserve">
+    <value>PR</value>
+  </data>
+  <data name="ProductTypeKey" xml:space="preserve">
+    <value>product_type</value>
+  </data>
+  <data name="ProductUnitKey" xml:space="preserve">
+    <value>product_unit</value>
+  </data>
+  <data name="VendorOrderDocumentPrefixKey" xml:space="preserve">
+    <value>VO</value>
+  </data>
 </root>

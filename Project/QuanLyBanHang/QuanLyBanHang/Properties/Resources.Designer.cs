@@ -83,6 +83,16 @@ namespace QuanLyBanHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap box_3 {
+            get {
+                object obj = ResourceManager.GetObject("box_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cart {
             get {
                 object obj = ResourceManager.GetObject("Cart", resourceCulture);
@@ -97,6 +107,15 @@ namespace QuanLyBanHang.Properties {
             get {
                 object obj = ResourceManager.GetObject("Customer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CO.
+        /// </summary>
+        internal static string CustomerOrderDocumentPrefixKey {
+            get {
+                return ResourceManager.GetString("CustomerOrderDocumentPrefixKey", resourceCulture);
             }
         }
         
@@ -171,6 +190,15 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Không có.
+        /// </summary>
+        internal static string NoValueText {
+            get {
+                return ResourceManager.GetString("NoValueText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap paper {
@@ -191,6 +219,42 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to product_brand.
+        /// </summary>
+        internal static string ProductBrandKey {
+            get {
+                return ResourceManager.GetString("ProductBrandKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PR.
+        /// </summary>
+        internal static string ProductPrefixKey {
+            get {
+                return ResourceManager.GetString("ProductPrefixKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product_type.
+        /// </summary>
+        internal static string ProductTypeKey {
+            get {
+                return ResourceManager.GetString("ProductTypeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to product_unit.
+        /// </summary>
+        internal static string ProductUnitKey {
+            get {
+                return ResourceManager.GetString("ProductUnitKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap success {
@@ -207,6 +271,15 @@ namespace QuanLyBanHang.Properties {
             get {
                 object obj = ResourceManager.GetObject("user_list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VO.
+        /// </summary>
+        internal static string VendorOrderDocumentPrefixKey {
+            get {
+                return ResourceManager.GetString("VendorOrderDocumentPrefixKey", resourceCulture);
             }
         }
         

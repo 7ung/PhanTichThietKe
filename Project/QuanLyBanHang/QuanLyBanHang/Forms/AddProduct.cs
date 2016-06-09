@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
+using QuanLyBanHang.Properties;
 
 namespace QuanLyBanHang.Forms
 {
@@ -18,6 +19,8 @@ namespace QuanLyBanHang.Forms
         const string directoryPath = "Picture\\Product";
         private bool _new = true;
         private int _id = -1;
+
+        private string _prefixKey = Resources.ProductPrefixKey;
 
         public AddProduct()
         {
@@ -43,17 +46,74 @@ namespace QuanLyBanHang.Forms
             this.pRODUCT_METADATATableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT_METADATA);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.PRODUCT' table. You can move, or remove it, as needed.
             this.pRODUCTTableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT);
+            
+            // binding combobox
+            bindingTypeComboBox();
+            bindingBrandComboBox();
+            bindingUnitComboBox();
 
             if (_new)
             {
                 this.pRODUCTBindingSource.CurrencyManager.AddNew();
+                productKeyText.Text = generateProductKey();
+                tbBarCode.Text = "012345679";
             }
             else
             {
-                this.pRODUCTBindingSource.CurrencyManager.Position = _id;
+                this.pRODUCTBindingSource.Filter = "Id = " + _id;
+
                 (this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).BeginEdit();
+
+                // bind edit
+                var typeRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == _id && p.Key == Resources.ProductTypeKey)).Select(p => p.Value);
+
+                if (typeRow.Count() > 0)
+                    typeComboBox.Text = typeRow.First();
+
+                var brandRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == _id && p.Key == Resources.ProductBrandKey)).Select(p => p.Value);
+
+                if (brandRow.Count() > 0)
+                    brandComboBox.Text = brandRow.First();
+
+                var unitRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == _id && p.Key == Resources.ProductUnitKey)).Select(p => p.Value);
+
+                if (unitRow.Count() > 0)
+                    unitComboBox.Text = unitRow.First();
             }
 
+        }
+        
+        private void bindingTypeComboBox()
+        {
+            var typeList = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => p.Key == Resources.ProductTypeKey).Select(p => p.Value);
+
+            if (typeList.Count() > 0)
+            {
+                var list = typeList.Distinct().ToList();
+                typeComboBox.DataSource = list;
+            }
+        }
+
+        private void bindingBrandComboBox()
+        {
+            var brandList = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => p.Key == Resources.ProductBrandKey).Select(p => p.Value);
+
+            if(brandList.Count() > 0)
+            {
+                var list = brandList.Distinct().ToList();
+                brandComboBox.DataSource = list;
+            }
+        }
+
+        private void bindingUnitComboBox()
+        {
+            var unitList = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => p.Key == Resources.ProductUnitKey).Select(p => p.Value);
+
+            if (unitList.Count() > 0)
+            {
+                var list = unitList.Distinct().ToList();
+                unitComboBox.DataSource = list;
+            }
         }
 
         //
@@ -94,7 +154,8 @@ namespace QuanLyBanHang.Forms
                 this.ptrbPicture.Image.Save(pathImageProduct);
                 this.ptrbPicture.ImageLocation = pathImageProduct;
                 ((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Picture = pathImageProduct;
-                MessageBox.Show(pathImageProduct);
+
+                MessageBox.Show("Thư mục lưu ảnh: " + pathImageProduct, "Thông báo", MessageBoxButtons.OK);
             }
         }
 
@@ -116,13 +177,45 @@ namespace QuanLyBanHang.Forms
             {
                 try
                 {
+                    this.pRODUCTBindingSource.EndEdit();
+                    this.pRODUCTTableAdapter.Update(sellManagementDbDataSet.PRODUCT);
+                    this.sellManagementDbDataSet.PRODUCT.AcceptChanges();
+                    
+                    // lưu product meta data
+                    // type row
+                    var typerow = (pRODUCT_METADATABindingSource.AddNew() as DataRowView).Row as SellManagementDbDataSet.PRODUCT_METADATARow;
+                    typerow.BeginEdit();
+
+                    typerow.Key = Resources.ProductTypeKey;
+                    typerow.Value = typeComboBox.Text;
+
+                    typerow.EndEdit();
+
+                    // brand row
+                    var brandrow = (pRODUCT_METADATABindingSource.AddNew() as DataRowView).Row as SellManagementDbDataSet.PRODUCT_METADATARow;
+                    brandrow.BeginEdit();
+
+                    brandrow.Key = Resources.ProductBrandKey;
+                    brandrow.Value = brandComboBox.Text;
+
+                    brandrow.EndEdit();
+
+                    // type row
+                    var unitrow = (pRODUCT_METADATABindingSource.AddNew() as DataRowView).Row as SellManagementDbDataSet.PRODUCT_METADATARow;
+                    unitrow.BeginEdit();
+
+                    unitrow.Key = Resources.ProductUnitKey;
+                    unitrow.Value = unitComboBox.Text;
+
+                    unitrow.EndEdit();
+
+
                     this.pRODUCT_METADATABindingSource.EndEdit();
                     this.pRODUCT_METADATATableAdapter.Update(sellManagementDbDataSet.PRODUCT_METADATA);
                     this.sellManagementDbDataSet.PRODUCT_METADATA.AcceptChanges();
 
-                    this.pRODUCTBindingSource.EndEdit();
-                    this.pRODUCTTableAdapter.Update(sellManagementDbDataSet.PRODUCT);
-                    this.sellManagementDbDataSet.PRODUCT.AcceptChanges();
+                    this.Close();
+
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +226,8 @@ namespace QuanLyBanHang.Forms
             {
                 try
                 {
+                    saveProductMetaData();
+
                     this.pRODUCT_METADATABindingSource.EndEdit();
                     this.pRODUCT_METADATATableAdapter.Update(sellManagementDbDataSet.PRODUCT_METADATA);
                     this.sellManagementDbDataSet.PRODUCT_METADATA.AcceptChanges();
@@ -141,42 +236,130 @@ namespace QuanLyBanHang.Forms
                     this.pRODUCTTableAdapter.Update(sellManagementDbDataSet.PRODUCT);
                     this.sellManagementDbDataSet.PRODUCT.AcceptChanges();
                     this.pRODUCTBindingSource.ResetBindings(false);
-
+                    
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
 
-            this.Close();
+        private void saveProductMetaData()
+        {
+            // tìm coi có giá trị chưa
+            var typeRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == _id && p.Key == Resources.ProductTypeKey));
+
+            // nếu có thì sửa
+            if (typeRow.Count() > 0)
+            {
+                var row = sellManagementDbDataSet.PRODUCT_METADATA.FindById(typeRow.First().Id);
+                row.BeginEdit();
+
+                if(typeComboBox.Text.ToLower() != row.Value.ToLower())
+                    row.Value = typeComboBox.Text;
+
+                row.EndEdit();
+            }
+            else
+            {
+                // không thì add mới
+                // type row
+                var typerow = (pRODUCT_METADATABindingSource.AddNew() as DataRowView).Row as SellManagementDbDataSet.PRODUCT_METADATARow;
+                typerow.BeginEdit();
+
+                typerow.Key = Resources.ProductTypeKey;
+                typerow.Value = typeComboBox.Text;
+
+                typerow.EndEdit();
+            }
+
+            // brand
+            var brandRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == _id && p.Key == Resources.ProductBrandKey));
+
+            // nếu có thì sửa
+            if (brandRow.Count() > 0)
+            {
+                var row = sellManagementDbDataSet.PRODUCT_METADATA.FindById(brandRow.First().Id);
+                row.BeginEdit();
+
+                if (brandComboBox.Text.ToLower() != row.Value.ToLower())
+                    row.Value = brandComboBox.Text;
+
+                row.EndEdit();
+            }
+            else
+            {
+                // không thì add mới
+                // brand row
+                var brandrow = (pRODUCT_METADATABindingSource.AddNew() as DataRowView).Row as SellManagementDbDataSet.PRODUCT_METADATARow;
+                brandrow.BeginEdit();
+
+                brandrow.Key = Resources.ProductBrandKey;
+                brandrow.Value = brandComboBox.Text;
+
+                brandrow.EndEdit();
+            }
+
+            // tìm coi có giá trị chưa
+            var unitRow = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => (p.Product_id == _id && p.Key == Resources.ProductUnitKey));
+
+            // nếu có thì sửa
+            if (unitRow.Count() > 0)
+            {
+                var row = sellManagementDbDataSet.PRODUCT_METADATA.FindById(unitRow.First().Id);
+                row.BeginEdit();
+
+                if (unitComboBox.Text.ToLower() != row.Value.ToLower())
+                    row.Value = unitComboBox.Text;
+
+                row.EndEdit();
+            }
+            else
+            {
+                // không thì add mới
+                // unit row
+                var unitrow = (pRODUCT_METADATABindingSource.AddNew() as DataRowView).Row as SellManagementDbDataSet.PRODUCT_METADATARow;
+                unitrow.BeginEdit();
+
+                unitrow.Key = Resources.ProductUnitKey;
+                unitrow.Value = unitComboBox.Text;
+
+                unitrow.EndEdit();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e) // Huy bo va dong Form
         {
-            if (_new)
-            {
-                try
-                {
-                    if (((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id >= 0)
-                    {
-                        DataRowView row = (DataRowView)this.pRODUCTBindingSource.CurrencyManager.Current;
-                        row.Delete();
-                    }
-                    this.pRODUCTBindingSource.EndEdit();
-                    this.pRODUCTTableAdapter.Update(this.sellManagementDbDataSet.PRODUCT);
-                    this.sellManagementDbDataSet.AcceptChanges();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                this.sellManagementDbDataSet.PRODUCT_METADATA.RejectChanges();
-                this.sellManagementDbDataSet.PRODUCT.RejectChanges();
-            }
+            //if (_new)
+            //{
+            //    try
+            //    {
+            //        // hủy rồi save chi :v
+            //        //if (((this.pRODUCTBindingSource.CurrencyManager.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id >= 0)
+            //        //{
+            //        //    DataRowView row = (DataRowView)this.pRODUCTBindingSource.CurrencyManager.Current;
+            //        //    row.Delete();
+            //        //}
+            //        //this.pRODUCTBindingSource.EndEdit();
+            //        //this.pRODUCTTableAdapter.Update(this.sellManagementDbDataSet.PRODUCT);
+            //        //this.sellManagementDbDataSet.AcceptChanges();
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
+            //else
+            //{
+                
+            //}
+
+            this.sellManagementDbDataSet.PRODUCT_METADATA.RejectChanges();
+            this.sellManagementDbDataSet.PRODUCT.RejectChanges();
+
             this.Close();
         }
 
@@ -246,6 +429,19 @@ namespace QuanLyBanHang.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private string generateProductKey()
+        {
+            int max = 0;
+
+            foreach (DataRow item in sellManagementDbDataSet.PRODUCT.Where(c => c.ProductKey.Substring(0, 2) == _prefixKey))
+            {
+                var value = item["ProductKey"].ToString().TrimStart(_prefixKey.ToArray());
+                max = Math.Max(max, Convert.ToInt32(value));
+            }
+
+            return _prefixKey + String.Format("{0:D6}", max + 1);
         }
 
     }
