@@ -38,12 +38,14 @@
             System.Windows.Forms.Label functionLabel;
             System.Windows.Forms.Label birthdayLabel;
             System.Windows.Forms.Label salaryLabel;
+            System.Windows.Forms.Label label3;
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
             this.tableAdapterManager = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.TableAdapterManager();
             this.sTAFFDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +54,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.tbSalary = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbAddress = new WindowsFormsControlLibrary.CustomTextBox();
             this.cbbFunction = new System.Windows.Forms.ComboBox();
+            this.tbIdentifyNumber = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbEmail = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbPhone = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbNameStaff = new WindowsFormsControlLibrary.CustomTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -60,12 +68,6 @@
             this.cbbGender = new System.Windows.Forms.ComboBox();
             this.tbStaffKey = new System.Windows.Forms.TextBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
-            this.tbSalary = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbAddress = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbIdentifyNumber = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbEmail = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbPhone = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbNameStaff = new WindowsFormsControlLibrary.CustomTextBox();
             this.genderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             genderLabel1 = new System.Windows.Forms.Label();
             staffKeyLabel = new System.Windows.Forms.Label();
@@ -76,6 +78,7 @@
             functionLabel = new System.Windows.Forms.Label();
             birthdayLabel = new System.Windows.Forms.Label();
             salaryLabel = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFDataGridView)).BeginInit();
@@ -104,7 +107,7 @@
             // phoneLabel
             // 
             phoneLabel.AutoSize = true;
-            phoneLabel.Location = new System.Drawing.Point(18, 81);
+            phoneLabel.Location = new System.Drawing.Point(18, 80);
             phoneLabel.Name = "phoneLabel";
             phoneLabel.Size = new System.Drawing.Size(70, 13);
             phoneLabel.TabIndex = 33;
@@ -213,15 +216,21 @@
             // 
             this.sTAFFDataGridView.AllowUserToAddRows = false;
             this.sTAFFDataGridView.AllowUserToDeleteRows = false;
+            this.sTAFFDataGridView.AllowUserToResizeRows = false;
+            this.sTAFFDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.sTAFFDataGridView.AutoGenerateColumns = false;
             this.sTAFFDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sTAFFDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
+            this.nameColumn,
             this.Phone});
             this.sTAFFDataGridView.DataSource = this.sTAFFBindingSource;
             this.sTAFFDataGridView.Location = new System.Drawing.Point(14, 65);
             this.sTAFFDataGridView.Name = "sTAFFDataGridView";
             this.sTAFFDataGridView.ReadOnly = true;
+            this.sTAFFDataGridView.RowHeadersVisible = false;
+            this.sTAFFDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.sTAFFDataGridView.Size = new System.Drawing.Size(470, 339);
             this.sTAFFDataGridView.TabIndex = 1;
             this.sTAFFDataGridView.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.sTAFFDataGridView_RowLeave);
@@ -229,14 +238,22 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "StaffKey";
-            this.dataGridViewTextBoxColumn2.HeaderText = "StaffKey";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Mã nhân viên";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameColumn.DataPropertyName = "Name";
+            this.nameColumn.HeaderText = "Tên";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
             // 
             // Phone
             // 
             this.Phone.DataPropertyName = "Phone";
-            this.Phone.HeaderText = "Phone";
+            this.Phone.HeaderText = "Số điện thoại";
             this.Phone.Name = "Phone";
             this.Phone.ReadOnly = true;
             // 
@@ -259,6 +276,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Location = new System.Drawing.Point(14, 421);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
@@ -269,6 +287,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.Location = new System.Drawing.Point(409, 421);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -279,6 +298,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.Location = new System.Drawing.Point(748, 421);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
@@ -289,6 +309,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(label3);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.tbSalary);
             this.groupBox1.Controls.Add(this.tbAddress);
@@ -322,13 +346,59 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(293, 255);
+            this.button1.Location = new System.Drawing.Point(296, 255);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 23);
             this.button1.TabIndex = 61;
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbSalary
+            // 
+            this.tbSalary.AutoSize = true;
+            this.tbSalary.BackColor = System.Drawing.Color.White;
+            this.tbSalary.BorderColor = System.Drawing.Color.Silver;
+            this.tbSalary.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Salary", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.tbSalary.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbSalary.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.tbSalary.isRequired = true;
+            this.tbSalary.Location = new System.Drawing.Point(108, 317);
+            this.tbSalary.Multiline = false;
+            this.tbSalary.Name = "tbSalary";
+            this.tbSalary.NormalBorderColor = System.Drawing.Color.Silver;
+            this.tbSalary.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbSalary.ReadOnly = false;
+            this.tbSalary.Size = new System.Drawing.Size(181, 19);
+            this.tbSalary.StringPattern = "^([0-9., ])*$";
+            this.tbSalary.TabIndex = 60;
+            this.tbSalary.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tbSalary.TextPanelMessage = "Giá trị không hợp lệ.";
+            this.tbSalary.TextPanelMessageColor = System.Drawing.Color.White;
+            this.tbSalary.ValidBorderColor = System.Drawing.Color.LightGreen;
+            // 
+            // tbAddress
+            // 
+            this.tbAddress.AutoSize = true;
+            this.tbAddress.BackColor = System.Drawing.Color.White;
+            this.tbAddress.BorderColor = System.Drawing.Color.Silver;
+            this.tbAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Address", true));
+            this.tbAddress.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbAddress.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.tbAddress.isRequired = true;
+            this.tbAddress.Location = new System.Drawing.Point(108, 163);
+            this.tbAddress.Multiline = true;
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.NormalBorderColor = System.Drawing.Color.Silver;
+            this.tbAddress.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbAddress.ReadOnly = false;
+            this.tbAddress.Size = new System.Drawing.Size(219, 56);
+            this.tbAddress.StringPattern = "";
+            this.tbAddress.TabIndex = 59;
+            this.tbAddress.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tbAddress.TextPanelMessage = "Giá trị không hợp lệ.";
+            this.tbAddress.TextPanelMessageColor = System.Drawing.Color.White;
+            this.tbAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
             // cbbFunction
             // 
@@ -337,8 +407,101 @@
             this.cbbFunction.FormattingEnabled = true;
             this.cbbFunction.Location = new System.Drawing.Point(108, 256);
             this.cbbFunction.Name = "cbbFunction";
-            this.cbbFunction.Size = new System.Drawing.Size(168, 21);
+            this.cbbFunction.Size = new System.Drawing.Size(181, 21);
             this.cbbFunction.TabIndex = 58;
+            // 
+            // tbIdentifyNumber
+            // 
+            this.tbIdentifyNumber.AutoSize = true;
+            this.tbIdentifyNumber.BackColor = System.Drawing.Color.White;
+            this.tbIdentifyNumber.BorderColor = System.Drawing.Color.Silver;
+            this.tbIdentifyNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "IdentifyNumber", true));
+            this.tbIdentifyNumber.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbIdentifyNumber.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.tbIdentifyNumber.isRequired = true;
+            this.tbIdentifyNumber.Location = new System.Drawing.Point(108, 228);
+            this.tbIdentifyNumber.Multiline = false;
+            this.tbIdentifyNumber.Name = "tbIdentifyNumber";
+            this.tbIdentifyNumber.NormalBorderColor = System.Drawing.Color.Silver;
+            this.tbIdentifyNumber.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbIdentifyNumber.ReadOnly = false;
+            this.tbIdentifyNumber.Size = new System.Drawing.Size(219, 19);
+            this.tbIdentifyNumber.StringPattern = "^([0-9 ])*$";
+            this.tbIdentifyNumber.TabIndex = 57;
+            this.tbIdentifyNumber.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tbIdentifyNumber.TextPanelMessage = "Giá trị không hợp lệ.";
+            this.tbIdentifyNumber.TextPanelMessageColor = System.Drawing.Color.White;
+            this.tbIdentifyNumber.ValidBorderColor = System.Drawing.Color.LightGreen;
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.AutoSize = true;
+            this.tbEmail.BackColor = System.Drawing.Color.White;
+            this.tbEmail.BorderColor = System.Drawing.Color.Silver;
+            this.tbEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Email", true));
+            this.tbEmail.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbEmail.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.tbEmail.isRequired = true;
+            this.tbEmail.Location = new System.Drawing.Point(108, 135);
+            this.tbEmail.Multiline = false;
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.NormalBorderColor = System.Drawing.Color.Silver;
+            this.tbEmail.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbEmail.ReadOnly = false;
+            this.tbEmail.Size = new System.Drawing.Size(219, 19);
+            this.tbEmail.StringPattern = "^\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+            this.tbEmail.TabIndex = 56;
+            this.tbEmail.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tbEmail.TextPanelMessage = "Không đúng định dạng email.";
+            this.tbEmail.TextPanelMessageColor = System.Drawing.Color.White;
+            this.tbEmail.ValidBorderColor = System.Drawing.Color.LightGreen;
+            // 
+            // tbPhone
+            // 
+            this.tbPhone.AutoSize = true;
+            this.tbPhone.BackColor = System.Drawing.Color.White;
+            this.tbPhone.BorderColor = System.Drawing.Color.Silver;
+            this.tbPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Phone", true));
+            this.tbPhone.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbPhone.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.tbPhone.isRequired = true;
+            this.tbPhone.Location = new System.Drawing.Point(108, 78);
+            this.tbPhone.Multiline = false;
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.NormalBorderColor = System.Drawing.Color.Silver;
+            this.tbPhone.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbPhone.ReadOnly = false;
+            this.tbPhone.Size = new System.Drawing.Size(219, 19);
+            this.tbPhone.StringPattern = "^([0-9 ])*$";
+            this.tbPhone.TabIndex = 55;
+            this.tbPhone.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tbPhone.TextPanelMessage = "Giá trị không hợp lệ.";
+            this.tbPhone.TextPanelMessageColor = System.Drawing.Color.White;
+            this.tbPhone.ValidBorderColor = System.Drawing.Color.LightGreen;
+            // 
+            // tbNameStaff
+            // 
+            this.tbNameStaff.AutoSize = true;
+            this.tbNameStaff.BackColor = System.Drawing.Color.White;
+            this.tbNameStaff.BorderColor = System.Drawing.Color.Silver;
+            this.tbNameStaff.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Name", true));
+            this.tbNameStaff.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbNameStaff.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.tbNameStaff.isRequired = true;
+            this.tbNameStaff.Location = new System.Drawing.Point(108, 50);
+            this.tbNameStaff.Multiline = false;
+            this.tbNameStaff.Name = "tbNameStaff";
+            this.tbNameStaff.NormalBorderColor = System.Drawing.Color.Silver;
+            this.tbNameStaff.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.tbNameStaff.ReadOnly = false;
+            this.tbNameStaff.Size = new System.Drawing.Size(219, 19);
+            this.tbNameStaff.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
+    ")*$";
+            this.tbNameStaff.TabIndex = 54;
+            this.tbNameStaff.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.tbNameStaff.TextPanelMessage = "Giá trị không hợp lệ.";
+            this.tbNameStaff.TextPanelMessageColor = System.Drawing.Color.White;
+            this.tbNameStaff.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
             // label2
             // 
@@ -407,153 +570,18 @@
             this.dtpBirthday.Size = new System.Drawing.Size(219, 20);
             this.dtpBirthday.TabIndex = 44;
             // 
-            // tbSalary
-            // 
-            this.tbSalary.AutoSize = true;
-            this.tbSalary.BackColor = System.Drawing.Color.White;
-            this.tbSalary.BorderColor = System.Drawing.Color.Silver;
-            this.tbSalary.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Salary", true));
-            this.tbSalary.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbSalary.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.tbSalary.isRequired = true;
-            this.tbSalary.Location = new System.Drawing.Point(108, 317);
-            this.tbSalary.Multiline = false;
-            this.tbSalary.Name = "tbSalary";
-            this.tbSalary.NormalBorderColor = System.Drawing.Color.Silver;
-            this.tbSalary.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbSalary.ReadOnly = false;
-            this.tbSalary.Size = new System.Drawing.Size(219, 19);
-            this.tbSalary.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.tbSalary.TabIndex = 60;
-            this.tbSalary.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tbSalary.TextPanelMessage = "This is an error message.";
-            this.tbSalary.TextPanelMessageColor = System.Drawing.Color.White;
-            this.tbSalary.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // tbAddress
-            // 
-            this.tbAddress.AutoSize = true;
-            this.tbAddress.BackColor = System.Drawing.Color.White;
-            this.tbAddress.BorderColor = System.Drawing.Color.Silver;
-            this.tbAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Address", true));
-            this.tbAddress.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbAddress.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.tbAddress.isRequired = true;
-            this.tbAddress.Location = new System.Drawing.Point(108, 163);
-            this.tbAddress.Multiline = true;
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.NormalBorderColor = System.Drawing.Color.Silver;
-            this.tbAddress.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbAddress.ReadOnly = false;
-            this.tbAddress.Size = new System.Drawing.Size(219, 56);
-            this.tbAddress.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.tbAddress.TabIndex = 59;
-            this.tbAddress.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tbAddress.TextPanelMessage = "This is an error message.";
-            this.tbAddress.TextPanelMessageColor = System.Drawing.Color.White;
-            this.tbAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // tbIdentifyNumber
-            // 
-            this.tbIdentifyNumber.AutoSize = true;
-            this.tbIdentifyNumber.BackColor = System.Drawing.Color.White;
-            this.tbIdentifyNumber.BorderColor = System.Drawing.Color.Silver;
-            this.tbIdentifyNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "IdentifyNumber", true));
-            this.tbIdentifyNumber.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbIdentifyNumber.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.tbIdentifyNumber.isRequired = true;
-            this.tbIdentifyNumber.Location = new System.Drawing.Point(108, 228);
-            this.tbIdentifyNumber.Multiline = false;
-            this.tbIdentifyNumber.Name = "tbIdentifyNumber";
-            this.tbIdentifyNumber.NormalBorderColor = System.Drawing.Color.Silver;
-            this.tbIdentifyNumber.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbIdentifyNumber.ReadOnly = false;
-            this.tbIdentifyNumber.Size = new System.Drawing.Size(219, 19);
-            this.tbIdentifyNumber.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.tbIdentifyNumber.TabIndex = 57;
-            this.tbIdentifyNumber.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tbIdentifyNumber.TextPanelMessage = "This is an error message.";
-            this.tbIdentifyNumber.TextPanelMessageColor = System.Drawing.Color.White;
-            this.tbIdentifyNumber.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.AutoSize = true;
-            this.tbEmail.BackColor = System.Drawing.Color.White;
-            this.tbEmail.BorderColor = System.Drawing.Color.Silver;
-            this.tbEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Email", true));
-            this.tbEmail.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbEmail.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.tbEmail.isRequired = true;
-            this.tbEmail.Location = new System.Drawing.Point(108, 135);
-            this.tbEmail.Multiline = false;
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.NormalBorderColor = System.Drawing.Color.Silver;
-            this.tbEmail.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbEmail.ReadOnly = false;
-            this.tbEmail.Size = new System.Drawing.Size(219, 19);
-            this.tbEmail.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.tbEmail.TabIndex = 56;
-            this.tbEmail.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tbEmail.TextPanelMessage = "This is an error message.";
-            this.tbEmail.TextPanelMessageColor = System.Drawing.Color.White;
-            this.tbEmail.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // tbPhone
-            // 
-            this.tbPhone.AutoSize = true;
-            this.tbPhone.BackColor = System.Drawing.Color.White;
-            this.tbPhone.BorderColor = System.Drawing.Color.Silver;
-            this.tbPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Phone", true));
-            this.tbPhone.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbPhone.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.tbPhone.isRequired = true;
-            this.tbPhone.Location = new System.Drawing.Point(108, 81);
-            this.tbPhone.Multiline = false;
-            this.tbPhone.Name = "tbPhone";
-            this.tbPhone.NormalBorderColor = System.Drawing.Color.Silver;
-            this.tbPhone.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbPhone.ReadOnly = false;
-            this.tbPhone.Size = new System.Drawing.Size(219, 19);
-            this.tbPhone.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.tbPhone.TabIndex = 55;
-            this.tbPhone.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tbPhone.TextPanelMessage = "This is an error message.";
-            this.tbPhone.TextPanelMessageColor = System.Drawing.Color.White;
-            this.tbPhone.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // tbNameStaff
-            // 
-            this.tbNameStaff.AutoSize = true;
-            this.tbNameStaff.BackColor = System.Drawing.Color.White;
-            this.tbNameStaff.BorderColor = System.Drawing.Color.Silver;
-            this.tbNameStaff.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Name", true));
-            this.tbNameStaff.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbNameStaff.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.tbNameStaff.isRequired = true;
-            this.tbNameStaff.Location = new System.Drawing.Point(108, 50);
-            this.tbNameStaff.Multiline = false;
-            this.tbNameStaff.Name = "tbNameStaff";
-            this.tbNameStaff.NormalBorderColor = System.Drawing.Color.Silver;
-            this.tbNameStaff.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.tbNameStaff.ReadOnly = false;
-            this.tbNameStaff.Size = new System.Drawing.Size(219, 19);
-            this.tbNameStaff.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.tbNameStaff.TabIndex = 54;
-            this.tbNameStaff.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.tbNameStaff.TextPanelMessage = "This is an error message.";
-            this.tbNameStaff.TextPanelMessageColor = System.Drawing.Color.White;
-            this.tbNameStaff.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
             // genderBindingSource
             // 
             this.genderBindingSource.DataSource = typeof(QuanLyBanHang.Models.Gender);
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(295, 320);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(30, 13);
+            label3.TabIndex = 62;
+            label3.Text = "VNĐ";
             // 
             // StaffList
             // 
@@ -592,9 +620,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
@@ -611,6 +636,8 @@
         private WindowsFormsControlLibrary.CustomTextBox tbSalary;
         private System.Windows.Forms.ComboBox cbbGender;
         private System.Windows.Forms.Button button1;
-
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

@@ -24,7 +24,9 @@ namespace QuanLyBanHang
         INOUT_INVENTORY,    // nhập xuất đơn hàng.
         INVENTORY_LIST,
         VENDOR_ORDER_TAB,
-        VENDOR_ORDER_LIST_TAB
+        VENDOR_ORDER_LIST_TAB,
+        REVENUE_REPORT_TAB,
+        CUSTOMER_REPORT_TAB,
     }
 
     public partial class Main : Form
@@ -193,7 +195,7 @@ namespace QuanLyBanHang
 
                 case eTabType.STAFF_TAB:
                     {
-                        var newTab = new TabPage("Danh sach khach hang");
+                        var newTab = new TabPage("Danh sách nhân viên");
                         newTab.AutoScroll = true;
                         var staff = new StaffList();
                         staff.Dock = DockStyle.Fill;
@@ -265,6 +267,31 @@ namespace QuanLyBanHang
                             tabControl.TabPages.Add(newTab);
                             tabControl.SelectedIndex = tabControl.TabCount - 1;
                         }
+                        break;
+                    }
+
+                case eTabType.REVENUE_REPORT_TAB:
+                    {
+                        var newTab = new TabPage("Báo cáo doanh thu");
+                        newTab.AutoScroll = true;
+                        var report = new RevenueReport();
+                        report.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(report);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
+                case eTabType.CUSTOMER_REPORT_TAB:
+                    {
+                        var newTab = new TabPage("Báo cáo tình hình khách hàng");
+                        newTab.AutoScroll = true;
+                        var report = new CustomerReport();
+                        report.Dock = DockStyle.Top;
+                        newTab.Controls.Add(report);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
                 default:
@@ -370,6 +397,22 @@ namespace QuanLyBanHang
             createNewTab(eTabType.PRODUCT_TAB);
         }
 
+        private void newInvetoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var r = (new AddInventory()).ShowDialog();
+            if (r == DialogResult.OK ){
+                createNewTab(eTabType.INVENTORY_LIST);
+            }
+        }
 
+        private void revenueReportBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.REVENUE_REPORT_TAB);
+        }
+
+        private void customerReportBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.CUSTOMER_REPORT_TAB);
+        }
     }
 }

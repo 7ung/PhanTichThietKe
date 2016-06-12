@@ -99,6 +99,7 @@ namespace QuanLyBanHang.Forms
                     sellManagementDbDataSet.INVENTORY_CAPABILITY.AcceptChanges();
                     
                     this.Close();
+                    DialogResult = DialogResult.OK;
                 }
                 catch(Exception ex)
                 {
@@ -119,6 +120,8 @@ namespace QuanLyBanHang.Forms
                     sellManagementDbDataSet.INVENTORY.AcceptChanges();
                     
                     this.Close();
+
+                    DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)
                 {
@@ -132,6 +135,8 @@ namespace QuanLyBanHang.Forms
             this.sellManagementDbDataSet.INVENTORY_CAPABILITY.RejectChanges();
             this.sellManagementDbDataSet.INVENTORY.RejectChanges();          
             this.Close();
+
+            DialogResult = DialogResult.Cancel;
         }
 
         private void iNVENTORY_CAPABILITYDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)

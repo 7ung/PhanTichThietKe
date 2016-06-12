@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
+using QuanLyBanHang.Properties;
 
 namespace QuanLyBanHang.Forms
 {
@@ -35,6 +36,8 @@ namespace QuanLyBanHang.Forms
             new IntNStringBindingData("Nhóm 2", 2),
             new IntNStringBindingData("Nhóm 3", 3),
         };
+
+        private string _customerPrefix = Resources.CustomerPrefixKey;
 
         public CustomerList()
         {
@@ -176,21 +179,15 @@ namespace QuanLyBanHang.Forms
 
         private string generateCustomerKey()
         {
-            // tạm thời tăng theo thứ tự
             int max = 0;
-            // Tùng
-            // thanh niên rảnh :v
-            // tính max chi hen. lấy last là max rồi.
 
-            // Try it:
-            // max = (sellManagementDbDataSet.CUSTOMER as SellManagementDbDataSet.CUSTOMERDataTable).Last().Id;
-            foreach (DataRow item in sellManagementDbDataSet.CUSTOMER.Rows)
+            foreach (DataRow item in sellManagementDbDataSet.CUSTOMER.Where(c => c.CustomerKey.Substring(0, 2) == _customerPrefix))
             {
-                max = Math.Max(max, Convert.ToInt32(item["CustomerKey"]));
+                var value = item["CustomerKey"].ToString().TrimStart(_customerPrefix.ToArray());
+                max = Math.Max(max, Convert.ToInt32(value));
             }
 
-            return String.Format("{0:D6}", max + 1);
-
+            return _customerPrefix + String.Format("{0:D6}", max + 1);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

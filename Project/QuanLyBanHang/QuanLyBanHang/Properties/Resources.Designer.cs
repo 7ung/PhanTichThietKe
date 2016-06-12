@@ -138,6 +138,15 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CU.
+        /// </summary>
+        internal static string CustomerPrefixKey {
+            get {
+                return ResourceManager.GetString("CustomerPrefixKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap database {
@@ -314,6 +323,15 @@ namespace QuanLyBanHang.Properties {
         internal static string ProductUnitKey {
             get {
                 return ResourceManager.GetString("ProductUnitKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ST.
+        /// </summary>
+        internal static string StaffPrefixKey {
+            get {
+                return ResourceManager.GetString("StaffPrefixKey", resourceCulture);
             }
         }
         

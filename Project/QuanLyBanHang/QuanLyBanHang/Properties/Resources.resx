@@ -217,4 +217,10 @@
   <data name="WarningLabel" xml:space="preserve">
     <value>Chú ý</value>
   </data>
+  <data name="CustomerPrefixKey" xml:space="preserve">
+    <value>CU</value>
+  </data>
+  <data name="StaffPrefixKey" xml:space="preserve">
+    <value>ST</value>
+  </data>
 </root>

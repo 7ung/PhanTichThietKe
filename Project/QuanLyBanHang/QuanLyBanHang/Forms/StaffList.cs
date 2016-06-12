@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanHang.Models;
+using QuanLyBanHang.Properties;
 
 namespace QuanLyBanHang.Forms
 {
@@ -47,6 +48,8 @@ namespace QuanLyBanHang.Forms
             set;
         }
 
+        private string _staffPrefix = Resources.StaffPrefixKey;
+        
         public void updateState(eFormState state)
         {
             State = state;
@@ -232,13 +235,14 @@ namespace QuanLyBanHang.Forms
         private string generateStaffKey()
         {
             int max = 0;
-           
-            foreach (DataRow item in sellManagementDbDataSet.CUSTOMER.Rows)
+
+            foreach (DataRow item in sellManagementDbDataSet.STAFF.Where(c => c.StaffKey.Substring(0, 2) == _staffPrefix))
             {
-                max = Math.Max(max, Convert.ToInt32(item["CustomerKey"]));
+                var value = item["StaffKey"].ToString().TrimStart(_staffPrefix.ToArray());
+                max = Math.Max(max, Convert.ToInt32(value));
             }
 
-            return String.Format("{0:D6}", max + 1);
+            return _staffPrefix + String.Format("{0:D6}", max + 1);
         }
 
         private void sTAFFDataGridView_RowLeave(object sender, DataGridViewCellEventArgs e)
