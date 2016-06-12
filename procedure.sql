@@ -660,7 +660,7 @@ end
 -- update capability, update theo số đơn nhập kho và số đơn xuất kho
 
 go
-create procedure update_inventory_capability
+alter procedure update_inventory_capability
 	@inventory_id int
 as
 begin
@@ -680,8 +680,8 @@ begin
 	insert into @sum_quantity
 	select IIF([Out_Product].Inventory_id is null,[In_product].Inventory_id, [Out_Product].Inventory_id) ,
 		IIF([Out_Product].Product_id is null,[In_product].Product_id, [Out_Product].Product_id),
-		IIF([Out_Product].Quantity is null,0, [Out_Product].Quantity)
-			- IIF([In_product].Quantity is null,0, [In_product].Quantity)
+		IIF(-[Out_Product].Quantity is null,0, [Out_Product].Quantity)
+			+ IIF([In_product].Quantity is null,0, [In_product].Quantity)
 	from
 	(select I1.Inventory_id, A.Product_id, A.Quantity
 	from InOutInventory_Detail_ProductQuantity_View as A, INOUTINVENTORY as I1
