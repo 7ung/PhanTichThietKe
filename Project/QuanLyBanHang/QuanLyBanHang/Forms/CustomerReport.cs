@@ -134,5 +134,14 @@ namespace QuanLyBanHang.Forms
             }
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var page = this.Parent as TabPage;
+            if (page != null)
+            {
+                (page.Parent as TabControl).TabPages.Remove(page);
+            }
+        }
     }
 }

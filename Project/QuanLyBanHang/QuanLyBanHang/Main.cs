@@ -28,7 +28,8 @@ namespace QuanLyBanHang
         REVENUE_REPORT_TAB,
         CUSTOMER_REPORT_TAB,
         CREATE_BUSINESS_REPORT_TAB,
-        VIEW_BUSINESS_REPORT_TAB
+        VIEW_BUSINESS_REPORT_TAB,
+        INVENTORY_REPORT_TAB,
     }
 
     public partial class Main : Form
@@ -326,6 +327,18 @@ namespace QuanLyBanHang
                         tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
+                case eTabType.INVENTORY_REPORT_TAB:
+                    {
+                        var newTab = new TabPage("Báo cáo tồn kho");
+                        newTab.AutoScroll = true;
+                        var report = new InventoryReport();
+                        report.Dock = DockStyle.Fill;
+                        newTab.Controls.Add(report);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
                 default:
                     break;
             }
@@ -479,6 +492,26 @@ namespace QuanLyBanHang
         private void viewBusinessFeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.VIEW_BUSINESS_REPORT_TAB);
+        }
+
+        private void inventoryReportBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.INVENTORY_REPORT_TAB);
+        }
+
+        private void revenueBtn_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.REVENUE_REPORT_TAB);
+        }
+
+        private void doanhThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.REVENUE_REPORT_TAB);
+        }
+
+        private void tonKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.INVENTORY_REPORT_TAB);
         }
     }
 }

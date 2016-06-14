@@ -25,6 +25,8 @@ namespace QuanLyBanHang.Forms
             sTAFFTableAdapter.Fill(sellManagementDbDataSet.STAFF);
             vendor_Order_ViewTableAdapter.Fill(sellManagementDbDataSet.Vendor_Order_View);
             vENDORTableAdapter.Fill(sellManagementDbDataSet.VENDOR);
+            dOCUMENTTableAdapter.Fill(sellManagementDbDataSet.DOCUMENT);
+            businessFeeTableAdapter.Fill(sellManagementDbDataSet.BusinessFee);
 
             //format
             // in
@@ -43,33 +45,86 @@ namespace QuanLyBanHang.Forms
             vATDataGridViewTextBoxColumn1.DefaultCellStyle.Format = "N2";
             createDateDataGridViewTextBoxColumn1.DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
 
+            // feee
+            fromDateDataGridViewTextBoxColumn.DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            toDateDataGridViewTextBoxColumn.DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            totalFeeDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
+
             statusDataGridViewTextBoxColumn1.DataSource = ResourceComboBoxBinding.OrderStatus;
             statusDataGridViewTextBoxColumn1.DisplayMember = "Name";
             statusDataGridViewTextBoxColumn1.ValueMember = "Value";
 
             //
             beginDateTimePicker.Value = sellManagementDbDataSet.Customer_Order_View.Select(o => o.CreateDate).Min();
+            
         }
 
         private void viewBtn_Click(object sender, EventArgs e)
         {
             customerOrderViewBindingSource.Filter = "(CreateDate >= #" + beginDateTimePicker.Value + "#) AND (CreateDate <= #" + endDateTimePicker.Value + "#)";
 
+            businessFeeBindingSource.Filter = "(FromDate >= #" + beginDateTimePicker.Value + "#) OR (ToDate <= #" + endDateTimePicker.Value + "#)";
+
             calculateRevenue();
         }
 
         private void calculateRevenue()
         {
-            if(incomeDataGridView.RowCount > 0)
+            // in
+            double sumIn = 0;
+            if (incomeDataGridView.RowCount > 0)
             {
-                double sum = 0;
                 foreach (DataGridViewRow item in incomeDataGridView.Rows)
                 {
-                    sum += (double)item.Cells[finalPriceDataGridViewTextBoxColumn.Index].Value;
+                    sumIn += (double)item.Cells[finalPriceDataGridViewTextBoxColumn.Index].Value;
                 }
 
-                incomeText.Text = string.Format("{0:#,##0.00}", sum);
+                incomeText.Text = string.Format("{0:#,##0.00}", sumIn);
+                totalInLabel.Text = "Tổng số hóa đơn: " + incomeDataGridView.RowCount;
             }
+
+            // out
+            double sumOut = 0;
+            if (dataGridView1.RowCount > 0)
+            {
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    sumOut += (double)item.Cells[finalPriceDataGridViewTextBoxColumn1.Index].Value;
+                }
+
+                totalOutLabel.Text = "Tổng số hóa đơn: " + dataGridView1.RowCount;
+                totalOutText.Text = string.Format("{0:#,##0.00}", sumOut);
+            }
+
+            if (dataGridView2.RowCount > 0)
+            {
+                double temp = 0;
+                foreach (DataGridViewRow item in dataGridView2.Rows)
+                {
+                    sumOut += (double)item.Cells[totalFeeDataGridViewTextBoxColumn.Index].Value;
+                    temp += (double)item.Cells[totalFeeDataGridViewTextBoxColumn.Index].Value;
+                }
+
+                totalFeeLabel.Text = "Tổng số hóa đơn: " + dataGridView2.RowCount;
+                totalFeeText.Text = string.Format("{0:#,##0.00}", temp);
+            }
+
+            outComeText.Text = string.Format("{0:#,##0.00}", sumOut);
+            ratioText.Text = string.Format("{0:#,##0.00}", sumIn - sumOut);
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            var page = this.Parent as TabPage;
+            if (page != null)
+            {
+                (page.Parent as TabControl).TabPages.Remove(page);
+            }
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

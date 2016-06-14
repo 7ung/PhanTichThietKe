@@ -34,16 +34,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.clearBtn = new System.Windows.Forms.Button();
             this.viewBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.outComeText = new System.Windows.Forms.TextBox();
             this.incomeText = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.totalInLabel = new System.Windows.Forms.Label();
             this.incomeDataGridView = new System.Windows.Forms.DataGridView();
             this.documentKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customeridDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -58,6 +56,8 @@
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.customerOrderViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.totalOutText = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.documentKeyDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vendoridDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -69,14 +69,34 @@
             this.finalPriceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.vendorOrderViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.totalOutLabel = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.totalFeeText = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.totalFeeLabel = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.termDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalFeeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.businessFeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customer_Order_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.Customer_Order_ViewTableAdapter();
             this.closeBtn = new System.Windows.Forms.Button();
             this.cUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CUSTOMERTableAdapter();
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
             this.vendor_Order_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.Vendor_Order_ViewTableAdapter();
             this.vENDORTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDORTableAdapter();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.businessFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BusinessFeeTableAdapter();
+            this.dOCUMENTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
+            this.ratioText = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,6 +109,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorOrderViewBindingSource)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -133,9 +157,13 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.clearBtn);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.ratioText);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.viewBtn);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.outComeText);
             this.groupBox1.Controls.Add(this.incomeText);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -145,19 +173,10 @@
             this.groupBox1.Controls.Add(this.beginDateTimePicker);
             this.groupBox1.Location = new System.Drawing.Point(20, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(960, 133);
+            this.groupBox1.Size = new System.Drawing.Size(960, 176);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
-            // 
-            // clearBtn
-            // 
-            this.clearBtn.Location = new System.Drawing.Point(490, 19);
-            this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(75, 26);
-            this.clearBtn.TabIndex = 10;
-            this.clearBtn.Text = "Xóa";
-            this.clearBtn.UseVisualStyleBackColor = true;
             // 
             // viewBtn
             // 
@@ -169,13 +188,13 @@
             this.viewBtn.UseVisualStyleBackColor = true;
             this.viewBtn.Click += new System.EventHandler(this.viewBtn_Click);
             // 
-            // textBox1
+            // outComeText
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(92, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(311, 26);
-            this.textBox1.TabIndex = 8;
+            this.outComeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outComeText.Location = new System.Drawing.Point(92, 88);
+            this.outComeText.Name = "outComeText";
+            this.outComeText.Size = new System.Drawing.Size(311, 26);
+            this.outComeText.TabIndex = 8;
             // 
             // incomeText
             // 
@@ -212,44 +231,34 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(20, 159);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(20, 202);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(960, 252);
+            this.tabControl1.Size = new System.Drawing.Size(960, 348);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.totalInLabel);
             this.tabPage1.Controls.Add(this.incomeDataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(952, 226);
+            this.tabPage1.Size = new System.Drawing.Size(952, 322);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thu vào";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // totalInLabel
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(169, 200);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Tổng số khách hàng";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 200);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Tổng số hóa đơn";
+            this.totalInLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.totalInLabel.AutoSize = true;
+            this.totalInLabel.Location = new System.Drawing.Point(25, 291);
+            this.totalInLabel.Name = "totalInLabel";
+            this.totalInLabel.Size = new System.Drawing.Size(89, 13);
+            this.totalInLabel.TabIndex = 1;
+            this.totalInLabel.Text = "Tổng số hóa đơn";
             // 
             // incomeDataGridView
             // 
@@ -271,10 +280,12 @@
             this.finalPriceDataGridViewTextBoxColumn,
             this.statusDataGridViewTextBoxColumn});
             this.incomeDataGridView.DataSource = this.customerOrderViewBindingSource;
-            this.incomeDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.incomeDataGridView.Location = new System.Drawing.Point(3, 3);
             this.incomeDataGridView.Name = "incomeDataGridView";
             this.incomeDataGridView.ReadOnly = true;
-            this.incomeDataGridView.Size = new System.Drawing.Size(952, 185);
+            this.incomeDataGridView.RowHeadersVisible = false;
+            this.incomeDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.incomeDataGridView.Size = new System.Drawing.Size(946, 272);
             this.incomeDataGridView.TabIndex = 0;
             // 
             // documentKeyDataGridViewTextBoxColumn
@@ -375,22 +386,44 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.totalOutText);
             this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.totalOutLabel);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(952, 226);
+            this.tabPage2.Size = new System.Drawing.Size(952, 322);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Chi ra";
+            this.tabPage2.Text = "Chi phí nhập hàng";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(906, 290);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "VNĐ";
+            // 
+            // totalOutText
+            // 
+            this.totalOutText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalOutText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalOutText.Location = new System.Drawing.Point(730, 283);
+            this.totalOutText.Name = "totalOutText";
+            this.totalOutText.Size = new System.Drawing.Size(170, 26);
+            this.totalOutText.TabIndex = 14;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -404,11 +437,13 @@
             this.finalPriceDataGridViewTextBoxColumn1,
             this.statusDataGridViewTextBoxColumn1});
             this.dataGridView1.DataSource = this.vendorOrderViewBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(952, 185);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(946, 272);
+            this.dataGridView1.TabIndex = 11;
             // 
             // documentKeyDataGridViewTextBoxColumn1
             // 
@@ -483,6 +518,7 @@
             // statusDataGridViewTextBoxColumn1
             // 
             this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.statusDataGridViewTextBoxColumn1.HeaderText = "Trạng thái";
             this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
             this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -494,6 +530,162 @@
             this.vendorOrderViewBindingSource.DataMember = "Vendor_Order_View";
             this.vendorOrderViewBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(672, 290);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Tổng chi";
+            // 
+            // totalOutLabel
+            // 
+            this.totalOutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.totalOutLabel.AutoSize = true;
+            this.totalOutLabel.Location = new System.Drawing.Point(25, 291);
+            this.totalOutLabel.Name = "totalOutLabel";
+            this.totalOutLabel.Size = new System.Drawing.Size(89, 13);
+            this.totalOutLabel.TabIndex = 12;
+            this.totalOutLabel.Text = "Tổng số hóa đơn";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.totalFeeText);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.totalFeeLabel);
+            this.tabPage3.Controls.Add(this.dataGridView2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(952, 322);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Chi phí bán hàng";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(906, 290);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "VNĐ";
+            // 
+            // totalFeeText
+            // 
+            this.totalFeeText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalFeeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalFeeText.Location = new System.Drawing.Point(730, 283);
+            this.totalFeeText.Name = "totalFeeText";
+            this.totalFeeText.Size = new System.Drawing.Size(170, 26);
+            this.totalFeeText.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(672, 290);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Tổng chi";
+            // 
+            // totalFeeLabel
+            // 
+            this.totalFeeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.totalFeeLabel.AutoSize = true;
+            this.totalFeeLabel.Location = new System.Drawing.Point(25, 291);
+            this.totalFeeLabel.Name = "totalFeeLabel";
+            this.totalFeeLabel.Size = new System.Drawing.Size(89, 13);
+            this.totalFeeLabel.TabIndex = 16;
+            this.totalFeeLabel.Text = "Tổng số hóa đơn";
+            this.totalFeeLabel.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.termDataGridViewTextBoxColumn,
+            this.fromDateDataGridViewTextBoxColumn,
+            this.toDateDataGridViewTextBoxColumn,
+            this.totalFeeDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.businessFeeBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(946, 272);
+            this.dataGridView2.TabIndex = 15;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.DataSource = this.dOCUMENTBindingSource;
+            this.idDataGridViewTextBoxColumn.DisplayMember = "DocumentKey";
+            this.idDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.idDataGridViewTextBoxColumn.HeaderText = "Mã hóa đơn";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.idDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.idDataGridViewTextBoxColumn.ValueMember = "Id";
+            // 
+            // dOCUMENTBindingSource
+            // 
+            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
+            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // termDataGridViewTextBoxColumn
+            // 
+            this.termDataGridViewTextBoxColumn.DataPropertyName = "Term";
+            this.termDataGridViewTextBoxColumn.HeaderText = "Kỳ";
+            this.termDataGridViewTextBoxColumn.Name = "termDataGridViewTextBoxColumn";
+            this.termDataGridViewTextBoxColumn.ReadOnly = true;
+            this.termDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // fromDateDataGridViewTextBoxColumn
+            // 
+            this.fromDateDataGridViewTextBoxColumn.DataPropertyName = "FromDate";
+            this.fromDateDataGridViewTextBoxColumn.HeaderText = "Từ ngày";
+            this.fromDateDataGridViewTextBoxColumn.Name = "fromDateDataGridViewTextBoxColumn";
+            this.fromDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fromDateDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // toDateDataGridViewTextBoxColumn
+            // 
+            this.toDateDataGridViewTextBoxColumn.DataPropertyName = "ToDate";
+            this.toDateDataGridViewTextBoxColumn.HeaderText = "Đến ngày";
+            this.toDateDataGridViewTextBoxColumn.Name = "toDateDataGridViewTextBoxColumn";
+            this.toDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.toDateDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // totalFeeDataGridViewTextBoxColumn
+            // 
+            this.totalFeeDataGridViewTextBoxColumn.DataPropertyName = "TotalFee";
+            this.totalFeeDataGridViewTextBoxColumn.HeaderText = "Chi phí";
+            this.totalFeeDataGridViewTextBoxColumn.Name = "totalFeeDataGridViewTextBoxColumn";
+            this.totalFeeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalFeeDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // businessFeeBindingSource
+            // 
+            this.businessFeeBindingSource.DataMember = "BusinessFee";
+            this.businessFeeBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
             // customer_Order_ViewTableAdapter
             // 
             this.customer_Order_ViewTableAdapter.ClearBeforeFill = true;
@@ -501,12 +693,13 @@
             // closeBtn
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeBtn.Location = new System.Drawing.Point(901, 421);
+            this.closeBtn.Location = new System.Drawing.Point(901, 560);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBtn.TabIndex = 6;
             this.closeBtn.Text = "Đóng";
             this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // cUSTOMERTableAdapter
             // 
@@ -524,25 +717,61 @@
             // 
             this.vENDORTableAdapter.ClearBeforeFill = true;
             // 
-            // label7
+            // businessFeeTableAdapter
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(169, 198);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Tổng số khách hàng";
+            this.businessFeeTableAdapter.ClearBeforeFill = true;
             // 
-            // label8
+            // dOCUMENTTableAdapter
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 198);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Tổng số hóa đơn";
+            this.dOCUMENTTableAdapter.ClearBeforeFill = true;
+            // 
+            // ratioText
+            // 
+            this.ratioText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ratioText.Location = new System.Drawing.Point(92, 120);
+            this.ratioText.Name = "ratioText";
+            this.ratioText.Size = new System.Drawing.Size(311, 26);
+            this.ratioText.TabIndex = 12;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(21, 128);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(27, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Tỉ lệ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(409, 62);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(30, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "VNĐ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(409, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(30, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "VNĐ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(409, 128);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(30, 13);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "VNĐ";
             // 
             // RevenueReport
             // 
@@ -552,7 +781,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Name = "RevenueReport";
-            this.Size = new System.Drawing.Size(1000, 461);
+            this.Size = new System.Drawing.Size(1000, 600);
             this.Load += new System.EventHandler(this.RevenueReport_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -569,6 +798,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorOrderViewBindingSource)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -580,7 +814,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker endDateTimePicker;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox outComeText;
         private System.Windows.Forms.TextBox incomeText;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -591,8 +825,7 @@
         private System.Windows.Forms.BindingSource customerOrderViewBindingSource;
         private SellManagementDbDataSet sellManagementDbDataSet;
         private SellManagementDbDataSetTableAdapters.Customer_Order_ViewTableAdapter customer_Order_ViewTableAdapter;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label totalInLabel;
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.BindingSource cUSTOMERBindingSource;
         private System.Windows.Forms.BindingSource sTAFFBindingSource;
@@ -607,12 +840,27 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn customeridDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentKeyDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button viewBtn;
-        private System.Windows.Forms.Button clearBtn;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource vendorOrderViewBindingSource;
         private SellManagementDbDataSetTableAdapters.Vendor_Order_ViewTableAdapter vendor_Order_ViewTableAdapter;
         private System.Windows.Forms.BindingSource vENDORBindingSource;
         private SellManagementDbDataSetTableAdapters.VENDORTableAdapter vENDORTableAdapter;
+        private System.Windows.Forms.BindingSource dOCUMENTBindingSource;
+        private System.Windows.Forms.BindingSource businessFeeBindingSource;
+        private SellManagementDbDataSetTableAdapters.BusinessFeeTableAdapter businessFeeTableAdapter;
+        private SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter dOCUMENTTableAdapter;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalFeeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn toDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fromDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn termDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label totalFeeLabel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox totalFeeText;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label totalOutLabel;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewComboBoxColumn statusDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn finalPriceDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn1;
@@ -621,7 +869,13 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn creatorDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewComboBoxColumn vendoridDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn documentKeyDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox totalOutText;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox ratioText;
+        private System.Windows.Forms.Label label13;
     }
 }
