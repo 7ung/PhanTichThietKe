@@ -223,4 +223,10 @@
   <data name="StaffPrefixKey" xml:space="preserve">
     <value>ST</value>
   </data>
+  <data name="ReportPrefixKey" xml:space="preserve">
+    <value>RE</value>
+  </data>
+  <data name="CurrencyFormat" xml:space="preserve">
+    <value>{0:#,##0.00}</value>
+  </data>
 </root>

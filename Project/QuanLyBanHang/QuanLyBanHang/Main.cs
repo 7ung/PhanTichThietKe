@@ -27,6 +27,7 @@ namespace QuanLyBanHang
         VENDOR_ORDER_LIST_TAB,
         REVENUE_REPORT_TAB,
         CUSTOMER_REPORT_TAB,
+        CREATE_BUSINESS_REPORT_TAB,
     }
 
     public partial class Main : Form
@@ -294,6 +295,18 @@ namespace QuanLyBanHang
                         tabControl.SelectedIndex = tabControl.TabCount - 1;
                         break;
                     }
+                case eTabType.CREATE_BUSINESS_REPORT_TAB:
+                    {
+                        var newTab = new TabPage("Báo cáo chi phí bán hàng");
+                        newTab.AutoScroll = true;
+                        var report = new CreateBusinessFee();
+                        report.Dock = DockStyle.Top;
+                        newTab.Controls.Add(report);
+
+                        tabControl.TabPages.Add(newTab);
+                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        break;
+                    }
                 default:
                     break;
             }
@@ -407,7 +420,7 @@ namespace QuanLyBanHang
 
         private void revenueReportBtn_Click(object sender, EventArgs e)
         {
-            createNewTab(eTabType.REVENUE_REPORT_TAB);
+            createNewTab(eTabType.CREATE_BUSINESS_REPORT_TAB);
         }
 
         private void customerReportBtn_Click(object sender, EventArgs e)

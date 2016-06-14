@@ -110,6 +110,15 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0:#,##0.00}.
+        /// </summary>
+        internal static string CurrencyFormat {
+            get {
+                return ResourceManager.GetString("CurrencyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Customer {
@@ -323,6 +332,15 @@ namespace QuanLyBanHang.Properties {
         internal static string ProductUnitKey {
             get {
                 return ResourceManager.GetString("ProductUnitKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RE.
+        /// </summary>
+        internal static string ReportPrefixKey {
+            get {
+                return ResourceManager.GetString("ReportPrefixKey", resourceCulture);
             }
         }
         

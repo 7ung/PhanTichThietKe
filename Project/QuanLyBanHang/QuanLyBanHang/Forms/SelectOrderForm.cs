@@ -1,4 +1,5 @@
 ﻿using QuanLyBanHang.Models;
+using QuanLyBanHang.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,11 +80,18 @@ namespace QuanLyBanHang.Forms
         {
             if (billDataGridView.SelectedRows.Count > 0)
             {
-                var row = billDataGridView.SelectedRows[0].Cells["idColumn"];
-                queriesTableAdapter.Delete_Customer_Order(Convert.ToInt32(row.Value));
-
-                // fill lại
-                customer_Order_ViewTableAdapter.Fill(sellManagementDbDataSet.Customer_Order_View);
+                try
+                {
+                    var row = billDataGridView.SelectedRows[0].Cells["idColumn"];
+                    queriesTableAdapter.Delete_Customer_Order(Convert.ToInt32(row.Value));
+                    
+                    // fill lại
+                    customer_Order_ViewTableAdapter.Fill(sellManagementDbDataSet.Customer_Order_View);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể xóa vì đơn hàng đang được sử dụng.", Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

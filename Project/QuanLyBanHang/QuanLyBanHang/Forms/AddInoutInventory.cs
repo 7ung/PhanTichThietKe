@@ -494,7 +494,7 @@ namespace QuanLyBanHang.Forms
                 var resultDoc = sellManagementDbDataSet.DOCUMENT.Where(d => d.DocumentKey == _currentDocumentKey);
 
                 if (resultDoc.Count() == 0)
-                    throw new Exception("Không tạo được chi đơn hàng. :(");
+                    throw new Exception("Không tạo được đơn hàng. :(");
 
                 docId = resultDoc.First().Id;
 
