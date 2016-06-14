@@ -28,6 +28,7 @@ namespace QuanLyBanHang
         REVENUE_REPORT_TAB,
         CUSTOMER_REPORT_TAB,
         CREATE_BUSINESS_REPORT_TAB,
+        VIEW_BUSINESS_REPORT_TAB
     }
 
     public partial class Main : Form
@@ -297,9 +298,27 @@ namespace QuanLyBanHang
                     }
                 case eTabType.CREATE_BUSINESS_REPORT_TAB:
                     {
+                        var dialogCreate = new CreateReportForm();
+                        var r = dialogCreate.ShowDialog();
+
+                        if (r == DialogResult.OK)
+                        {
+                            var newTab = new TabPage("Báo cáo chi phí bán hàng");
+                            newTab.AutoScroll = true;
+                            var report = new CreateBusinessFee(dialogCreate.DocumentId);
+                            report.Dock = DockStyle.Top;
+                            newTab.Controls.Add(report);
+
+                            tabControl.TabPages.Add(newTab);
+                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        }
+                        break;
+                    }
+                case eTabType.VIEW_BUSINESS_REPORT_TAB:
+                    {
                         var newTab = new TabPage("Báo cáo chi phí bán hàng");
                         newTab.AutoScroll = true;
-                        var report = new CreateBusinessFee();
+                        var report = new ViewBusinessFee();
                         report.Dock = DockStyle.Top;
                         newTab.Controls.Add(report);
 
@@ -420,12 +439,46 @@ namespace QuanLyBanHang
 
         private void revenueReportBtn_Click(object sender, EventArgs e)
         {
-            createNewTab(eTabType.CREATE_BUSINESS_REPORT_TAB);
+            var listForm = new SelectReportForm();
+            var result = listForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                var newTab = new TabPage("Báo cáo chi phí bán hàng");
+                newTab.AutoScroll = true;
+                var report = new ViewBusinessFee(listForm.DocumentId);
+                report.Dock = DockStyle.Top;
+                newTab.Controls.Add(report);
+
+                tabControl.TabPages.Add(newTab);
+                tabControl.SelectedIndex = tabControl.TabCount - 1;
+            }
+            else if(result == DialogResult.Retry)
+            {
+                var newTab = new TabPage("Sửa báo cáo chi phí bán hàng");
+                newTab.AutoScroll = true;
+                var report = new CreateBusinessFee(listForm.DocumentId);
+                report.Dock = DockStyle.Top;
+                newTab.Controls.Add(report);
+
+                tabControl.TabPages.Add(newTab);
+                tabControl.SelectedIndex = tabControl.TabCount - 1;
+            }
         }
 
         private void customerReportBtn_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.CUSTOMER_REPORT_TAB);
+        }
+
+        private void createBusinessFeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.CREATE_BUSINESS_REPORT_TAB);
+        }
+
+        private void viewBusinessFeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            createNewTab(eTabType.VIEW_BUSINESS_REPORT_TAB);
         }
     }
 }

@@ -14,11 +14,23 @@ namespace QuanLyBanHang.Forms
     public partial class CreateBusinessFee : UserControl
     {
         private bool _isNew = true;
+        private bool _creating = true;
         private string _prefix = Resources.ReportPrefixKey;
+
+        public int DocumentId { get; set; }
 
         public CreateBusinessFee()
         {
             InitializeComponent();
+        }
+
+        public CreateBusinessFee(int docId)
+        {
+            InitializeComponent();
+
+            DocumentId = docId;
+            _isNew = false;
+            _creating = true;
         }
 
         private void CreateBusinessFee_Load(object sender, EventArgs e)
@@ -28,6 +40,11 @@ namespace QuanLyBanHang.Forms
             iNOUTINVENTORYTableAdapter.Fill(sellManagementDbDataSet.INOUTINVENTORY);
             iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
             businessFeeTableAdapter.Fill(sellManagementDbDataSet.BusinessFee);
+            
+            //
+            tranferFeeTableAdapter.Fill(sellManagementDbDataSet.TranferFee);
+            invenFeeTableAdapter.Fill(sellManagementDbDataSet.InvenFee);
+            staffFeeTableAdapter.Fill(sellManagementDbDataSet.StaffFee);
 
             // bind combobox
             staffIdDataGridViewTextBoxColumn.DataSource = sellManagementDbDataSet.STAFF.CopyToDataTable();
@@ -56,7 +73,15 @@ namespace QuanLyBanHang.Forms
                 dOCUMENTBindingSource.AddNew();
                 businessFeeBindingSource.AddNew();
 
-                documentKeyText.Text = generateKey();
+                var cur = (dOCUMENTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.DOCUMENTRow;
+                cur.DocumentKey = generateKey();
+            }
+            else
+            {
+                dOCUMENTBindingSource.Filter = "Id = " + DocumentId;
+                fillInventoryGridView();
+                fillinoutInventoryGridView();
+                fillStaffGridView();
             }
 
             calculateFee();
@@ -98,12 +123,26 @@ namespace QuanLyBanHang.Forms
         {
             if (transferFeeBindingSource1.Current == null || dataGridView2.RowCount <= 0)
                 return;
-
+            
             transferFeeBindingSource1.RemoveCurrent();
 
             // fill lại, remove mấy cái có trong list rồi
+            fillinoutInventoryGridView();
+
+            // enable nút
+            calculateFee();
+        }
+
+        private void fillinoutInventoryGridView()
+        {
             iNOUTINVENTORYTableAdapter.Fill(sellManagementDbDataSet.INOUTINVENTORY);
-            var rowsAdded = sellManagementDbDataSet.TranferFee.Select(r => r.InoutInventory_Id);
+            //var rowsAdded = sellManagementDbDataSet.TranferFee.Select(r => r.InoutInventory_Id);
+
+            List<int> rowsAdded = new List<int>();
+            foreach (DataGridViewRow item in dataGridView2.Rows)
+            {
+                rowsAdded.Add((int)item.Cells[inoutInventoryIdDataGridViewTextBoxColumn.Index].Value);
+            }
 
             if (rowsAdded.Count() > 0)
             {
@@ -117,9 +156,30 @@ namespace QuanLyBanHang.Forms
                     }
                 }
             }
+        }
 
-            // enable nút
-            calculateFee();
+        private void fillInventoryGridView()
+        {
+            iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
+
+            List<int> rowsAdded = new List<int>();
+            foreach (DataGridViewRow item in inventoryFeeDataGridView.Rows)
+            {
+                rowsAdded.Add((int)item.Cells[inventoryidDataGridViewTextBoxColumn.Index].Value);
+            }
+            
+            if (rowsAdded.Count() > 0)
+            {
+                for (int i = 0; i < iNVENTORYBindingSource.Count; i++)
+                {
+                    var row = ((iNVENTORYBindingSource[i] as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow);
+                    if (rowsAdded.Contains(row.Id))
+                    {
+                        iNVENTORYBindingSource.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
         }
 
         private string generateKey()
@@ -158,22 +218,28 @@ namespace QuanLyBanHang.Forms
             // gán type cho document
             var curRow = (dOCUMENTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.DOCUMENTRow;
             curRow.BeginEdit();
-            curRow.DocumentKey = documentKeyText.Text;
-            curRow.Type = "reportbusinessfee";
+            if (_isNew)
+            {
+                curRow.DocumentKey = documentKeyText.Text;
+                curRow.Type = "reportbusinessfee";
+            }
             curRow.CreateDate = dateTimePicker1.Value;
             curRow.Creator = (int)creatorComboBox.SelectedValue;
-            curRow.EndEdit();
+            //curRow.EndEdit();
 
             // phí mặt định = 0
             var curFee = (businessFeeBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.BusinessFeeRow;
             curFee.BeginEdit();
-            curFee.TotalFee = 0;
+            if (_isNew)
+            {
+                curFee.TotalFee = 0;
+            }
             curFee.ToDate = todateTimePicker.Value;
             curFee.FromDate = fromdateTimePicker.Value;
             curFee.Term = (int)numericUpDown.Value;
 
             invenFeeBindingSource.EndEdit();
-            sTAFFBindingSource1.EndEdit();
+            staffFeeBindingSource.EndEdit();
             transferFeeBindingSource1.EndEdit();
             businessFeeBindingSource.EndEdit();
             dOCUMENTBindingSource.EndEdit();
@@ -182,39 +248,45 @@ namespace QuanLyBanHang.Forms
             sellManagementDbDataSet.DOCUMENT.AcceptChanges();
 
             // cập nhật id theo document
-            curFee.Id = curRow.Id;
+            if (_isNew)
+            {
+                curFee.Id = curRow.Id;
+            }
             curFee.EndEdit();
 
             businessFeeTableAdapter.Update(sellManagementDbDataSet.BusinessFee);
             sellManagementDbDataSet.BusinessFee.AcceptChanges();
 
-            // cập nhật id theo business fee
-            var fee = sellManagementDbDataSet.TranferFee.Where(t => t.BusinessFee_Id == -1);
-            if (fee.Count() > 0)
+            if (_isNew)
             {
-                foreach (var item in fee.Select(t => t))
+                // cập nhật id theo business fee
+                var fee = sellManagementDbDataSet.TranferFee.Where(t => t.BusinessFee_Id == -1);
+                if (fee.Count() > 0)
                 {
-                    item.BusinessFee_Id = curFee.Id;
+                    foreach (var item in fee.Select(t => t))
+                    {
+                        item.BusinessFee_Id = curFee.Id;
+                    }
                 }
-            }
 
-            // cập nhật id invnetory fee
-            var invenfee = sellManagementDbDataSet.InvenFee.Where(t => t.BusinessFee_id == -1);
-            if (invenfee.Count() > 0)
-            {
-                foreach (var item in invenfee.Select(t => t))
+                // cập nhật id invnetory fee
+                var invenfee = sellManagementDbDataSet.InvenFee.Where(t => t.BusinessFee_id == -1);
+                if (invenfee.Count() > 0)
                 {
-                    item.BusinessFee_id = curFee.Id;
+                    foreach (var item in invenfee.Select(t => t))
+                    {
+                        item.BusinessFee_id = curFee.Id;
+                    }
                 }
-            }
 
-            // cập nhật id taff fee
-            var stafffee = sellManagementDbDataSet.StaffFee.Where(t => t.BusinessFee_Id == -1);
-            if (stafffee.Count() > 0)
-            {
-                foreach (var item in stafffee.Select(t => t))
+                // cập nhật id taff fee
+                var stafffee = sellManagementDbDataSet.StaffFee.Where(t => t.BusinessFee_Id == -1);
+                if (stafffee.Count() > 0)
                 {
-                    item.BusinessFee_Id = curFee.Id;
+                    foreach (var item in stafffee.Select(t => t))
+                    {
+                        item.BusinessFee_Id = curFee.Id;
+                    }
                 }
             }
 
@@ -277,21 +349,7 @@ namespace QuanLyBanHang.Forms
             invenFeeBindingSource.RemoveCurrent();
 
             // fill lại, remove mấy cái có trong list rồi
-            iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
-            var rowsAdded = sellManagementDbDataSet.InvenFee.Select(r => r.Inventory_id);
-
-            if (rowsAdded.Count() > 0)
-            {
-                for (int i = 0; i < iNVENTORYBindingSource.Count; i++)
-                {
-                    var row = ((iNVENTORYBindingSource[i] as DataRowView).Row as SellManagementDbDataSet.INVENTORYRow);
-                    if (rowsAdded.Contains(row.Id))
-                    {
-                        iNVENTORYBindingSource.RemoveAt(i);
-                        i--;
-                    }
-                }
-            }
+            fillInventoryGridView();
 
             // check nút
             calculateFee();
@@ -331,8 +389,20 @@ namespace QuanLyBanHang.Forms
             staffFeeBindingSource.RemoveCurrent();
 
             // fill lại, remove mấy cái có trong list rồi
+            fillStaffGridView();
+
+            calculateFee();
+        }
+
+        private void fillStaffGridView()
+        {
             sTAFFTableAdapter.Fill(sellManagementDbDataSet.STAFF);
-            var rowsAdded = sellManagementDbDataSet.StaffFee.Select(r => r.Staff_Id);
+
+            List<int> rowsAdded = new List<int>();
+            foreach (DataGridViewRow item in staffFeeGridView.Rows)
+            {
+                rowsAdded.Add((int)item.Cells[staffIdDataGridViewTextBoxColumn.Index].Value);
+            }
 
             if (rowsAdded.Count() > 0)
             {
@@ -346,8 +416,6 @@ namespace QuanLyBanHang.Forms
                     }
                 }
             }
-
-            calculateFee();
         }
 
         private void addStaffBtn_Click(object sender, EventArgs e)
@@ -460,6 +528,40 @@ namespace QuanLyBanHang.Forms
         private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             calculateFee();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            sellManagementDbDataSet.TranferFee.RejectChanges();
+            sellManagementDbDataSet.InvenFee.RejectChanges();
+            sellManagementDbDataSet.StaffFee.RejectChanges();
+
+            if (_creating)
+            {
+                // xóa
+                businessFeeBindingSource.RemoveCurrent();
+                businessFeeTableAdapter.Update(sellManagementDbDataSet.BusinessFee);
+                sellManagementDbDataSet.BusinessFee.AcceptChanges();
+
+                dOCUMENTBindingSource.RemoveCurrent();
+                dOCUMENTTableAdapter.Update(sellManagementDbDataSet.DOCUMENT);
+                sellManagementDbDataSet.DOCUMENT.AcceptChanges();
+            }
+            else
+            {
+                sellManagementDbDataSet.BusinessFee.RejectChanges();
+                sellManagementDbDataSet.DOCUMENT.RejectChanges();
+            }
+
+            var page = this.Parent as TabPage;
+            if (page != null)
+            {
+                (page.Parent as TabControl).TabPages.Remove(page);
+            }
+        }
+
+        private void dOCUMENTBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
         }
     }
 }

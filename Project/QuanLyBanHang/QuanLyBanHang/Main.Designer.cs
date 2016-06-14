@@ -60,8 +60,9 @@
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newInvetoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.báoCáoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.côngNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerDebtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kháchHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khoHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +95,8 @@
             this.viewCustomersBtn = new System.Windows.Forms.Button();
             this.viewOrdersBtn = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.kháchHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createBusinessFeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewBusinessFeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -111,7 +113,7 @@
             this.sellMenuItem,
             this.buyMenuItem,
             this.productMenuItem,
-            this.báoCáoToolStripMenuItem,
+            this.reportToolStripMenuItem,
             this.khoHàngToolStripMenuItem,
             this.staffMenuItem,
             this.infoMenuItem});
@@ -351,20 +353,29 @@
             this.newInvetoryToolStripMenuItem.Text = "Thêm mới";
             this.newInvetoryToolStripMenuItem.Click += new System.EventHandler(this.newInvetoryToolStripMenuItem_Click);
             // 
-            // báoCáoToolStripMenuItem
+            // reportToolStripMenuItem
             // 
-            this.báoCáoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.côngNợToolStripMenuItem,
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customerDebtToolStripMenuItem,
             this.kháchHàngToolStripMenuItem});
-            this.báoCáoToolStripMenuItem.Name = "báoCáoToolStripMenuItem";
-            this.báoCáoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.báoCáoToolStripMenuItem.Text = "Công nợ";
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.reportToolStripMenuItem.Text = "Báo cáo";
             // 
-            // côngNợToolStripMenuItem
+            // customerDebtToolStripMenuItem
             // 
-            this.côngNợToolStripMenuItem.Name = "côngNợToolStripMenuItem";
-            this.côngNợToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.côngNợToolStripMenuItem.Text = "Danh sách";
+            this.customerDebtToolStripMenuItem.Name = "customerDebtToolStripMenuItem";
+            this.customerDebtToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.customerDebtToolStripMenuItem.Text = "Công nợ khách hàng";
+            // 
+            // kháchHàngToolStripMenuItem
+            // 
+            this.kháchHàngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createBusinessFeeToolStripMenuItem,
+            this.viewBusinessFeeToolStripMenuItem});
+            this.kháchHàngToolStripMenuItem.Name = "kháchHàngToolStripMenuItem";
+            this.kháchHàngToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.kháchHàngToolStripMenuItem.Text = "Chi phí bán hàng";
             // 
             // khoHàngToolStripMenuItem
             // 
@@ -739,11 +750,19 @@
             this.tabControl.Size = new System.Drawing.Size(984, 537);
             this.tabControl.TabIndex = 1;
             // 
-            // kháchHàngToolStripMenuItem
+            // createBusinessFeeToolStripMenuItem
             // 
-            this.kháchHàngToolStripMenuItem.Name = "kháchHàngToolStripMenuItem";
-            this.kháchHàngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kháchHàngToolStripMenuItem.Text = "Khách hàng";
+            this.createBusinessFeeToolStripMenuItem.Name = "createBusinessFeeToolStripMenuItem";
+            this.createBusinessFeeToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.createBusinessFeeToolStripMenuItem.Text = "Lập báo cáo";
+            this.createBusinessFeeToolStripMenuItem.Click += new System.EventHandler(this.createBusinessFeeToolStripMenuItem_Click);
+            // 
+            // viewBusinessFeeToolStripMenuItem
+            // 
+            this.viewBusinessFeeToolStripMenuItem.Name = "viewBusinessFeeToolStripMenuItem";
+            this.viewBusinessFeeToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.viewBusinessFeeToolStripMenuItem.Text = "Danh sách báo cáo";
+            this.viewBusinessFeeToolStripMenuItem.Click += new System.EventHandler(this.viewBusinessFeeToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -827,8 +846,8 @@
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bảngBáoGiáToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allTypeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem báoCáoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem côngNợToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerDebtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem khoHàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createInventoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listInventoryToolStripMenuItem;
@@ -840,6 +859,8 @@
         private System.Windows.Forms.Button revenueReportBtn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem kháchHàngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createBusinessFeeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewBusinessFeeToolStripMenuItem;
     }
 }
 
