@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -512,6 +513,82 @@ namespace QuanLyBanHang
         private void tonKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createNewTab(eTabType.INVENTORY_REPORT_TAB);
+        }
+
+        private Point position = new Point(0,0);
+        private int gap = 20;
+
+        private void mainPage_SizeChanged(object sender, EventArgs e)
+        {
+            int groupW = sellGroupBox.Width;
+            int groupH = sellGroupBox.Height;
+
+            position.X = (mainPage.Size.Width - (sellGroupBox.Width * 2) - gap * 3) / 2;
+            position.Y = (mainPage.Size.Height - (sellGroupBox.Height * 2) - gap * 3) / 2;
+
+            sellGroupBox.Location = position;
+            groupBox1.Location = new Point(position.X + groupW + gap, position.Y);
+            groupBox2.Location = new Point(position.X, position.Y + groupH + gap);
+            groupBox3.Location = new Point(groupBox1.Location.X, groupBox2.Location.Y);
+        }
+
+        private void sellManagementDbDataSet_Initialized(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            //string connetionString = null;
+            //SqlConnection cnn;
+            //connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='\\Database\\SellManagementDb.mdf';Integrated Security=True;Connect Timeout=30";
+            //cnn = new SqlConnection(connetionString);
+            //try
+            //{
+            //    cnn.Open();
+            //    MessageBox.Show("Connection Open ! ");
+            //    cnn.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Can not open connection ! " + ex.Message);
+            //}
+
+        }
+
+        private void allTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var types = new ProductMetaList();
+            types.ShowDialog();
+        }
+
+        private void productTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var types = new ProductMetaList(ProductMetaList.eProductType.TYPE);
+            types.ShowDialog();
+        }
+
+        private void brandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var types = new ProductMetaList(ProductMetaList.eProductType.BRAND);
+            types.ShowDialog();
+        }
+
+        private void unitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var types = new ProductMetaList(ProductMetaList.eProductType.UNIT);
+            types.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var settings = new SettingForm();
+            settings.ShowDialog();
         }
     }
 }

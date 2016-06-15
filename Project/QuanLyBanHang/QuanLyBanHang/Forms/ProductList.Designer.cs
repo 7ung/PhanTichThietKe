@@ -200,6 +200,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BILLTableAdapter = null;
+            this.tableAdapterManager.BusinessFeeTableAdapter = null;
             this.tableAdapterManager.CONSTANTTableAdapter = null;
             this.tableAdapterManager.CUSTOMER_BILLTableAdapter = null;
             this.tableAdapterManager.CUSTOMER_DEBTTableAdapter = null;
@@ -210,6 +211,7 @@
             this.tableAdapterManager.GROUPofCUSTOMERTableAdapter = null;
             this.tableAdapterManager.INOUT_INVENTORY_DETAILTableAdapter = null;
             this.tableAdapterManager.INOUTINVENTORYTableAdapter = null;
+            this.tableAdapterManager.InvenFeeTableAdapter = null;
             this.tableAdapterManager.INVENTORY_CAPABILITYTableAdapter = null;
             this.tableAdapterManager.INVENTORYTableAdapter = null;
             this.tableAdapterManager.ORDER_DETAILTableAdapter = null;
@@ -219,7 +221,9 @@
             this.tableAdapterManager.PURCHASE_ORDERTableAdapter = null;
             this.tableAdapterManager.QUOTE_DETAILTableAdapter = null;
             this.tableAdapterManager.QUOTETableAdapter = null;
+            this.tableAdapterManager.StaffFeeTableAdapter = null;
             this.tableAdapterManager.STAFFTableAdapter = null;
+            this.tableAdapterManager.TranferFeeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QuanLyBanHang.SellManagementDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VENDOR_BILLTableAdapter = null;
             this.tableAdapterManager.VENDOR_DEBTTableAdapter = null;
@@ -253,6 +257,7 @@
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 

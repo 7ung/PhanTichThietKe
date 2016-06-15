@@ -84,11 +84,16 @@ namespace QuanLyBanHang.Forms
                 }
                 catch (System.Data.SqlClient.SqlException sqlex)
                 {
-                    MessageBox.Show("Khong the xoa!" + sqlex.Message, "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không thể xóa! Sản phẩm đang được dùng. \n\nChi tiết: " + sqlex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
+                    this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Xóa thất bại! - " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa thất bại! \n\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
+                    this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
                 }
             }
         }
@@ -139,6 +144,11 @@ namespace QuanLyBanHang.Forms
                 unitText.Text = unitRow.First();
             else
                 unitText.Text = Resources.NoValueText;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

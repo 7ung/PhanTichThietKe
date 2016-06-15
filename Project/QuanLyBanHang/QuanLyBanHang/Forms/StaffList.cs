@@ -132,6 +132,11 @@ namespace QuanLyBanHang.Forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Cancel)
+                return;
+
             try
             {
                 DataRowView row = (DataRowView)this.sTAFFBindingSource.CurrencyManager.Current;

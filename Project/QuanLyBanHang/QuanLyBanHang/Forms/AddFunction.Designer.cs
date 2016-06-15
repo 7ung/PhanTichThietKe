@@ -45,7 +45,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(272, 241);
+            this.btnClose.Location = new System.Drawing.Point(272, 234);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(272, 18);
+            this.btnAdd.Location = new System.Drawing.Point(272, 20);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 2;
@@ -84,13 +84,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 276);
-            this.ControlBox = false;
             this.Controls.Add(this.tbFunction);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lbFunction);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddFunction";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Thêm chức vụ";
             this.ResumeLayout(false);
             this.PerformLayout();

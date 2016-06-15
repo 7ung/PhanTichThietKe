@@ -54,13 +54,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.tbSalary = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbAddress = new WindowsFormsControlLibrary.CustomTextBox();
             this.cbbFunction = new System.Windows.Forms.ComboBox();
-            this.tbIdentifyNumber = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbEmail = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbPhone = new WindowsFormsControlLibrary.CustomTextBox();
-            this.tbNameStaff = new WindowsFormsControlLibrary.CustomTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -68,6 +62,12 @@
             this.cbbGender = new System.Windows.Forms.ComboBox();
             this.tbStaffKey = new System.Windows.Forms.TextBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
+            this.tbSalary = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbAddress = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbIdentifyNumber = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbEmail = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbPhone = new WindowsFormsControlLibrary.CustomTextBox();
+            this.tbNameStaff = new WindowsFormsControlLibrary.CustomTextBox();
             this.genderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             genderLabel1 = new System.Windows.Forms.Label();
             staffKeyLabel = new System.Windows.Forms.Label();
@@ -167,6 +167,15 @@
             salaryLabel.TabIndex = 45;
             salaryLabel.Text = "Lương";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(295, 320);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(30, 13);
+            label3.TabIndex = 62;
+            label3.Text = "VNĐ";
+            // 
             // sellManagementDbDataSet
             // 
             this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
@@ -185,6 +194,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BILLTableAdapter = null;
+            this.tableAdapterManager.BusinessFeeTableAdapter = null;
             this.tableAdapterManager.CONSTANTTableAdapter = null;
             this.tableAdapterManager.CUSTOMER_BILLTableAdapter = null;
             this.tableAdapterManager.CUSTOMER_DEBTTableAdapter = null;
@@ -195,6 +205,7 @@
             this.tableAdapterManager.GROUPofCUSTOMERTableAdapter = null;
             this.tableAdapterManager.INOUT_INVENTORY_DETAILTableAdapter = null;
             this.tableAdapterManager.INOUTINVENTORYTableAdapter = null;
+            this.tableAdapterManager.InvenFeeTableAdapter = null;
             this.tableAdapterManager.INVENTORY_CAPABILITYTableAdapter = null;
             this.tableAdapterManager.INVENTORYTableAdapter = null;
             this.tableAdapterManager.ORDER_DETAILTableAdapter = null;
@@ -204,7 +215,9 @@
             this.tableAdapterManager.PURCHASE_ORDERTableAdapter = null;
             this.tableAdapterManager.QUOTE_DETAILTableAdapter = null;
             this.tableAdapterManager.QUOTETableAdapter = null;
+            this.tableAdapterManager.StaffFeeTableAdapter = null;
             this.tableAdapterManager.STAFFTableAdapter = this.sTAFFTableAdapter;
+            this.tableAdapterManager.TranferFeeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QuanLyBanHang.SellManagementDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VENDOR_BILLTableAdapter = null;
             this.tableAdapterManager.VENDOR_DEBTTableAdapter = null;
@@ -354,6 +367,84 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cbbFunction
+            // 
+            this.cbbFunction.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Func", true));
+            this.cbbFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbFunction.FormattingEnabled = true;
+            this.cbbFunction.Location = new System.Drawing.Point(108, 256);
+            this.cbbFunction.Name = "cbbFunction";
+            this.cbbFunction.Size = new System.Drawing.Size(181, 21);
+            this.cbbFunction.TabIndex = 58;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "Tên";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(252, 350);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 51;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(137, 350);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 50;
+            this.btnCancel.Text = "Hủy";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(21, 350);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 49;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // cbbGender
+            // 
+            this.cbbGender.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.sTAFFBindingSource, "Gender", true));
+            this.cbbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbGender.FormattingEnabled = true;
+            this.cbbGender.Location = new System.Drawing.Point(108, 105);
+            this.cbbGender.Name = "cbbGender";
+            this.cbbGender.Size = new System.Drawing.Size(219, 21);
+            this.cbbGender.TabIndex = 48;
+            // 
+            // tbStaffKey
+            // 
+            this.tbStaffKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "StaffKey", true));
+            this.tbStaffKey.Location = new System.Drawing.Point(108, 21);
+            this.tbStaffKey.Name = "tbStaffKey";
+            this.tbStaffKey.ReadOnly = true;
+            this.tbStaffKey.Size = new System.Drawing.Size(219, 20);
+            this.tbStaffKey.TabIndex = 32;
+            // 
+            // dtpBirthday
+            // 
+            this.dtpBirthday.CustomFormat = "dd\'/\'MM\'/\'yyyy";
+            this.dtpBirthday.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.sTAFFBindingSource, "Birthday", true));
+            this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpBirthday.Location = new System.Drawing.Point(108, 287);
+            this.dtpBirthday.Name = "dtpBirthday";
+            this.dtpBirthday.Size = new System.Drawing.Size(219, 20);
+            this.dtpBirthday.TabIndex = 44;
+            // 
             // tbSalary
             // 
             this.tbSalary.AutoSize = true;
@@ -399,16 +490,6 @@
             this.tbAddress.TextPanelMessage = "Giá trị không hợp lệ.";
             this.tbAddress.TextPanelMessageColor = System.Drawing.Color.White;
             this.tbAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // cbbFunction
-            // 
-            this.cbbFunction.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "Func", true));
-            this.cbbFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbFunction.FormattingEnabled = true;
-            this.cbbFunction.Location = new System.Drawing.Point(108, 256);
-            this.cbbFunction.Name = "cbbFunction";
-            this.cbbFunction.Size = new System.Drawing.Size(181, 21);
-            this.cbbFunction.TabIndex = 58;
             // 
             // tbIdentifyNumber
             // 
@@ -503,85 +584,9 @@
             this.tbNameStaff.TextPanelMessageColor = System.Drawing.Color.White;
             this.tbNameStaff.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 13);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "Tên";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(252, 350);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 51;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(137, 350);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 50;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(21, 350);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 49;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // cbbGender
-            // 
-            this.cbbGender.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.sTAFFBindingSource, "Gender", true));
-            this.cbbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbGender.FormattingEnabled = true;
-            this.cbbGender.Location = new System.Drawing.Point(108, 105);
-            this.cbbGender.Name = "cbbGender";
-            this.cbbGender.Size = new System.Drawing.Size(219, 21);
-            this.cbbGender.TabIndex = 48;
-            // 
-            // tbStaffKey
-            // 
-            this.tbStaffKey.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTAFFBindingSource, "StaffKey", true));
-            this.tbStaffKey.Location = new System.Drawing.Point(108, 21);
-            this.tbStaffKey.Name = "tbStaffKey";
-            this.tbStaffKey.Size = new System.Drawing.Size(219, 20);
-            this.tbStaffKey.TabIndex = 32;
-            // 
-            // dtpBirthday
-            // 
-            this.dtpBirthday.CustomFormat = "dd\'/\'MM\'/\'yyyy";
-            this.dtpBirthday.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.sTAFFBindingSource, "Birthday", true));
-            this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBirthday.Location = new System.Drawing.Point(108, 287);
-            this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(219, 20);
-            this.dtpBirthday.TabIndex = 44;
-            // 
             // genderBindingSource
             // 
             this.genderBindingSource.DataSource = typeof(QuanLyBanHang.Models.Gender);
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(295, 320);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(30, 13);
-            label3.TabIndex = 62;
-            label3.Text = "VNĐ";
             // 
             // StaffList
             // 
