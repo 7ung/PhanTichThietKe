@@ -28,8 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bánHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.muaHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createOderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orderListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,12 +109,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.tableAdapterManager = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.TableAdapterManager();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bánHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.muaHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -148,6 +149,44 @@
             this.fileStripMenuItem.Name = "fileStripMenuItem";
             this.fileStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileStripMenuItem.Text = "File";
+            // 
+            // bánHàngToolStripMenuItem
+            // 
+            this.bánHàngToolStripMenuItem.Name = "bánHàngToolStripMenuItem";
+            this.bánHàngToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.bánHàngToolStripMenuItem.Text = "Bán hàng";
+            this.bánHàngToolStripMenuItem.Click += new System.EventHandler(this.newOrder_Click);
+            // 
+            // muaHàngToolStripMenuItem
+            // 
+            this.muaHàngToolStripMenuItem.Name = "muaHàngToolStripMenuItem";
+            this.muaHàngToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.muaHàngToolStripMenuItem.Text = "Mua hàng";
+            this.muaHàngToolStripMenuItem.Click += new System.EventHandler(this.newVendorOrderBtn_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(125, 6);
+            // 
+            // settingToolStripMenuItem
+            // 
+            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.settingToolStripMenuItem.Text = "Thiết lập";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(125, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.exitToolStripMenuItem.Text = "Thoát";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // sellMenuItem
             // 
@@ -500,6 +539,7 @@
             this.infoMenuItem.Name = "infoMenuItem";
             this.infoMenuItem.Size = new System.Drawing.Size(71, 20);
             this.infoMenuItem.Text = "Thông tin";
+            this.infoMenuItem.Click += new System.EventHandler(this.infoMenuItem_Click);
             // 
             // mainPage
             // 
@@ -568,6 +608,8 @@
             this.inventoryReportBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.inventoryReportBtn.FlatAppearance.BorderSize = 2;
             this.inventoryReportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.inventoryReportBtn.Image = global::QuanLyBanHang.Properties.Resources.reload_32;
+            this.inventoryReportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.inventoryReportBtn.Location = new System.Drawing.Point(210, 150);
             this.inventoryReportBtn.Name = "inventoryReportBtn";
             this.inventoryReportBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -583,6 +625,8 @@
             this.revenueBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.revenueBtn.FlatAppearance.BorderSize = 2;
             this.revenueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.revenueBtn.Image = global::QuanLyBanHang.Properties.Resources.calculator_32;
+            this.revenueBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.revenueBtn.Location = new System.Drawing.Point(210, 93);
             this.revenueBtn.Name = "revenueBtn";
             this.revenueBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -598,6 +642,8 @@
             this.customerReportBtn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.customerReportBtn.FlatAppearance.BorderSize = 2;
             this.customerReportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customerReportBtn.Image = global::QuanLyBanHang.Properties.Resources.user_list;
+            this.customerReportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.customerReportBtn.Location = new System.Drawing.Point(210, 35);
             this.customerReportBtn.Name = "customerReportBtn";
             this.customerReportBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -880,44 +926,6 @@
             this.tableAdapterManager.VENDORORDER_DETAILTableAdapter = null;
             this.tableAdapterManager.VENDORTableAdapter = null;
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "Thoát";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // bánHàngToolStripMenuItem
-            // 
-            this.bánHàngToolStripMenuItem.Name = "bánHàngToolStripMenuItem";
-            this.bánHàngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.bánHàngToolStripMenuItem.Text = "Bán hàng";
-            this.bánHàngToolStripMenuItem.Click += new System.EventHandler(this.newOrder_Click);
-            // 
-            // muaHàngToolStripMenuItem
-            // 
-            this.muaHàngToolStripMenuItem.Name = "muaHàngToolStripMenuItem";
-            this.muaHàngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.muaHàngToolStripMenuItem.Text = "Mua hàng";
-            this.muaHàngToolStripMenuItem.Click += new System.EventHandler(this.newVendorOrderBtn_Click);
-            // 
-            // settingToolStripMenuItem
-            // 
-            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.settingToolStripMenuItem.Text = "Thiết lập";
-            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(149, 6);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -925,6 +933,7 @@
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Main";

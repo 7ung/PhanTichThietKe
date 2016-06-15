@@ -24,13 +24,13 @@ namespace QuanLyBanHang.Forms
             InitializeComponent();
         }
 
-        public CreateBusinessFee(int docId)
+        public CreateBusinessFee(int docId, bool isNew)
         {
             InitializeComponent();
 
             DocumentId = docId;
             _isNew = false;
-            _creating = true;
+            _creating = isNew;
         }
 
         private void CreateBusinessFee_Load(object sender, EventArgs e)
@@ -82,6 +82,7 @@ namespace QuanLyBanHang.Forms
                 fillInventoryGridView();
                 fillinoutInventoryGridView();
                 fillStaffGridView();
+                
             }
 
             calculateFee();

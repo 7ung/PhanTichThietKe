@@ -91,20 +91,57 @@ namespace QuanLyBanHang.Forms
 
             if (result == DialogResult.OK)
             {
-                var curRow = (inOutInventoryViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.InOut_Inventory_ViewRow;
+                try {
+                    var curRow = (inOutInventoryViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.InOut_Inventory_ViewRow;
 
-                // xóa mấy cái trong detail trước -_-
-                var details = sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Where(d => d.InOutInventory_id == curRow.Id);
-                foreach (var item in details)
-                {
-                    item.Delete();
+                    // check coi nó có trong cái báo cáo phí ko -_-
+                    tranferFeeTableAdapter.Fill(sellManagementDbDataSet.TranferFee);
+                    var checkedList = sellManagementDbDataSet.TranferFee.Where(t => t.InoutInventory_Id == curRow.Id);
+                    if(checkedList.Count() > 0)
+                    {
+                        // ơ có thì ếu cho xóa nhé
+                        throw new Exception("Đơn hàng này đã nằm trong báo cáo chi phí bán hàng.");
+                    }
+
+                    // xóa mấy cái trong detail trước -_-
+                    var details = sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Where(d => d.InOutInventory_id == curRow.Id);
+                    foreach (SellManagementDbDataSet.INOUT_INVENTORY_DETAILRow item in details)
+                    {
+                        // kiểm tra số lượng xóa đi có lố với số lượng hiện tại ko mới xóa
+                        // vd: số lượng nhập vô nhiều hơn hiện tại thì xóa trigger nó trả lại làm âm gây ra lỗi
+                        // nếu nhập hàng
+                        if (curRow.InOutType)
+                        {
+                            ordeR_DETAILTableAdapter.Fill(sellManagementDbDataSet.ORDER_DETAIL);
+                            inventorY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
+
+                            var products = sellManagementDbDataSet.ORDER_DETAIL.Where(o => o.Order_id == item.Order_id);
+                            if(products.Count() > 0)
+                            {
+                                foreach (var product in products)
+                                {
+                                    var inven = sellManagementDbDataSet.INVENTORY_CAPABILITY.Where(i => i.Inventory_id == curRow.Inventory_id && i.Product_id == product.Product_id);
+                                    if (product.Quantity > inven.First().CurrentCount)
+                                    {
+                                        throw new Exception(String.Format("Số lượng hiện tại còn lại của sản phẩm trong kho hàng ít hơn số lượng trong đơn hàng."));
+                                    }
+                                }
+                            }
+                        }
+
+                        item.Delete();
+                    }
+
+                    inouT_INVENTORY_DETAILTableAdapter.Update(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
+                    sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.AcceptChanges();
+
+                    queriesTableAdapter.Delete_InoutInventory(curRow.Id);
                 }
-
-                inouT_INVENTORY_DETAILTableAdapter.Update(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
-                sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.AcceptChanges();
-                
-                queriesTableAdapter.Delete_InoutInventory(curRow.Id);
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Xóa không thành công. \n\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 // fill lại nè
                 inOut_Inventory_ViewTableAdapter.Fill(sellManagementDbDataSet.InOut_Inventory_View);

@@ -140,7 +140,7 @@
             // 
             this.productPriceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.productPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "OutPrice", true));
+            this.productPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pRODUCTBindingSource, "OutPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.productPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productPriceText.Location = new System.Drawing.Point(166, 114);
             this.productPriceText.Name = "productPriceText";
@@ -221,7 +221,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::QuanLyBanHang.Properties.Resources.Product;
+            this.pictureBox1.BackgroundImage = global::QuanLyBanHang.Properties.Resources.box_3;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("ImageLocation", this.pRODUCTBindingSource, "Picture", true));
             this.pictureBox1.Location = new System.Drawing.Point(6, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
@@ -345,6 +347,8 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(545, 500);
             this.Name = "SelectProductForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chọn sản phẩm";
             this.Load += new System.EventHandler(this.SelectProductForm_Load);

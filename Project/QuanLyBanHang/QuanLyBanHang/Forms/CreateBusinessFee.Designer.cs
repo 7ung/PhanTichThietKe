@@ -65,8 +65,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.totalInvenLabel = new System.Windows.Forms.Label();
             this.inventoryFeeDataGridView = new System.Windows.Forms.DataGridView();
-            this.inventoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.feeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invenFeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.removeInventoryBtn = new System.Windows.Forms.Button();
             this.addInventoryBtn = new System.Windows.Forms.Button();
@@ -114,6 +112,8 @@
             this.inventoryFeeText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.inoutFeeText = new System.Windows.Forms.TextBox();
+            this.inventoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.feeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
@@ -412,21 +412,21 @@
             // 
             // removeInOutBtn
             // 
+            this.removeInOutBtn.Image = global::QuanLyBanHang.Properties.Resources.minus_32;
             this.removeInOutBtn.Location = new System.Drawing.Point(329, 145);
             this.removeInOutBtn.Name = "removeInOutBtn";
             this.removeInOutBtn.Size = new System.Drawing.Size(50, 50);
             this.removeInOutBtn.TabIndex = 2;
-            this.removeInOutBtn.Text = "<<";
             this.removeInOutBtn.UseVisualStyleBackColor = true;
             this.removeInOutBtn.Click += new System.EventHandler(this.removeInOutBtn_Click);
             // 
             // addInOutBtn
             // 
+            this.addInOutBtn.Image = global::QuanLyBanHang.Properties.Resources.plus_32;
             this.addInOutBtn.Location = new System.Drawing.Point(329, 90);
             this.addInOutBtn.Name = "addInOutBtn";
             this.addInOutBtn.Size = new System.Drawing.Size(50, 50);
             this.addInOutBtn.TabIndex = 1;
-            this.addInOutBtn.Text = ">>";
             this.addInOutBtn.UseVisualStyleBackColor = true;
             this.addInOutBtn.Click += new System.EventHandler(this.addInOutBtn_Click);
             // 
@@ -533,24 +533,6 @@
             this.inventoryFeeDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.inventoryFeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
             // 
-            // inventoryidDataGridViewTextBoxColumn
-            // 
-            this.inventoryidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.inventoryidDataGridViewTextBoxColumn.DataPropertyName = "Inventory_id";
-            this.inventoryidDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.inventoryidDataGridViewTextBoxColumn.HeaderText = "Mã kho";
-            this.inventoryidDataGridViewTextBoxColumn.Name = "inventoryidDataGridViewTextBoxColumn";
-            this.inventoryidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.inventoryidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inventoryidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // feeDataGridViewTextBoxColumn1
-            // 
-            this.feeDataGridViewTextBoxColumn1.DataPropertyName = "Fee";
-            this.feeDataGridViewTextBoxColumn1.HeaderText = "Phí (VNĐ)";
-            this.feeDataGridViewTextBoxColumn1.Name = "feeDataGridViewTextBoxColumn1";
-            this.feeDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // invenFeeBindingSource
             // 
             this.invenFeeBindingSource.AllowNew = true;
@@ -559,21 +541,21 @@
             // 
             // removeInventoryBtn
             // 
+            this.removeInventoryBtn.Image = global::QuanLyBanHang.Properties.Resources.minus_32;
             this.removeInventoryBtn.Location = new System.Drawing.Point(329, 145);
             this.removeInventoryBtn.Name = "removeInventoryBtn";
             this.removeInventoryBtn.Size = new System.Drawing.Size(50, 50);
             this.removeInventoryBtn.TabIndex = 4;
-            this.removeInventoryBtn.Text = "<<";
             this.removeInventoryBtn.UseVisualStyleBackColor = true;
             this.removeInventoryBtn.Click += new System.EventHandler(this.removeInventoryBtn_Click);
             // 
             // addInventoryBtn
             // 
+            this.addInventoryBtn.Image = global::QuanLyBanHang.Properties.Resources.plus_32;
             this.addInventoryBtn.Location = new System.Drawing.Point(329, 90);
             this.addInventoryBtn.Name = "addInventoryBtn";
             this.addInventoryBtn.Size = new System.Drawing.Size(50, 50);
             this.addInventoryBtn.TabIndex = 3;
-            this.addInventoryBtn.Text = ">>";
             this.addInventoryBtn.UseVisualStyleBackColor = true;
             this.addInventoryBtn.Click += new System.EventHandler(this.addInventoryBtn_Click);
             // 
@@ -715,21 +697,21 @@
             // 
             // removeStaffBtn
             // 
+            this.removeStaffBtn.Image = global::QuanLyBanHang.Properties.Resources.minus_32;
             this.removeStaffBtn.Location = new System.Drawing.Point(329, 145);
             this.removeStaffBtn.Name = "removeStaffBtn";
             this.removeStaffBtn.Size = new System.Drawing.Size(50, 50);
             this.removeStaffBtn.TabIndex = 8;
-            this.removeStaffBtn.Text = "<<";
             this.removeStaffBtn.UseVisualStyleBackColor = true;
             this.removeStaffBtn.Click += new System.EventHandler(this.removeStaffBtn_Click);
             // 
             // addStaffBtn
             // 
+            this.addStaffBtn.Image = global::QuanLyBanHang.Properties.Resources.plus_32;
             this.addStaffBtn.Location = new System.Drawing.Point(329, 90);
             this.addStaffBtn.Name = "addStaffBtn";
             this.addStaffBtn.Size = new System.Drawing.Size(50, 50);
             this.addStaffBtn.TabIndex = 7;
-            this.addStaffBtn.Text = ">>";
             this.addStaffBtn.UseVisualStyleBackColor = true;
             this.addStaffBtn.Click += new System.EventHandler(this.addStaffBtn_Click);
             // 
@@ -1006,6 +988,25 @@
             this.inoutFeeText.Size = new System.Drawing.Size(200, 26);
             this.inoutFeeText.TabIndex = 0;
             this.inoutFeeText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // inventoryidDataGridViewTextBoxColumn
+            // 
+            this.inventoryidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.inventoryidDataGridViewTextBoxColumn.DataPropertyName = "Inventory_id";
+            this.inventoryidDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.inventoryidDataGridViewTextBoxColumn.HeaderText = "Mã kho";
+            this.inventoryidDataGridViewTextBoxColumn.Name = "inventoryidDataGridViewTextBoxColumn";
+            this.inventoryidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.inventoryidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.inventoryidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // feeDataGridViewTextBoxColumn1
+            // 
+            this.feeDataGridViewTextBoxColumn1.DataPropertyName = "Fee";
+            this.feeDataGridViewTextBoxColumn1.HeaderText = "Phí (VNĐ)";
+            this.feeDataGridViewTextBoxColumn1.Name = "feeDataGridViewTextBoxColumn1";
+            this.feeDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.feeDataGridViewTextBoxColumn1.Width = 150;
             // 
             // CreateBusinessFee
             // 

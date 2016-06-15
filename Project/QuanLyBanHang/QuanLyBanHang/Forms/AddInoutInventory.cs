@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyBanHang.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -572,6 +573,10 @@ namespace QuanLyBanHang.Forms
         private void inventoryComboBox_TextChanged(object sender, EventArgs e)
         {
             //iNVENTORYBindingSource.Filter = "Name LIKE '%" + inventoryComboBox.Text + "%'";
+        }
+
+        private void carryFeeTextBox_Leave(object sender, EventArgs e)
+        {
         }
     }
 }

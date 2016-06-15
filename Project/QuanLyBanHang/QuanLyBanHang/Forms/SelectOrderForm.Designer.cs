@@ -38,6 +38,9 @@
             this.cUSTOMERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.finalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerOrderViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customer_Order_ViewTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.Customer_Order_ViewTableAdapter();
             this.cUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CUSTOMERTableAdapter();
@@ -45,15 +48,13 @@
             this.selectBtn = new System.Windows.Forms.Button();
             this.searchText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.selectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
+            this.inout_INVENTORY_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerOrderViewBindingSource)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerOrderViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // billDataGridView
@@ -61,6 +62,9 @@
             this.billDataGridView.AllowUserToAddRows = false;
             this.billDataGridView.AllowUserToDeleteRows = false;
             this.billDataGridView.AllowUserToResizeRows = false;
+            this.billDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.billDataGridView.AutoGenerateColumns = false;
             this.billDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.billDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -77,8 +81,9 @@
             this.billDataGridView.ReadOnly = true;
             this.billDataGridView.RowHeadersVisible = false;
             this.billDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.billDataGridView.Size = new System.Drawing.Size(560, 193);
+            this.billDataGridView.Size = new System.Drawing.Size(600, 200);
             this.billDataGridView.TabIndex = 0;
+            this.billDataGridView.DoubleClick += new System.EventHandler(this.billDataGridView_DoubleClick);
             // 
             // idColumn
             // 
@@ -139,9 +144,35 @@
             // finalColumn
             // 
             this.finalColumn.DataPropertyName = "FinalPrice";
-            this.finalColumn.HeaderText = "Tổng hóa đơn";
+            this.finalColumn.HeaderText = "Tổng hóa đơn (VNĐ)";
             this.finalColumn.Name = "finalColumn";
             this.finalColumn.ReadOnly = true;
+            this.finalColumn.Width = 150;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectMenuItem,
+            this.deleteMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(138, 48);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // selectMenuItem
+            // 
+            this.selectMenuItem.Image = global::QuanLyBanHang.Properties.Resources.paper;
+            this.selectMenuItem.Name = "selectMenuItem";
+            this.selectMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.selectMenuItem.Text = "Xem chi tiết";
+            this.selectMenuItem.Click += new System.EventHandler(this.selectMenuItem_Click);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.deleteMenuItem.Text = "Xóa";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
             // customerOrderViewBindingSource
             // 
@@ -158,21 +189,29 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(196, 256);
+            this.cancelBtn.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.cancelBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cancelBtn.Location = new System.Drawing.Point(200, 254);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
+            this.cancelBtn.Size = new System.Drawing.Size(100, 45);
             this.cancelBtn.TabIndex = 1;
             this.cancelBtn.Text = "Hủy";
+            this.cancelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // selectBtn
             // 
-            this.selectBtn.Location = new System.Drawing.Point(314, 256);
+            this.selectBtn.Image = global::QuanLyBanHang.Properties.Resources.success;
+            this.selectBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.selectBtn.Location = new System.Drawing.Point(333, 254);
             this.selectBtn.Name = "selectBtn";
-            this.selectBtn.Size = new System.Drawing.Size(75, 23);
+            this.selectBtn.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
+            this.selectBtn.Size = new System.Drawing.Size(100, 45);
             this.selectBtn.TabIndex = 2;
             this.selectBtn.Text = "Chọn";
+            this.selectBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.selectBtn.UseVisualStyleBackColor = true;
             this.selectBtn.Click += new System.EventHandler(this.selectBtn_Click);
             // 
@@ -193,51 +232,35 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tìm kiếm";
             // 
-            // contextMenuStrip
+            // inout_INVENTORY_DETAILTableAdapter
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectMenuItem,
-            this.deleteMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(138, 48);
-            // 
-            // selectMenuItem
-            // 
-            this.selectMenuItem.Name = "selectMenuItem";
-            this.selectMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.selectMenuItem.Text = "Xem chi tiết";
-            this.selectMenuItem.Click += new System.EventHandler(this.selectMenuItem_Click);
-            // 
-            // deleteMenuItem
-            // 
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.deleteMenuItem.Text = "Xóa";
-            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            this.inout_INVENTORY_DETAILTableAdapter.ClearBeforeFill = true;
             // 
             // SelectOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 291);
+            this.ClientSize = new System.Drawing.Size(624, 311);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchText);
             this.Controls.Add(this.selectBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.billDataGridView);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(600, 330);
+            this.MaximumSize = new System.Drawing.Size(640, 350);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(600, 330);
+            this.MinimumSize = new System.Drawing.Size(640, 350);
             this.Name = "SelectOrderForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Danh sách đơn hàng";
             this.Load += new System.EventHandler(this.SelectOrderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerOrderViewBindingSource)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerOrderViewBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,15 +278,16 @@
         private System.Windows.Forms.Button selectBtn;
         private System.Windows.Forms.TextBox searchText;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem selectMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
+        private SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter inout_INVENTORY_DETAILTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn finalColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn statusColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem selectMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
-        private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
     }
 }

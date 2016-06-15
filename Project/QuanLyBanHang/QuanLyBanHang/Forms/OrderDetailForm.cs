@@ -195,6 +195,12 @@ namespace QuanLyBanHang.Forms
         {
             if (_currentProductId == 0 || productQuantityUpDown.Text == "")
                 return;
+
+            if((int)productQuantityUpDown.Value > Convert.ToInt32(currentComboBox.Text))
+            {
+                MessageBox.Show("Số lượng nhiều hơn trong kho", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             
             var index = oRDERDETAILBindingSource.Find("Product_id", _currentProductId);
 
@@ -361,7 +367,7 @@ namespace QuanLyBanHang.Forms
                 var count = Convert.ToInt32(productQuantityUpDown.Text);
                 if (count > Convert.ToInt32(currentComboBox.Text))
                 {
-                    throw new Exception("Số lượng nhiều hơn hiện tồn.");
+                    throw new Exception("Số lượng nhiều hơn trong kho.");
                 }
                     
                 addProductBtn.Enabled = true;

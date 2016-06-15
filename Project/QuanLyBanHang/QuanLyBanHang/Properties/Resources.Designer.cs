@@ -73,6 +73,16 @@ namespace QuanLyBanHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap avatar_1 {
+            get {
+                object obj = ResourceManager.GetObject("avatar_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap box_2 {
             get {
                 object obj = ResourceManager.GetObject("box_2", resourceCulture);
@@ -86,6 +96,16 @@ namespace QuanLyBanHang.Properties {
         internal static System.Drawing.Bitmap box_3 {
             get {
                 object obj = ResourceManager.GetObject("box_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap calculator_32 {
+            get {
+                object obj = ResourceManager.GetObject("calculator_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -187,6 +207,16 @@ namespace QuanLyBanHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap edit_32 {
+            get {
+                object obj = ResourceManager.GetObject("edit_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
@@ -262,6 +292,16 @@ namespace QuanLyBanHang.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minus_32 {
+            get {
+                object obj = ResourceManager.GetObject("minus_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thông báo.
         /// </summary>
         internal static string NotiLabel {
@@ -285,6 +325,16 @@ namespace QuanLyBanHang.Properties {
         internal static System.Drawing.Bitmap paper {
             get {
                 object obj = ResourceManager.GetObject("paper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus_32 {
+            get {
+                object obj = ResourceManager.GetObject("plus_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -342,6 +392,16 @@ namespace QuanLyBanHang.Properties {
         internal static string ProductUnitKey {
             get {
                 return ResourceManager.GetString("ProductUnitKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reload_32 {
+            get {
+                object obj = ResourceManager.GetObject("reload_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

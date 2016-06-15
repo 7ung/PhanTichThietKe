@@ -90,51 +90,46 @@ namespace QuanLyBanHang
                             newTab.Controls.Add(customerList);
 
                             tabControl.TabPages.Add(newTab);
-                            //tabControl.SelectedIndex = tabControl.TabCount - 1;
-                            //Hieu
-                            //Su dung cai nay cho gon
-                            tabControl.SelectedTab = newTab;
                         }
-                        else
-                        {
-                            tabControl.SelectedTab = newTab;
-                        }
+
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.VENDOR_TAB:
                     {
-                        var newTab = new TabPage("Danh sách nhà cung cấp");
-                        var vendorList = new VendorList();
-                        vendorList.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(vendorList);
+                        var newTab = isExitTabPage("Danh sách nhà cung cấp");
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage("Danh sách nhà cung cấp");
+                            var vendorList = new VendorList();
+                            vendorList.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(vendorList);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            tabControl.TabPages.Add(newTab);
+                        }
+
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.ORDER_TAB:
                     {
-                        //var newTab = new TabPage("Giao dịch");
-                        //newTab.AutoScroll = true;
-                        //var order = new OrderDetailForm();
-                        //order.Dock = DockStyle.Top;
-                        //newTab.Controls.Add(order);
-
-                        //tabControl.TabPages.Add(newTab);
-                        //tabControl.SelectedIndex = tabControl.TabCount - 1;
-
                         var customerOrder = new CreateCustomerOrderForm();
                         var result = customerOrder.ShowDialog();
                         if(result == DialogResult.OK)
                         {
-                            var newTab = new TabPage("Giao dịch");
-                            newTab.AutoScroll = true;
-                            var order = new OrderDetailForm(customerOrder.OrderId);
-                            order.Dock = DockStyle.Top;
-                            newTab.Controls.Add(order);
+                            var newTab = isExitTabPage("Giao dịch");
+                            if (newTab == null)
+                            {
+                                newTab = new TabPage("Giao dịch");
+                                newTab.AutoScroll = true;
+                                var order = new OrderDetailForm(customerOrder.OrderId);
+                                order.Dock = DockStyle.Top;
+                                newTab.Controls.Add(order);
 
-                            tabControl.TabPages.Add(newTab);
-                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                                tabControl.TabPages.Add(newTab);
+                            }
+
+                            tabControl.SelectedTab = newTab;
                         }
                         else if(result == DialogResult.Retry)
                         {
@@ -145,92 +140,120 @@ namespace QuanLyBanHang
                     }
                 case eTabType.CUSTOMER_ORDER_LIST_TAB:
                     {
-                        //var newTab = new TabPage("Danh sách đơn bán hàng");
-                        //newTab.AutoScroll = true;
-                        //var order = new CustomerOrderList();
-                        //order.Dock = DockStyle.Fill;
-                        //newTab.Controls.Add(order);
-
-                        //tabControl.TabPages.Add(newTab);
-                        //tabControl.SelectedIndex = tabControl.TabCount - 1;
-
                         var selectForm = new SelectOrderForm();
                         var result = selectForm.ShowDialog();
 
                         if (result == DialogResult.OK)
                         {
-                            var newTab = new TabPage("Đơn hàng " + selectForm.OrderKey);
-                            newTab.AutoScroll = true;
-                            var order = new CustomerOrderDetail(selectForm.OrderId);
-                            order.Dock = DockStyle.Fill;
-                            newTab.Controls.Add(order);
+                            var text = "Đơn hàng " + selectForm.OrderKey;
+                            var newTab = isExitTabPage(text);
 
-                            tabControl.TabPages.Add(newTab);
-                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            if (newTab == null)
+                            {
+                                newTab = new TabPage(text);
+                                newTab.AutoScroll = true;
+                                var order = new CustomerOrderDetail(selectForm.OrderId);
+                                order.Dock = DockStyle.Fill;
+                                newTab.Controls.Add(order);
+
+                                tabControl.TabPages.Add(newTab);
+                            }
+
+                            tabControl.SelectedTab = newTab;
                         }
 
                         break;
                     }
                 case eTabType.STORE_TAB:
                     {
-                        var newTab = new TabPage("Danh sách kho hàng");
-                        newTab.AutoScroll = true;
-                        var store = new InventoryList();
-                        store.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(store);
+                        var text = "Danh sách kho hàng";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var store = new InventoryList();
+                            store.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(store);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.PRODUCT_TAB:
                     {
-                        var newTab = new TabPage("Danh sách mặt hàng");
-                        newTab.AutoScroll = true;
-                        var product = new ProductList();
-                        product.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(product);
-                        this.newProductMenuItem.Click += product.showDialogAddProduct; //7ung
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        var text = "Danh sách mặt hàng";
+                        var newTab = isExitTabPage(text);
 
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var product = new ProductList();
+                            product.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(product);
+                            this.newProductMenuItem.Click += product.showDialogAddProduct; //7ung
+                            tabControl.TabPages.Add(newTab);
+                        }
+
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
 
                 case eTabType.STAFF_TAB:
                     {
-                        var newTab = new TabPage("Danh sách nhân viên");
-                        newTab.AutoScroll = true;
-                        var staff = new StaffList();
-                        staff.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(staff);
+                        var text = "Danh sách nhân viên";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var staff = new StaffList();
+                            staff.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(staff);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.INOUT_INVENTORY:
                     {
-                        var newTab = new TabPage("Quản lý đơn hàng nhập xuất kho");
-                        newTab.AutoScroll = true;
-                        var store = new InOutInventoryList();
-                        store.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(store);
+                        var text = "Quản lý đơn hàng nhập xuất kho";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var store = new InOutInventoryList();
+                            store.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(store);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.INVENTORY_LIST:
                     {
-                        var newTab = new TabPage("Quản lý kho hàng");
-                        newTab.AutoScroll = true;
-                        var store = new InventoryList();
-                        store.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(store);
+                        var text = "Quản lý kho hàng";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var store = new InventoryList();
+                            store.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(store);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.VENDOR_ORDER_TAB:
@@ -239,14 +262,20 @@ namespace QuanLyBanHang
                         var result = vendorOrder.ShowDialog();
                         if (result == DialogResult.OK)
                         {
-                            var newTab = new TabPage("Giao dịch đơn hàng " + vendorOrder.DocumentKey);
-                            newTab.AutoScroll = true;
-                            var order = new VendorOrderDetailForm(vendorOrder.OrderId);
-                            order.Dock = DockStyle.Top;
-                            newTab.Controls.Add(order);
+                            var text = "Giao dịch đơn hàng " + vendorOrder.DocumentKey;
+                            var newTab = isExitTabPage(text);
 
-                            tabControl.TabPages.Add(newTab);
-                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            if (newTab == null)
+                            {
+                                newTab = new TabPage(text);
+                                newTab.AutoScroll = true;
+                                var order = new VendorOrderDetailForm(vendorOrder.OrderId);
+                                order.Dock = DockStyle.Top;
+                                newTab.Controls.Add(order);
+
+                                tabControl.TabPages.Add(newTab);
+                            }
+                            tabControl.SelectedTab = newTab;
                         }
                         else if (result == DialogResult.Retry)
                         {
@@ -261,41 +290,59 @@ namespace QuanLyBanHang
 
                         if (result == DialogResult.OK)
                         {
-                            var newTab = new TabPage("Đơn hàng " + selectForm.DocumentKey);
-                            newTab.AutoScroll = true;
-                            var order = new VendorOrderDetail(selectForm.OrderId);
-                            order.DocumentKey = selectForm.DocumentKey;
-                            order.Dock = DockStyle.Fill;
-                            newTab.Controls.Add(order);
+                            var text = "Đơn hàng " + selectForm.DocumentKey;
+                            var newTab = isExitTabPage(text);
 
-                            tabControl.TabPages.Add(newTab);
-                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            if (newTab == null)
+                            {
+                                newTab = new TabPage(text);
+                                newTab.AutoScroll = true;
+                                var order = new VendorOrderDetail(selectForm.OrderId);
+                                order.DocumentKey = selectForm.DocumentKey;
+                                order.Dock = DockStyle.Fill;
+                                newTab.Controls.Add(order);
+
+                                tabControl.TabPages.Add(newTab);
+                            }
+                            tabControl.SelectedTab = newTab;
                         }
                         break;
                     }
 
                 case eTabType.REVENUE_REPORT_TAB:
                     {
-                        var newTab = new TabPage("Báo cáo doanh thu");
-                        newTab.AutoScroll = true;
-                        var report = new RevenueReport();
-                        report.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(report);
+                        var text = "Báo cáo doanh thu";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var report = new RevenueReport();
+                            report.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(report);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.CUSTOMER_REPORT_TAB:
                     {
-                        var newTab = new TabPage("Báo cáo tình hình khách hàng");
-                        newTab.AutoScroll = true;
-                        var report = new CustomerReport();
-                        report.Dock = DockStyle.Top;
-                        newTab.Controls.Add(report);
+                        var text = "Báo cáo tình hình khách hàng";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var report = new CustomerReport();
+                            report.Dock = DockStyle.Top;
+                            newTab.Controls.Add(report);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.CREATE_BUSINESS_REPORT_TAB:
@@ -305,39 +352,57 @@ namespace QuanLyBanHang
 
                         if (r == DialogResult.OK)
                         {
-                            var newTab = new TabPage("Báo cáo chi phí bán hàng");
-                            newTab.AutoScroll = true;
-                            var report = new CreateBusinessFee(dialogCreate.DocumentId);
-                            report.Dock = DockStyle.Top;
-                            newTab.Controls.Add(report);
+                            var text = "Báo cáo chi phí bán hàng";
+                            var newTab = isExitTabPage(text);
 
-                            tabControl.TabPages.Add(newTab);
-                            tabControl.SelectedIndex = tabControl.TabCount - 1;
+                            if (newTab == null)
+                            {
+                                newTab = new TabPage(text);
+                                newTab.AutoScroll = true;
+                                var report = new CreateBusinessFee(dialogCreate.DocumentId, true);
+                                report.Dock = DockStyle.Top;
+                                newTab.Controls.Add(report);
+
+                                tabControl.TabPages.Add(newTab);
+                            }
+                            tabControl.SelectedTab = newTab;
                         }
                         break;
                     }
                 case eTabType.VIEW_BUSINESS_REPORT_TAB:
                     {
-                        var newTab = new TabPage("Báo cáo chi phí bán hàng");
-                        newTab.AutoScroll = true;
-                        var report = new ViewBusinessFee();
-                        report.Dock = DockStyle.Top;
-                        newTab.Controls.Add(report);
+                        var text = "Xem cáo chi phí bán hàng";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var report = new ViewBusinessFee();
+                            report.Dock = DockStyle.Top;
+                            newTab.Controls.Add(report);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 case eTabType.INVENTORY_REPORT_TAB:
                     {
-                        var newTab = new TabPage("Báo cáo tồn kho");
-                        newTab.AutoScroll = true;
-                        var report = new InventoryReport();
-                        report.Dock = DockStyle.Fill;
-                        newTab.Controls.Add(report);
+                        var text = "Báo cáo tồn kho";
+                        var newTab = isExitTabPage(text);
 
-                        tabControl.TabPages.Add(newTab);
-                        tabControl.SelectedIndex = tabControl.TabCount - 1;
+                        if (newTab == null)
+                        {
+                            newTab = new TabPage(text);
+                            newTab.AutoScroll = true;
+                            var report = new InventoryReport();
+                            report.Dock = DockStyle.Fill;
+                            newTab.Controls.Add(report);
+
+                            tabControl.TabPages.Add(newTab);
+                        }
+                        tabControl.SelectedTab = newTab;
                         break;
                     }
                 default:
@@ -467,16 +532,20 @@ namespace QuanLyBanHang
                 tabControl.TabPages.Add(newTab);
                 tabControl.SelectedIndex = tabControl.TabCount - 1;
             }
-            else if(result == DialogResult.Retry)
+            else if (result == DialogResult.Retry)
             {
                 var newTab = new TabPage("Sửa báo cáo chi phí bán hàng");
                 newTab.AutoScroll = true;
-                var report = new CreateBusinessFee(listForm.DocumentId);
+                var report = new CreateBusinessFee(listForm.DocumentId, false);
                 report.Dock = DockStyle.Top;
                 newTab.Controls.Add(report);
 
                 tabControl.TabPages.Add(newTab);
                 tabControl.SelectedIndex = tabControl.TabCount - 1;
+            }
+            else if (result == DialogResult.Yes)
+            {
+                createNewTab(eTabType.CREATE_BUSINESS_REPORT_TAB);
             }
         }
 
@@ -539,21 +608,6 @@ namespace QuanLyBanHang
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //string connetionString = null;
-            //SqlConnection cnn;
-            //connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='\\Database\\SellManagementDb.mdf';Integrated Security=True;Connect Timeout=30";
-            //cnn = new SqlConnection(connetionString);
-            //try
-            //{
-            //    cnn.Open();
-            //    MessageBox.Show("Connection Open ! ");
-            //    cnn.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Can not open connection ! " + ex.Message);
-            //}
-
         }
 
         private void allTypeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -589,6 +643,12 @@ namespace QuanLyBanHang
         {
             var settings = new SettingForm();
             settings.ShowDialog();
+        }
+
+        private void infoMenuItem_Click(object sender, EventArgs e)
+        {
+            var info = new InfoForm();
+            info.ShowDialog();
         }
     }
 }

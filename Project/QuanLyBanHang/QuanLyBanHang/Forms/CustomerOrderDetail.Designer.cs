@@ -82,6 +82,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.addBillBtn = new System.Windows.Forms.Button();
             this.billDataGridView = new System.Windows.Forms.DataGridView();
+            this.typeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.recieveMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.returnMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.addProductBtn = new System.Windows.Forms.Button();
             this.orderDetailDataGridView = new System.Windows.Forms.DataGridView();
@@ -106,9 +109,6 @@
             this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.groupofCUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.GROUPofCUSTOMERTableAdapter();
             this.closeBtn = new System.Windows.Forms.Button();
-            this.typeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.recieveMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.returnMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
@@ -695,6 +695,31 @@
             this.billDataGridView.Size = new System.Drawing.Size(425, 208);
             this.billDataGridView.TabIndex = 0;
             // 
+            // typeColumn
+            // 
+            this.typeColumn.DataPropertyName = "PaidMethod";
+            this.typeColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.typeColumn.HeaderText = "Hình thức";
+            this.typeColumn.Name = "typeColumn";
+            this.typeColumn.ReadOnly = true;
+            this.typeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.typeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // recieveMoneyColumn
+            // 
+            this.recieveMoneyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.recieveMoneyColumn.DataPropertyName = "ReceiveMoney";
+            this.recieveMoneyColumn.HeaderText = "Số tiền nhận";
+            this.recieveMoneyColumn.Name = "recieveMoneyColumn";
+            this.recieveMoneyColumn.ReadOnly = true;
+            // 
+            // returnMoneyColumn
+            // 
+            this.returnMoneyColumn.DataPropertyName = "ChangeMoney";
+            this.returnMoneyColumn.HeaderText = "Số tiền trả lại";
+            this.returnMoneyColumn.Name = "returnMoneyColumn";
+            this.returnMoneyColumn.ReadOnly = true;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.addProductBtn);
@@ -859,31 +884,6 @@
             this.closeBtn.Text = "Đóng";
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
-            // 
-            // typeColumn
-            // 
-            this.typeColumn.DataPropertyName = "PaidMethod";
-            this.typeColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.typeColumn.HeaderText = "Hình thức";
-            this.typeColumn.Name = "typeColumn";
-            this.typeColumn.ReadOnly = true;
-            this.typeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.typeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // recieveMoneyColumn
-            // 
-            this.recieveMoneyColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.recieveMoneyColumn.DataPropertyName = "ReceiveMoney";
-            this.recieveMoneyColumn.HeaderText = "Số tiền nhận";
-            this.recieveMoneyColumn.Name = "recieveMoneyColumn";
-            this.recieveMoneyColumn.ReadOnly = true;
-            // 
-            // returnMoneyColumn
-            // 
-            this.returnMoneyColumn.DataPropertyName = "ChangeMoney";
-            this.returnMoneyColumn.HeaderText = "Số tiền trả lại";
-            this.returnMoneyColumn.Name = "returnMoneyColumn";
-            this.returnMoneyColumn.ReadOnly = true;
             // 
             // CustomerOrderDetail
             // 

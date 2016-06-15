@@ -84,7 +84,7 @@ namespace QuanLyBanHang.Forms
                 }
                 catch (System.Data.SqlClient.SqlException sqlex)
                 {
-                    MessageBox.Show("Không thể xóa! Sản phẩm đang được dùng. \n\nChi tiết: " + sqlex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sản phẩm đang được dùng.", "Không thể xóa!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
                     this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);

@@ -34,6 +34,9 @@ namespace QuanLyBanHang.Forms
             this.iNVENTORY_CAPABILITYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY_CAPABILITY);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.PRODUCT' table. You can move, or remove it, as needed.
             this.pRODUCTTableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT);
+
+            // FORMAT
+            outPriceColumn.DefaultCellStyle.Format = "N2";
         }
 
         private void SelectOrderById(int id)

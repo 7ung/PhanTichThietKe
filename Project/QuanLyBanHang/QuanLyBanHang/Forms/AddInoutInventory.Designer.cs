@@ -40,8 +40,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.productidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
+            this.maxCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iNVENTORYCAPABILITYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.inventoryComboBox = new System.Windows.Forms.ComboBox();
             this.iNOUTINVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -86,9 +89,6 @@
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             this.iNOUTINVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter();
             this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
-            this.productidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.maxCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.currentCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             label1 = new System.Windows.Forms.Label();
             documentKeyLabel = new System.Windows.Forms.Label();
             creatorLabel = new System.Windows.Forms.Label();
@@ -258,6 +258,20 @@
             this.dataGridView3.Size = new System.Drawing.Size(445, 163);
             this.dataGridView3.TabIndex = 0;
             // 
+            // productidDataGridViewTextBoxColumn1
+            // 
+            this.productidDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.productidDataGridViewTextBoxColumn1.DataPropertyName = "Product_id";
+            this.productidDataGridViewTextBoxColumn1.DataSource = this.pRODUCTBindingSource;
+            this.productidDataGridViewTextBoxColumn1.DisplayMember = "Name";
+            this.productidDataGridViewTextBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.productidDataGridViewTextBoxColumn1.HeaderText = "Sản phẩm";
+            this.productidDataGridViewTextBoxColumn1.Name = "productidDataGridViewTextBoxColumn1";
+            this.productidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.productidDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.productidDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.productidDataGridViewTextBoxColumn1.ValueMember = "Id";
+            // 
             // pRODUCTBindingSource
             // 
             this.pRODUCTBindingSource.DataMember = "PRODUCT";
@@ -267,6 +281,22 @@
             // 
             this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
             this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // maxCountDataGridViewTextBoxColumn
+            // 
+            this.maxCountDataGridViewTextBoxColumn.DataPropertyName = "MaxCount";
+            this.maxCountDataGridViewTextBoxColumn.HeaderText = "Số lượng tối đa";
+            this.maxCountDataGridViewTextBoxColumn.Name = "maxCountDataGridViewTextBoxColumn";
+            this.maxCountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maxCountDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // currentCountDataGridViewTextBoxColumn
+            // 
+            this.currentCountDataGridViewTextBoxColumn.DataPropertyName = "CurrentCount";
+            this.currentCountDataGridViewTextBoxColumn.HeaderText = "Số lượng hiện tại";
+            this.currentCountDataGridViewTextBoxColumn.Name = "currentCountDataGridViewTextBoxColumn";
+            this.currentCountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.currentCountDataGridViewTextBoxColumn.Width = 150;
             // 
             // iNVENTORYCAPABILITYBindingSource
             // 
@@ -384,7 +414,7 @@
             this.carryFeeTextBox.AutoSize = true;
             this.carryFeeTextBox.BackColor = System.Drawing.Color.White;
             this.carryFeeTextBox.BorderColor = System.Drawing.Color.Silver;
-            this.carryFeeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNOUTINVENTORYBindingSource, "CarryFee", true));
+            this.carryFeeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNOUTINVENTORYBindingSource, "CarryFee", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.carryFeeTextBox.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.carryFeeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.carryFeeTextBox.HoverBorderColor = System.Drawing.Color.Cyan;
@@ -403,6 +433,7 @@
             this.carryFeeTextBox.TextPanelMessageColor = System.Drawing.Color.White;
             this.carryFeeTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             this.carryFeeTextBox.xTextChanged += new System.EventHandler(this.carryFeeTextBox_xTextChanged);
+            this.carryFeeTextBox.Leave += new System.EventHandler(this.carryFeeTextBox_Leave);
             // 
             // termNumericUpDown
             // 
@@ -620,22 +651,30 @@
             // createBtn
             // 
             this.createBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.createBtn.Location = new System.Drawing.Point(897, 481);
+            this.createBtn.Image = global::QuanLyBanHang.Properties.Resources.success;
+            this.createBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.createBtn.Location = new System.Drawing.Point(855, 470);
             this.createBtn.Name = "createBtn";
-            this.createBtn.Size = new System.Drawing.Size(75, 23);
+            this.createBtn.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
+            this.createBtn.Size = new System.Drawing.Size(100, 45);
             this.createBtn.TabIndex = 3;
             this.createBtn.Text = "Tạo";
+            this.createBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.createBtn.UseVisualStyleBackColor = true;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
             // 
             // cancelBtn
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelBtn.Location = new System.Drawing.Point(816, 481);
+            this.cancelBtn.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.cancelBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cancelBtn.Location = new System.Drawing.Point(749, 470);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
+            this.cancelBtn.Size = new System.Drawing.Size(100, 45);
             this.cancelBtn.TabIndex = 4;
             this.cancelBtn.Text = "Hủy";
+            this.cancelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
@@ -646,22 +685,22 @@
             // addOrderBtn
             // 
             this.addOrderBtn.Enabled = false;
+            this.addOrderBtn.Image = global::QuanLyBanHang.Properties.Resources.plus_32;
             this.addOrderBtn.Location = new System.Drawing.Point(173, 317);
             this.addOrderBtn.Name = "addOrderBtn";
             this.addOrderBtn.Size = new System.Drawing.Size(45, 45);
             this.addOrderBtn.TabIndex = 5;
-            this.addOrderBtn.Text = ">>";
             this.addOrderBtn.UseVisualStyleBackColor = true;
             this.addOrderBtn.Click += new System.EventHandler(this.addOrderBtn_Click);
             // 
             // removeOrderBtn
             // 
             this.removeOrderBtn.Enabled = false;
+            this.removeOrderBtn.Image = global::QuanLyBanHang.Properties.Resources.minus_32;
             this.removeOrderBtn.Location = new System.Drawing.Point(173, 368);
             this.removeOrderBtn.Name = "removeOrderBtn";
             this.removeOrderBtn.Size = new System.Drawing.Size(45, 45);
             this.removeOrderBtn.TabIndex = 6;
-            this.removeOrderBtn.Text = "<<";
             this.removeOrderBtn.UseVisualStyleBackColor = true;
             this.removeOrderBtn.Click += new System.EventHandler(this.removeOrderBtn_Click);
             // 
@@ -693,36 +732,6 @@
             // 
             this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
             // 
-            // productidDataGridViewTextBoxColumn1
-            // 
-            this.productidDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.productidDataGridViewTextBoxColumn1.DataPropertyName = "Product_id";
-            this.productidDataGridViewTextBoxColumn1.DataSource = this.pRODUCTBindingSource;
-            this.productidDataGridViewTextBoxColumn1.DisplayMember = "Name";
-            this.productidDataGridViewTextBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.productidDataGridViewTextBoxColumn1.HeaderText = "Sản phẩm";
-            this.productidDataGridViewTextBoxColumn1.Name = "productidDataGridViewTextBoxColumn1";
-            this.productidDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.productidDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.productidDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.productidDataGridViewTextBoxColumn1.ValueMember = "Id";
-            // 
-            // maxCountDataGridViewTextBoxColumn
-            // 
-            this.maxCountDataGridViewTextBoxColumn.DataPropertyName = "MaxCount";
-            this.maxCountDataGridViewTextBoxColumn.HeaderText = "Số lượng tối đa";
-            this.maxCountDataGridViewTextBoxColumn.Name = "maxCountDataGridViewTextBoxColumn";
-            this.maxCountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maxCountDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // currentCountDataGridViewTextBoxColumn
-            // 
-            this.currentCountDataGridViewTextBoxColumn.DataPropertyName = "CurrentCount";
-            this.currentCountDataGridViewTextBoxColumn.HeaderText = "Số lượng hiện tại";
-            this.currentCountDataGridViewTextBoxColumn.Name = "currentCountDataGridViewTextBoxColumn";
-            this.currentCountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.currentCountDataGridViewTextBoxColumn.Width = 150;
-            // 
             // AddInoutInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -738,6 +747,7 @@
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(900, 565);
             this.Name = "AddInoutInventory";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Đơn nhập xuất kho";
             this.Load += new System.EventHandler(this.AddInoutInventory_Load);

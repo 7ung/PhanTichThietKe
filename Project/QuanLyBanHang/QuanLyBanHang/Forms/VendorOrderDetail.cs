@@ -66,6 +66,11 @@ namespace QuanLyBanHang.Forms
 
             var value = sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "VAT_rate").First().Value;
             vatValueText.Text = (Convert.ToDouble(value) * 100).ToString() + "%";
+
+            // FORMAT
+            returnMoneyColumn.DefaultCellStyle.Format = "N2";
+            priceDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
+            resultDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
         }
 
         private void SelectByOrderId(int orderId)

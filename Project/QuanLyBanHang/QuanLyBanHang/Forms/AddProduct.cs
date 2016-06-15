@@ -19,6 +19,7 @@ namespace QuanLyBanHang.Forms
         const string directoryPath = "Picture\\Product";
         private bool _new = true;
         private int _id = -1;
+        private double _interestRate = 0.1;
 
         private string _prefixKey = Resources.ProductPrefixKey;
 
@@ -46,11 +47,18 @@ namespace QuanLyBanHang.Forms
             this.pRODUCT_METADATATableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT_METADATA);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.PRODUCT' table. You can move, or remove it, as needed.
             this.pRODUCTTableAdapter.Fill(this.sellManagementDbDataSet.PRODUCT);
+            this.constantTableAdapter.Fill(sellManagementDbDataSet.CONSTANT);
             
             // binding combobox
             bindingTypeComboBox();
             bindingBrandComboBox();
             bindingUnitComboBox();
+
+            // lấy interest rate
+            _interestRate = Convert.ToDouble(sellManagementDbDataSet.CONSTANT.Where(c => c.Name == "interest_rate").First().Value);
+            interestRateLabel.Text = "Tỉ lệ lợi nhuận: " + _interestRate * 100 + "%";
+            
+            tbInPrice.TextBox.Leave += inpriceTextBox_Leave;
 
             if (_new)
             {
@@ -82,7 +90,21 @@ namespace QuanLyBanHang.Forms
             }
 
         }
-        
+
+        private void inpriceTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                var cur = Convert.ToDouble(tbInPrice.Text);
+                tbOutPrice.Text = (cur * (1 + _interestRate)).ToString();
+            }
+            catch(Exception ex)
+            {
+                tbOutPrice.Text = "0.00";
+            }
+        }
+
         private void bindingTypeComboBox()
         {
             var typeList = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => p.Key == Resources.ProductTypeKey).Select(p => p.Value);
@@ -444,5 +466,9 @@ namespace QuanLyBanHang.Forms
             return _prefixKey + String.Format("{0:D6}", max + 1);
         }
 
+        private void tbInPrice_xTextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

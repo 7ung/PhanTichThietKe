@@ -28,7 +28,13 @@ namespace QuanLyBanHang.Forms
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.Vendor_Order_View' table. You can move, or remove it, as needed.
             this.vendor_Order_ViewTableAdapter.Fill(this.sellManagementDbDataSet.Vendor_Order_View);
 
+            this.inouT_INVENTORY_DETAILTableAdapter.Fill(this.sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
+
             BindingOrderStatus();
+
+            // format
+            finalPriceDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
+            createDateDataGridViewTextBoxColumn.DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -85,6 +91,28 @@ namespace QuanLyBanHang.Forms
         private void selectMenuItem_Click(object sender, EventArgs e)
         {
             selectBtn_Click(sender, e);
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if (vendorOrderViewBindingSource.Current == null || dataGridView1.RowCount <= 0)
+            {
+                if (vendorOrderViewBindingSource.Current != null)
+                    contextMenuStrip.Enabled = false;
+
+                selectBtn.Enabled = false;
+
+                return;
+            }
+
+            deleteMenuItem.Enabled = true;
+            var current = ((vendorOrderViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.Vendor_Order_ViewRow);
+
+            var list = sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Where(o => o.Order_id == current.Id);
+            if (list.Count() > 0)
+            {
+                deleteMenuItem.Enabled = false;
+            }
         }
     }
 }

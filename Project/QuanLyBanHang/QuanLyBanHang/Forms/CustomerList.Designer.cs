@@ -44,6 +44,12 @@
             this.addNewCustomerBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
             this.infoGroupBox = new System.Windows.Forms.GroupBox();
+            this.birthdayPicker = new System.Windows.Forms.DateTimePicker();
+            this.customerAddress = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerEmail = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerPhone = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerId = new WindowsFormsControlLibrary.CustomTextBox();
+            this.customerName = new WindowsFormsControlLibrary.CustomTextBox();
             this.editBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
@@ -60,12 +66,7 @@
             this.customerKeyText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.deleteBtn = new System.Windows.Forms.Button();
-            this.customerName = new WindowsFormsControlLibrary.CustomTextBox();
-            this.customerId = new WindowsFormsControlLibrary.CustomTextBox();
-            this.customerPhone = new WindowsFormsControlLibrary.CustomTextBox();
-            this.customerEmail = new WindowsFormsControlLibrary.CustomTextBox();
-            this.customerAddress = new WindowsFormsControlLibrary.CustomTextBox();
-            this.birthdayPicker = new System.Windows.Forms.DateTimePicker();
+            this.purchasE_ORDERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PURCHASE_ORDERTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.customerDataGridView)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource)).BeginInit();
@@ -227,6 +228,136 @@
             this.infoGroupBox.TabStop = false;
             this.infoGroupBox.Text = "Thông tin";
             // 
+            // birthdayPicker
+            // 
+            this.birthdayPicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
+            this.birthdayPicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.customerTableBindingSource, "BirthDay", true));
+            this.birthdayPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.birthdayPicker.Location = new System.Drawing.Point(137, 256);
+            this.birthdayPicker.Name = "birthdayPicker";
+            this.birthdayPicker.Size = new System.Drawing.Size(170, 20);
+            this.birthdayPicker.TabIndex = 22;
+            // 
+            // customerAddress
+            // 
+            this.customerAddress.AutoSize = true;
+            this.customerAddress.BackColor = System.Drawing.Color.White;
+            this.customerAddress.BorderColor = System.Drawing.Color.Silver;
+            this.customerAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Address", true));
+            this.customerAddress.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerAddress.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerAddress.isRequired = false;
+            this.customerAddress.Location = new System.Drawing.Point(137, 160);
+            this.customerAddress.Multiline = true;
+            this.customerAddress.Name = "customerAddress";
+            this.customerAddress.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerAddress.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerAddress.ReadOnly = false;
+            this.customerAddress.Size = new System.Drawing.Size(170, 63);
+            this.customerAddress.StringPattern = "";
+            this.customerAddress.TabIndex = 7;
+            this.customerAddress.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerAddress.TextPanelMessage = "Nhập địa chỉ không hợp lệ.";
+            this.customerAddress.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
+            // 
+            // customerEmail
+            // 
+            this.customerEmail.AutoSize = true;
+            this.customerEmail.BackColor = System.Drawing.Color.White;
+            this.customerEmail.BorderColor = System.Drawing.Color.Silver;
+            this.customerEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Email", true));
+            this.customerEmail.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerEmail.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerEmail.isRequired = false;
+            this.customerEmail.Location = new System.Drawing.Point(137, 135);
+            this.customerEmail.Multiline = false;
+            this.customerEmail.Name = "customerEmail";
+            this.customerEmail.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerEmail.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerEmail.ReadOnly = false;
+            this.customerEmail.Size = new System.Drawing.Size(170, 19);
+            this.customerEmail.StringPattern = "^\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+            this.customerEmail.TabIndex = 6;
+            this.customerEmail.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerEmail.TextPanelMessage = "Nhập email không hợp lệ.";
+            this.customerEmail.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerEmail.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerEmail.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
+            // 
+            // customerPhone
+            // 
+            this.customerPhone.AutoSize = true;
+            this.customerPhone.BackColor = System.Drawing.Color.White;
+            this.customerPhone.BorderColor = System.Drawing.Color.Silver;
+            this.customerPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Phone", true));
+            this.customerPhone.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerPhone.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerPhone.isRequired = true;
+            this.customerPhone.Location = new System.Drawing.Point(137, 110);
+            this.customerPhone.Multiline = false;
+            this.customerPhone.Name = "customerPhone";
+            this.customerPhone.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerPhone.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerPhone.ReadOnly = false;
+            this.customerPhone.Size = new System.Drawing.Size(170, 19);
+            this.customerPhone.StringPattern = "^([0-9 ])*$";
+            this.customerPhone.TabIndex = 5;
+            this.customerPhone.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerPhone.TextPanelMessage = "Nhập số đt không hợp lệ";
+            this.customerPhone.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerPhone.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerPhone.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
+            // 
+            // customerId
+            // 
+            this.customerId.AutoSize = true;
+            this.customerId.BackColor = System.Drawing.Color.White;
+            this.customerId.BorderColor = System.Drawing.Color.Silver;
+            this.customerId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "IdentifyNumber", true));
+            this.customerId.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerId.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerId.isRequired = false;
+            this.customerId.Location = new System.Drawing.Point(137, 85);
+            this.customerId.Multiline = false;
+            this.customerId.Name = "customerId";
+            this.customerId.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerId.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerId.ReadOnly = false;
+            this.customerId.Size = new System.Drawing.Size(170, 19);
+            this.customerId.StringPattern = "^([0-9])*$";
+            this.customerId.TabIndex = 4;
+            this.customerId.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerId.TextPanelMessage = "Nhập cmnd không hợp lệ. (0-9)";
+            this.customerId.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerId.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerId.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
+            // 
+            // customerName
+            // 
+            this.customerName.AutoSize = true;
+            this.customerName.BackColor = System.Drawing.Color.White;
+            this.customerName.BorderColor = System.Drawing.Color.Silver;
+            this.customerName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Name", true));
+            this.customerName.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerName.HoverBorderColor = System.Drawing.Color.Cyan;
+            this.customerName.isRequired = true;
+            this.customerName.Location = new System.Drawing.Point(137, 60);
+            this.customerName.Multiline = false;
+            this.customerName.Name = "customerName";
+            this.customerName.NormalBorderColor = System.Drawing.Color.Silver;
+            this.customerName.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
+            this.customerName.ReadOnly = false;
+            this.customerName.Size = new System.Drawing.Size(170, 19);
+            this.customerName.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
+    ")*$";
+            this.customerName.TabIndex = 3;
+            this.customerName.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.customerName.TextPanelMessage = "Nhập tên không hợp lệ.";
+            this.customerName.TextPanelMessageColor = System.Drawing.Color.White;
+            this.customerName.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.customerName.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
+            // 
             // editBtn
             // 
             this.editBtn.Location = new System.Drawing.Point(23, 323);
@@ -378,135 +509,9 @@
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // customerName
+            // purchasE_ORDERTableAdapter
             // 
-            this.customerName.AutoSize = true;
-            this.customerName.BackColor = System.Drawing.Color.White;
-            this.customerName.BorderColor = System.Drawing.Color.Silver;
-            this.customerName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Name", true));
-            this.customerName.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerName.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.customerName.isRequired = true;
-            this.customerName.Location = new System.Drawing.Point(137, 60);
-            this.customerName.Multiline = false;
-            this.customerName.Name = "customerName";
-            this.customerName.NormalBorderColor = System.Drawing.Color.Silver;
-            this.customerName.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerName.ReadOnly = false;
-            this.customerName.Size = new System.Drawing.Size(170, 19);
-            this.customerName.StringPattern = "^([ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴA-Za-z0-9 ]" +
-    ")*$";
-            this.customerName.TabIndex = 3;
-            this.customerName.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.customerName.TextPanelMessage = "Nhập tên không hợp lệ.";
-            this.customerName.TextPanelMessageColor = System.Drawing.Color.White;
-            this.customerName.ValidBorderColor = System.Drawing.Color.LightGreen;
-            this.customerName.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
-            // 
-            // customerId
-            // 
-            this.customerId.AutoSize = true;
-            this.customerId.BackColor = System.Drawing.Color.White;
-            this.customerId.BorderColor = System.Drawing.Color.Silver;
-            this.customerId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "IdentifyNumber", true));
-            this.customerId.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerId.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.customerId.isRequired = false;
-            this.customerId.Location = new System.Drawing.Point(137, 85);
-            this.customerId.Multiline = false;
-            this.customerId.Name = "customerId";
-            this.customerId.NormalBorderColor = System.Drawing.Color.Silver;
-            this.customerId.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerId.ReadOnly = false;
-            this.customerId.Size = new System.Drawing.Size(170, 19);
-            this.customerId.StringPattern = "^([0-9])*$";
-            this.customerId.TabIndex = 4;
-            this.customerId.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.customerId.TextPanelMessage = "Nhập cmnd không hợp lệ. (0-9)";
-            this.customerId.TextPanelMessageColor = System.Drawing.Color.White;
-            this.customerId.ValidBorderColor = System.Drawing.Color.LightGreen;
-            this.customerId.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
-            // 
-            // customerPhone
-            // 
-            this.customerPhone.AutoSize = true;
-            this.customerPhone.BackColor = System.Drawing.Color.White;
-            this.customerPhone.BorderColor = System.Drawing.Color.Silver;
-            this.customerPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Phone", true));
-            this.customerPhone.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerPhone.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.customerPhone.isRequired = true;
-            this.customerPhone.Location = new System.Drawing.Point(137, 110);
-            this.customerPhone.Multiline = false;
-            this.customerPhone.Name = "customerPhone";
-            this.customerPhone.NormalBorderColor = System.Drawing.Color.Silver;
-            this.customerPhone.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerPhone.ReadOnly = false;
-            this.customerPhone.Size = new System.Drawing.Size(170, 19);
-            this.customerPhone.StringPattern = "^([0-9 ])*$";
-            this.customerPhone.TabIndex = 5;
-            this.customerPhone.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.customerPhone.TextPanelMessage = "Nhập số đt không hợp lệ";
-            this.customerPhone.TextPanelMessageColor = System.Drawing.Color.White;
-            this.customerPhone.ValidBorderColor = System.Drawing.Color.LightGreen;
-            this.customerPhone.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
-            // 
-            // customerEmail
-            // 
-            this.customerEmail.AutoSize = true;
-            this.customerEmail.BackColor = System.Drawing.Color.White;
-            this.customerEmail.BorderColor = System.Drawing.Color.Silver;
-            this.customerEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Email", true));
-            this.customerEmail.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerEmail.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.customerEmail.isRequired = false;
-            this.customerEmail.Location = new System.Drawing.Point(137, 135);
-            this.customerEmail.Multiline = false;
-            this.customerEmail.Name = "customerEmail";
-            this.customerEmail.NormalBorderColor = System.Drawing.Color.Silver;
-            this.customerEmail.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerEmail.ReadOnly = false;
-            this.customerEmail.Size = new System.Drawing.Size(170, 19);
-            this.customerEmail.StringPattern = "^\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-            this.customerEmail.TabIndex = 6;
-            this.customerEmail.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.customerEmail.TextPanelMessage = "Nhập email không hợp lệ.";
-            this.customerEmail.TextPanelMessageColor = System.Drawing.Color.White;
-            this.customerEmail.ValidBorderColor = System.Drawing.Color.LightGreen;
-            this.customerEmail.xTextChanged += new System.EventHandler(this.customerName_xTextChanged);
-            // 
-            // customerAddress
-            // 
-            this.customerAddress.AutoSize = true;
-            this.customerAddress.BackColor = System.Drawing.Color.White;
-            this.customerAddress.BorderColor = System.Drawing.Color.Silver;
-            this.customerAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerTableBindingSource, "Address", true));
-            this.customerAddress.ErrorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerAddress.HoverBorderColor = System.Drawing.Color.Cyan;
-            this.customerAddress.isRequired = false;
-            this.customerAddress.Location = new System.Drawing.Point(137, 160);
-            this.customerAddress.Multiline = true;
-            this.customerAddress.Name = "customerAddress";
-            this.customerAddress.NormalBorderColor = System.Drawing.Color.Silver;
-            this.customerAddress.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
-            this.customerAddress.ReadOnly = false;
-            this.customerAddress.Size = new System.Drawing.Size(170, 63);
-            this.customerAddress.StringPattern = "";
-            this.customerAddress.TabIndex = 7;
-            this.customerAddress.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.customerAddress.TextPanelMessage = "Nhập địa chỉ không hợp lệ.";
-            this.customerAddress.TextPanelMessageColor = System.Drawing.Color.White;
-            this.customerAddress.ValidBorderColor = System.Drawing.Color.LightGreen;
-            // 
-            // birthdayPicker
-            // 
-            this.birthdayPicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
-            this.birthdayPicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.customerTableBindingSource, "BirthDay", true));
-            this.birthdayPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.birthdayPicker.Location = new System.Drawing.Point(137, 256);
-            this.birthdayPicker.Name = "birthdayPicker";
-            this.birthdayPicker.Size = new System.Drawing.Size(170, 20);
-            this.birthdayPicker.TabIndex = 22;
+            this.purchasE_ORDERTableAdapter.ClearBeforeFill = true;
             // 
             // CustomerList
             // 
@@ -571,5 +576,6 @@
         private WindowsFormsControlLibrary.CustomTextBox customerPhone;
         private WindowsFormsControlLibrary.CustomTextBox customerId;
         private WindowsFormsControlLibrary.CustomTextBox customerName;
+        private SellManagementDbDataSetTableAdapters.PURCHASE_ORDERTableAdapter purchasE_ORDERTableAdapter;
     }
 }

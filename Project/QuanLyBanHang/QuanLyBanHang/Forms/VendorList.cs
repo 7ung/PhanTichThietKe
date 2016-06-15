@@ -157,20 +157,39 @@ namespace QuanLyBanHang.Forms
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Bạn có chắt muốn xóa không?", "Cảnh báo", MessageBoxButtons.OKCancel);
+            var result = MessageBox.Show("Bạn có chắt muốn xóa không?", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.OK)
             {
-                foreach (DataGridViewRow item in vendorDataGridView.SelectedRows)
+                try
                 {
-                    var datarow = sellManagementDbDataSet.VENDOR.Rows[item.Index];
-                    datarow.Delete();
+                    // fill
+                    vendoR_ORDERTableAdapter.Fill(sellManagementDbDataSet.VENDOR_ORDER);
+
+                    
+
+                    foreach (DataGridViewRow item in vendorDataGridView.SelectedRows)
+                    {
+                        var datarow = sellManagementDbDataSet.VENDOR.Rows[item.Index];
+
+                        var checkedList = sellManagementDbDataSet.VENDOR_ORDER.Where(v => v.Vendor_id == (int)datarow["Id"]);
+                        if(checkedList.Count() > 0)
+                        {
+                            throw new Exception("Nhà cung cấp đang có đơn hàng.");
+                        }
+
+                        datarow.Delete();
+                    }
+
+                    vendorBindingSource.EndEdit();
+
+                    vendorTableAdapter.Update(sellManagementDbDataSet.VENDOR);
+                    sellManagementDbDataSet.VENDOR.AcceptChanges();
                 }
-
-                vendorBindingSource.EndEdit();
-
-                vendorTableAdapter.Update(sellManagementDbDataSet.VENDOR);
-                sellManagementDbDataSet.VENDOR.AcceptChanges();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Chi tiết: " + ex.Message, "Xóa thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

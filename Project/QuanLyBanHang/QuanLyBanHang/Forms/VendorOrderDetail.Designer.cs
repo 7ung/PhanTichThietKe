@@ -33,12 +33,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.addBillBtn = new System.Windows.Forms.Button();
             this.billDataGridView = new System.Windows.Forms.DataGridView();
+            this.typeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.paidStaffColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
+            this.returnMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.addProductBtn = new System.Windows.Forms.Button();
             this.orderDetailDataGridView = new System.Windows.Forms.DataGridView();
             this.productidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,7 +66,6 @@
             this.statusOrderComboBox = new System.Windows.Forms.ComboBox();
             this.staffComboBox = new System.Windows.Forms.ComboBox();
             this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerNameComboBox = new System.Windows.Forms.ComboBox();
             this.vENDORORDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vENDORBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -94,9 +97,6 @@
             this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
             this.billTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BILLTableAdapter();
             this.vendoR_BILLTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDOR_BILLTableAdapter();
-            this.typeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.paidStaffColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.returnMoneyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.closeBtn = new System.Windows.Forms.Button();
             this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -105,16 +105,16 @@
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -183,6 +183,48 @@
             this.billDataGridView.Size = new System.Drawing.Size(425, 205);
             this.billDataGridView.TabIndex = 0;
             // 
+            // typeColumn
+            // 
+            this.typeColumn.DataPropertyName = "PaidMethod";
+            this.typeColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.typeColumn.HeaderText = "Hình thức";
+            this.typeColumn.Name = "typeColumn";
+            this.typeColumn.ReadOnly = true;
+            this.typeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.typeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // paidStaffColumn
+            // 
+            this.paidStaffColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.paidStaffColumn.DataPropertyName = "PaidStaff";
+            this.paidStaffColumn.DataSource = this.sTAFFBindingSource;
+            this.paidStaffColumn.DisplayMember = "Name";
+            this.paidStaffColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.paidStaffColumn.HeaderText = "Người thanh toán";
+            this.paidStaffColumn.Name = "paidStaffColumn";
+            this.paidStaffColumn.ReadOnly = true;
+            this.paidStaffColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.paidStaffColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.paidStaffColumn.ValueMember = "Id";
+            // 
+            // sTAFFBindingSource
+            // 
+            this.sTAFFBindingSource.DataMember = "STAFF";
+            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sellManagementDbDataSet
+            // 
+            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
+            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // returnMoneyColumn
+            // 
+            this.returnMoneyColumn.DataPropertyName = "PaidMoney";
+            this.returnMoneyColumn.HeaderText = "Số tiền thanh toán";
+            this.returnMoneyColumn.Name = "returnMoneyColumn";
+            this.returnMoneyColumn.ReadOnly = true;
+            this.returnMoneyColumn.Width = 150;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.addProductBtn);
@@ -248,11 +290,6 @@
             // 
             this.pRODUCTBindingSource.DataMember = "PRODUCT";
             this.pRODUCTBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
-            // sellManagementDbDataSet
-            // 
-            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
-            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // priceDataGridViewTextBoxColumn
             // 
@@ -371,7 +408,7 @@
             // debtText
             // 
             this.debtText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.debtText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Remain", true));
+            this.debtText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Remain", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.debtText.Location = new System.Drawing.Point(99, 334);
             this.debtText.Name = "debtText";
             this.debtText.ReadOnly = true;
@@ -408,7 +445,7 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Paid", true));
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Paid", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.textBox2.Location = new System.Drawing.Point(99, 308);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -444,7 +481,7 @@
             // 
             // vatText
             // 
-            this.vatText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "VAT", true));
+            this.vatText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "VAT", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.vatText.Location = new System.Drawing.Point(99, 229);
             this.vatText.Name = "vatText";
             this.vatText.ReadOnly = true;
@@ -484,11 +521,6 @@
             // 
             this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
             this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
-            // sTAFFBindingSource
-            // 
-            this.sTAFFBindingSource.DataMember = "STAFF";
-            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // customerNameComboBox
             // 
@@ -583,7 +615,7 @@
             // finalPriceText
             // 
             this.finalPriceText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.finalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "FinalPrice", true));
+            this.finalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "FinalPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.finalPriceText.Location = new System.Drawing.Point(99, 255);
             this.finalPriceText.Name = "finalPriceText";
             this.finalPriceText.ReadOnly = true;
@@ -639,7 +671,7 @@
             // 
             // totalPriceText
             // 
-            this.totalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "TotalPrice", true));
+            this.totalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "TotalPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.totalPriceText.Location = new System.Drawing.Point(99, 203);
             this.totalPriceText.Name = "totalPriceText";
             this.totalPriceText.ReadOnly = true;
@@ -731,38 +763,6 @@
             // 
             this.vendoR_BILLTableAdapter.ClearBeforeFill = true;
             // 
-            // typeColumn
-            // 
-            this.typeColumn.DataPropertyName = "PaidMethod";
-            this.typeColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.typeColumn.HeaderText = "Hình thức";
-            this.typeColumn.Name = "typeColumn";
-            this.typeColumn.ReadOnly = true;
-            this.typeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.typeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // paidStaffColumn
-            // 
-            this.paidStaffColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.paidStaffColumn.DataPropertyName = "PaidStaff";
-            this.paidStaffColumn.DataSource = this.sTAFFBindingSource;
-            this.paidStaffColumn.DisplayMember = "Name";
-            this.paidStaffColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.paidStaffColumn.HeaderText = "Người thanh toán";
-            this.paidStaffColumn.Name = "paidStaffColumn";
-            this.paidStaffColumn.ReadOnly = true;
-            this.paidStaffColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.paidStaffColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.paidStaffColumn.ValueMember = "Id";
-            // 
-            // returnMoneyColumn
-            // 
-            this.returnMoneyColumn.DataPropertyName = "PaidMoney";
-            this.returnMoneyColumn.HeaderText = "Số tiền thanh toán";
-            this.returnMoneyColumn.Name = "returnMoneyColumn";
-            this.returnMoneyColumn.ReadOnly = true;
-            this.returnMoneyColumn.Width = 150;
-            // 
             // closeBtn
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -794,17 +794,17 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).EndInit();
             this.ResumeLayout(false);

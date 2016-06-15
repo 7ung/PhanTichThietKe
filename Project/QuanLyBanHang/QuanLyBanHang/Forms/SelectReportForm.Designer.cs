@@ -41,18 +41,22 @@
             this.fromDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalFeeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.businessFeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.businessFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BusinessFeeTableAdapter();
             this.dOCUMENTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xemChiTiếtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tranferFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.TranferFeeTableAdapter();
+            this.invenFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.InvenFeeTableAdapter();
+            this.staffFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.StaffFeeTableAdapter();
+            this.newReportBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -74,21 +78,29 @@
             // 
             // selectBtn
             // 
-            this.selectBtn.Location = new System.Drawing.Point(314, 256);
+            this.selectBtn.Image = global::QuanLyBanHang.Properties.Resources.success;
+            this.selectBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.selectBtn.Location = new System.Drawing.Point(512, 256);
             this.selectBtn.Name = "selectBtn";
-            this.selectBtn.Size = new System.Drawing.Size(75, 23);
+            this.selectBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.selectBtn.Size = new System.Drawing.Size(100, 45);
             this.selectBtn.TabIndex = 12;
             this.selectBtn.Text = "Chọn";
+            this.selectBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.selectBtn.UseVisualStyleBackColor = true;
             this.selectBtn.Click += new System.EventHandler(this.selectBtn_Click);
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(196, 256);
+            this.cancelBtn.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.cancelBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cancelBtn.Location = new System.Drawing.Point(406, 256);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.cancelBtn.Size = new System.Drawing.Size(100, 45);
             this.cancelBtn.TabIndex = 11;
-            this.cancelBtn.Text = "Hủy";
+            this.cancelBtn.Text = "Đóng";
+            this.cancelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
@@ -97,6 +109,9 @@
             this.billDataGridView.AllowUserToAddRows = false;
             this.billDataGridView.AllowUserToDeleteRows = false;
             this.billDataGridView.AllowUserToResizeRows = false;
+            this.billDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.billDataGridView.AutoGenerateColumns = false;
             this.billDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.billDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -112,7 +127,7 @@
             this.billDataGridView.ReadOnly = true;
             this.billDataGridView.RowHeadersVisible = false;
             this.billDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.billDataGridView.Size = new System.Drawing.Size(560, 193);
+            this.billDataGridView.Size = new System.Drawing.Size(600, 200);
             this.billDataGridView.TabIndex = 10;
             this.billDataGridView.DoubleClick += new System.EventHandler(this.billDataGridView_DoubleClick);
             // 
@@ -170,6 +185,39 @@
             this.totalFeeDataGridViewTextBoxColumn.ReadOnly = true;
             this.totalFeeDataGridViewTextBoxColumn.Width = 150;
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(139, 70);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.Image = global::QuanLyBanHang.Properties.Resources.paper;
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.viewToolStripMenuItem.Text = "Xem chi tiết";
+            this.viewToolStripMenuItem.Click += new System.EventHandler(this.selectBtn_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::QuanLyBanHang.Properties.Resources.edit_32;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.editToolStripMenuItem.Text = "Sửa báo cáo";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // businessFeeBindingSource
             // 
             this.businessFeeBindingSource.DataMember = "BusinessFee";
@@ -183,57 +231,57 @@
             // 
             this.dOCUMENTTableAdapter.ClearBeforeFill = true;
             // 
-            // contextMenuStrip
+            // tranferFeeTableAdapter
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xemChiTiếtToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.xóaToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(140, 70);
+            this.tranferFeeTableAdapter.ClearBeforeFill = true;
             // 
-            // xóaToolStripMenuItem
+            // invenFeeTableAdapter
             // 
-            this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xóaToolStripMenuItem.Text = "Xóa báo cáo";
+            this.invenFeeTableAdapter.ClearBeforeFill = true;
             // 
-            // editToolStripMenuItem
+            // staffFeeTableAdapter
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Sửa báo cáo";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.staffFeeTableAdapter.ClearBeforeFill = true;
             // 
-            // xemChiTiếtToolStripMenuItem
+            // newReportBtn
             // 
-            this.xemChiTiếtToolStripMenuItem.Name = "xemChiTiếtToolStripMenuItem";
-            this.xemChiTiếtToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xemChiTiếtToolStripMenuItem.Text = "Xem chi tiết";
+            this.newReportBtn.Image = global::QuanLyBanHang.Properties.Resources.plus_32;
+            this.newReportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newReportBtn.Location = new System.Drawing.Point(12, 256);
+            this.newReportBtn.Name = "newReportBtn";
+            this.newReportBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.newReportBtn.Size = new System.Drawing.Size(130, 45);
+            this.newReportBtn.TabIndex = 15;
+            this.newReportBtn.Text = "Lập báo cáo";
+            this.newReportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newReportBtn.UseVisualStyleBackColor = true;
+            this.newReportBtn.Click += new System.EventHandler(this.newReportBtn_Click);
             // 
             // SelectReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 291);
+            this.ClientSize = new System.Drawing.Size(624, 311);
+            this.Controls.Add(this.newReportBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchText);
             this.Controls.Add(this.selectBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.billDataGridView);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(600, 330);
+            this.MaximumSize = new System.Drawing.Size(640, 350);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(600, 330);
+            this.MinimumSize = new System.Drawing.Size(640, 350);
             this.Name = "SelectReportForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Danh sách báo cáo";
             this.Load += new System.EventHandler(this.SelectReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.billDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,8 +305,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn termDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn idColumn;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem xemChiTiếtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private SellManagementDbDataSetTableAdapters.TranferFeeTableAdapter tranferFeeTableAdapter;
+        private SellManagementDbDataSetTableAdapters.InvenFeeTableAdapter invenFeeTableAdapter;
+        private SellManagementDbDataSetTableAdapters.StaffFeeTableAdapter staffFeeTableAdapter;
+        private System.Windows.Forms.Button newReportBtn;
     }
 }

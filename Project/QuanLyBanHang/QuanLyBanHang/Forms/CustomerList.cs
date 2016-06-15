@@ -209,20 +209,38 @@ namespace QuanLyBanHang.Forms
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Bạn có chắt muốn xóa không?", "Cảnh báo", MessageBoxButtons.OKCancel);
+            var result = MessageBox.Show("Bạn có chắt muốn xóa không?", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if(result == DialogResult.OK)
             {
-                foreach (DataGridViewRow item in customerDataGridView.SelectedRows)
+                try
                 {
-                    var datarow = sellManagementDbDataSet.CUSTOMER.Rows[item.Index];
-                    datarow.Delete();
+                    // fill
+                    purchasE_ORDERTableAdapter.Fill(sellManagementDbDataSet.PURCHASE_ORDER);
+                    
+                    foreach (DataGridViewRow item in customerDataGridView.SelectedRows)
+                    {
+                        var datarow = sellManagementDbDataSet.CUSTOMER.Rows[item.Index];
+
+                        var check = sellManagementDbDataSet.PURCHASE_ORDER.Where(i => i.Customer_id == (int)datarow["Id"]);
+                        if(check.Count() > 0)
+                        {
+                            throw new Exception("Khách hàng đang có đơn mua hàng.");
+                        }
+
+                        datarow.Delete();
+                    }
+
+                    customerTableBindingSource.EndEdit();
+
+                    customerTableAdapter.Update(sellManagementDbDataSet.CUSTOMER);
+                    sellManagementDbDataSet.CUSTOMER.AcceptChanges();
                 }
-
-                customerTableBindingSource.EndEdit();
-
-                customerTableAdapter.Update(sellManagementDbDataSet.CUSTOMER);
-                sellManagementDbDataSet.CUSTOMER.AcceptChanges();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Chi tiết: " + ex.Message, "Xóa thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
 

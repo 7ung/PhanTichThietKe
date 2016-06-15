@@ -67,6 +67,12 @@ namespace QuanLyBanHang.Forms
             vatValueText.Text = (Convert.ToDouble(value) * 100).ToString() + "%";
 
             CheckBillForButton();
+
+            // formar
+            returnMoneyColumn.DefaultCellStyle.Format = "N2";
+            recieveMoneyColumn.DefaultCellStyle.Format = "N2";
+            resultDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
+            priceDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
         }
 
         private void SelectOrderById(int orderId)
@@ -235,13 +241,14 @@ namespace QuanLyBanHang.Forms
 
         private void saveData()
         {
-            oRDERBindingSource.EndEdit();
-            orderTableAdapter.Update(sellManagementDbDataSet.ORDER);
-            sellManagementDbDataSet.ORDER.AcceptChanges();
-            
+
             oRDERDETAILBindingSource.EndEdit();
             oRDER_DETAILTableAdapter.Update(sellManagementDbDataSet.ORDER_DETAIL);
             sellManagementDbDataSet.ORDER_DETAIL.AcceptChanges();
+
+            oRDERBindingSource.EndEdit();
+            orderTableAdapter.Update(sellManagementDbDataSet.ORDER);
+            sellManagementDbDataSet.ORDER.AcceptChanges();
             
             pURCHASEORDERBindingSource.EndEdit();
             pURCHASE_ORDERTableAdapter.Update(sellManagementDbDataSet.PURCHASE_ORDER);

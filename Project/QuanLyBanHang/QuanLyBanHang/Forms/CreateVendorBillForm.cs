@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyBanHang.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -147,7 +148,7 @@ namespace QuanLyBanHang.Forms
             if (recieveMoney >= remainPrice)
             {
                 //changeMoneyText.Text = (recieveMoney - remainPrice).ToString("0.00");
-                changeMoneyText.Text = (recieveMoney - remainPrice).ToString();
+                changeMoneyText.Text = (recieveMoney - remainPrice).ToString("#,##0.00");
                 okBtn.Enabled = true;
             }
             else
@@ -167,6 +168,18 @@ namespace QuanLyBanHang.Forms
         private void recieveMoneyText_TextChanged(object sender, EventArgs e)
         {
             UpdateMoney();
+        }
+
+        private void recieveMoneyText_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                recieveMoneyText.Text = string.Format(Resources.CurrencyFormat, Convert.ToDouble(recieveMoneyText.Text));
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

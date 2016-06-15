@@ -28,8 +28,13 @@ namespace QuanLyBanHang.Forms
             this.cUSTOMERTableAdapter.Fill(this.sellManagementDbDataSet.CUSTOMER);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.Customer_Order_View' table. You can move, or remove it, as needed.
             this.customer_Order_ViewTableAdapter.Fill(this.sellManagementDbDataSet.Customer_Order_View);
+            this.inout_INVENTORY_DETAILTableAdapter.Fill(this.sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
 
             BindingOrderStatus();
+
+            // format
+            finalColumn.DefaultCellStyle.Format = "N2";
+            createDateDataGridViewTextBoxColumn.DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -93,6 +98,33 @@ namespace QuanLyBanHang.Forms
                     MessageBox.Show("Không thể xóa vì đơn hàng đang được sử dụng.", Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if(customerOrderViewBindingSource.Current == null || billDataGridView.RowCount <= 0)
+            {
+                if(customerOrderViewBindingSource.Current != null)
+                    contextMenuStrip.Enabled = false;
+
+                selectBtn.Enabled = false;
+
+                return;
+            }
+
+            deleteMenuItem.Enabled = true;
+            var current = ((customerOrderViewBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.Customer_Order_ViewRow);
+
+            var list = sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Where(o => o.Order_id == current.Id);
+            if(list.Count() > 0)
+            {
+                deleteMenuItem.Enabled = false;
+            }
+        }
+
+        private void billDataGridView_DoubleClick(object sender, EventArgs e)
+        {
+            selectBtn_Click(sender, e);
         }
     }
 }

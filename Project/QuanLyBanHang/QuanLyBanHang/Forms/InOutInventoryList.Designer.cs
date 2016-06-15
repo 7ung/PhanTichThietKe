@@ -51,6 +51,9 @@
             this.inOutInventoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.closeBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.documentKeyText = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.editBtn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.productidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -70,9 +73,9 @@
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
             this.inouT_INVENTORY_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.documentKeyText = new System.Windows.Forms.TextBox();
+            this.ordeR_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.ORDER_DETAILTableAdapter();
+            this.inventorY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
+            this.tranferFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.TranferFeeTableAdapter();
             documentKeyLabel = new System.Windows.Forms.Label();
             creatorLabel = new System.Windows.Forms.Label();
             createDateLabel = new System.Windows.Forms.Label();
@@ -193,12 +196,17 @@
             // deleteBtn
             // 
             this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteBtn.Location = new System.Drawing.Point(305, 470);
+            this.deleteBtn.BackColor = System.Drawing.Color.Transparent;
+            this.deleteBtn.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.deleteBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteBtn.Location = new System.Drawing.Point(280, 460);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.deleteBtn.Size = new System.Drawing.Size(100, 45);
             this.deleteBtn.TabIndex = 56;
             this.deleteBtn.Text = "Xóa";
-            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // addBtn
@@ -307,9 +315,9 @@
             // closeBtn
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeBtn.Location = new System.Drawing.Point(427, 470);
+            this.closeBtn.Location = new System.Drawing.Point(402, 460);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(75, 23);
+            this.closeBtn.Size = new System.Drawing.Size(100, 45);
             this.closeBtn.TabIndex = 57;
             this.closeBtn.Text = "Đóng";
             this.closeBtn.UseVisualStyleBackColor = true;
@@ -344,14 +352,48 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin";
             // 
+            // documentKeyText
+            // 
+            this.documentKeyText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "DocumentKey", true));
+            this.documentKeyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.documentKeyText.Location = new System.Drawing.Point(138, 16);
+            this.documentKeyText.Name = "documentKeyText";
+            this.documentKeyText.ReadOnly = true;
+            this.documentKeyText.Size = new System.Drawing.Size(157, 20);
+            this.documentKeyText.TabIndex = 56;
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "CarryFee", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(138, 122);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(157, 26);
+            this.textBox2.TabIndex = 55;
+            // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "Term", true));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(138, 154);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(50, 26);
+            this.textBox1.TabIndex = 54;
+            // 
             // editBtn
             // 
             this.editBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.editBtn.Location = new System.Drawing.Point(407, 398);
+            this.editBtn.Image = global::QuanLyBanHang.Properties.Resources.edit_32;
+            this.editBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editBtn.Location = new System.Drawing.Point(382, 377);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(75, 23);
+            this.editBtn.Padding = new System.Windows.Forms.Padding(10, 0, 12, 0);
+            this.editBtn.Size = new System.Drawing.Size(100, 45);
             this.editBtn.TabIndex = 52;
             this.editBtn.Text = "Sửa";
+            this.editBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.editBtn.UseVisualStyleBackColor = true;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
@@ -374,7 +416,7 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(463, 158);
+            this.dataGridView2.Size = new System.Drawing.Size(463, 141);
             this.dataGridView2.TabIndex = 51;
             // 
             // productidDataGridViewTextBoxColumn
@@ -497,35 +539,17 @@
             // 
             this.inouT_INVENTORY_DETAILTableAdapter.ClearBeforeFill = true;
             // 
-            // textBox1
+            // ordeR_DETAILTableAdapter
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "Term", true));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(138, 154);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(50, 26);
-            this.textBox1.TabIndex = 54;
+            this.ordeR_DETAILTableAdapter.ClearBeforeFill = true;
             // 
-            // textBox2
+            // inventorY_CAPABILITYTableAdapter
             // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "CarryFee", true));
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(138, 122);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(157, 26);
-            this.textBox2.TabIndex = 55;
+            this.inventorY_CAPABILITYTableAdapter.ClearBeforeFill = true;
             // 
-            // documentKeyText
+            // tranferFeeTableAdapter
             // 
-            this.documentKeyText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.inOutInventoryViewBindingSource, "DocumentKey", true));
-            this.documentKeyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.documentKeyText.Location = new System.Drawing.Point(138, 16);
-            this.documentKeyText.Name = "documentKeyText";
-            this.documentKeyText.ReadOnly = true;
-            this.documentKeyText.Size = new System.Drawing.Size(157, 20);
-            this.documentKeyText.TabIndex = 56;
+            this.tranferFeeTableAdapter.ClearBeforeFill = true;
             // 
             // InOutInventoryList
             // 
@@ -593,5 +617,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox documentKeyText;
+        private SellManagementDbDataSetTableAdapters.ORDER_DETAILTableAdapter ordeR_DETAILTableAdapter;
+        private SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter inventorY_CAPABILITYTableAdapter;
+        private SellManagementDbDataSetTableAdapters.TranferFeeTableAdapter tranferFeeTableAdapter;
     }
 }

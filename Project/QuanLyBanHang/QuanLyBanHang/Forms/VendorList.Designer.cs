@@ -32,9 +32,6 @@
             this.searchText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.vendorDataGridView = new System.Windows.Forms.DataGridView();
-            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +53,11 @@
             this.newVendorBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
+            this.vendoR_ORDERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDOR_ORDERTableAdapter();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.vendorDataGridView)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vendorBindingSource)).BeginInit();
@@ -92,6 +94,7 @@
             this.vendorDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.vendorDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameColumn,
+            this.idColumn,
             this.phoneColumn,
             this.emailColumn});
             this.vendorDataGridView.ContextMenuStrip = this.contextMenuStrip;
@@ -104,30 +107,6 @@
             this.vendorDataGridView.Size = new System.Drawing.Size(415, 325);
             this.vendorDataGridView.TabIndex = 4;
             this.vendorDataGridView.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.vendorDataGridView_RowLeave);
-            // 
-            // nameColumn
-            // 
-            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameColumn.DataPropertyName = "Name";
-            this.nameColumn.HeaderText = "Tên";
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.ReadOnly = true;
-            // 
-            // phoneColumn
-            // 
-            this.phoneColumn.DataPropertyName = "Phone";
-            this.phoneColumn.HeaderText = "Số điện thoại";
-            this.phoneColumn.Name = "phoneColumn";
-            this.phoneColumn.ReadOnly = true;
-            this.phoneColumn.Width = 150;
-            // 
-            // emailColumn
-            // 
-            this.emailColumn.DataPropertyName = "Email";
-            this.emailColumn.HeaderText = "Email";
-            this.emailColumn.Name = "emailColumn";
-            this.emailColumn.ReadOnly = true;
-            this.emailColumn.Width = 200;
             // 
             // contextMenuStrip
             // 
@@ -385,6 +364,42 @@
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
+            // vendoR_ORDERTableAdapter
+            // 
+            this.vendoR_ORDERTableAdapter.ClearBeforeFill = true;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameColumn.DataPropertyName = "Name";
+            this.nameColumn.HeaderText = "Tên";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
+            // 
+            // idColumn
+            // 
+            this.idColumn.DataPropertyName = "Id";
+            this.idColumn.HeaderText = "Id";
+            this.idColumn.Name = "idColumn";
+            this.idColumn.ReadOnly = true;
+            this.idColumn.Visible = false;
+            // 
+            // phoneColumn
+            // 
+            this.phoneColumn.DataPropertyName = "Phone";
+            this.phoneColumn.HeaderText = "Số điện thoại";
+            this.phoneColumn.Name = "phoneColumn";
+            this.phoneColumn.ReadOnly = true;
+            this.phoneColumn.Width = 150;
+            // 
+            // emailColumn
+            // 
+            this.emailColumn.DataPropertyName = "Email";
+            this.emailColumn.HeaderText = "Email";
+            this.emailColumn.Name = "emailColumn";
+            this.emailColumn.ReadOnly = true;
+            this.emailColumn.Width = 200;
+            // 
             // VendorList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,12 +446,14 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private WindowsFormsControlLibrary.CustomTextBox vendorName;
         private WindowsFormsControlLibrary.CustomTextBox vendorPhone;
         private WindowsFormsControlLibrary.CustomTextBox vendorEmail;
         private WindowsFormsControlLibrary.CustomTextBox vendorAddress;
+        private SellManagementDbDataSetTableAdapters.VENDOR_ORDERTableAdapter vendoR_ORDERTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
     }
 }

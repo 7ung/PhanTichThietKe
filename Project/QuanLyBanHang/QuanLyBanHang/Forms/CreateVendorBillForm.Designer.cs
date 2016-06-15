@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.paidStaffComboBox = new System.Windows.Forms.ComboBox();
+            this.sTAFFBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -47,46 +49,44 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.remainPriceText = new System.Windows.Forms.TextBox();
+            this.dEBTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.finalPriceText = new System.Windows.Forms.TextBox();
+            this.oRDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.staffComboBox = new System.Windows.Forms.ComboBox();
+            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.vENDORORDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vENDORBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.vENDOR_ORDERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDOR_ORDERTableAdapter();
-            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dOCUMENTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
-            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
-            this.oRDERBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oRDERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.ORDERTableAdapter();
-            this.dEBTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dEBTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DEBTTableAdapter();
-            this.sTAFFBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
-            this.vENDORBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vENDORTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDORTableAdapter();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -120,6 +120,16 @@
             this.paidStaffComboBox.Size = new System.Drawing.Size(154, 21);
             this.paidStaffComboBox.TabIndex = 25;
             this.paidStaffComboBox.ValueMember = "Id";
+            // 
+            // sTAFFBindingSource1
+            // 
+            this.sTAFFBindingSource1.DataMember = "STAFF";
+            this.sTAFFBindingSource1.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sellManagementDbDataSet
+            // 
+            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
+            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -195,6 +205,7 @@
             this.recieveMoneyText.Size = new System.Drawing.Size(243, 26);
             this.recieveMoneyText.TabIndex = 16;
             this.recieveMoneyText.TextChanged += new System.EventHandler(this.recieveMoneyText_TextChanged);
+            this.recieveMoneyText.Leave += new System.EventHandler(this.recieveMoneyText_Leave);
             // 
             // label9
             // 
@@ -278,13 +289,18 @@
             // remainPriceText
             // 
             this.remainPriceText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.remainPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Remain", true));
+            this.remainPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Remain", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.remainPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remainPriceText.Location = new System.Drawing.Point(209, 164);
             this.remainPriceText.Name = "remainPriceText";
             this.remainPriceText.ReadOnly = true;
             this.remainPriceText.Size = new System.Drawing.Size(154, 26);
             this.remainPriceText.TabIndex = 20;
+            // 
+            // dEBTBindingSource
+            // 
+            this.dEBTBindingSource.DataMember = "DEBT";
+            this.dEBTBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // label8
             // 
@@ -297,7 +313,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Paid", true));
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dEBTBindingSource, "Paid", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(209, 132);
             this.textBox4.Name = "textBox4";
@@ -316,13 +332,18 @@
             // 
             // finalPriceText
             // 
-            this.finalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "FinalPrice", true));
+            this.finalPriceText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.oRDERBindingSource, "FinalPrice", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
             this.finalPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.finalPriceText.Location = new System.Drawing.Point(209, 100);
             this.finalPriceText.Name = "finalPriceText";
             this.finalPriceText.ReadOnly = true;
             this.finalPriceText.Size = new System.Drawing.Size(154, 26);
             this.finalPriceText.TabIndex = 16;
+            // 
+            // oRDERBindingSource
+            // 
+            this.oRDERBindingSource.DataMember = "ORDER";
+            this.oRDERBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // label6
             // 
@@ -353,6 +374,16 @@
             this.staffComboBox.Size = new System.Drawing.Size(190, 21);
             this.staffComboBox.TabIndex = 7;
             this.staffComboBox.ValueMember = "Id";
+            // 
+            // dOCUMENTBindingSource
+            // 
+            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
+            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sTAFFBindingSource
+            // 
+            this.sTAFFBindingSource.DataMember = "STAFF";
+            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // textBox2
             // 
@@ -394,6 +425,16 @@
             this.customerComboBox.TabIndex = 1;
             this.customerComboBox.ValueMember = "Id";
             // 
+            // vENDORORDERBindingSource
+            // 
+            this.vENDORORDERBindingSource.DataMember = "VENDOR_ORDER";
+            this.vENDORORDERBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // vENDORBindingSource
+            // 
+            this.vENDORBindingSource.DataMember = "VENDOR";
+            this.vENDORBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::QuanLyBanHang.Properties.Resources.layers;
@@ -404,60 +445,25 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // sellManagementDbDataSet
-            // 
-            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
-            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vENDORORDERBindingSource
-            // 
-            this.vENDORORDERBindingSource.DataMember = "VENDOR_ORDER";
-            this.vENDORORDERBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // vENDOR_ORDERTableAdapter
             // 
             this.vENDOR_ORDERTableAdapter.ClearBeforeFill = true;
-            // 
-            // dOCUMENTBindingSource
-            // 
-            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
-            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // dOCUMENTTableAdapter
             // 
             this.dOCUMENTTableAdapter.ClearBeforeFill = true;
             // 
-            // sTAFFBindingSource
-            // 
-            this.sTAFFBindingSource.DataMember = "STAFF";
-            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // sTAFFTableAdapter
             // 
             this.sTAFFTableAdapter.ClearBeforeFill = true;
-            // 
-            // oRDERBindingSource
-            // 
-            this.oRDERBindingSource.DataMember = "ORDER";
-            this.oRDERBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // oRDERTableAdapter
             // 
             this.oRDERTableAdapter.ClearBeforeFill = true;
             // 
-            // dEBTBindingSource
-            // 
-            this.dEBTBindingSource.DataMember = "DEBT";
-            this.dEBTBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // dEBTTableAdapter
             // 
             this.dEBTTableAdapter.ClearBeforeFill = true;
-            // 
-            // sTAFFBindingSource1
-            // 
-            this.sTAFFBindingSource1.DataMember = "STAFF";
-            this.sTAFFBindingSource1.DataSource = this.sellManagementDbDataSet;
             // 
             // cancelBtn
             // 
@@ -479,11 +485,6 @@
             this.okBtn.Text = "Thanh toán";
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
-            // 
-            // vENDORBindingSource
-            // 
-            this.vENDORBindingSource.DataMember = "VENDOR";
-            this.vENDORBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // vENDORTableAdapter
             // 
@@ -507,17 +508,17 @@
             this.Load += new System.EventHandler(this.CreateVendorBillForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
