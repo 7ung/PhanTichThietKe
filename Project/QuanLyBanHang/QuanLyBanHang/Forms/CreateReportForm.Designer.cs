@@ -34,9 +34,13 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.todateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.businessFeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.label5 = new System.Windows.Forms.Label();
             this.fromdateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.staffComboBox = new System.Windows.Forms.ComboBox();
+            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.createDatePicker = new System.Windows.Forms.DateTimePicker();
@@ -46,20 +50,16 @@
             this.documentKeyText = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
-            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
             this.documentTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
-            this.dOCUMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.businessFeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.businessFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BusinessFeeTableAdapter();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // createBtn
@@ -126,9 +126,21 @@
             this.todateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.businessFeeBindingSource, "ToDate", true));
             this.todateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.todateTimePicker.Location = new System.Drawing.Point(222, 163);
+            this.todateTimePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.todateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.todateTimePicker.Name = "todateTimePicker";
             this.todateTimePicker.Size = new System.Drawing.Size(150, 20);
             this.todateTimePicker.TabIndex = 29;
+            // 
+            // businessFeeBindingSource
+            // 
+            this.businessFeeBindingSource.DataMember = "BusinessFee";
+            this.businessFeeBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sellManagementDbDataSet
+            // 
+            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
+            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label5
             // 
@@ -145,6 +157,8 @@
             this.fromdateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.businessFeeBindingSource, "FromDate", true));
             this.fromdateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fromdateTimePicker.Location = new System.Drawing.Point(222, 137);
+            this.fromdateTimePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.fromdateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.fromdateTimePicker.Name = "fromdateTimePicker";
             this.fromdateTimePicker.Size = new System.Drawing.Size(150, 20);
             this.fromdateTimePicker.TabIndex = 27;
@@ -161,6 +175,16 @@
             this.staffComboBox.Size = new System.Drawing.Size(150, 21);
             this.staffComboBox.TabIndex = 18;
             this.staffComboBox.ValueMember = "Id";
+            // 
+            // dOCUMENTBindingSource
+            // 
+            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
+            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sTAFFBindingSource
+            // 
+            this.sTAFFBindingSource.DataMember = "STAFF";
+            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // label4
             // 
@@ -186,6 +210,8 @@
             this.createDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.dOCUMENTBindingSource, "CreateDate", true));
             this.createDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDatePicker.Location = new System.Drawing.Point(222, 50);
+            this.createDatePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDatePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDatePicker.Name = "createDatePicker";
             this.createDatePicker.Size = new System.Drawing.Size(150, 20);
             this.createDatePicker.TabIndex = 14;
@@ -255,16 +281,6 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Số phiếu";
             // 
-            // sellManagementDbDataSet
-            // 
-            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
-            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sTAFFBindingSource
-            // 
-            this.sTAFFBindingSource.DataMember = "STAFF";
-            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // sTAFFTableAdapter
             // 
             this.sTAFFTableAdapter.ClearBeforeFill = true;
@@ -272,16 +288,6 @@
             // documentTableAdapter
             // 
             this.documentTableAdapter.ClearBeforeFill = true;
-            // 
-            // dOCUMENTBindingSource
-            // 
-            this.dOCUMENTBindingSource.DataMember = "DOCUMENT";
-            this.dOCUMENTBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
-            // businessFeeBindingSource
-            // 
-            this.businessFeeBindingSource.DataMember = "BusinessFee";
-            this.businessFeeBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // businessFeeTableAdapter
             // 
@@ -306,12 +312,12 @@
             this.Load += new System.EventHandler(this.CreateReportForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.businessFeeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

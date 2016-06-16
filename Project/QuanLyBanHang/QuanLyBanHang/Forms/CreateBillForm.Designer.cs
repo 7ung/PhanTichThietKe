@@ -228,6 +228,7 @@
             // 
             this.staffComboBox.DataSource = this.sTAFFBindingSource;
             this.staffComboBox.DisplayMember = "Name";
+            this.staffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.staffComboBox.FormattingEnabled = true;
             this.staffComboBox.Location = new System.Drawing.Point(209, 98);
             this.staffComboBox.Name = "staffComboBox";
@@ -300,6 +301,7 @@
             this.customerComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.pURCHASEORDERBindingSource, "Customer_id", true));
             this.customerComboBox.DataSource = this.cUSTOMERBindingSource;
             this.customerComboBox.DisplayMember = "Name";
+            this.customerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.customerComboBox.Enabled = false;
             this.customerComboBox.FormattingEnabled = true;
             this.customerComboBox.Location = new System.Drawing.Point(209, 19);
@@ -372,9 +374,11 @@
             this.checkBox1.TabIndex = 21;
             this.checkBox1.Text = "Trả góp";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Tiền mặt"});
@@ -382,7 +386,6 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 20;
-            this.comboBox3.Text = "Tiền mặt";
             // 
             // label11
             // 

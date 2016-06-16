@@ -65,6 +65,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.totalInvenLabel = new System.Windows.Forms.Label();
             this.inventoryFeeDataGridView = new System.Windows.Forms.DataGridView();
+            this.inventoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.feeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invenFeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.removeInventoryBtn = new System.Windows.Forms.Button();
             this.addInventoryBtn = new System.Windows.Forms.Button();
@@ -112,8 +114,6 @@
             this.inventoryFeeText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.inoutFeeText = new System.Windows.Forms.TextBox();
-            this.inventoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.feeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
@@ -179,6 +179,7 @@
             // 
             this.creatorComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dOCUMENTBindingSource, "Creator", true));
             this.creatorComboBox.DisplayMember = "Id";
+            this.creatorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creatorComboBox.FormattingEnabled = true;
             this.creatorComboBox.Location = new System.Drawing.Point(236, 75);
             this.creatorComboBox.Name = "creatorComboBox";
@@ -212,6 +213,8 @@
             this.todateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.businessFeeBindingSource, "ToDate", true));
             this.todateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.todateTimePicker.Location = new System.Drawing.Point(385, 135);
+            this.todateTimePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.todateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.todateTimePicker.Name = "todateTimePicker";
             this.todateTimePicker.Size = new System.Drawing.Size(100, 20);
             this.todateTimePicker.TabIndex = 9;
@@ -237,6 +240,8 @@
             this.fromdateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.businessFeeBindingSource, "FromDate", true));
             this.fromdateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.fromdateTimePicker.Location = new System.Drawing.Point(236, 135);
+            this.fromdateTimePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.fromdateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.fromdateTimePicker.Name = "fromdateTimePicker";
             this.fromdateTimePicker.Size = new System.Drawing.Size(100, 20);
             this.fromdateTimePicker.TabIndex = 7;
@@ -256,6 +261,8 @@
             this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.dOCUMENTBindingSource, "CreateDate", true));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(236, 49);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker1.TabIndex = 1;
@@ -532,6 +539,25 @@
             this.inventoryFeeDataGridView.TabIndex = 5;
             this.inventoryFeeDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.inventoryFeeDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView2_DataError);
+            // 
+            // inventoryidDataGridViewTextBoxColumn
+            // 
+            this.inventoryidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.inventoryidDataGridViewTextBoxColumn.DataPropertyName = "Inventory_id";
+            this.inventoryidDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.inventoryidDataGridViewTextBoxColumn.HeaderText = "Mã kho";
+            this.inventoryidDataGridViewTextBoxColumn.Name = "inventoryidDataGridViewTextBoxColumn";
+            this.inventoryidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.inventoryidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.inventoryidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // feeDataGridViewTextBoxColumn1
+            // 
+            this.feeDataGridViewTextBoxColumn1.DataPropertyName = "Fee";
+            this.feeDataGridViewTextBoxColumn1.HeaderText = "Phí (VNĐ)";
+            this.feeDataGridViewTextBoxColumn1.Name = "feeDataGridViewTextBoxColumn1";
+            this.feeDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.feeDataGridViewTextBoxColumn1.Width = 150;
             // 
             // invenFeeBindingSource
             // 
@@ -988,25 +1014,6 @@
             this.inoutFeeText.Size = new System.Drawing.Size(200, 26);
             this.inoutFeeText.TabIndex = 0;
             this.inoutFeeText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // inventoryidDataGridViewTextBoxColumn
-            // 
-            this.inventoryidDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.inventoryidDataGridViewTextBoxColumn.DataPropertyName = "Inventory_id";
-            this.inventoryidDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.inventoryidDataGridViewTextBoxColumn.HeaderText = "Mã kho";
-            this.inventoryidDataGridViewTextBoxColumn.Name = "inventoryidDataGridViewTextBoxColumn";
-            this.inventoryidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.inventoryidDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inventoryidDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // feeDataGridViewTextBoxColumn1
-            // 
-            this.feeDataGridViewTextBoxColumn1.DataPropertyName = "Fee";
-            this.feeDataGridViewTextBoxColumn1.HeaderText = "Phí (VNĐ)";
-            this.feeDataGridViewTextBoxColumn1.Name = "feeDataGridViewTextBoxColumn1";
-            this.feeDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.feeDataGridViewTextBoxColumn1.Width = 150;
             // 
             // CreateBusinessFee
             // 

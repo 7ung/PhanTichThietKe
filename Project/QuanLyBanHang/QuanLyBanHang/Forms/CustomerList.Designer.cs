@@ -234,9 +234,12 @@
             this.birthdayPicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.customerTableBindingSource, "BirthDay", true));
             this.birthdayPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.birthdayPicker.Location = new System.Drawing.Point(137, 256);
+            this.birthdayPicker.MaxDate = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
+            this.birthdayPicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.birthdayPicker.Name = "birthdayPicker";
             this.birthdayPicker.Size = new System.Drawing.Size(170, 20);
             this.birthdayPicker.TabIndex = 22;
+            this.birthdayPicker.Value = new System.DateTime(2000, 12, 31, 0, 0, 0, 0);
             // 
             // customerAddress
             // 

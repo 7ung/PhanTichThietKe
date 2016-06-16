@@ -114,6 +114,7 @@
             // 
             this.paidStaffComboBox.DataSource = this.sTAFFBindingSource1;
             this.paidStaffComboBox.DisplayMember = "Name";
+            this.paidStaffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paidStaffComboBox.FormattingEnabled = true;
             this.paidStaffComboBox.Location = new System.Drawing.Point(209, 73);
             this.paidStaffComboBox.Name = "paidStaffComboBox";
@@ -160,6 +161,7 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Tiền mặt"});
@@ -167,7 +169,6 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 20;
-            this.comboBox3.Text = "Tiền mặt";
             // 
             // label11
             // 
@@ -230,6 +231,8 @@
             this.createDatePicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
             this.createDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDatePicker.Location = new System.Drawing.Point(242, 19);
+            this.createDatePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDatePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDatePicker.Name = "createDatePicker";
             this.createDatePicker.Size = new System.Drawing.Size(121, 20);
             this.createDatePicker.TabIndex = 0;
@@ -368,6 +371,7 @@
             this.staffComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dOCUMENTBindingSource, "Creator", true));
             this.staffComboBox.DataSource = this.sTAFFBindingSource;
             this.staffComboBox.DisplayMember = "Name";
+            this.staffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.staffComboBox.FormattingEnabled = true;
             this.staffComboBox.Location = new System.Drawing.Point(209, 72);
             this.staffComboBox.Name = "staffComboBox";
@@ -417,6 +421,7 @@
             this.customerComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.vENDORORDERBindingSource, "Vendor_id", true));
             this.customerComboBox.DataSource = this.vENDORBindingSource;
             this.customerComboBox.DisplayMember = "Name";
+            this.customerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.customerComboBox.Enabled = false;
             this.customerComboBox.FormattingEnabled = true;
             this.customerComboBox.Location = new System.Drawing.Point(209, 19);

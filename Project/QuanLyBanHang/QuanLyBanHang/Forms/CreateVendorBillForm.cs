@@ -140,7 +140,10 @@ namespace QuanLyBanHang.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Số tiền không hợp lệ!", "Lỗi");
+                //MessageBox.Show("Số tiền không hợp lệ!", "Lỗi");
+                recieveMoneyText.Text = recieveMoneyText.Text.Substring(0, recieveMoneyText.Text.Length - 1);
+                recieveMoneyText.SelectionStart = recieveMoneyText.Text.Length;
+
                 okBtn.Enabled = false;
                 return;
             }
@@ -158,9 +161,14 @@ namespace QuanLyBanHang.Forms
             }
 
             // tiền thối lớn hơn tiền trả
-            if ((recieveMoney - remainPrice) > remainPrice)
+            //if ((recieveMoney - remainPrice) > remainPrice)
+            //{
+            //    MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    okBtn.Enabled = false;
+            //}
+
+            if(recieveMoney > 1000000000000)
             {
-                MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 okBtn.Enabled = false;
             }
         }

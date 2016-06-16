@@ -29,6 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label outPriceLabel;
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label inPriceLabel;
+            System.Windows.Forms.Label productKeyLabel;
+            System.Windows.Forms.Label nameLabel;
+            System.Windows.Forms.Label barCodeLabel;
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
             this.pRODUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
@@ -49,16 +59,16 @@
             this.brandComboBox = new System.Windows.Forms.ComboBox();
             this.unitComboBox = new System.Windows.Forms.ComboBox();
             this.productKeyText = new System.Windows.Forms.TextBox();
+            this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.tbBarCode = new WindowsFormsControlLibrary.CustomTextBox();
             this.tbName = new WindowsFormsControlLibrary.CustomTextBox();
-            this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
+            label2 = new System.Windows.Forms.Label();
+            outPriceLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            inPriceLabel = new System.Windows.Forms.Label();
             productKeyLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             barCodeLabel = new System.Windows.Forms.Label();
-            inPriceLabel = new System.Windows.Forms.Label();
-            outPriceLabel = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -69,6 +79,42 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptrbPicture)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(393, 82);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(30, 13);
+            label2.TabIndex = 29;
+            label2.Text = "VNĐ";
+            // 
+            // outPriceLabel
+            // 
+            outPriceLabel.AutoSize = true;
+            outPriceLabel.Location = new System.Drawing.Point(28, 82);
+            outPriceLabel.Name = "outPriceLabel";
+            outPriceLabel.Size = new System.Drawing.Size(44, 13);
+            outPriceLabel.TabIndex = 13;
+            outPriceLabel.Text = "Giá bán";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(393, 31);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(30, 13);
+            label1.TabIndex = 28;
+            label1.Text = "VNĐ";
+            // 
+            // inPriceLabel
+            // 
+            inPriceLabel.AutoSize = true;
+            inPriceLabel.Location = new System.Drawing.Point(28, 31);
+            inPriceLabel.Name = "inPriceLabel";
+            inPriceLabel.Size = new System.Drawing.Size(50, 13);
+            inPriceLabel.TabIndex = 11;
+            inPriceLabel.Text = "Giá nhập";
             // 
             // productKeyLabel
             // 
@@ -96,42 +142,6 @@
             barCodeLabel.Size = new System.Drawing.Size(49, 13);
             barCodeLabel.TabIndex = 7;
             barCodeLabel.Text = "Mã vạch";
-            // 
-            // inPriceLabel
-            // 
-            inPriceLabel.AutoSize = true;
-            inPriceLabel.Location = new System.Drawing.Point(28, 31);
-            inPriceLabel.Name = "inPriceLabel";
-            inPriceLabel.Size = new System.Drawing.Size(50, 13);
-            inPriceLabel.TabIndex = 11;
-            inPriceLabel.Text = "Giá nhập";
-            // 
-            // outPriceLabel
-            // 
-            outPriceLabel.AutoSize = true;
-            outPriceLabel.Location = new System.Drawing.Point(28, 82);
-            outPriceLabel.Name = "outPriceLabel";
-            outPriceLabel.Size = new System.Drawing.Size(44, 13);
-            outPriceLabel.TabIndex = 13;
-            outPriceLabel.Text = "Giá bán";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(393, 31);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(30, 13);
-            label1.TabIndex = 28;
-            label1.Text = "VNĐ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(393, 82);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(30, 13);
-            label2.TabIndex = 29;
-            label2.Text = "VNĐ";
             // 
             // label3
             // 
@@ -309,6 +319,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Giá sản phẩm";
             // 
+            // interestRateLabel
+            // 
+            interestRateLabel.AutoSize = true;
+            interestRateLabel.Location = new System.Drawing.Point(102, 57);
+            interestRateLabel.Name = "interestRateLabel";
+            interestRateLabel.Size = new System.Drawing.Size(99, 13);
+            interestRateLabel.TabIndex = 30;
+            interestRateLabel.Text = "Tỉ lệ lợi nhuận: 10%";
+            // 
             // tbInPrice
             // 
             this.tbInPrice.AutoSize = true;
@@ -326,7 +345,7 @@
             this.tbInPrice.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.tbInPrice.ReadOnly = false;
             this.tbInPrice.Size = new System.Drawing.Size(270, 25);
-            this.tbInPrice.StringPattern = "^([0-9,. ])*$";
+            this.tbInPrice.StringPattern = "^[0-9,. ]{1,16}$";
             this.tbInPrice.TabIndex = 25;
             this.tbInPrice.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.tbInPrice.TextPanelMessage = "Giá trị không hợp lệ.";
@@ -351,12 +370,13 @@
             this.tbOutPrice.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.tbOutPrice.ReadOnly = false;
             this.tbOutPrice.Size = new System.Drawing.Size(270, 25);
-            this.tbOutPrice.StringPattern = "^([0-9,. ])*$";
+            this.tbOutPrice.StringPattern = "^[0-9,. ]{1,16}$";
             this.tbOutPrice.TabIndex = 26;
             this.tbOutPrice.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.tbOutPrice.TextPanelMessage = "Giá trị không hợp lệ.";
             this.tbOutPrice.TextPanelMessageColor = System.Drawing.Color.White;
             this.tbOutPrice.ValidBorderColor = System.Drawing.Color.LightGreen;
+            this.tbOutPrice.xTextChanged += new System.EventHandler(this.tbOutPrice_xTextChanged);
             // 
             // typeComboBox
             // 
@@ -390,6 +410,10 @@
             this.productKeyText.ReadOnly = true;
             this.productKeyText.Size = new System.Drawing.Size(184, 20);
             this.productKeyText.TabIndex = 37;
+            // 
+            // constantTableAdapter
+            // 
+            this.constantTableAdapter.ClearBeforeFill = true;
             // 
             // tbBarCode
             // 
@@ -439,19 +463,6 @@
             this.tbName.TextPanelMessageColor = System.Drawing.Color.White;
             this.tbName.ValidBorderColor = System.Drawing.Color.LightGreen;
             // 
-            // constantTableAdapter
-            // 
-            this.constantTableAdapter.ClearBeforeFill = true;
-            // 
-            // interestRateLabel
-            // 
-            interestRateLabel.AutoSize = true;
-            interestRateLabel.Location = new System.Drawing.Point(102, 57);
-            interestRateLabel.Name = "interestRateLabel";
-            interestRateLabel.Size = new System.Drawing.Size(99, 13);
-            interestRateLabel.TabIndex = 30;
-            interestRateLabel.Text = "Tỉ lệ lợi nhuận: 10%";
-            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,18 +509,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label productKeyLabel;
-        private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Label barCodeLabel;
-        private System.Windows.Forms.Label inPriceLabel;
-        private System.Windows.Forms.Label outPriceLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label interestRateLabel;
         private SellManagementDbDataSet sellManagementDbDataSet;
         private System.Windows.Forms.BindingSource pRODUCTBindingSource;
         private SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter pRODUCTTableAdapter;
@@ -533,5 +532,7 @@
         private System.Windows.Forms.ComboBox unitComboBox;
         private System.Windows.Forms.TextBox productKeyText;
         private SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter constantTableAdapter;
+
+        private System.Windows.Forms.Label interestRateLabel;
     }
 }

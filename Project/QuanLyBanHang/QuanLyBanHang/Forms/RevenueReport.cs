@@ -65,6 +65,8 @@ namespace QuanLyBanHang.Forms
 
             businessFeeBindingSource.Filter = "(FromDate >= #" + beginDateTimePicker.Value + "#) OR (ToDate <= #" + endDateTimePicker.Value + "#)";
 
+            vendorOrderViewBindingSource.Filter = "(CreateDate >= #" + beginDateTimePicker.Value + "#) AND (CreateDate <= #" + endDateTimePicker.Value + "#)";
+
             calculateRevenue();
         }
 

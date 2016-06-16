@@ -105,6 +105,8 @@
             this.createDatePicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
             this.createDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDatePicker.Location = new System.Drawing.Point(110, 43);
+            this.createDatePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDatePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDatePicker.Name = "createDatePicker";
             this.createDatePicker.Size = new System.Drawing.Size(120, 20);
             this.createDatePicker.TabIndex = 3;
@@ -114,6 +116,8 @@
             this.transactionPicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
             this.transactionPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.transactionPicker.Location = new System.Drawing.Point(110, 69);
+            this.transactionPicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.transactionPicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.transactionPicker.Name = "transactionPicker";
             this.transactionPicker.Size = new System.Drawing.Size(120, 20);
             this.transactionPicker.TabIndex = 5;

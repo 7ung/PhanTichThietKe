@@ -34,6 +34,8 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
+            this.vENDORBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -44,6 +46,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.staffComboBox = new System.Windows.Forms.ComboBox();
+            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.transactionPicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,16 +55,13 @@
             this.documentKeyText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
-            this.sellManagementDbDataSet = new QuanLyBanHang.SellManagementDbDataSet();
-            this.vENDORBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vENDORTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDORTableAdapter();
             this.documentTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
-            this.sTAFFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sTAFFTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.STAFFTableAdapter();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,6 +131,16 @@
             this.customerComboBox.Size = new System.Drawing.Size(164, 21);
             this.customerComboBox.TabIndex = 11;
             this.customerComboBox.ValueMember = "Id";
+            // 
+            // vENDORBindingSource
+            // 
+            this.vENDORBindingSource.DataMember = "VENDOR";
+            this.vENDORBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // sellManagementDbDataSet
+            // 
+            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
+            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox2
             // 
@@ -228,6 +238,11 @@
             this.staffComboBox.TabIndex = 18;
             this.staffComboBox.ValueMember = "Id";
             // 
+            // sTAFFBindingSource
+            // 
+            this.sTAFFBindingSource.DataMember = "STAFF";
+            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -242,6 +257,8 @@
             this.transactionPicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
             this.transactionPicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.transactionPicker.Location = new System.Drawing.Point(109, 68);
+            this.transactionPicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.transactionPicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.transactionPicker.Name = "transactionPicker";
             this.transactionPicker.Size = new System.Drawing.Size(120, 20);
             this.transactionPicker.TabIndex = 16;
@@ -260,6 +277,8 @@
             this.createDatePicker.CustomFormat = "dd\'/\'MM\'/\'yyyy";
             this.createDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDatePicker.Location = new System.Drawing.Point(109, 42);
+            this.createDatePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDatePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDatePicker.Name = "createDatePicker";
             this.createDatePicker.Size = new System.Drawing.Size(120, 20);
             this.createDatePicker.TabIndex = 14;
@@ -290,16 +309,6 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Mã hóa đơn";
             // 
-            // sellManagementDbDataSet
-            // 
-            this.sellManagementDbDataSet.DataSetName = "SellManagementDbDataSet";
-            this.sellManagementDbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vENDORBindingSource
-            // 
-            this.vENDORBindingSource.DataMember = "VENDOR";
-            this.vENDORBindingSource.DataSource = this.sellManagementDbDataSet;
-            // 
             // vENDORTableAdapter
             // 
             this.vENDORTableAdapter.ClearBeforeFill = true;
@@ -307,11 +316,6 @@
             // documentTableAdapter
             // 
             this.documentTableAdapter.ClearBeforeFill = true;
-            // 
-            // sTAFFBindingSource
-            // 
-            this.sTAFFBindingSource.DataMember = "STAFF";
-            this.sTAFFBindingSource.DataSource = this.sellManagementDbDataSet;
             // 
             // sTAFFTableAdapter
             // 
@@ -344,9 +348,9 @@
             this.Load += new System.EventHandler(this.CreateVendorOrderForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

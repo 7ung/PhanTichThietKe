@@ -192,7 +192,6 @@
             inOutTypeLabel.Size = new System.Drawing.Size(26, 13);
             inOutTypeLabel.TabIndex = 67;
             inOutTypeLabel.Text = "Kho";
-            inOutTypeLabel.Visible = false;
             // 
             // groupBox1
             // 
@@ -308,6 +307,7 @@
             this.inventoryComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iNOUTINVENTORYBindingSource, "Inventory_id", true));
             this.inventoryComboBox.DataSource = this.iNVENTORYBindingSource;
             this.inventoryComboBox.DisplayMember = "Name";
+            this.inventoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inventoryComboBox.Enabled = false;
             this.inventoryComboBox.FormattingEnabled = true;
             this.inventoryComboBox.Location = new System.Drawing.Point(257, 162);
@@ -370,6 +370,7 @@
             this.creatorComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.documentBindingSourceForEdit, "Creator", true));
             this.creatorComboBox.DataSource = this.sTAFFBindingSource;
             this.creatorComboBox.DisplayMember = "Name";
+            this.creatorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creatorComboBox.FormattingEnabled = true;
             this.creatorComboBox.Location = new System.Drawing.Point(257, 51);
             this.creatorComboBox.Name = "creatorComboBox";
@@ -388,6 +389,8 @@
             this.createDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.documentBindingSourceForEdit, "CreateDate", true));
             this.createDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDateDateTimePicker.Location = new System.Drawing.Point(257, 78);
+            this.createDateDateTimePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDateDateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDateDateTimePicker.Name = "createDateDateTimePicker";
             this.createDateDateTimePicker.Size = new System.Drawing.Size(120, 20);
             this.createDateDateTimePicker.TabIndex = 60;
@@ -397,6 +400,7 @@
             this.respondComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iNOUTINVENTORYBindingSource, "Respond", true));
             this.respondComboBox.DataSource = this.sTAFFBindingSource1;
             this.respondComboBox.DisplayMember = "Name";
+            this.respondComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.respondComboBox.FormattingEnabled = true;
             this.respondComboBox.Location = new System.Drawing.Point(257, 104);
             this.respondComboBox.Name = "respondComboBox";
@@ -426,10 +430,10 @@
             this.carryFeeTextBox.PanelBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(90)))), ((int)(((byte)(67)))));
             this.carryFeeTextBox.ReadOnly = false;
             this.carryFeeTextBox.Size = new System.Drawing.Size(160, 25);
-            this.carryFeeTextBox.StringPattern = "[0-9.]";
+            this.carryFeeTextBox.StringPattern = "^[0-9,. ]{1,12}$";
             this.carryFeeTextBox.TabIndex = 64;
             this.carryFeeTextBox.TextPadding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.carryFeeTextBox.TextPanelMessage = "This is an error message.";
+            this.carryFeeTextBox.TextPanelMessage = "Giá trị nhập không hợp lệ.";
             this.carryFeeTextBox.TextPanelMessageColor = System.Drawing.Color.White;
             this.carryFeeTextBox.ValidBorderColor = System.Drawing.Color.LightGreen;
             this.carryFeeTextBox.xTextChanged += new System.EventHandler(this.carryFeeTextBox_xTextChanged);
@@ -440,9 +444,19 @@
             this.termNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iNOUTINVENTORYBindingSource, "Term", true));
             this.termNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.termNumericUpDown.Location = new System.Drawing.Point(257, 189);
+            this.termNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.termNumericUpDown.Name = "termNumericUpDown";
             this.termNumericUpDown.Size = new System.Drawing.Size(60, 26);
             this.termNumericUpDown.TabIndex = 66;
+            this.termNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.termNumericUpDown.Visible = false;
             // 
             // isInCheckBox
@@ -599,6 +613,7 @@
             this.iNOUTINVENTORYDETAILBindingSource.DataMember = "INOUT_INVENTORY_DETAIL";
             this.iNOUTINVENTORYDETAILBindingSource.DataSource = this.sellManagementDbDataSet;
             this.iNOUTINVENTORYDETAILBindingSource.CurrentChanged += new System.EventHandler(this.iNOUTINVENTORYDETAILBindingSource_CurrentChanged);
+            this.iNOUTINVENTORYDETAILBindingSource.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.iNOUTINVENTORYDETAILBindingSource_ListChanged);
             // 
             // iNOUT_INVENTORY_DETAILTableAdapter
             // 
@@ -651,6 +666,7 @@
             // createBtn
             // 
             this.createBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.createBtn.Enabled = false;
             this.createBtn.Image = global::QuanLyBanHang.Properties.Resources.success;
             this.createBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.createBtn.Location = new System.Drawing.Point(855, 470);

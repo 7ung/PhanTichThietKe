@@ -51,6 +51,8 @@
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oRDERDETAILBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.vendorComboBox = new System.Windows.Forms.ComboBox();
@@ -75,7 +77,6 @@
             this.productIdCombobox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.productPriceText = new System.Windows.Forms.TextBox();
-            this.productQuantityText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -114,14 +115,14 @@
             this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
             this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dOCUMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vENDORORDERBindingSource)).BeginInit();
@@ -133,7 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).BeginInit();
-            this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // vatText
@@ -190,6 +191,8 @@
             this.createDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.dOCUMENTBindingSource, "CreateDate", true));
             this.createDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDatePicker.Location = new System.Drawing.Point(357, 36);
+            this.createDatePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDatePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDatePicker.Name = "createDatePicker";
             this.createDatePicker.Size = new System.Drawing.Size(167, 20);
             this.createDatePicker.TabIndex = 59;
@@ -205,6 +208,7 @@
             this.staffComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dOCUMENTBindingSource, "Creator", true));
             this.staffComboBox.DataSource = this.sTAFFBindingSource;
             this.staffComboBox.DisplayMember = "Name";
+            this.staffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.staffComboBox.FormattingEnabled = true;
             this.staffComboBox.Location = new System.Drawing.Point(805, 36);
             this.staffComboBox.Name = "staffComboBox";
@@ -236,6 +240,7 @@
             this.finalPriceText.ReadOnly = true;
             this.finalPriceText.Size = new System.Drawing.Size(260, 26);
             this.finalPriceText.TabIndex = 56;
+            this.finalPriceText.TextChanged += new System.EventHandler(this.finalPriceText_TextChanged);
             // 
             // label18
             // 
@@ -335,6 +340,21 @@
             this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
             this.resultDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(95, 26);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Image = global::QuanLyBanHang.Properties.Resources.error;
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.deleteMenuItem.Text = "Xóa";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            // 
             // oRDERDETAILBindingSource
             // 
             this.oRDERDETAILBindingSource.DataMember = "ORDER_DETAIL";
@@ -365,6 +385,7 @@
             this.vendorComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.vENDORORDERBindingSource, "Vendor_id", true));
             this.vendorComboBox.DataSource = this.vENDORBindingSource;
             this.vendorComboBox.DisplayMember = "Name";
+            this.vendorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vendorComboBox.FormattingEnabled = true;
             this.vendorComboBox.Location = new System.Drawing.Point(175, 18);
             this.vendorComboBox.Name = "vendorComboBox";
@@ -460,6 +481,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.numericUpDown);
             this.groupBox1.Controls.Add(this.productNameComboBox);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.inventoryComboBox);
@@ -468,7 +490,6 @@
             this.groupBox1.Controls.Add(this.productIdCombobox);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.productPriceText);
-            this.groupBox1.Controls.Add(this.productQuantityText);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -489,6 +510,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.productNameComboBox.DataSource = this.pRODUCTBindingSource;
             this.productNameComboBox.DisplayMember = "Name";
+            this.productNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.productNameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productNameComboBox.FormattingEnabled = true;
             this.productNameComboBox.Location = new System.Drawing.Point(166, 59);
@@ -512,6 +534,7 @@
             this.inventoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inventoryComboBox.DataSource = this.iNVENTORYBindingSource;
             this.inventoryComboBox.DisplayMember = "Name";
+            this.inventoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inventoryComboBox.DropDownWidth = 74;
             this.inventoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inventoryComboBox.FormattingEnabled = true;
@@ -543,7 +566,7 @@
             this.currentComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currentComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.pRODUCTBindingSource, "Id", true));
             this.currentComboBox.DataSource = this.iNVENTORYCAPABILITYBindingSource;
-            this.currentComboBox.DisplayMember = "CurrentCount";
+            this.currentComboBox.DisplayMember = "MaxCount";
             this.currentComboBox.DropDownHeight = 27;
             this.currentComboBox.DropDownWidth = 103;
             this.currentComboBox.Enabled = false;
@@ -593,20 +616,10 @@
             this.productPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productPriceText.Location = new System.Drawing.Point(166, 114);
             this.productPriceText.Name = "productPriceText";
+            this.productPriceText.ReadOnly = true;
             this.productPriceText.Size = new System.Drawing.Size(178, 26);
             this.productPriceText.TabIndex = 14;
             this.productPriceText.TextChanged += new System.EventHandler(this.productPriceText_TextChanged);
-            // 
-            // productQuantityText
-            // 
-            this.productQuantityText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.productQuantityText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productQuantityText.Location = new System.Drawing.Point(384, 114);
-            this.productQuantityText.Name = "productQuantityText";
-            this.productQuantityText.Size = new System.Drawing.Size(115, 26);
-            this.productQuantityText.TabIndex = 13;
-            this.productQuantityText.Text = "1";
-            this.productQuantityText.TextChanged += new System.EventHandler(this.productQuantityText_TextChanged);
             // 
             // label6
             // 
@@ -633,9 +646,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(349, 45);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Hiện tại";
+            this.label4.Text = "Sức chứa";
             // 
             // addProductBtn
             // 
@@ -659,8 +672,9 @@
             this.chooseProductBtn.Name = "chooseProductBtn";
             this.chooseProductBtn.Size = new System.Drawing.Size(89, 23);
             this.chooseProductBtn.TabIndex = 6;
-            this.chooseProductBtn.Text = "Tạo mới";
+            this.chooseProductBtn.Text = "Danh sách";
             this.chooseProductBtn.UseVisualStyleBackColor = true;
+            this.chooseProductBtn.Click += new System.EventHandler(this.chooseProductBtn_Click);
             // 
             // label3
             // 
@@ -763,6 +777,7 @@
             this.paidStaffComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.paidStaffComboBox.DataSource = this.sTAFFBindingSource1;
             this.paidStaffComboBox.DisplayMember = "Name";
+            this.paidStaffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paidStaffComboBox.FormattingEnabled = true;
             this.paidStaffComboBox.Location = new System.Drawing.Point(817, 51);
             this.paidStaffComboBox.Name = "paidStaffComboBox";
@@ -789,6 +804,7 @@
             // 
             this.statusOrderComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.statusOrderComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.oRDERBindingSource, "Status", true));
+            this.statusOrderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusOrderComboBox.FormattingEnabled = true;
             this.statusOrderComboBox.Location = new System.Drawing.Point(817, 24);
             this.statusOrderComboBox.Name = "statusOrderComboBox";
@@ -835,6 +851,7 @@
             // 
             // typeComboBox
             // 
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.FormattingEnabled = true;
             this.typeComboBox.Items.AddRange(new object[] {
             "Tiền mặt"});
@@ -842,7 +859,6 @@
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(121, 21);
             this.typeComboBox.TabIndex = 10;
-            this.typeComboBox.Text = "Tiền mặt";
             // 
             // label14
             // 
@@ -923,20 +939,30 @@
             // 
             this.iNVENTORYTableAdapter.ClearBeforeFill = true;
             // 
-            // contextMenuStrip
+            // numericUpDown
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(95, 26);
-            // 
-            // deleteMenuItem
-            // 
-            this.deleteMenuItem.Image = global::QuanLyBanHang.Properties.Resources.error;
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteMenuItem.Text = "Xóa";
-            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            this.numericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown.Location = new System.Drawing.Point(383, 114);
+            this.numericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(116, 26);
+            this.numericUpDown.TabIndex = 23;
+            this.numericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_TextChanged);
             // 
             // VendorOrderDetailForm
             // 
@@ -970,6 +996,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.oRDERDETAILBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -984,7 +1011,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sTAFFBindingSource1)).EndInit();
-            this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1018,7 +1045,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox productPriceText;
-        private System.Windows.Forms.TextBox productQuantityText;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -1079,5 +1105,6 @@
         private System.Windows.Forms.ComboBox productNameComboBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
     }
 }

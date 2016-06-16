@@ -423,6 +423,9 @@ namespace QuanLyBanHang.Forms
 
         private void createBtn_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.RowCount <= 0)
+                return;
+
             if (_isAddNew)
             {
                 createInOutInventory();
@@ -557,10 +560,16 @@ namespace QuanLyBanHang.Forms
             try
             {
                 var value = Convert.ToDouble(carryFeeTextBox.Text);
+                if(carryFeeTextBox.Text.Length > 12)
+                {
+                    createBtn.Enabled = false;
+                }
             }
             catch (Exception)
             {
-                MessageBox.Show("Giá trị không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("Giá trị không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                carryFeeTextBox.Text = carryFeeTextBox.Text.Substring(0, carryFeeTextBox.Text.Length - 1);
+                carryFeeTextBox.TextBox.SelectionStart = carryFeeTextBox.Text.Length;
                 return;
             }
         }
@@ -577,6 +586,19 @@ namespace QuanLyBanHang.Forms
 
         private void carryFeeTextBox_Leave(object sender, EventArgs e)
         {
+            createBtn.Enabled = carryFeeTextBox.IsValid;
+        }
+
+        private void iNOUTINVENTORYDETAILBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if(dataGridView1.RowCount <= 0)
+            {
+                createBtn.Enabled = false;
+            }
+            else
+            {
+                createBtn.Enabled = carryFeeTextBox.IsValid;
+            }
         }
     }
 }

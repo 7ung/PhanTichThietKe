@@ -156,6 +156,7 @@
             // 
             this.customerComboBox.DataSource = this.cUSTOMERBindingSource;
             this.customerComboBox.DisplayMember = "Name";
+            this.customerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.customerComboBox.FormattingEnabled = true;
             this.customerComboBox.Location = new System.Drawing.Point(275, 20);
             this.customerComboBox.Name = "customerComboBox";
@@ -377,7 +378,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(949, 310);
+            this.tabPage2.Size = new System.Drawing.Size(949, 224);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Danh sách đơn hàng";
             this.tabPage2.UseVisualStyleBackColor = true;

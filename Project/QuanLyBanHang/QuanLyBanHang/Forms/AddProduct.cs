@@ -93,9 +93,10 @@ namespace QuanLyBanHang.Forms
 
         private void inpriceTextBox_Leave(object sender, EventArgs e)
         {
+            btnSave.Enabled = tbInPrice.IsValid && tbOutPrice.IsValid;
+
             try
             {
-                
                 var cur = Convert.ToDouble(tbInPrice.Text);
                 tbOutPrice.Text = (cur * (1 + _interestRate)).ToString();
             }
@@ -469,6 +470,11 @@ namespace QuanLyBanHang.Forms
         private void tbInPrice_xTextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbOutPrice_xTextChanged(object sender, EventArgs e)
+        {
+            btnSave.Enabled = tbInPrice.IsValid && tbOutPrice.IsValid;
         }
     }
 }

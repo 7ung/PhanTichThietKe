@@ -73,7 +73,10 @@ namespace QuanLyBanHang.Forms
             bindOrderStatus();
 
             _currentProductId = ((pRODUCTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow).Id;
-            
+
+            // format
+            resultDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
+            priceDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
         }
 
         private void bindOrderStatus()
@@ -274,11 +277,19 @@ namespace QuanLyBanHang.Forms
             if (discountComboBox.Text != "")
                 discount = Convert.ToDouble(discountComboBox.Text);
 
-            if (extraText.Text != "")
-                extra = Convert.ToDouble(extraText.Text);
-
             if (vatText.Text != "")
                 vat = Convert.ToDouble(vatText.Text);
+
+            try
+            {
+                if (extraText.Text != "")
+                    extra = Convert.ToDouble(extraText.Text);
+            }
+            catch (Exception ex)
+            {
+                extraText.Text = extraText.Text.Substring(0, extraText.Text.Length - 1);
+                extraText.SelectionStart = recieveCashText.Text.Length;
+            }
 
             double finalPrice = total * (1 - discount + vat) + extra;
             finalPriceText.Text = finalPrice.ToString();
@@ -294,7 +305,10 @@ namespace QuanLyBanHang.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(Resources.InvalidValueMessage + "\n\nChi tiết: " + ex.Message, Resources.ErrorLabel, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                recieveCashText.Text = recieveCashText.Text.Substring(0, recieveCashText.Text.Length - 1);
+                recieveCashText.SelectionStart = recieveCashText.Text.Length;
 
                 returnCashText.Text = "0";
                 saveBtn.Enabled = false;
@@ -312,15 +326,26 @@ namespace QuanLyBanHang.Forms
                 saveBtn.Enabled = false;
             }
 
-            // tiền thối lớn hơn tiền trả
-            if ((recieve - finalPrice) > finalPrice)
-            {
-                MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                saveBtn.Enabled = false;
-            }
+            //// tiền thối lớn hơn tiền trả
+            //if ((recieve - finalPrice) > finalPrice)
+            //{
+            //    MessageBox.Show("Số tiền trả quá lớn!", "Chú ý!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    saveBtn.Enabled = false;
+            //}
 
             if (returnCashText.Text != "")
                 returnCashText.Text = string.Format("{0:#,##0.00}", double.Parse(returnCashText.Text));
+
+            if(recieve > 1000000000000)
+            {
+                saveBtn.Enabled = false;
+            }
+
+            // ko có sp trả tiền cũng như ko
+            if (productDataGridView.RowCount <= 0)
+            {
+                saveBtn.Enabled = false;
+            }
         }
 
         private void recieveCashText_TextChanged(object sender, EventArgs e)
@@ -488,6 +513,10 @@ namespace QuanLyBanHang.Forms
             {
                 productQuantityUpDown.Text = "1";
             }
+        }
+
+        private void oRDERDETAILBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
         }
     }
 }

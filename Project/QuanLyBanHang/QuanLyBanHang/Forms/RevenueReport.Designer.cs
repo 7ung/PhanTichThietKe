@@ -34,6 +34,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.ratioText = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.viewBtn = new System.Windows.Forms.Button();
             this.outComeText = new System.Windows.Forms.TextBox();
             this.incomeText = new System.Windows.Forms.TextBox();
@@ -92,11 +97,6 @@
             this.vENDORTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.VENDORTableAdapter();
             this.businessFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.BusinessFeeTableAdapter();
             this.dOCUMENTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.DOCUMENTTableAdapter();
-            this.ratioText = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -130,6 +130,8 @@
             this.beginDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.beginDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.beginDateTimePicker.Location = new System.Drawing.Point(92, 19);
+            this.beginDateTimePicker.MaxDate = new System.DateTime(2016, 12, 31, 0, 0, 0, 0);
+            this.beginDateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.beginDateTimePicker.Name = "beginDateTimePicker";
             this.beginDateTimePicker.Size = new System.Drawing.Size(120, 26);
             this.beginDateTimePicker.TabIndex = 1;
@@ -149,6 +151,8 @@
             this.endDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endDateTimePicker.Location = new System.Drawing.Point(283, 19);
+            this.endDateTimePicker.MaxDate = new System.DateTime(2016, 12, 31, 0, 0, 0, 0);
+            this.endDateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(120, 26);
             this.endDateTimePicker.TabIndex = 3;
@@ -178,6 +182,55 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(409, 128);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(30, 13);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "VNĐ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(409, 96);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(30, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "VNĐ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(409, 62);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(30, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "VNĐ";
+            // 
+            // ratioText
+            // 
+            this.ratioText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ratioText.Location = new System.Drawing.Point(92, 120);
+            this.ratioText.Name = "ratioText";
+            this.ratioText.ReadOnly = true;
+            this.ratioText.Size = new System.Drawing.Size(311, 26);
+            this.ratioText.TabIndex = 12;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(21, 128);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(27, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Tỉ lệ";
+            // 
             // viewBtn
             // 
             this.viewBtn.Location = new System.Drawing.Point(409, 19);
@@ -193,6 +246,7 @@
             this.outComeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outComeText.Location = new System.Drawing.Point(92, 88);
             this.outComeText.Name = "outComeText";
+            this.outComeText.ReadOnly = true;
             this.outComeText.Size = new System.Drawing.Size(311, 26);
             this.outComeText.TabIndex = 8;
             // 
@@ -201,6 +255,7 @@
             this.incomeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.incomeText.Location = new System.Drawing.Point(92, 54);
             this.incomeText.Name = "incomeText";
+            this.incomeText.ReadOnly = true;
             this.incomeText.Size = new System.Drawing.Size(311, 26);
             this.incomeText.TabIndex = 7;
             // 
@@ -415,6 +470,7 @@
             this.totalOutText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalOutText.Location = new System.Drawing.Point(730, 283);
             this.totalOutText.Name = "totalOutText";
+            this.totalOutText.ReadOnly = true;
             this.totalOutText.Size = new System.Drawing.Size(170, 26);
             this.totalOutText.TabIndex = 14;
             // 
@@ -581,6 +637,7 @@
             this.totalFeeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalFeeText.Location = new System.Drawing.Point(730, 283);
             this.totalFeeText.Name = "totalFeeText";
+            this.totalFeeText.ReadOnly = true;
             this.totalFeeText.Size = new System.Drawing.Size(170, 26);
             this.totalFeeText.TabIndex = 18;
             // 
@@ -724,54 +781,6 @@
             // dOCUMENTTableAdapter
             // 
             this.dOCUMENTTableAdapter.ClearBeforeFill = true;
-            // 
-            // ratioText
-            // 
-            this.ratioText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ratioText.Location = new System.Drawing.Point(92, 120);
-            this.ratioText.Name = "ratioText";
-            this.ratioText.Size = new System.Drawing.Size(311, 26);
-            this.ratioText.TabIndex = 12;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(21, 128);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Tỉ lệ";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(409, 62);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 13);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "VNĐ";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(409, 96);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(30, 13);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "VNĐ";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(409, 128);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 13);
-            this.label16.TabIndex = 15;
-            this.label16.Text = "VNĐ";
             // 
             // RevenueReport
             // 

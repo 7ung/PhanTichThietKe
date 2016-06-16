@@ -587,6 +587,8 @@
             this.createDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.dOCUMENTBindingSource, "CreateDate", true));
             this.createDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.createDateTimePicker.Location = new System.Drawing.Point(99, 98);
+            this.createDateTimePicker.MaxDate = new System.DateTime(2070, 12, 31, 0, 0, 0, 0);
+            this.createDateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.createDateTimePicker.Name = "createDateTimePicker";
             this.createDateTimePicker.Size = new System.Drawing.Size(100, 20);
             this.createDateTimePicker.TabIndex = 34;
