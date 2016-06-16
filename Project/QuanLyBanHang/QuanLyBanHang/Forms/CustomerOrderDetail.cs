@@ -73,6 +73,28 @@ namespace QuanLyBanHang.Forms
             recieveMoneyColumn.DefaultCellStyle.Format = "N2";
             resultDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
             priceDataGridViewTextBoxColumn.DefaultCellStyle.Format = "N2";
+
+            // kiểm tra coi có trong xuất kho chưa
+            checkInoutInventory();
+        }
+
+        private void checkInoutInventory()
+        {
+            editBtn.Enabled = true;
+
+            inouT_INVENTORY_DETAILTableAdapter.Fill(sellManagementDbDataSet.INOUT_INVENTORY_DETAIL);
+            
+            var list = sellManagementDbDataSet.INOUT_INVENTORY_DETAIL.Where(o => o.Order_id == OrderId);
+            if (list.Count() > 0)
+            {
+                editBtn.Enabled = false;
+                editBtn.Text = "Đã xuất kho.";
+            }
+            else
+            {
+                editBtn.Enabled = true;
+                editBtn.Text = "Sửa";
+            }
         }
 
         private void SelectOrderById(int orderId)

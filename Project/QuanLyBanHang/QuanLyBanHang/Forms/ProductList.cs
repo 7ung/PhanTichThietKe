@@ -23,6 +23,9 @@ namespace QuanLyBanHang.Forms
             pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
             pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
 
+            ordeR_DETAILTableAdapter.Fill(sellManagementDbDataSet.ORDER_DETAIL);
+            inventorY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
+
             this.tbBarCode.ReadOnly = true;
             this.tbInPrice.ReadOnly = true;
             this.tbName.ReadOnly = true;
@@ -45,7 +48,9 @@ namespace QuanLyBanHang.Forms
             //this.pRODUCT_METADATADataGridView.Refresh();
 
             this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
-            this.pRODUCTBindingSource.ResetBindings(false);           
+            this.pRODUCTBindingSource.ResetBindings(false);
+
+            
         }
 
 
@@ -75,6 +80,32 @@ namespace QuanLyBanHang.Forms
                 try
                 {
                     DataRowView row = (DataRowView)this.pRODUCTBindingSource.CurrencyManager.Current;
+                    int curId = (int)row.Row["Id"];
+
+                    // check coi có trong đơn hàng hay kho ko -_-
+                    var listInven = sellManagementDbDataSet.INVENTORY_CAPABILITY.Where(p => p.Product_id == curId);
+                    if(listInven.Count() > 0)
+                    {
+                        throw new Exception("Sản phẩm đang được dùng trong kho.");
+                    }
+
+                    var listOrder = sellManagementDbDataSet.ORDER_DETAIL.Where(p => p.Product_id == curId);
+                    if (listOrder.Count() > 0)
+                    {
+                        throw new Exception("Sản phẩm đang được dùng trong đơn hàng.");
+                    }
+
+                    // xóa mấy cái meta đi -_-
+                    var listmeta = sellManagementDbDataSet.PRODUCT_METADATA.Where(p => p.Product_id == curId);
+                    foreach (var item in listmeta)
+                    {
+                        item.Delete();
+                    }
+
+                    pRODUCT_METADATABindingSource.EndEdit();
+                    pRODUCT_METADATATableAdapter.Update(sellManagementDbDataSet.PRODUCT_METADATA);
+                    sellManagementDbDataSet.PRODUCT_METADATA.AcceptChanges();
+
                     row.Delete();
 
                     this.pRODUCTBindingSource.EndEdit();
@@ -91,7 +122,7 @@ namespace QuanLyBanHang.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Xóa thất bại! \n\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Chi tiết: " + ex.Message, "Không thể xóa!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.pRODUCT_METADATATableAdapter.Fill(sellManagementDbDataSet.PRODUCT_METADATA);
                     this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
                 }

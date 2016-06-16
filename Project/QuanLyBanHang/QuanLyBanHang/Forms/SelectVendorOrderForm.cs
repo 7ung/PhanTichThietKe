@@ -55,10 +55,11 @@ namespace QuanLyBanHang.Forms
                 var row = dataGridView1.SelectedRows[0].Cells["idColumn"];
                 OrderId = Convert.ToInt32(row.Value);
                 DocumentKey = dataGridView1.SelectedRows[0].Cells["keyColumn"].Value.ToString();
+                
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
         private void BindingOrderStatus()

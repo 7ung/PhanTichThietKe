@@ -178,6 +178,7 @@
             // 
             this.customerOrderViewBindingSource.DataMember = "Customer_Order_View";
             this.customerOrderViewBindingSource.DataSource = this.sellManagementDbDataSet;
+            this.customerOrderViewBindingSource.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.customerOrderViewBindingSource_ListChanged);
             // 
             // customer_Order_ViewTableAdapter
             // 

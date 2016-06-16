@@ -66,6 +66,8 @@
             this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
             this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
             this.queriesTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.QueriesTableAdapter();
+            this.inoutinventoryTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter();
+            this.invenFeeTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.InvenFeeTableAdapter();
             rentPriceLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
@@ -154,6 +156,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BILLTableAdapter = null;
+            this.tableAdapterManager.BusinessFeeTableAdapter = null;
             this.tableAdapterManager.CONSTANTTableAdapter = null;
             this.tableAdapterManager.CUSTOMER_BILLTableAdapter = null;
             this.tableAdapterManager.CUSTOMER_DEBTTableAdapter = null;
@@ -164,6 +167,7 @@
             this.tableAdapterManager.GROUPofCUSTOMERTableAdapter = null;
             this.tableAdapterManager.INOUT_INVENTORY_DETAILTableAdapter = null;
             this.tableAdapterManager.INOUTINVENTORYTableAdapter = null;
+            this.tableAdapterManager.InvenFeeTableAdapter = null;
             this.tableAdapterManager.INVENTORY_CAPABILITYTableAdapter = null;
             this.tableAdapterManager.INVENTORYTableAdapter = this.iNVENTORYTableAdapter;
             this.tableAdapterManager.ORDER_DETAILTableAdapter = null;
@@ -173,7 +177,9 @@
             this.tableAdapterManager.PURCHASE_ORDERTableAdapter = null;
             this.tableAdapterManager.QUOTE_DETAILTableAdapter = null;
             this.tableAdapterManager.QUOTETableAdapter = null;
+            this.tableAdapterManager.StaffFeeTableAdapter = null;
             this.tableAdapterManager.STAFFTableAdapter = null;
+            this.tableAdapterManager.TranferFeeTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QuanLyBanHang.SellManagementDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VENDOR_BILLTableAdapter = null;
             this.tableAdapterManager.VENDOR_DEBTTableAdapter = null;
@@ -451,6 +457,14 @@
             // 
             this.pRODUCTTableAdapter.ClearBeforeFill = true;
             // 
+            // inoutinventoryTableAdapter
+            // 
+            this.inoutinventoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // invenFeeTableAdapter
+            // 
+            this.invenFeeTableAdapter.ClearBeforeFill = true;
+            // 
             // InventoryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,5 +525,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
         private SellManagementDbDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter;
+        private SellManagementDbDataSetTableAdapters.INOUTINVENTORYTableAdapter inoutinventoryTableAdapter;
+        private SellManagementDbDataSetTableAdapters.InvenFeeTableAdapter invenFeeTableAdapter;
     }
 }

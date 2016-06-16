@@ -30,6 +30,8 @@ namespace QuanLyBanHang.Forms
 
         private void SelectProductForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY' table. You can move, or remove it, as needed.
+            this.iNVENTORYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.INVENTORY_CAPABILITY' table. You can move, or remove it, as needed.
             this.iNVENTORY_CAPABILITYTableAdapter.Fill(this.sellManagementDbDataSet.INVENTORY_CAPABILITY);
             // TODO: This line of code loads data into the 'sellManagementDbDataSet.PRODUCT' table. You can move, or remove it, as needed.
@@ -53,6 +55,12 @@ namespace QuanLyBanHang.Forms
 
         private void addBtn_Click(object sender, EventArgs e)
         {
+            if((int)quanlityUpDown.Value > Convert.ToInt32(currentCountComboBox.Text))
+            {
+                MessageBox.Show("Số lượng lớn hơn hiện tồn trong kho.", "Chú ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             this.DialogResult = DialogResult.OK;
 
             var current = (pRODUCTBindingSource.Current as DataRowView).Row as SellManagementDbDataSet.PRODUCTRow;
@@ -63,7 +71,7 @@ namespace QuanLyBanHang.Forms
 
             ResultOrderDetailRow.Order_id = OrderId;
             ResultOrderDetailRow.Product_id = current.Id;
-            ResultOrderDetailRow.Quantity = Convert.ToInt32(productQuantityText.Text);
+            ResultOrderDetailRow.Quantity = (int)quanlityUpDown.Value;
             ResultOrderDetailRow.Price = current.OutPrice;
             ResultOrderDetailRow.Result = ResultOrderDetailRow.Quantity * ResultOrderDetailRow.Price;
 
@@ -74,6 +82,11 @@ namespace QuanLyBanHang.Forms
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void inventoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            iNVENTORYCAPABILITYBindingSource.Filter = "Inventory_id = " + (int)inventoryComboBox.SelectedValue;
         }
     }
 }

@@ -109,6 +109,7 @@
             this.constantTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.CONSTANTTableAdapter();
             this.groupofCUSTOMERTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.GROUPofCUSTOMERTableAdapter();
             this.closeBtn = new System.Windows.Forms.Button();
+            this.inouT_INVENTORY_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dEBTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
@@ -885,6 +886,10 @@
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
+            // inouT_INVENTORY_DETAILTableAdapter
+            // 
+            this.inouT_INVENTORY_DETAILTableAdapter.ClearBeforeFill = true;
+            // 
             // CustomerOrderDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1001,5 +1006,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn returnMoneyColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn recieveMoneyColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn typeColumn;
+        private SellManagementDbDataSetTableAdapters.INOUT_INVENTORY_DETAILTableAdapter inouT_INVENTORY_DETAILTableAdapter;
     }
 }

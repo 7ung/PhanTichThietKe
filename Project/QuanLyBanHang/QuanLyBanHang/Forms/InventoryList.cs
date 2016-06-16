@@ -21,6 +21,9 @@ namespace QuanLyBanHang.Forms
             this.iNVENTORY_CAPABILITYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY_CAPABILITY);
             this.pRODUCTTableAdapter.Fill(sellManagementDbDataSet.PRODUCT);
 
+            inoutinventoryTableAdapter.Fill(sellManagementDbDataSet.INOUTINVENTORY);
+            invenFeeTableAdapter.Fill(sellManagementDbDataSet.InvenFee);
+
             this.tbAddress.ReadOnly = true;
             this.tbInventoryKey.ReadOnly = true;
             this.tbName.ReadOnly = true;
@@ -50,6 +53,19 @@ namespace QuanLyBanHang.Forms
                 {
 
                     DataRowView row = (DataRowView)this.iNVENTORYBindingSource.CurrencyManager.Current;
+                    var curId = (int)row["Id"];
+                    // check trước
+                    var checkInout = sellManagementDbDataSet.INOUTINVENTORY.Where(p => p.Inventory_id == curId);
+                    if(checkInout.Count() > 0)
+                    {
+                        throw new Exception("Kho hàng đang được sử dụng trong đơn nhập xuất.");
+                    }
+
+                    var checkFee = sellManagementDbDataSet.InvenFee.Where(p => p.Inventory_id == curId);
+                    if (checkFee.Count() > 0)
+                    {
+                        throw new Exception("Kho hàng đang được sử dụng trong báo cáo chi phí bán hàng.");
+                    }
 
                     // xóa mấy cái trong INVENTORY_CAPABILITY
                     foreach (var item in sellManagementDbDataSet.INVENTORY_CAPABILITY.Where(i => i.Inventory_id == (int)row["Id"]))
@@ -69,15 +85,8 @@ namespace QuanLyBanHang.Forms
                 }
                 catch (Exception ex)
                 {
-                    if(ex.HResult == -2146232060)
-                    {
-                        MessageBox.Show("Xóa thất bại! \n\n" + "Kho hàng đang được sử dụng ở đâu đó. :(", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Xóa thất bại! \n\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
+                    MessageBox.Show("Chi tiết: " + ex.Message, "Xóa thất bại!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                     this.iNVENTORYTableAdapter.Fill(sellManagementDbDataSet.INVENTORY);
                 }
             }

@@ -67,6 +67,8 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbProductKey = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ordeR_DETAILTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.ORDER_DETAILTableAdapter();
+            this.inventorY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
             lbProductKey = new System.Windows.Forms.Label();
             lbName = new System.Windows.Forms.Label();
             lbBarCode = new System.Windows.Forms.Label();
@@ -508,6 +510,14 @@
             this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.TabIndex = 8;
             // 
+            // ordeR_DETAILTableAdapter
+            // 
+            this.ordeR_DETAILTableAdapter.ClearBeforeFill = true;
+            // 
+            // inventorY_CAPABILITYTableAdapter
+            // 
+            this.inventorY_CAPABILITYTableAdapter.ClearBeforeFill = true;
+            // 
             // ProductList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -564,5 +574,7 @@
         private System.Windows.Forms.TextBox brandText;
         private System.Windows.Forms.TextBox typeText;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private SellManagementDbDataSetTableAdapters.ORDER_DETAILTableAdapter ordeR_DETAILTableAdapter;
+        private SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter inventorY_CAPABILITYTableAdapter;
     }
 }

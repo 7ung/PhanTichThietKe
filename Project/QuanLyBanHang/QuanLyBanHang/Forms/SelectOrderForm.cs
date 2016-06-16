@@ -45,15 +45,20 @@ namespace QuanLyBanHang.Forms
 
         private void selectBtn_Click(object sender, EventArgs e)
         {
+            if (billDataGridView.RowCount <= 0 || customerOrderViewBindingSource.Current == null)
+            {
+                contextMenuStrip.Enabled = false;
+            }
+
             if (billDataGridView.SelectedRows.Count > 0)
             {
                 var row = billDataGridView.SelectedRows[0].Cells["idColumn"];
                 OrderId = Convert.ToInt32(row.Value);
                 OrderKey = billDataGridView.SelectedRows[0].Cells["keyColumn"].Value.ToString();
+                
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
         private void searchText_TextChanged(object sender, EventArgs e)
@@ -125,6 +130,11 @@ namespace QuanLyBanHang.Forms
         private void billDataGridView_DoubleClick(object sender, EventArgs e)
         {
             selectBtn_Click(sender, e);
+        }
+
+        private void customerOrderViewBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            
         }
     }
 }

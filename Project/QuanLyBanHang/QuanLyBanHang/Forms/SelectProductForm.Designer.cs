@@ -37,7 +37,6 @@
             this.iNVENTORYCAPABILITYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.productPriceText = new System.Windows.Forms.TextBox();
-            this.productQuantityText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +55,10 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.pRODUCTTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.PRODUCTTableAdapter();
             this.iNVENTORY_CAPABILITYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORY_CAPABILITYTableAdapter();
+            this.quanlityUpDown = new System.Windows.Forms.NumericUpDown();
+            this.inventoryComboBox = new System.Windows.Forms.ComboBox();
+            this.iNVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iNVENTORYTableAdapter = new QuanLyBanHang.SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pRODUCTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sellManagementDbDataSet)).BeginInit();
@@ -63,17 +66,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanlityUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.inventoryComboBox);
+            this.groupBox1.Controls.Add(this.quanlityUpDown);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.currentCountComboBox);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.productPriceText);
-            this.groupBox1.Controls.Add(this.productQuantityText);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -148,16 +154,6 @@
             this.productPriceText.Size = new System.Drawing.Size(184, 26);
             this.productPriceText.TabIndex = 14;
             // 
-            // productQuantityText
-            // 
-            this.productQuantityText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.productQuantityText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productQuantityText.Location = new System.Drawing.Point(391, 114);
-            this.productQuantityText.Name = "productQuantityText";
-            this.productQuantityText.Size = new System.Drawing.Size(103, 26);
-            this.productQuantityText.TabIndex = 13;
-            this.productQuantityText.Text = "1";
-            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -207,7 +203,7 @@
             this.productIdText.Location = new System.Drawing.Point(218, 19);
             this.productIdText.Name = "productIdText";
             this.productIdText.ReadOnly = true;
-            this.productIdText.Size = new System.Drawing.Size(276, 20);
+            this.productIdText.Size = new System.Drawing.Size(167, 20);
             this.productIdText.TabIndex = 5;
             // 
             // label3
@@ -333,6 +329,46 @@
             // 
             this.iNVENTORY_CAPABILITYTableAdapter.ClearBeforeFill = true;
             // 
+            // quanlityUpDown
+            // 
+            this.quanlityUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quanlityUpDown.Location = new System.Drawing.Point(391, 114);
+            this.quanlityUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.quanlityUpDown.Name = "quanlityUpDown";
+            this.quanlityUpDown.Size = new System.Drawing.Size(103, 26);
+            this.quanlityUpDown.TabIndex = 19;
+            this.quanlityUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // inventoryComboBox
+            // 
+            this.inventoryComboBox.DataSource = this.iNVENTORYBindingSource;
+            this.inventoryComboBox.DisplayMember = "Name";
+            this.inventoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inventoryComboBox.FormattingEnabled = true;
+            this.inventoryComboBox.Location = new System.Drawing.Point(391, 18);
+            this.inventoryComboBox.Name = "inventoryComboBox";
+            this.inventoryComboBox.Size = new System.Drawing.Size(103, 21);
+            this.inventoryComboBox.TabIndex = 21;
+            this.inventoryComboBox.ValueMember = "Id";
+            this.inventoryComboBox.SelectedIndexChanged += new System.EventHandler(this.inventoryComboBox_SelectedIndexChanged);
+            // 
+            // iNVENTORYBindingSource
+            // 
+            this.iNVENTORYBindingSource.DataMember = "INVENTORY";
+            this.iNVENTORYBindingSource.DataSource = this.sellManagementDbDataSet;
+            // 
+            // iNVENTORYTableAdapter
+            // 
+            this.iNVENTORYTableAdapter.ClearBeforeFill = true;
+            // 
             // SelectProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,6 +397,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanlityUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNVENTORYBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,7 +408,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox productPriceText;
-        private System.Windows.Forms.TextBox productQuantityText;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -394,5 +431,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn outPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductKey;
+        private System.Windows.Forms.NumericUpDown quanlityUpDown;
+        private System.Windows.Forms.ComboBox inventoryComboBox;
+        private System.Windows.Forms.BindingSource iNVENTORYBindingSource;
+        private SellManagementDbDataSetTableAdapters.INVENTORYTableAdapter iNVENTORYTableAdapter;
     }
 }

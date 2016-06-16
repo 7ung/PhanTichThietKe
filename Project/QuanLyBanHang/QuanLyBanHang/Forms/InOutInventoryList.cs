@@ -121,9 +121,12 @@ namespace QuanLyBanHang.Forms
                                 foreach (var product in products)
                                 {
                                     var inven = sellManagementDbDataSet.INVENTORY_CAPABILITY.Where(i => i.Inventory_id == curRow.Inventory_id && i.Product_id == product.Product_id);
-                                    if (product.Quantity > inven.First().CurrentCount)
+                                    if (inven.Count() > 0)
                                     {
-                                        throw new Exception(String.Format("Số lượng hiện tại còn lại của sản phẩm trong kho hàng ít hơn số lượng trong đơn hàng."));
+                                        if (product.Quantity > inven.First().CurrentCount)
+                                        {
+                                            throw new Exception(String.Format("Số lượng hiện tại còn lại của sản phẩm trong kho hàng ít hơn số lượng trong đơn hàng."));
+                                        }
                                     }
                                 }
                             }
